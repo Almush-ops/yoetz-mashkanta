@@ -3,6 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
 
 const breadcrumbs = [
   { label: 'דף הבית', href: '/' },
@@ -10,34 +12,56 @@ const breadcrumbs = [
   { label: 'נשר' },
 ];
 
+const serviceSchema = {
+  '@type': 'Service',
+  name: 'יועץ משכנתאות בנשר',
+  description: 'ייעוץ משכנתאות מקצועי לתושבי נשר - ליווי ברכישת דירה, מחזור משכנתא, משכנתא לזוגות צעירים.',
+  url: 'https://yoetz-mashkanta.co.il/areas/nesher/',
+  provider: { '@id': 'https://yoetz-mashkanta.co.il/#business' },
+  areaServed: { '@type': 'City', name: 'נשר' },
+};
+
 const faqItems = [
   {
-    question: 'האם אתם מגיעים לנשר?',
-    answer: 'כן, אנו מעניקים שירות לתושבי נשר. הפגישות יכולות להתקיים במשרד או אצלכם.',
+    question: 'כמה עולה דירה ממוצעת בנשר?',
+    answer: 'מחירי דירות בנשר נעים בין 1.4-2.0 מיליון ש"ח ל-3-4 חדרים. המחירים גבוהים מעט מהקריות בשל איכות החיים הגבוהה.',
   },
   {
-    question: 'מה מיוחד בנשר?',
-    answer: 'נשר היא עיר שקטה עם אווירה קהילתית, קרובה לחיפה עם מחירים נוחים יותר.',
+    question: 'למה נשר נחשבת עיר איכותית?',
+    answer: 'נשר מציעה שילוב של טבע (יער נשר), שקט, בתי ספר מצוינים, וקרבה לחיפה (10 דקות). אוכלוסייה משכילה ורמת חיים גבוהה.',
   },
   {
-    question: 'האם יש התחדשות עירונית בנשר?',
-    answer: 'יש פרויקטים של התחדשות עירונית בנשר. נוכל לעזור גם עם משכנתא לדירה בפרויקט חדש.',
+    question: 'האם אתם מגיעים לפגישות בנשר?',
+    answer: 'כן, המשרד שלנו בקריית ביאליק נמצא 15 דקות מנשר. אנו מגיעים גם לפגישות בבית הלקוח או בזום.',
+  },
+  {
+    question: 'כמה הון עצמי צריך לדירה בנשר?',
+    answer: 'לדירה ממוצעת (1.7 מיליון ש"ח) תצטרכו כ-425,000 ש"ח הון עצמי (25%).',
   },
 ];
 ---
 
 <BaseLayout
-  title="יועץ משכנתאות בנשר | ייעוץ משכנתאות"
-  description="יועץ משכנתאות בנשר - ליווי מקצועי ברכישת דירה ומחזור משכנתא. שירות אישי לתושבי נשר."
+  title="יועץ משכנתאות בנשר 2026 | ייעוץ משכנתאות | איתי אנצל"
+  description="יועץ משכנתאות בנשר - ליווי מקצועי ברכישת דירה ומחזור משכנתא. עיר איכותית עם טבע ושקט. 169 לקוחות מרוצים. פגישה ראשונה ללא עלות."
 >
+  <SchemaOrg slot="schema" schema={[serviceSchema, personSchema, localBusinessSchema]} />
   <Breadcrumbs items={breadcrumbs} />
 
   <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-3xl md:text-4xl font-bold mb-4">יועץ משכנתאות בנשר</h1>
       <p class="text-lg text-brand-100 max-w-2xl mx-auto">
-        ייעוץ משכנתאות מקצועי לתושבי נשר - ליווי אישי בדרך לדירה שלכם.
+        ייעוץ משכנתאות מקצועי לתושבי נשר - עיר איכותית עם טבע, שקט, ואיכות חיים גבוהה.
       </p>
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          {trustBadges.rating}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          {trustBadges.clients}
+        </span>
+      </div>
     </div>
   </section>
 
@@ -45,30 +69,56 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4">
       <div class="prose prose-lg max-w-none text-gray-700">
         <p>
-          נשר היא עיר מגורים שקטה ומשפחתית, הממוקמת בין חיפה לקריות. העיר מציעה איכות חיים גבוהה במחירים נגישים יחסית.
+          <strong>נשר היא עיר מגורים איכותית במיוחד</strong> - שילוב של יער נשר, שקט, בתי ספר מצוינים, ונגישות מצוינת לחיפה (10 דקות). האוכלוסייה משכילה ורמת החיים גבוהה.
         </p>
         <p>
-          תוכן מפורט על שוק הנדל"ן בנשר והשירותים שלנו יתווסף כאן.
+          אני מלווה משפחות מנשר בתהליכי רכישת דירה ומחזור משכנתא. ההיכרות עם השוק המקומי ועם סניפי הבנקים באזור מאפשרת לי להביא תנאים טובים יותר.
         </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מחירי דירות בנשר 2026</h2>
+        <div class="bg-surface p-6 rounded-xl not-prose">
+          <div class="space-y-3">
+            <div class="flex justify-between items-center p-3 bg-white rounded-lg border border-border">
+              <span class="font-medium">דירות 3 חדרים</span>
+              <span class="text-brand-600 font-bold">1.4-1.6M ש"ח</span>
+            </div>
+            <div class="flex justify-between items-center p-3 bg-white rounded-lg border border-border">
+              <span class="font-medium">דירות 4 חדרים</span>
+              <span class="text-brand-600 font-bold">1.7-2.0M ש"ח</span>
+            </div>
+            <div class="flex justify-between items-center p-3 bg-white rounded-lg border border-border">
+              <span class="font-medium">קוטג'ים ובתים</span>
+              <span class="text-brand-600 font-bold">2.5-4.0M ש"ח</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="py-12 md:py-16 bg-surface">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-dark mb-8 text-center">השירותים שלנו בנשר</h2>
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">השירותים שלנו</h2>
       <div class="grid md:grid-cols-2 gap-6">
-        {[
-          { title: 'משכנתא לדירה', desc: 'ליווי ברכישת דירה חדשה או יד שנייה' },
-          { title: 'מחזור משכנתא', desc: 'בדיקת כדאיות והפחתת החזרים' },
-          { title: 'ייעוץ ראשוני', desc: 'פגישת היכרות ללא עלות' },
-          { title: 'ליווי מלא', desc: 'מהבדיקה הראשונית ועד החתימה' },
-        ].map((item) => (
-          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
-            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
-            <p class="text-gray-600 text-sm">{item.desc}</p>
-          </div>
-        ))}
+        <a href="/services/mortgage-consultation/" class="block bg-white p-6 rounded-xl hover:shadow-md border border-border">
+          <h3 class="font-bold text-dark mb-2">ייעוץ משכנתא</h3>
+          <p class="text-gray-600 text-sm">השוואת 7 בנקים, בניית תמהיל, וליווי עד החתימה.</p>
+        </a>
+        <a href="/services/mortgage-refinance/" class="block bg-white p-6 rounded-xl hover:shadow-md border border-border">
+          <h3 class="font-bold text-dark mb-2">מחזור משכנתא</h3>
+          <p class="text-gray-600 text-sm">בדיקת כדאיות ללא עלות. חיסכון ממוצע: 50,000-150,000 ש"ח.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">אזורים נוספים</h2>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/areas/haifa/" class="bg-surface px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">חיפה</a>
+        <a href="/areas/kiryat-bialik/" class="bg-surface px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">קריית ביאליק</a>
+        <a href="/areas/tirat-carmel/" class="bg-surface px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">טירת כרמל</a>
       </div>
     </div>
   </section>

@@ -3,6 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
 
 const breadcrumbs = [
   { label: 'דף הבית', href: '/' },
@@ -10,34 +12,60 @@ const breadcrumbs = [
   { label: 'זכרון יעקב' },
 ];
 
+const serviceSchema = {
+  '@type': 'Service',
+  name: 'יועץ משכנתאות בזכרון יעקב',
+  description: 'ייעוץ משכנתאות מקצועי לזכרון יעקב - ליווי ברכישת נכס, מחזור משכנתא, ופתרונות למשכנתאות בסכומים גבוהים.',
+  url: 'https://yoetz-mashkanta.co.il/areas/zichron-yaakov/',
+  provider: { '@id': 'https://yoetz-mashkanta.co.il/#business' },
+  areaServed: { '@type': 'City', name: 'זכרון יעקב' },
+};
+
 const faqItems = [
   {
+    question: 'כמה עולה דירה ממוצעת בזכרון יעקב?',
+    answer: 'מחירי דירות בזכרון יעקב גבוהים יחסית - 2.0-3.5 מיליון ש"ח ל-3-4 חדרים. בתים פרטיים יכולים להגיע ל-4-7 מיליון ש"ח ויותר.',
+  },
+  {
+    question: 'האם יש אתגרים מיוחדים במשכנתא לזכרון?',
+    answer: 'נכסים יקרים דורשים הון עצמי גבוה יותר ויכולת החזר משמעותית. יש מסלולים מיוחדים למשכנתאות גדולות, ואנחנו מתמחים בניהול עסקאות מורכבות.',
+  },
+  {
     question: 'האם אתם מגיעים לזכרון יעקב?',
-    answer: 'כן, אנו מגיעים לפגישות בזכרון יעקב. אפשר גם לקיים פגישות בזום לנוחותכם.',
+    answer: 'כן, אנו מגיעים לפגישות בזכרון יעקב (25 דקות מהמשרד). אפשר גם לקיים פגישות בזום לנוחותכם.',
   },
   {
-    question: 'מה מיוחד בשוק הנדל"ן בזכרון?',
-    answer: 'זכרון יעקב היא עיירה יוקרתית עם מחירי נדל"ן גבוהים יחסית, אך עם איכות חיים יוצאת דופן.',
+    question: 'למה זכרון יעקב יקרה יחסית?',
+    answer: 'זכרון יעקב היא עיירה ייחודית עם אופי כפרי, נופים מרהיבים, יקבים, קהילה איכותית, ומסורת עשירה. הביקוש גבוה והיצע הקרקעות מוגבל.',
   },
   {
-    question: 'האם יש משכנתאות מיוחדות לנכסים יקרים?',
-    answer: 'כן, יש מסלולים מיוחדים לנכסים בשווי גבוה. נעזור לכם למצוא את הפתרון המתאים.',
+    question: 'מה ההבדל במשכנתא לנכס יקר?',
+    answer: 'נכסים מעל 2.5 מיליון ש"ח דורשים בדרך כלל הון עצמי גבוה יותר (30-50%) והוכחת יכולת החזר חזקה. יש גם מסלולים מיוחדים לעצמאים ולבעלי הכנסות גבוהות.',
   },
 ];
 ---
 
 <BaseLayout
-  title="יועץ משכנתאות בזכרון יעקב | ייעוץ משכנתאות"
-  description="יועץ משכנתאות בזכרון יעקב - ליווי מקצועי ברכישת נכס באזור היוקרתי. שירות אישי לתושבי זכרון יעקב והסביבה."
+  title="יועץ משכנתאות בזכרון יעקב 2026 | נכסי יוקרה | איתי אנצל"
+  description="יועץ משכנתאות בזכרון יעקב - ליווי מקצועי ברכישת נכסים יקרים ומורכבים. התמחות במשכנתאות בסכומים גבוהים. 169 לקוחות מרוצים. פגישה ראשונה ללא עלות."
 >
+  <SchemaOrg slot="schema" schema={[serviceSchema, personSchema, localBusinessSchema]} />
   <Breadcrumbs items={breadcrumbs} />
 
   <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-3xl md:text-4xl font-bold mb-4">יועץ משכנתאות בזכרון יעקב</h1>
       <p class="text-lg text-brand-100 max-w-2xl mx-auto">
-        ייעוץ משכנתאות מקצועי לזכרון יעקב והסביבה - ליווי ברכישת נכס באחת העיירות היפות בארץ.
+        ייעוץ משכנתאות מקצועי לזכרון יעקב - התמחות בנכסי יוקרה ובעסקאות מורכבות. ליווי אישי ברכישת נכס באחת העיירות היפות בארץ.
       </p>
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          {trustBadges.rating}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          {trustBadges.clients}
+        </span>
+      </div>
     </div>
   </section>
 
@@ -45,11 +73,30 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4">
       <div class="prose prose-lg max-w-none text-gray-700">
         <p>
-          זכרון יעקב היא עיירה ציורית ויוקרתית, הידועה באווירה שלה, היקבים, והקהילה המיוחדת. רכישת נכס בזכרון דורשת תכנון פיננסי מדוקדק.
+          <strong>זכרון יעקב היא אחת העיירות הייחודיות והיפות בישראל</strong> - שילוב של מסורת, יקבים, נופים מרהיבים לים ולעמק, וקהילה איכותית. רכישת נכס בזכרון היא השקעה משמעותית שדורשת תכנון פיננסי מדוקדק.
         </p>
         <p>
-          תוכן מפורט על שוק הנדל"ן בזכרון יעקב והשירותים שלנו יתווסף כאן.
+          אני מלווה משפחות מזכרון יעקב והסביבה ברכישת נכסים ובמחזור משכנתאות. ההתמחות שלי בעסקאות בסכומים גבוהים ובמקרים מורכבים מאפשרת לי להביא פתרונות יצירתיים גם למצבים מאתגרים.
         </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מחירי דירות בזכרון יעקב 2026</h2>
+        <div class="bg-surface p-6 rounded-xl not-prose">
+          <div class="space-y-3">
+            <div class="flex justify-between items-center p-3 bg-white rounded-lg border border-border">
+              <span class="font-medium">דירות 3 חדרים</span>
+              <span class="text-brand-600 font-bold">2.0-2.8M ש"ח</span>
+            </div>
+            <div class="flex justify-between items-center p-3 bg-white rounded-lg border border-border">
+              <span class="font-medium">דירות 4-5 חדרים</span>
+              <span class="text-brand-600 font-bold">2.8-3.5M ש"ח</span>
+            </div>
+            <div class="flex justify-between items-center p-3 bg-white rounded-lg border border-border">
+              <span class="font-medium">בתים פרטיים</span>
+              <span class="text-brand-600 font-bold">4.0-7.0M ש"ח+</span>
+            </div>
+          </div>
+          <p class="text-sm text-gray-500 mt-3">הון עצמי נדרש: 25%-50% תלוי בסכום ובפרופיל הרוכש</p>
+        </div>
       </div>
     </div>
   </section>
@@ -57,18 +104,46 @@ const faqItems = [
   <section class="py-12 md:py-16 bg-surface">
     <div class="max-w-4xl mx-auto px-4">
       <h2 class="text-2xl font-bold text-dark mb-8 text-center">למה זכרון יעקב?</h2>
-      <div class="grid md:grid-cols-2 gap-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { title: 'איכות חיים', desc: 'אווירה ייחודית, תרבות, ואקלים מעולה' },
-          { title: 'קהילה', desc: 'קהילה חמה ומגובשת' },
-          { title: 'נוף', desc: 'נופים מרהיבים לים ולעמק' },
-          { title: 'ערך נכסים', desc: 'שמירה על ערך ועליית מחירים לאורך זמן' },
+          { icon: '🍷', title: 'יקבים ותרבות', desc: 'אווירה ייחודית וקסומה' },
+          { icon: '🏔️', title: 'נופים מרהיבים', desc: 'נוף לים ולעמק יזרעאל' },
+          { icon: '👨‍👩‍👧‍👦', title: 'קהילה איכותית', desc: 'אוכלוסייה משכילה ומבוססת' },
+          { icon: '📈', title: 'שמירה על ערך', desc: 'עליית מחירים יציבה לאורך שנים' },
         ].map((item) => (
-          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
-            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
+          <div class="bg-white p-4 rounded-xl border border-border text-center">
+            <span class="text-2xl">{item.icon}</span>
+            <h3 class="font-bold text-dark mt-2">{item.title}</h3>
             <p class="text-gray-600 text-sm">{item.desc}</p>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">השירותים שלנו</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href="/services/mortgage-consultation/" class="block bg-surface p-6 rounded-xl hover:shadow-md border border-border">
+          <h3 class="font-bold text-dark mb-2">ייעוץ משכנתא לנכס יוקרה</h3>
+          <p class="text-gray-600 text-sm">התמחות במשכנתאות בסכומים גבוהים ובעסקאות מורכבות.</p>
+        </a>
+        <a href="/services/mortgage-refinance/" class="block bg-surface p-6 rounded-xl hover:shadow-md border border-border">
+          <h3 class="font-bold text-dark mb-2">מחזור משכנתא</h3>
+          <p class="text-gray-600 text-sm">בדיקת כדאיות ללא עלות. פוטנציאל חיסכון משמעותי.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">אזורים נוספים</h2>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/areas/haifa/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">חיפה</a>
+        <a href="/areas/kiryat-bialik/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">קריית ביאליק</a>
+        <a href="/areas/nesher/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">נשר</a>
       </div>
     </div>
   </section>

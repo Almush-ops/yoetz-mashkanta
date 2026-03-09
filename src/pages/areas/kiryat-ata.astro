@@ -3,6 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
 
 const breadcrumbs = [
   { label: 'דף הבית', href: '/' },
@@ -10,34 +12,60 @@ const breadcrumbs = [
   { label: 'קריית אתא' },
 ];
 
+const serviceSchema = {
+  '@type': 'Service',
+  name: 'יועץ משכנתאות בקריית אתא',
+  description: 'ייעוץ משכנתאות מקצועי לתושבי קריית אתא - ליווי ברכישת דירה, מחזור משכנתא, משכנתא לזוגות צעירים.',
+  url: 'https://yoetz-mashkanta.co.il/areas/kiryat-ata/',
+  provider: { '@id': 'https://yoetz-mashkanta.co.il/#business' },
+  areaServed: { '@type': 'City', name: 'קריית אתא' },
+};
+
 const faqItems = [
   {
-    question: 'האם אתם פעילים בקריית אתא?',
-    answer: 'כן, אנו מעניקים שירות מלא לתושבי קריית אתא ומגיעים לפגישות בעיר.',
+    question: 'כמה עולה דירה ממוצעת בקריית אתא?',
+    answer: 'מחירי דירות בקריית אתא הם מהנגישים בקריות - 1.1-1.6 מיליון ש"ח ל-3-4 חדרים. בשכונות החדשות המחירים מגיעים ל-1.4-1.8 מיליון.',
   },
   {
-    question: 'מה המצב בשוק הנדל"ן בקריית אתא?',
-    answer: 'קריית אתא מציעה מחירים נגישים יחסית עם פוטנציאל עלייה. נשמח לעזור לכם להבין את השוק.',
+    question: 'האם אתם מגיעים לפגישות בקריית אתא?',
+    answer: 'כן, המשרד שלנו בקריית ביאליק נמצא 10 דקות מקריית אתא. אנו מגיעים גם לפגישות בבית הלקוח.',
   },
   {
-    question: 'האם יש פרויקטים חדשים באזור?',
-    answer: 'יש מספר פרויקטים חדשים בקריית אתא. נוכל לעזור לכם גם עם משכנתא לדירה מקבלן.',
+    question: 'למה המחירים בקריית אתא נמוכים יחסית?',
+    answer: 'קריית אתא היא עיר מתפתחת עם אוכלוסייה גדלה. המחירים הנגישים מושכים זוגות צעירים ומשפחות. יש פוטנציאל לעליית ערך עם התפתחות העיר.',
+  },
+  {
+    question: 'כמה הון עצמי צריך לדירה בקריית אתא?',
+    answer: 'לדירה ממוצעת (1.4 מיליון ש"ח) תצטרכו כ-350,000 ש"ח הון עצמי (25%). זו כניסה נוחה יחסית לשוק הנדל"ן.',
+  },
+  {
+    question: 'האם יש פרויקטים חדשים בקריית אתא?',
+    answer: 'כן, יש מספר פרויקטים של התחדשות עירונית ובנייה חדשה. פרויקטים אלו מציעים דירות מודרניות במחירים תחרותיים.',
   },
 ];
 ---
 
 <BaseLayout
-  title="יועץ משכנתאות בקריית אתא | ייעוץ משכנתאות"
-  description="יועץ משכנתאות בקריית אתא - ליווי מקצועי ברכישת דירה ומחזור משכנתא. שירות אישי לתושבי קריית אתא."
+  title="יועץ משכנתאות בקריית אתא 2026 | מחירים נגישים | איתי אנצל"
+  description="יועץ משכנתאות בקריית אתא - ליווי מקצועי ברכישת דירה ומחזור משכנתא. מחירי דירות נגישים: 1.1-1.6M ש״ח. 169 לקוחות מרוצים. פגישה ראשונה ללא עלות."
 >
+  <SchemaOrg slot="schema" schema={[serviceSchema, personSchema, localBusinessSchema]} />
   <Breadcrumbs items={breadcrumbs} />
 
   <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-3xl md:text-4xl font-bold mb-4">יועץ משכנתאות בקריית אתא</h1>
       <p class="text-lg text-brand-100 max-w-2xl mx-auto">
-        ייעוץ משכנתאות מקצועי לתושבי קריית אתא - בדרך לדירה במחיר הוגן.
+        ייעוץ משכנתאות מקצועי לתושבי קריית אתא - מחירי דירות נגישים, פוטנציאל עליית ערך, וליווי אישי לכל התהליך.
       </p>
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          {trustBadges.rating}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          {trustBadges.clients}
+        </span>
+      </div>
     </div>
   </section>
 
@@ -45,30 +73,64 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4">
       <div class="prose prose-lg max-w-none text-gray-700">
         <p>
-          קריית אתא היא אחת הערים הגדולות בקריות, עם מגוון שכונות ואפשרויות מגורים במחירים נגישים. אנו מכירים את השוק המקומי ונעזור לכם למצוא את המשכנתא הנכונה.
+          <strong>קריית אתא מציעה את מחירי הדירות הנגישים ביותר בקריות</strong> - נקודת כניסה מצוינת לשוק הנדל"ן עבור זוגות צעירים ומשפחות. העיר עוברת התפתחות עם פרויקטים חדשים ושיפור תשתיות.
         </p>
         <p>
-          תוכן מפורט על שוק הנדל"ן בקריית אתא והשירותים שלנו יתווסף כאן.
+          אני מלווה משפחות רבות מקריית אתא בתהליך רכישת דירה ראשונה. ההיכרות שלי עם השוק המקומי מאפשרת לי לעזור למצוא את ההזדמנויות הטובות ביותר.
         </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מחירי דירות בקריית אתא 2026</h2>
+        <div class="bg-surface p-6 rounded-xl not-prose">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded-lg border border-border">
+              <h4 class="font-bold text-dark">שכונות ותיקות</h4>
+              <p class="text-brand-600 font-bold">1.1-1.4M ש"ח</p>
+              <p class="text-sm text-gray-600">מחירי כניסה נגישים</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border border-border">
+              <h4 class="font-bold text-dark">פרויקטים חדשים</h4>
+              <p class="text-brand-600 font-bold">1.4-1.8M ש"ח</p>
+              <p class="text-sm text-gray-600">בנייה מודרנית, מפרט גבוה</p>
+            </div>
+          </div>
+          <p class="text-sm text-gray-500 mt-3">הון עצמי נדרש: 275,000-450,000 ש"ח (25%)</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="py-12 md:py-16 bg-surface">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-dark mb-8 text-center">למה קריית אתא?</h2>
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">השירותים שלנו</h2>
       <div class="grid md:grid-cols-2 gap-6">
-        {[
-          { title: 'מחירים נגישים', desc: 'מחירי דירות נמוכים יחסית לאזור' },
-          { title: 'פיתוח עירוני', desc: 'שדרוגי תשתיות ופרויקטים חדשים' },
-          { title: 'נגישות', desc: 'קרבה לחיפה ולמפרץ' },
-          { title: 'קהילה', desc: 'קהילות חזקות ושירותים טובים' },
-        ].map((item) => (
-          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
-            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
-            <p class="text-gray-600 text-sm">{item.desc}</p>
-          </div>
-        ))}
+        <a href="/services/young-couples/" class="block bg-white p-6 rounded-xl hover:shadow-md transition-shadow border border-border">
+          <h3 class="font-bold text-dark mb-2">משכנתא לזוגות צעירים</h3>
+          <p class="text-gray-600 text-sm">קריית אתא מצוינת לרוכשים ראשונים - מחירים נגישים + הטבות.</p>
+        </a>
+        <a href="/services/mortgage-consultation/" class="block bg-white p-6 rounded-xl hover:shadow-md transition-shadow border border-border">
+          <h3 class="font-bold text-dark mb-2">ייעוץ משכנתא</h3>
+          <p class="text-gray-600 text-sm">השוואת 7 בנקים, בניית תמהיל, וליווי עד החתימה.</p>
+        </a>
+        <a href="/guides/down-payment/" class="block bg-white p-6 rounded-xl hover:shadow-md transition-shadow border border-border">
+          <h3 class="font-bold text-dark mb-2">מדריך: הון עצמי</h3>
+          <p class="text-gray-600 text-sm">כמה צריך ומאיפה אפשר לגייס?</p>
+        </a>
+        <a href="/guides/first-apartment/" class="block bg-white p-6 rounded-xl hover:shadow-md transition-shadow border border-border">
+          <h3 class="font-bold text-dark mb-2">מדריך: דירה ראשונה</h3>
+          <p class="text-gray-600 text-sm">שלב אחר שלב - מהחיפוש ועד המפתח.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">אזורים נוספים</h2>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/areas/haifa/" class="bg-surface px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">חיפה</a>
+        <a href="/areas/kiryat-bialik/" class="bg-surface px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">קריית ביאליק</a>
+        <a href="/areas/kiryat-motzkin/" class="bg-surface px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">קריית מוצקין</a>
+        <a href="/areas/nesher/" class="bg-surface px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">נשר</a>
       </div>
     </div>
   </section>

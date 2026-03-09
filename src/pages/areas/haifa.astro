@@ -3,6 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import FAQ from '../../components/FAQ.astro';
 import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
 
 const breadcrumbs = [
   { label: 'דף הבית', href: '/' },
@@ -10,34 +12,80 @@ const breadcrumbs = [
   { label: 'חיפה' },
 ];
 
+const serviceSchema = {
+  '@type': 'Service',
+  name: 'יועץ משכנתאות בחיפה',
+  description: 'ייעוץ משכנתאות מקצועי לתושבי חיפה - ליווי ברכישת דירה, מחזור משכנתא, משכנתא לזוגות צעירים. היכרות מעמיקה עם שוק הנדל"ן בחיפה.',
+  url: 'https://yoetz-mashkanta.co.il/areas/haifa/',
+  provider: { '@id': 'https://yoetz-mashkanta.co.il/#business' },
+  areaServed: { '@type': 'City', name: 'חיפה' },
+};
+
 const faqItems = [
   {
+    question: 'כמה עולה דירה ממוצעת בחיפה?',
+    answer: 'מחירי דירות בחיפה נעים בין 1.2-2.5 מיליון ש"ח ל-3-4 חדרים, תלוי בשכונה. בשכונות כמו אחוזה ודניה המחירים גבוהים יותר (2-3 מיליון), בעוד שבקריית חיים ונווה שאנן אפשר למצוא דירות ב-1.2-1.8 מיליון.',
+  },
+  {
+    question: 'אילו בנקים פעילים באזור חיפה?',
+    answer: 'כל 7 הבנקים למשכנתאות פעילים בחיפה עם סניפים ייעודיים: לאומי, הפועלים, מזרחי-טפחות, דיסקונט, הבינלאומי, מרכנתיל ואגוד. יש לנו קשרים טובים עם מנהלי הסניפים המקומיים.',
+  },
+  {
     question: 'האם אתם מגיעים לפגישות בחיפה?',
-    answer: 'כן, אנו מציעים פגישות בכל רחבי חיפה - בבית הלקוח, בבתי קפה, או בזום לנוחותכם.',
+    answer: 'כן, אנו מציעים פגישות בכל רחבי חיפה - בבית הלקוח, במשרדים בקריית ביאליק (15 דקות מחיפה), או בזום. הפגישה הראשונה ללא עלות.',
   },
   {
     question: 'מה מיוחד בשוק הנדל"ן בחיפה?',
-    answer: 'חיפה מציעה מגוון אפשרויות מגורים במחירים נגישים יותר מהמרכז, עם איכות חיים גבוהה.',
+    answer: 'חיפה מציעה יחס מחיר-איכות מצוין לעומת המרכז - מחירים נמוכים ב-30-40% מתל אביב, עם איכות חיים גבוהה, טכניון, רמב"ם, קרבה לטבע והים. בשנים האחרונות יש עלייה במחירים בעקבות פיתוח תשתיות.',
   },
   {
-    question: 'כמה זמן אתם פעילים באזור חיפה?',
-    answer: 'אנו פעילים באזור חיפה והקריות כבר שנים רבות ומכירים היטב את השוק המקומי.',
+    question: 'האם יש הטבות לרוכשי דירה בחיפה?',
+    answer: 'רוכשי דירה ראשונה נהנים מפטור ממס רכישה עד 1,978,745 ש"ח בכל הארץ, כולל חיפה. בנוסף, חלק מהשכונות בחיפה מוגדרות כאזורי עדיפות לאומית עם הטבות נוספות לזכאים.',
   },
+  {
+    question: 'כמה הון עצמי צריך לדירה בחיפה?',
+    answer: 'לדירה ראשונה נדרש 25% הון עצמי. לדירה ממוצעת בחיפה (1.8 מיליון ש"ח) תצטרכו כ-450,000 ש"ח הון עצמי. זוגות צעירים זכאים יכולים לקבל מענקים של 40,000-100,000 ש"ח שנחשבים כהון עצמי.',
+  },
+];
+
+const neighborhoods = [
+  { name: 'אחוזה', price: '2.2-2.8M', desc: 'שכונת יוקרה, קרבה לכרמל', type: 'משפחות מבוססות' },
+  { name: 'דניה', price: '2-2.5M', desc: 'נוף לים, בתי אבן', type: 'זוגות עם ילדים' },
+  { name: 'רמת אלמוגי', price: '1.8-2.2M', desc: 'שכונה חדשה, בנייה מודרנית', type: 'זוגות צעירים' },
+  { name: 'נווה שאנן', price: '1.3-1.7M', desc: 'קרבה לטכניון, אוכלוסייה צעירה', type: 'סטודנטים ומשפחות' },
+  { name: 'קריית חיים', price: '1.2-1.6M', desc: 'מחירים נגישים, שירותים מפותחים', type: 'משפחות צעירות' },
+  { name: 'הדר', price: '1.0-1.4M', desc: 'התחדשות עירונית, פוטנציאל עליית ערך', type: 'משקיעים ורוכשים ראשונים' },
 ];
 ---
 
 <BaseLayout
-  title="יועץ משכנתאות בחיפה | ייעוץ משכנתאות מקצועי"
-  description="יועץ משכנתאות בחיפה - ליווי מקצועי ואישי בכל תהליך המשכנתא. השוואת הצעות מכל הבנקים ובניית תמהיל מותאם."
+  title="יועץ משכנתאות בחיפה 2026 | ייעוץ משכנתאות מקצועי | איתי אנצל"
+  description="יועץ משכנתאות בחיפה - ליווי מקצועי ברכישת דירה, מחזור משכנתא, משכנתא לזוגות צעירים. 169 לקוחות מרוצים, דירוג 9.68. פגישת ייעוץ ראשונה ללא עלות."
 >
+  <SchemaOrg slot="schema" schema={[serviceSchema, personSchema, localBusinessSchema]} />
   <Breadcrumbs items={breadcrumbs} />
 
   <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-3xl md:text-4xl font-bold mb-4">יועץ משכנתאות בחיפה</h1>
       <p class="text-lg text-brand-100 max-w-2xl mx-auto">
-        ייעוץ משכנתאות מקצועי לתושבי חיפה והסביבה - ליווי אישי מהשלב הראשון ועד קבלת המפתח.
+        ייעוץ משכנתאות מקצועי לתושבי חיפה והסביבה - היכרות מעמיקה עם שוק הנדל"ן המקומי, קשרים עם סניפי הבנקים באזור, וליווי אישי מהשלב הראשון ועד קבלת המפתח.
       </p>
+      <!-- E-E-A-T Trust Badges -->
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          {trustBadges.rating}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+          {trustBadges.clients}
+        </span>
+        <a href={consultant.hfcaUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          {trustBadges.hfca}
+        </a>
+      </div>
     </div>
   </section>
 
@@ -45,24 +93,77 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4">
       <div class="prose prose-lg max-w-none text-gray-700">
         <p>
-          חיפה, עיר הקריות והכרמל, מציעה הזדמנויות מגורים מעולות במחירים נגישים יותר מהמרכז. בין אם אתם מחפשים דירה ראשונה או שוקלים מחזור משכנתא, אנחנו כאן לעזור.
+          <strong>חיפה היא אחת הערים המבוקשות ביותר לרכישת דירה בישראל</strong> - שילוב של מחירים נגישים יחסית, איכות חיים גבוהה, קרבה לים ולטבע, ומוסדות חינוך מובילים כמו הטכניון ואוניברסיטת חיפה. בשנים האחרונות חיפה עוברת התחדשות עירונית משמעותית, עם פרויקטים חדשים בהדר, בקריית חיים ובנמל.
         </p>
         <p>
-          תוכן מפורט על שוק הנדל"ן בחיפה והשירותים שלנו באזור יתווסף כאן.
+          אני מלווה עשרות משפחות מחיפה והסביבה בתהליך רכישת דירה ומחזור משכנתא. ההיכרות שלי עם השוק המקומי - מחירים בכל שכונה, פרויקטים חדשים, ומנהלי סניפי הבנקים באזור - מאפשרת לי להביא ללקוחות תנאים טובים יותר.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מחירי דירות בחיפה 2026 - לפי שכונות</h2>
+        <p>
+          שוק הנדל"ן בחיפה מגוון - ממחירי כניסה של כמיליון ש"ח בשכונות המתחדשות ועד 3 מיליון בשכונות היוקרה. הנה סקירה של השכונות העיקריות:
         </p>
       </div>
     </div>
   </section>
 
+  <!-- Neighborhoods Table -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">שכונות מובילות בחיפה - מחירים וקהל יעד</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {neighborhoods.map((n) => (
+          <div class="bg-white p-5 rounded-xl border border-border">
+            <h3 class="font-bold text-dark text-lg mb-2">{n.name}</h3>
+            <p class="text-brand-600 font-bold mb-2">{n.price} ש"ח</p>
+            <p class="text-gray-600 text-sm mb-2">{n.desc}</p>
+            <span class="inline-block text-xs bg-brand-50 text-brand-700 px-2 py-1 rounded">{n.type}</span>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-gray-500 text-center mt-4">* המחירים הם אומדן לדירות 3-4 חדרים, מרץ 2026</p>
+    </div>
+  </section>
+
+  <!-- Services for Haifa -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">השירותים שלנו לתושבי חיפה</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href="/services/mortgage-consultation/" class="block bg-surface p-6 rounded-xl hover:shadow-md transition-shadow border border-border hover:border-brand-300">
+          <h3 class="font-bold text-dark mb-2">ייעוץ משכנתא לרכישת דירה</h3>
+          <p class="text-gray-600 text-sm mb-3">ליווי מלא ברכישת דירה בחיפה - השוואת 7 בנקים, בניית תמהיל, וליווי עד החתימה.</p>
+          <span class="text-brand-600 text-sm font-medium">למידע נוסף ←</span>
+        </a>
+        <a href="/services/mortgage-refinance/" class="block bg-surface p-6 rounded-xl hover:shadow-md transition-shadow border border-border hover:border-brand-300">
+          <h3 class="font-bold text-dark mb-2">מחזור משכנתא</h3>
+          <p class="text-gray-600 text-sm mb-3">יש לכם משכנתא קיימת בחיפה? בדיקת כדאיות מחזור ללא עלות. חיסכון ממוצע: 50,000-150,000 ש"ח.</p>
+          <span class="text-brand-600 text-sm font-medium">למידע נוסף ←</span>
+        </a>
+        <a href="/services/young-couples/" class="block bg-surface p-6 rounded-xl hover:shadow-md transition-shadow border border-border hover:border-brand-300">
+          <h3 class="font-bold text-dark mb-2">משכנתא לזוגות צעירים</h3>
+          <p class="text-gray-600 text-sm mb-3">רוכשים דירה ראשונה בחיפה? פטור ממס רכישה, מענקים לזכאים, וליווי מותאם.</p>
+          <span class="text-brand-600 text-sm font-medium">למידע נוסף ←</span>
+        </a>
+        <a href="/services/declined-applicants/" class="block bg-surface p-6 rounded-xl hover:shadow-md transition-shadow border border-border hover:border-brand-300">
+          <h3 class="font-bold text-dark mb-2">משכנתא למסורבים</h3>
+          <p class="text-gray-600 text-sm mb-3">סורבתם בבנק? 60% מהמסורבים מקבלים אישור בניסיון שני עם הכנה נכונה.</p>
+          <span class="text-brand-600 text-sm font-medium">למידע נוסף ←</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
   <section class="py-12 md:py-16 bg-surface">
     <div class="max-w-4xl mx-auto px-4">
       <h2 class="text-2xl font-bold text-dark mb-8 text-center">למה לבחור בנו בחיפה?</h2>
       <div class="grid md:grid-cols-2 gap-6">
         {[
-          { title: 'היכרות עם השוק', desc: 'מכירים את שוק הנדל"ן בחיפה לעומק' },
-          { title: 'קשרים מקומיים', desc: 'קשרים טובים עם סניפי הבנקים באזור' },
-          { title: 'פגישות גמישות', desc: 'נפגש איפה שנוח לכם - בית, משרד, או זום' },
-          { title: 'שירות אישי', desc: 'ליווי צמוד לאורך כל התהליך' },
+          { title: 'היכרות מעמיקה עם השוק', desc: 'מכירים את מחירי הדירות בכל שכונה, פרויקטים חדשים, ומגמות בשוק המקומי.' },
+          { title: 'קשרים עם סניפי הבנקים', desc: 'קשרים אישיים עם מנהלי משכנתאות בסניפי חיפה - מאפשרים משא ומתן יעיל יותר.' },
+          { title: 'פגישות גמישות', desc: 'נפגש בבית, במשרד בקריית ביאליק (15 דקות מחיפה), או בזום - מה שנוח לכם.' },
+          { title: 'שירות אישי ומקומי', desc: 'לא חברה ארצית עם מוקד טלפוני - ליווי צמוד מיועץ אחד לאורך כל התהליך.' },
         ].map((item) => (
           <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
             <h3 class="font-bold text-dark mb-2">{item.title}</h3>
@@ -73,7 +174,46 @@ const faqItems = [
     </div>
   </section>
 
-  <FAQ items={faqItems} title="שאלות נפוצות - חיפה" />
+  <!-- Related Guides -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מדריכים רלוונטיים</h2>
+      <div class="grid md:grid-cols-3 gap-4">
+        <a href="/guides/young-couples/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">משכנתא לזוגות צעירים</h3>
+          <p class="text-gray-600 text-sm">פטור ממס, מענקים, הון עצמי נדרש</p>
+        </a>
+        <a href="/guides/down-payment/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">הון עצמי למשכנתא</h3>
+          <p class="text-gray-600 text-sm">כמה צריך ומאיפה אפשר לגייס?</p>
+        </a>
+        <a href="/guides/mortgage-mix/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">תמהיל משכנתא</h3>
+          <p class="text-gray-600 text-sm">פריים, קל"צ, צמודה - מה הכי טוב?</p>
+        </a>
+      </div>
+    </div>
+  </section>
 
-  <CTASection />
+  <!-- Other Areas -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">אזורים נוספים באזור חיפה</h2>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/areas/kiryat-bialik/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">קריית ביאליק</a>
+        <a href="/areas/kiryat-motzkin/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">קריית מוצקין</a>
+        <a href="/areas/kiryat-ata/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">קריית אתא</a>
+        <a href="/areas/nesher/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">נשר</a>
+        <a href="/areas/tirat-carmel/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">טירת כרמל</a>
+        <a href="/areas/zichron-yaakov/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">זכרון יעקב</a>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות - משכנתא בחיפה" />
+
+  <CTASection
+    title="מחפשים יועץ משכנתאות בחיפה?"
+    subtitle="השאירו פרטים וקבלו ייעוץ ראשוני ללא עלות"
+  />
 </BaseLayout>
