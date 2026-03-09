@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import RefinanceCalc from '../../components/calculators/RefinanceCalc.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema } from '../../data/consultant';
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'כלים ומחשבונים', href: '/tools/' },
+  { label: 'מחשבון כדאיות מחזור' },
+];
+
+const softwareSchema = {
+  '@type': 'SoftwareApplication',
+  name: 'מחשבון כדאיות מחזור משכנתא',
+  applicationCategory: 'FinanceApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'ILS',
+  },
+  description: 'מחשבון חינמי לבדיקת כדאיות מחזור משכנתא - השוואה בין תנאים נוכחיים לחדשים.',
+};
+
+const faqItems = [
+  {
+    question: 'מתי כדאי לשקול מחזור משכנתא?',
+    answer: 'מומלץ לבדוק מחזור כשהריביות בשוק ירדו משמעותית (לפחות 0.5%), כשנותרו לפחות 10 שנים למשכנתא, או כשהמצב הפיננסי השתפר ואפשר לקבל תנאים טובים יותר.',
+  },
+  {
+    question: 'מהי עמלת פירעון מוקדם?',
+    answer: 'עמלת פירעון מוקדם היא תשלום שהבנק גובה כשסוגרים משכנתא לפני הזמן. העמלה משתנה לפי סוג המסלול ומגיעה בד״כ ל-0.5%-2% מהסכום הנפרע.',
+  },
+  {
+    question: 'האם יש עלויות נוספות למחזור?',
+    answer: 'כן. מעבר לעמלת פירעון, יש עלויות של: שמאות (1,500-2,500 ש״ח), עו״ד (2,000-4,000 ש״ח), רישום משכון, ולעיתים ביטוחים חדשים. יועץ משכנתאות יכול לעזור לכם להעריך אם זה משתלם.',
+  },
+  {
+    question: 'כמה זמן לוקח תהליך מחזור?',
+    answer: 'תהליך מחזור לוקח בממוצע 4-8 שבועות: קבלת הצעות מבנקים (1-2 שבועות), שמאות ואישורים (2-3 שבועות), וסגירת ההלוואה החדשה (1-2 שבועות).',
+  },
+];
+
+const faqSchema = {
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map(item => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="מחשבון כדאיות מחזור משכנתא - האם כדאי למחזר?"
+  description="בדקו האם כדאי לכם למחזר את המשכנתא. השוואה מיידית בין התנאים הנוכחיים לתנאים חדשים - חישוב חיסכון, עמלות וזמן החזר."
+>
+  <SchemaOrg schema={softwareSchema} slot="schema" />
+  <SchemaOrg schema={faqSchema} slot="schema" />
+
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-8 md:py-12 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">מחשבון כדאיות מחזור</h1>
+      <p class="text-lg text-brand-100">
+        בדקו האם כדאי למחזר את המשכנתא שלכם - השוואה מיידית
+      </p>
+    </div>
+  </section>
+
+  <section class="py-8 md:py-12 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="bg-surface rounded-2xl p-6 md:p-8 border border-border">
+        <RefinanceCalc />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-8 md:py-12 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6">מתי מחזור משכנתא משתלם?</h2>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white p-5 rounded-xl border border-green-200">
+          <div class="flex items-center gap-2 mb-3">
+            <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <h3 class="font-bold text-dark">כדאי למחזר כשהריבית החדשה...</h3>
+          </div>
+          <ul class="space-y-2 text-gray-600 text-sm">
+            <li>• נמוכה ב-0.5% או יותר מהנוכחית</li>
+            <li>• החיסכון הכולל עולה על עלויות המחזור</li>
+            <li>• זמן החזר העמלה קצר מהתקופה שנותרה</li>
+          </ul>
+        </div>
+        <div class="bg-white p-5 rounded-xl border border-red-200">
+          <div class="flex items-center gap-2 mb-3">
+            <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+            </svg>
+            <h3 class="font-bold text-dark">פחות כדאי כש...</h3>
+          </div>
+          <ul class="space-y-2 text-gray-600 text-sm">
+            <li>• נותרו פחות מ-5 שנים למשכנתא</li>
+            <li>• עמלת הפירעון גבוהה מאוד</li>
+            <li>• ההפרש בריביות קטן מ-0.3%</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl border border-border">
+        <h3 class="font-bold text-dark mb-3">עלויות נלוות למחזור</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-border">
+                <th class="text-right py-2 font-semibold">עלות</th>
+                <th class="text-right py-2 font-semibold">טווח מחירים</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-600">
+              <tr class="border-b border-border/50">
+                <td class="py-2">שמאות מקרקעין</td>
+                <td class="py-2">1,500-2,500 ש״ח</td>
+              </tr>
+              <tr class="border-b border-border/50">
+                <td class="py-2">עורך דין</td>
+                <td class="py-2">2,000-4,000 ש״ח</td>
+              </tr>
+              <tr class="border-b border-border/50">
+                <td class="py-2">רישום משכון בטאבו</td>
+                <td class="py-2">300-500 ש״ח</td>
+              </tr>
+              <tr>
+                <td class="py-2">עמלת פתיחת תיק</td>
+                <td class="py-2">0.25%-0.5% מהסכום</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-8 md:py-12 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6">שאלות נפוצות</h2>
+      <div class="space-y-4">
+        {faqItems.map((item) => (
+          <details class="group bg-surface rounded-xl border border-border overflow-hidden">
+            <summary class="px-5 py-4 font-semibold text-dark cursor-pointer hover:bg-brand-50 transition-colors list-none flex items-center justify-between">
+              {item.question}
+              <svg class="w-5 h-5 text-brand-600 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-5 pb-4 text-gray-600">{item.answer}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-8 md:py-12 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="bg-white rounded-xl p-6 border border-brand-200">
+        <h3 class="text-lg font-bold text-dark mb-3">רוצים לדעת בדיוק כמה תחסכו?</h3>
+        <p class="text-gray-600 mb-4">
+          המחשבון נותן הערכה ראשונית. יועץ משכנתאות יכול לקבל הצעות אמיתיות מכל הבנקים,
+          להשוות תמהילים שונים, ולחסוך לכם עשרות אלפי שקלים - הרבה יותר ממה שהוא עולה.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/contact/" class="inline-block bg-accent-500 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-accent-600 transition-colors">
+            לתיאום ייעוץ חינם ←
+          </a>
+          <a href="/guides/refinancing/" class="inline-block bg-white text-brand-600 border border-brand-300 px-5 py-2.5 rounded-lg font-semibold hover:bg-brand-50 transition-colors">
+            קראו את המדריך המלא
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>
