@@ -1,0 +1,323 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
+
+const articleSchema = {
+  '@type': 'Article',
+  headline: 'ביטוח משכנתא - מה חובה, מה מומלץ וכמה זה עולה',
+  description: 'מדריך מקיף לביטוחי משכנתא: ביטוח חיים, ביטוח מבנה, ביטוח אובדן כושר עבודה. מה הבנק דורש, מה באמת צריך, ואיך לחסוך בפרמיות.',
+  author: personSchema,
+  publisher: {
+    '@type': 'Organization',
+    name: consultant.company,
+    url: consultant.siteUrl,
+  },
+  datePublished: '2026-03-09',
+  dateModified: '2026-03-09',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://yoetz-mashkanta.co.il/guides/mortgage-insurance/',
+  },
+};
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'מדריכים', href: '/guides/' },
+  { label: 'ביטוח משכנתא' },
+];
+
+const faqItems = [
+  {
+    question: 'האם ביטוח משכנתא הוא חובה?',
+    answer: 'חלקית. ביטוח מבנה (נזקי רכוש) הוא חובה - הבנק לא ייתן משכנתא בלעדיו. ביטוח חיים הוא חובה ברוב הבנקים כתנאי למשכנתא. ביטוח אובדן כושר עבודה הוא מומלץ מאוד אך לא תמיד חובה. ביטוח תכולה הוא אופציונלי לחלוטין.',
+  },
+  {
+    question: 'האם אני חייב לקנות ביטוח דרך הבנק?',
+    answer: 'לא! זו טעות נפוצה. החוק מאפשר לכם לרכוש ביטוח משכנתא מכל חברת ביטוח שתרצו. ביטוח חיצוני זול בממוצע 20-40% מביטוח דרך הבנק. הבנק חייב לקבל כל פוליסה שעומדת בדרישות שלו.',
+  },
+  {
+    question: 'כמה עולה ביטוח חיים למשכנתא?',
+    answer: 'העלות תלויה בגיל, מצב בריאות, סכום המשכנתא, ותקופת ההלוואה. לדוגמה: אדם בריא בן 35 עם משכנתא של 1.5 מיליון ש"ח ל-25 שנים ישלם כ-150-300 ש"ח/חודש בביטוח חיצוני, או 300-500 ש"ח/חודש דרך הבנק.',
+  },
+  {
+    question: 'מה קורה אם יש לי בעיות בריאות קיימות?',
+    answer: 'חברות הביטוח עשויות לגבות תוספת (החרגה/תוספת פרמיה) או לסרב לבטח מצבים ספציפיים. במקרים קשים, אפשר להגיש בקשה לכמה חברות ולהשוות. יש גם מוצרי "ביטוח מובטח" שמקבלים כל אחד אך עם כיסוי מוגבל יותר.',
+  },
+  {
+    question: 'האם כדאי לשלם פרמיה חד-פעמית מראש?',
+    answer: 'תלוי. תשלום חד-פעמי (פרמיה היוונית) יכול לחסוך 10-20% מסך הפרמיות לאורך זמן. היתרון: אין תשלום חודשי ואין סיכון לביטול הפוליסה באי-תשלום. החיסרון: סכום גדול מראש, ואם תמחזרו או תסלקו מוקדם - לא תמיד תקבלו החזר מלא.',
+  },
+  {
+    question: 'מתי כדאי לבדוק החלפת ביטוח?',
+    answer: 'מומלץ לבדוק כל 2-3 שנים, או בעת: מחזור משכנתא, הורדת יתרת ההלוואה משמעותית, שינוי במצב המשפחתי (נישואין, לידה), או כשמקבלים הצעה טובה יותר. שימו לב: יש תקופת המתנה בפוליסה חדשה.',
+  },
+];
+---
+
+<BaseLayout
+  title="ביטוח משכנתא - מה חובה, מה מומלץ וכמה עולה | מדריך 2026"
+  description="מדריך מקיף לביטוחי משכנתא: ביטוח חיים, ביטוח מבנה, אובדן כושר עבודה. מה הבנק דורש, מה באמת צריך, ואיך לחסוך עד 40% בפרמיות."
+>
+  <SchemaOrg slot="schema" schema={[articleSchema, personSchema, localBusinessSchema]} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="inline-block bg-white/20 text-white text-sm font-medium px-3 py-1 rounded-full mb-4">מדריך מקיף</span>
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">ביטוח משכנתא - מה חובה, מה מומלץ וכמה זה עולה</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        ביטוח משכנתא יכול לעלות 50,000-150,000 ש"ח לאורך חיי ההלוואה. הבנה נכונה של מה באמת צריך - ומאיפה לקנות - יכולה לחסוך לכם עשרות אלפי שקלים.
+      </p>
+      <!-- E-E-A-T Trust Badges -->
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          {trustBadges.rating}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+          {trustBadges.clients}
+        </span>
+        <a href={consultant.hfcaUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          {trustBadges.hfca}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          כשאתם לוקחים משכנתא, הבנק דורש מכם ביטוחים שונים כדי להגן על עצמו - ועליכם. אבל <strong>לא כל ביטוח הוא באמת חובה</strong>, ולא חייבים לקנות את הביטוח דווקא דרך הבנק. במדריך הזה נעבור על כל סוגי הביטוחים, מה באמת נדרש, ואיך לחסוך.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">סוגי ביטוח משכנתא - מה הבדלים</h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="space-y-4">
+        {[
+          {
+            icon: '🏠',
+            title: 'ביטוח מבנה (נזקי רכוש)',
+            status: 'חובה',
+            statusColor: 'bg-red-100 text-red-700',
+            desc: 'מכסה נזקים פיזיים למבנה הדירה - שריפה, הצפה, רעידת אדמה, נפילת מטוסים וכו\'.',
+            details: [
+              'סכום הכיסוי: לפחות גובה המשכנתא (או שווי שיקום המבנה)',
+              'עלות: 300-800 ש"ח/שנה לדירה ממוצעת',
+              'חובה להציג לבנק ולעדכן מדי שנה',
+            ]
+          },
+          {
+            icon: '❤️',
+            title: 'ביטוח חיים (ריסק)',
+            status: 'חובה ברוב הבנקים',
+            statusColor: 'bg-orange-100 text-orange-700',
+            desc: 'במקרה של פטירת הלווה, הביטוח מסלק את יתרת המשכנתא.',
+            details: [
+              'סכום הכיסוי: יתרת המשכנתא (יורד עם הזמן)',
+              'עלות: 100-400 ש"ח/חודש (תלוי גיל ובריאות)',
+              'אפשר לקנות בנפרד מהבנק - חיסכון של 20-40%',
+            ]
+          },
+          {
+            icon: '🩺',
+            title: 'ביטוח אובדן כושר עבודה',
+            status: 'מומלץ מאוד',
+            statusColor: 'bg-yellow-100 text-yellow-700',
+            desc: 'מכסה את ההחזר החודשי אם לא תוכלו לעבוד בגלל מחלה או תאונה.',
+            details: [
+              'סכום הכיסוי: עד 75% מההכנסה (או גובה ההחזר החודשי)',
+              'עלות: 50-200 ש"ח/חודש',
+              'קריטי לשכירים עם הכנסה יחידה',
+            ]
+          },
+          {
+            icon: '📦',
+            title: 'ביטוח תכולה',
+            status: 'אופציונלי',
+            statusColor: 'bg-green-100 text-green-700',
+            desc: 'מכסה את תכולת הדירה - רהיטים, מכשירי חשמל, בגדים וכו\'.',
+            details: [
+              'לא קשור ישירות למשכנתא - הבנק לא דורש',
+              'עלות: 300-1,000 ש"ח/שנה (תלוי בשווי התכולה)',
+              'כדאי לשקול בכל מקרה להגנה על הרכוש',
+            ]
+          },
+        ].map((item) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+            <div class="flex items-start gap-4">
+              <div class="text-3xl">{item.icon}</div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-2 flex-wrap">
+                  <h3 class="font-bold text-dark">{item.title}</h3>
+                  <span class={`text-xs px-2 py-1 rounded-full font-medium ${item.statusColor}`}>{item.status}</span>
+                </div>
+                <p class="text-gray-600 text-sm mb-3">{item.desc}</p>
+                <ul class="text-sm space-y-1 text-gray-700">
+                  {item.details.map((detail) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-brand-600 mt-0.5">•</span>
+                      <span>{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">ביטוח דרך הבנק מול ביטוח חיצוני - ההבדלים</h2>
+        <p>
+          רבים לא יודעים, אבל <strong>אתם לא חייבים לקנות ביטוח דרך הבנק</strong>. החוק מאפשר לכם לבחור כל חברת ביטוח שתרצו. ההבדל במחיר יכול להיות משמעותי:
+        </p>
+
+        <div class="bg-brand-50 p-6 rounded-xl my-6 not-prose border border-brand-200">
+          <h4 class="font-bold text-dark mb-4">השוואת עלויות - ביטוח חיים למשכנתא של 1.5 מיליון ש"ח</h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-brand-200">
+                  <th class="text-right py-2">פרמטר</th>
+                  <th class="text-right py-2">ביטוח דרך הבנק</th>
+                  <th class="text-right py-2">ביטוח חיצוני</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-border">
+                  <td class="py-2">פרמיה חודשית (גיל 35)</td>
+                  <td class="py-2 text-red-600">350-500 ש"ח</td>
+                  <td class="py-2 text-green-600 font-bold">180-280 ש"ח</td>
+                </tr>
+                <tr class="border-b border-border">
+                  <td class="py-2">סה"כ ל-25 שנים</td>
+                  <td class="py-2 text-red-600">105,000-150,000 ש"ח</td>
+                  <td class="py-2 text-green-600 font-bold">54,000-84,000 ש"ח</td>
+                </tr>
+                <tr class="border-b border-border">
+                  <td class="py-2">נוחות</td>
+                  <td class="py-2">גבוהה - הכל במקום אחד</td>
+                  <td class="py-2">נמוכה יותר - צריך לסדר בנפרד</td>
+                </tr>
+                <tr>
+                  <td class="py-2 font-bold">חיסכון פוטנציאלי</td>
+                  <td class="py-2">-</td>
+                  <td class="py-2 text-green-600 font-bold">50,000-66,000 ש"ח</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">* הנתונים להמחשה בלבד. המחירים בפועל תלויים בגיל, מצב בריאות, וחברת הביטוח.</p>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">איך לחסוך בביטוח משכנתא - 7 טיפים</h2>
+        <ol class="list-decimal list-inside space-y-3 my-4">
+          <li><strong>השוו הצעות:</strong> קבלו הצעות מ-3-4 חברות ביטוח לפני שמחליטים. הפער יכול להגיע ל-50%.</li>
+          <li><strong>שקלו ביטוח חיצוני:</strong> למרות ה"טרחה", החיסכון יכול להגיע לעשרות אלפי שקלים.</li>
+          <li><strong>בדקו פרמיה יורדת:</strong> ביטוח עם פרמיה שיורדת עם הזמן (כמו יתרת ההלוואה) זול יותר.</li>
+          <li><strong>אל תבטחו יותר מדי:</strong> סכום הכיסוי צריך להתאים ליתרת ההלוואה, לא ליותר.</li>
+          <li><strong>בדקו החרגות:</strong> קראו את הפוליסה ובדקו מה לא מכוסה (ספורט אתגרי, מחלות קיימות).</li>
+          <li><strong>עדכנו בכל מחזור:</strong> כשממחזרים משכנתא, זו הזדמנות לעדכן גם את הביטוח.</li>
+          <li><strong>שלמו שנתי:</strong> תשלום שנתי (במקום חודשי) יכול לחסוך 5-10%.</li>
+        </ol>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מה הבנק דורש מהביטוח?</h2>
+        <p>כדי שהבנק יקבל פוליסת ביטוח חיצונית, היא חייבת לעמוד בתנאים הבאים:</p>
+        <div class="bg-surface p-5 rounded-xl my-4 not-prose">
+          <ul class="text-sm space-y-2 text-gray-700">
+            <li><strong>✓ שעבוד לטובת הבנק:</strong> הפוליסה צריכה להיות משועבדת לבנק (הוא המוטב הראשון)</li>
+            <li><strong>✓ סכום כיסוי מספיק:</strong> לפחות גובה יתרת המשכנתא</li>
+            <li><strong>✓ תקופת כיסוי:</strong> לפחות עד סוף תקופת ההלוואה</li>
+            <li><strong>✓ אין החרגות רלוונטיות:</strong> הפוליסה צריכה לכסות את הסיכונים שהבנק דורש</li>
+            <li><strong>✓ הודעה על ביטול:</strong> הבנק צריך לקבל הודעה 30 יום לפני ביטול הפוליסה</li>
+          </ul>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מקרים מיוחדים - מה עושים כשיש בעיות?</h2>
+
+        <h3 class="text-lg font-semibold text-dark mt-6 mb-3">בעיות בריאות קיימות</h3>
+        <p>
+          אם יש לכם מצבים רפואיים קיימים (סוכרת, לחץ דם, בעיות לב), חברות הביטוח עשויות:
+        </p>
+        <ul class="list-disc list-inside space-y-2 my-4">
+          <li>לגבות תוספת פרמיה (20-100% יותר)</li>
+          <li>להחריג מצבים ספציפיים מהכיסוי</li>
+          <li>לסרב לבטח במקרים חמורים</li>
+        </ul>
+        <p><strong>הפתרון:</strong> הגישו בקשות לכמה חברות במקביל. יש הבדלים בקריטריונים בין חברות.</p>
+
+        <h3 class="text-lg font-semibold text-dark mt-6 mb-3">גיל מבוגר (מעל 55)</h3>
+        <p>
+          ככל שהגיל עולה, הפרמיה עולה משמעותית. מעל גיל 65-70, חלק מהחברות לא מבטחות כלל.
+        </p>
+        <p><strong>אפשרויות:</strong></p>
+        <ul class="list-disc list-inside space-y-2 my-4">
+          <li>ביטוח "מובטח קבלה" - מקבלים כל אחד אך עם כיסוי מוגבל</li>
+          <li>ביטוח לתקופה קצרה יותר</li>
+          <li>שעבוד נכס אחר במקום ביטוח חיים</li>
+        </ul>
+
+        <h3 class="text-lg font-semibold text-dark mt-6 mb-3">עבודה מסוכנת / תחביבים אתגריים</h3>
+        <p>
+          עבודה בגובה, צלילה, גלישה, טיפוס הרים - כל אלה עשויים לייקר את הביטוח או להיות מוחרגים.
+        </p>
+        <p><strong>טיפ:</strong> חפשו חברה שמתמחה בקהל שלכם. יש חברות שמבטחות ספורטאים אתגריים בתעריפים סבירים.</p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">סיכום - מה חשוב לזכור</h2>
+        <div class="bg-green-50 border border-green-200 p-5 rounded-xl my-4 not-prose">
+          <ul class="text-sm space-y-2 text-green-800">
+            <li>✓ ביטוח מבנה וחיים - חובה. אובדן כושר עבודה - מומלץ מאוד.</li>
+            <li>✓ <strong>לא חייבים לקנות דרך הבנק</strong> - ביטוח חיצוני זול משמעותית.</li>
+            <li>✓ השוו לפחות 3-4 הצעות לפני שמחליטים.</li>
+            <li>✓ בדקו את הפוליסה כל 2-3 שנים או בכל מחזור משכנתא.</li>
+            <li>✓ קראו את ההחרגות - לא הכל מכוסה!</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות - ביטוח משכנתא" />
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מדריכים נוספים</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <a href="/guides/mortgage-mix/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">תמהיל משכנתא מומלץ 2026</h3>
+          <p class="text-gray-600 text-sm">איך לבנות תמהיל אופטימלי? יתרונות וחסרונות כל מסלול.</p>
+        </a>
+        <a href="/guides/amortization-schedule/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">לוח סילוקין משכנתא</h3>
+          <p class="text-gray-600 text-sm">מה זה לוח סילוקין ואיך לקרוא אותו נכון.</p>
+        </a>
+        <a href="/guides/refinancing/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">מחזור משכנתא</h3>
+          <p class="text-gray-600 text-sm">מתי כדאי למחזר? עלויות, תהליך, ודוגמאות לחיסכון.</p>
+        </a>
+        <a href="/services/mortgage-consultation/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">ייעוץ משכנתא מקצועי</h3>
+          <p class="text-gray-600 text-sm">למה להיעזר ביועץ משכנתאות וכמה זה עולה.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

@@ -1,0 +1,366 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
+
+const articleSchema = {
+  '@type': 'Article',
+  headline: 'משכנתא לעצמאים - המדריך המלא 2026',
+  description: 'מדריך מקיף למשכנתא לעצמאים: מסמכים נדרשים, איך הבנקים מחשבים הכנסה, טיפים לאישור, ואיך להתגבר על האתגרים הייחודיים.',
+  author: personSchema,
+  publisher: {
+    '@type': 'Organization',
+    name: consultant.company,
+    url: consultant.siteUrl,
+  },
+  datePublished: '2026-03-09',
+  dateModified: '2026-03-09',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://yoetz-mashkanta.co.il/guides/self-employed/',
+  },
+};
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'מדריכים', href: '/guides/' },
+  { label: 'משכנתא לעצמאים' },
+];
+
+const faqItems = [
+  {
+    question: 'כמה שנות ותק צריך כעצמאי לקבל משכנתא?',
+    answer: 'רוב הבנקים דורשים לפחות שנתיים כעצמאי עם שני דוחות שנתיים סגורים. חלק מהבנקים יסכימו לשנה אחת בתנאים מסוימים - למשל אם הייתם שכירים באותו תחום לפני.',
+  },
+  {
+    question: 'האם הכנסה מדווחת נמוכה מונעת משכנתא?',
+    answer: 'לא בהכרח. הבנקים מסתכלים על מכלול גורמים: מחזור העסק, הוצאות מוכרות, יחס הכנסה להוצאות, ומגמות צמיחה. יועץ משכנתאות יכול לעזור להציג את התמונה באופן אופטימלי.',
+  },
+  {
+    question: 'האם אפשר לקבל משכנתא עם חובות לרשויות המס?',
+    answer: 'כן, אבל צריך הסדר תשלומים חתום עם רשות המסים. חוב פתוח ללא הסדר יגרום לסירוב. אם יש לכם חוב - סדרו אותו לפני שמגישים בקשה.',
+  },
+  {
+    question: 'מה יותר משתלם - הוצאות גבוהות או הכנסה גבוהה?',
+    answer: 'למשכנתא - הכנסה גבוהה יותר טובה. אבל לא כדאי לשנות התנהגות לשנה אחת רק בשביל משכנתא. הבנקים רואים את ההיסטוריה ומזהים שינויים חריגים.',
+  },
+  {
+    question: 'האם יש בנקים שמתמחים בעצמאים?',
+    answer: 'כל הבנקים נותנים משכנתאות לעצמאים, אבל יש הבדלים בגישה. בנק הפועלים ולאומי נחשבים גמישים יותר בחלק מהמקרים. חשוב להשוות בין כל הבנקים.',
+  },
+  {
+    question: 'מה קורה אם יש לי שנה אחת טובה ושנה אחת חלשה?',
+    answer: 'הבנקים בדרך כלל לוקחים ממוצע של שתי השנים, או מתייחסים לשנה החלשה יותר. אם יש סיבה מוצדקת לשנה חלשה (מחלה, קורונה) - אפשר להסביר בנספח לבקשה.',
+  },
+];
+---
+
+<BaseLayout
+  title="משכנתא לעצמאים - המדריך המלא 2026 | טיפים ומסמכים"
+  description="מדריך מקיף למשכנתא לעצמאים 2026: מסמכים נדרשים, חישוב הכנסה לעצמאים, טיפים לאישור מהיר, והתמודדות עם האתגרים הייחודיים. 169 לקוחות מרוצים."
+>
+  <SchemaOrg slot="schema" schema={[articleSchema, personSchema, localBusinessSchema]} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="inline-block bg-white/20 text-white text-sm font-medium px-3 py-1 rounded-full mb-4">מדריך מקיף</span>
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">משכנתא לעצמאים - המדריך המלא 2026</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        עצמאים מתמודדים עם אתגרים ייחודיים בקבלת משכנתא. המדריך הזה מסביר בדיוק מה הבנקים מחפשים, אילו מסמכים צריך, ואיך להגדיל את הסיכויים לאישור.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          {trustBadges.rating}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+          {trustBadges.clients}
+        </span>
+        <a href={consultant.hfcaUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          {trustBadges.hfca}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          <strong>עצמאים מהווים כ-12% מכוח העבודה בישראל</strong>, אך מתמודדים עם אתגרים ייחודיים בקבלת משכנתא. בעוד שכיר מציג 3 תלושי שכר ומקבל תשובה תוך ימים, עצמאי צריך להוכיח יציבות הכנסה לאורך זמן - וזה דורש הכנה מדוקדקת.
+        </p>
+        <p>
+          החדשות הטובות: <strong>עצמאים יכולים לקבל משכנתא בתנאים טובים</strong>. המפתח הוא להבין מה הבנקים מחפשים ולהגיע מוכנים עם כל המסמכים הנכונים.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">למה זה יותר מורכב לעצמאים?</h2>
+        <p>
+          הבנקים רואים בעצמאים סיכון גבוה יותר מכמה סיבות:
+        </p>
+        <ul class="list-disc list-inside space-y-2 my-4">
+          <li><strong>הכנסה לא קבועה:</strong> בניגוד לשכיר שמקבל משכורת קבועה, הכנסת עצמאי משתנה מחודש לחודש</li>
+          <li><strong>תלות בלקוחות:</strong> אובדן לקוח גדול יכול לפגוע משמעותית בהכנסה</li>
+          <li><strong>הוצאות מוכרות:</strong> ההכנסה המדווחת לרוב נמוכה מההכנסה בפועל</li>
+          <li><strong>קושי באימות:</strong> קשה יותר לאמת הכנסה של עצמאי מאשר של שכיר</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מסמכים נדרשים לעצמאים</h2>
+        <p>
+          ההכנה מראש של כל המסמכים חוסכת זמן ומראה לבנק שאתם רציניים ומאורגנים.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">רשימת מסמכים מלאה</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+          <h3 class="font-bold text-dark mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            מסמכים אישיים
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>✓ צילום תעודת זהות + ספח</li>
+            <li>✓ אישור יתרות ותנועות מהבנק (3 חודשים)</li>
+            <li>✓ אישור על הלוואות קיימות</li>
+            <li>✓ תדפיס BDI (דוח אשראי)</li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+          <h3 class="font-bold text-dark mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+            מסמכי עסק
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>✓ <strong>שני דוחות שנתיים אחרונים</strong> (חובה!)</li>
+            <li>✓ אישור רואה חשבון על הכנסה חודשית</li>
+            <li>✓ אישור ניהול ספרים תקין</li>
+            <li>✓ אישור על היעדר חובות למס הכנסה</li>
+            <li>✓ אישור על היעדר חובות לביטוח לאומי</li>
+            <li>✓ אישור על היעדר חובות למע"מ</li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+          <h3 class="font-bold text-dark mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            מסמכי נכס
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>✓ חוזה מכר / זיכרון דברים</li>
+            <li>✓ נסח טאבו / אישור זכויות</li>
+            <li>✓ היתר בנייה (לנכס חדש)</li>
+            <li>✓ אישור עו"ד על בדיקת הנכס</li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+          <h3 class="font-bold text-dark mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            מסמכים נוספים (אם רלוונטי)
+          </h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>✓ הסכם שכירות (אם יש הכנסות משכירות)</li>
+            <li>✓ אישורי קרנות פנסיה וביטוחים</li>
+            <li>✓ הסכם גירושין (אם רלוונטי)</li>
+            <li>✓ תעודת שחרור מצה"ל (לנקודות זכאות)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">איך הבנקים מחשבים הכנסה לעצמאים?</h2>
+        <p>
+          זה החלק הכי חשוב להבנה. הבנקים לא מסתכלים רק על ההכנסה המדווחת - הם בודקים מספר פרמטרים:
+        </p>
+
+        <div class="bg-surface p-6 rounded-xl my-6 not-prose">
+          <h4 class="font-bold text-dark mb-4">נוסחת חישוב ההכנסה לעצמאי:</h4>
+          <div class="space-y-4">
+            <div class="flex items-center gap-4 p-4 bg-white rounded-lg border border-border">
+              <div class="w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
+              <div>
+                <span class="font-medium text-dark">ממוצע הכנסה שנתי</span>
+                <p class="text-sm text-gray-600">ממוצע ההכנסה נטו לפי שני הדוחות האחרונים</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 bg-white rounded-lg border border-border">
+              <div class="w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
+              <div>
+                <span class="font-medium text-dark">הוספת פחת ורכב</span>
+                <p class="text-sm text-gray-600">הוצאות פחת והוצאות רכב מוחזרות להכנסה (לא יוצאות מהכיס)</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 bg-white rounded-lg border border-border">
+              <div class="w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-sm">3</div>
+              <div>
+                <span class="font-medium text-dark">חלוקה ב-12</span>
+                <p class="text-sm text-gray-600">התוצאה מחולקת ב-12 לקבלת הכנסה חודשית ממוצעת</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 bg-white rounded-lg border border-border">
+              <div class="w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-sm">4</div>
+              <div>
+                <span class="font-medium text-dark">בדיקת יחס החזר</span>
+                <p class="text-sm text-gray-600">ההחזר החודשי לא יעלה על 35%-40% מההכנסה נטו</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          <strong>דוגמה מעשית:</strong> עצמאי עם הכנסה מדווחת של 180,000 ש"ח בשנה + פחת 30,000 ש"ח + הוצאות רכב 24,000 ש"ח = הכנסה מחושבת של 234,000 ש"ח לשנה = <strong>19,500 ש"ח לחודש</strong>. עם יחס החזר של 35%, יכול לקבל משכנתא עם החזר של עד 6,825 ש"ח לחודש.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">טיפים להגדלת סיכויי האישור</h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="space-y-4">
+        {[
+          {
+            num: '1',
+            title: 'הכינו את המסמכים מראש',
+            desc: 'אל תחכו שהבנק יבקש - הגיעו עם תיק מסודר. זה מראה רצינות ומזרז את התהליך.',
+          },
+          {
+            num: '2',
+            title: 'בקשו מכתב מרואה החשבון',
+            desc: 'מכתב שמסביר את אופי העסק, מגמת הצמיחה, ומדוע ההכנסה צפויה להמשיך. זה נותן לבנק ביטחון.',
+          },
+          {
+            num: '3',
+            title: 'הציגו חוזים עתידיים',
+            desc: 'אם יש לכם חוזים חתומים לעבודה עתידית - הביאו אותם. זה מוכיח המשכיות הכנסה.',
+          },
+          {
+            num: '4',
+            title: 'סדרו חובות לרשויות מראש',
+            desc: 'חוב לביטוח לאומי או למס הכנסה = סירוב אוטומטי. סדרו הסדר תשלומים לפני שמגישים.',
+          },
+          {
+            num: '5',
+            title: 'שקלו צירוף בן/בת זוג שכיר/ה',
+            desc: 'אם בן/בת הזוג שכיר/ה, ההכנסה שלהם נחשבת יציבה ומשפרת משמעותית את התנאים.',
+          },
+          {
+            num: '6',
+            title: 'הגדילו הון עצמי',
+            desc: 'הון עצמי של 30%-35% (במקום 25%) יכול לפצות על אי-ודאות בהכנסה ולשפר את התנאים.',
+          },
+        ].map((item) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border flex gap-4">
+            <div class="w-10 h-10 bg-accent-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
+              {item.num}
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-dark mb-1">{item.title}</h3>
+              <p class="text-gray-600 text-sm">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מקרים מיוחדים ופתרונות</h2>
+
+        <h3 class="text-lg font-bold text-dark mt-6 mb-3">עצמאי עם פחות משנתיים ותק</h3>
+        <p>
+          אם יש לכם פחות משנתיים כעצמאים, עדיין יש אפשרויות:
+        </p>
+        <ul class="list-disc list-inside space-y-2 my-4">
+          <li>הציגו ניסיון שכיר קודם באותו תחום</li>
+          <li>הביאו חוזים חתומים עם לקוחות</li>
+          <li>צרפו בן/בת זוג שכיר/ה לבקשה</li>
+          <li>הגדילו את ההון העצמי ל-35% ומעלה</li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-dark mt-6 mb-3">הכנסה שנה אחת גבוהה ושנה אחת נמוכה</h3>
+        <p>
+          הבנקים לוקחים את <strong>השנה הנמוכה יותר</strong> או ממוצע. אם השנה הנמוכה הייתה בגלל סיבה חריגה (קורונה, מחלה, חופשת לידה), צרפו הסבר בכתב + אסמכתאות. חלק מהבנקים יתחשבו בכך.
+        </p>
+
+        <h3 class="text-lg font-bold text-dark mt-6 mb-3">עצמאי + שכיר (הכנסה מעורבת)</h3>
+        <p>
+          אם יש לכם גם הכנסה ממשכורת וגם מעסק עצמאי - זה דווקא טוב! ההכנסה מהמשכורת נחשבת יציבה, וההכנסה מהעסק מתווספת אליה. צריך להציג מסמכים משני המקורות.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">יתרונות של עצמאים בקבלת משכנתא</h2>
+        <p>
+          למרות האתגרים, יש גם יתרונות:
+        </p>
+        <ul class="list-disc list-inside space-y-2 my-4">
+          <li><strong>גמישות:</strong> יכולת להציג הכנסות נוספות (שכירות, דיבידנדים)</li>
+          <li><strong>פוטנציאל צמיחה:</strong> אם העסק צומח, הבנקים מתייחסים לזה בחיוב</li>
+          <li><strong>נכסים:</strong> אם יש לעסק נכסים (ציוד, מלאי, רכב) - זה מחזק את הבקשה</li>
+          <li><strong>ותק:</strong> ותק ארוך כעצמאי (5+ שנים) נתפס כיציבות</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">סיכום - מה חשוב לזכור</h2>
+        <p>
+          קבלת משכנתא כעצמאי דורשת יותר הכנה, אבל בהחלט אפשרית. המפתחות להצלחה:
+        </p>
+        <ol class="list-decimal list-inside space-y-2 my-4">
+          <li><strong>שני דוחות שנתיים</strong> - חובה להגיע עם שתי שנים מלאות</li>
+          <li><strong>אפס חובות לרשויות</strong> - סדרו הכל מראש</li>
+          <li><strong>תיק מסודר</strong> - כל המסמכים מוכנים ומאורגנים</li>
+          <li><strong>מכתב מרו"ח</strong> - הסבר על העסק ומגמות</li>
+          <li><strong>יועץ משכנתאות</strong> - יודע לנווט את התהליך ולהציג את התיק באופן אופטימלי</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות - משכנתא לעצמאים" />
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מדריכים נוספים</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <a href="/guides/down-payment/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">כמה הון עצמי צריך למשכנתא</h3>
+          <p class="text-gray-600 text-sm">אחוזי הון עצמי לפי סוג נכס ומקורות מותרים.</p>
+        </a>
+        <a href="/services/declined-applicants/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">משכנתא למסורבים</h3>
+          <p class="text-gray-600 text-sm">סורבתם בבנק? יש פתרונות שלא הכרתם.</p>
+        </a>
+        <a href="/guides/mortgage-mix/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">תמהיל משכנתא מומלץ</h3>
+          <p class="text-gray-600 text-sm">איך לבנות תמהיל שמתאים לעצמאים.</p>
+        </a>
+        <a href="/services/mortgage-consultation/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">ייעוץ משכנתא מקצועי</h3>
+          <p class="text-gray-600 text-sm">ליווי מקצועי לעצמאים בתהליך המשכנתא.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

@@ -1,0 +1,317 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
+
+const articleSchema = {
+  '@type': 'Article',
+  headline: 'משכנתא בלי הון עצמי - האם זה אפשרי? המדריך המלא 2026',
+  description: 'האם ניתן לקבל משכנתא ללא הון עצמי? מדריך מקיף על מימון 100%, חלופות יצירתיות, סיכונים והזדמנויות לרוכשי דירה ראשונה.',
+  author: personSchema,
+  publisher: {
+    '@type': 'Organization',
+    name: consultant.company,
+    url: consultant.siteUrl,
+  },
+  datePublished: '2026-03-09',
+  dateModified: '2026-03-09',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://yoetz-mashkanta.co.il/guides/no-down-payment/',
+  },
+};
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'מדריכים', href: '/guides/' },
+  { label: 'משכנתא בלי הון עצמי' },
+];
+
+const faqItems = [
+  {
+    question: 'האם באמת אפשר לקנות דירה בלי שקל הון עצמי?',
+    answer: 'לא בצורה ישירה. בנק ישראל מחייב הון עצמי מינימלי של 25% לדירה ראשונה. אבל יש דרכים "עוקפות" כמו הלוואה מההורים (שנחשבת כהון עצמי בתנאים מסוימים), מענקי זכאות, או רכישה במחיר מתחת לשוק ושימוש בהפרש כהון עצמי.',
+  },
+  {
+    question: 'האם הלוואה מההורים נחשבת כהון עצמי?',
+    answer: 'תלוי. אם ההלוואה ניתנת ללא החזר קבוע (מתנה בפועל), או עם החזר גמיש מאוד שלא פוגע ביכולת ההחזר שלכם - הבנק יכול להכיר בה כהון עצמי. נדרש אישור רו"ח או עו"ד. אם יש החזר חודשי קבוע להורים - זה לא ייחשב כהון עצמי.',
+  },
+  {
+    question: 'מה זה משכנתא 90% ואיך מקבלים אותה?',
+    answer: 'משכנתא 90% מיועדת לרוכשי דירה יחידה (לא ראשונה בהכרח) שמוכרים דירה קיימת ורוכשים אחרת. בתקופת הביניים אפשר לקבל עד 90% מימון. לדירה ראשונה ללא נכס קודם - התקרה היא 75% (25% הון עצמי חובה).',
+  },
+  {
+    question: 'האם מענק זכאות נחשב כהון עצמי?',
+    answer: 'כן! מענקי זכאות ממשרד הבינוי (40,000-100,000 ש"ח) נחשבים כהון עצמי לכל דבר. זה יכול להפחית משמעותית את הסכום שתצטרכו להביא מכיסכם.',
+  },
+  {
+    question: 'מה הסיכון בלקיחת משכנתא עם הון עצמי מינימלי?',
+    answer: 'הסיכונים העיקריים: (1) החזר חודשי גבוה יותר שמשאיר פחות מרווח לחירום, (2) חשיפה לירידת מחירי נדל"ן - אם הדירה תרד ב-10% והמימון הוא 75%, אתם כבר "מתחת למים", (3) קושי למחזר או למכור בעתיד.',
+  },
+  {
+    question: 'האם יש בנקים שנותנים יותר מ-75% מימון לדירה ראשונה?',
+    answer: 'לא באופן חוקי. הוראות בנק ישראל ברורות: מקסימום 75% מימון לדירה ראשונה. בנק שיתן יותר מפר את הרגולציה. אם מישהו מציע לכם "דרכים לעקוף" - זהירות, זה עלול להיות לא חוקי או מאוד מסוכן.',
+  },
+];
+---
+
+<BaseLayout
+  title="משכנתא בלי הון עצמי - האם זה אפשרי? | המדריך המלא 2026"
+  description="האם ניתן לקבל משכנתא ללא הון עצמי? מדריך מקיף על חלופות מימון, הלוואות מההורים, מענקי זכאות, סיכונים והזדמנויות לרוכשי דירה ראשונה."
+>
+  <SchemaOrg slot="schema" schema={[articleSchema, personSchema, localBusinessSchema]} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="inline-block bg-white/20 text-white text-sm font-medium px-3 py-1 rounded-full mb-4">מדריך מקיף</span>
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">משכנתא בלי הון עצמי - האם זה אפשרי?</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        התשובה הקצרה: לא ממש. אבל יש דרכים חכמות להתמודד עם דרישת ההון העצמי ולהגיע לדירה גם עם חסכונות מוגבלים.
+      </p>
+      <!-- E-E-A-T Trust Badges -->
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          {trustBadges.rating}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+          {trustBadges.clients}
+        </span>
+        <a href={consultant.hfcaUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          {trustBadges.hfca}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          <strong>"אני רוצה לקנות דירה אבל אין לי הון עצמי"</strong> - זו אחת השאלות הנפוצות ביותר שאני שומע מזוגות צעירים. המציאות בישראל של 2026 היא שמחירי הדירות גבוהים, והדרישה להון עצמי של 25% מהווה מכשול משמעותי. אז האם אפשר בכלל לקנות דירה בלי הון עצמי? בואו נבין את התמונה המלאה.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מה אומרת הרגולציה? הכללים של בנק ישראל</h2>
+        <p>
+          בנק ישראל קבע כללים ברורים לגבי אחוזי המימון המקסימליים למשכנתא:
+        </p>
+        <div class="bg-surface p-6 rounded-xl my-6 not-prose">
+          <h4 class="font-bold text-dark mb-3">אחוזי מימון מקסימליים (LTV) לפי סוג רכישה</h4>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between py-2 border-b border-border">
+              <span>דירה ראשונה (ללא נכס קודם)</span>
+              <span class="font-bold">75% מימון ← 25% הון עצמי</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-border">
+              <span>דירה להשקעה (דירה נוספת)</span>
+              <span class="font-bold">50% מימון ← 50% הון עצמי</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-border">
+              <span>משפרי דיור (מוכרים ורוכשים)</span>
+              <span class="font-bold">70% מימון ← 30% הון עצמי</span>
+            </div>
+            <div class="flex justify-between py-2">
+              <span>משפרי דיור בתקופת מעבר*</span>
+              <span class="font-bold text-brand-600">עד 90% מימון</span>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">* בתקופה שבין רכישת הדירה החדשה למכירת הקיימת, לתקופה מוגבלת</p>
+        </div>
+        <p>
+          <strong>השורה התחתונה:</strong> אם אתם רוכשים דירה ראשונה, אתם חייבים להביא לפחות 25% הון עצמי. זה חוק, לא המלצה. בנק שיתן לכם יותר מ-75% מימון מפר את הרגולציה.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">אז איך בכל זאת קונים עם מעט חסכונות? 5 אפשרויות</h2>
+
+        <h3 class="text-lg font-semibold text-dark mt-6 mb-3">1. מתנה או הלוואה מההורים</h3>
+        <p>
+          הדרך הנפוצה ביותר "לסגור" את פער ההון העצמי היא עזרה מההורים. יש שני מסלולים:
+        </p>
+        <ul class="list-disc list-inside space-y-2 my-4">
+          <li><strong>מתנה:</strong> כסף שההורים נותנים ללא דרישת החזר. נחשב כהון עצמי מלא.</li>
+          <li><strong>הלוואה ללא החזר קבוע:</strong> אם ההורים מלווים כסף אבל ללא החזר חודשי קבוע (או עם החזר גמיש מאוד), הבנק עשוי להכיר בזה כהון עצמי. נדרש אישור רו"ח.</li>
+        </ul>
+        <div class="bg-yellow-50 border border-yellow-200 p-4 rounded-xl my-4 not-prose">
+          <p class="text-sm text-yellow-800"><strong>⚠️ שימו לב:</strong> אם ההורים לוקחים משכנתא על הדירה שלהם כדי לעזור לכם, זה משנה את התמונה. הלוואה כזו תיחשב כהתחייבות שלכם (אם אתם הערבים) ותפגע ביכולת המימון שלכם.</p>
+        </div>
+
+        <h3 class="text-lg font-semibold text-dark mt-6 mb-3">2. מענקי זכאות מהמדינה</h3>
+        <p>
+          אם אתם עומדים בתנאי הזכאות, אתם יכולים לקבל <strong>מענק של 40,000-100,000 ש"ח</strong> ממשרד הבינוי. המענק נחשב כהון עצמי לכל דבר ועניין.
+        </p>
+        <p>
+          <strong>דוגמה:</strong> על דירה בשווי 2 מיליון ש"ח, צריך 500,000 ש"ח הון עצמי (25%). עם מענק זכאות של 80,000 ש"ח, צריך להביא רק 420,000 ש"ח מכיסכם.
+        </p>
+
+        <h3 class="text-lg font-semibold text-dark mt-6 mb-3">3. רכישה במחיר מתחת לשמאות</h3>
+        <p>
+          אסטרטגיה פחות מוכרת: אם אתם מצליחים לרכוש דירה במחיר נמוך משווי השמאות, ההפרש יכול לשמש כ"הון עצמי" לצורך חישוב אחוז המימון.
+        </p>
+        <p>
+          <strong>דוגמה:</strong> שווי שמאות 2 מיליון ש"ח, מחיר רכישה 1.8 מיליון ש"ח. הבנק יחשב את אחוז המימון לפי השמאות: 1.35 מיליון ש"ח משכנתא = 67.5% מימון (בסדר!). אתם צריכים רק 450,000 ש"ח במזומן (25% מ-1.8 מיליון).
+        </p>
+
+        <h3 class="text-lg font-semibold text-dark mt-6 mb-3">4. דירה מקבלן עם תשלומים מדורגים</h3>
+        <p>
+          כשקונים דירה מקבלן "על הנייר", לעתים יש 2-4 שנים עד למסירה. זה נותן זמן לחסוך את ההון העצמי בהדרגה:
+        </p>
+        <ul class="list-disc list-inside space-y-2 my-4">
+          <li>10% בחתימה על הסכם</li>
+          <li>10% נוספים לאחר שנה</li>
+          <li>5% נוספים לפני המסירה</li>
+          <li>השאר (75%) - במשכנתא</li>
+        </ul>
+
+        <h3 class="text-lg font-semibold text-dark mt-6 mb-3">5. שכירות עם אופציה לרכישה</h3>
+        <p>
+          מודל פחות נפוץ בישראל אך קיים: שכירות לתקופה של 2-5 שנים עם אופציה לרכוש את הדירה במחיר קבוע מראש. חלק מדמי השכירות נזקפים לטובת הרכישה העתידית.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">הסיכונים ברכישה עם הון עצמי מינימלי</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        {[
+          {
+            icon: '📉',
+            title: 'חשיפה לירידת מחירים',
+            desc: 'עם 75% מימון, ירידה של 10-15% במחירי הנדל"ן תשאיר אתכם "מתחת למים" - חייבים לבנק יותר משווי הדירה.'
+          },
+          {
+            icon: '💸',
+            title: 'החזר חודשי גבוה',
+            desc: 'יותר מימון = יותר החזר חודשי. זה משאיר פחות מרווח לחירום ומגביל את הגמישות הפיננסית שלכם.'
+          },
+          {
+            icon: '🔒',
+            title: 'קושי למחזר בעתיד',
+            desc: 'אם תרצו למחזר את המשכנתא בעוד כמה שנים, אחוז מימון גבוה יכול להגביל את האפשרויות שלכם.'
+          },
+          {
+            icon: '⚠️',
+            title: 'רגישות לשינויי ריבית',
+            desc: 'משכנתא גדולה יותר מתרגמת לרגישות גבוהה יותר לעליית ריבית - כל 0.1% עולה יותר בשקלים.'
+          },
+        ].map((item) => (
+          <div class="bg-white p-5 rounded-xl shadow-sm border border-border">
+            <div class="text-2xl mb-2">{item.icon}</div>
+            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">חישוב מהיר: כמה הון עצמי צריך?</h2>
+        <div class="bg-brand-50 p-6 rounded-xl my-6 not-prose border border-brand-200">
+          <h4 class="font-bold text-dark mb-4">דוגמאות לדירות בטווחי מחיר נפוצים:</h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-brand-200">
+                  <th class="text-right py-2">שווי דירה</th>
+                  <th class="text-right py-2">הון עצמי (25%)</th>
+                  <th class="text-right py-2">משכנתא (75%)</th>
+                  <th class="text-right py-2">החזר משוער*</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-border">
+                  <td class="py-2">1,500,000 ש"ח</td>
+                  <td class="py-2 font-bold">375,000 ש"ח</td>
+                  <td class="py-2">1,125,000 ש"ח</td>
+                  <td class="py-2">~4,900 ש"ח</td>
+                </tr>
+                <tr class="border-b border-border">
+                  <td class="py-2">2,000,000 ש"ח</td>
+                  <td class="py-2 font-bold">500,000 ש"ח</td>
+                  <td class="py-2">1,500,000 ש"ח</td>
+                  <td class="py-2">~6,500 ש"ח</td>
+                </tr>
+                <tr class="border-b border-border">
+                  <td class="py-2">2,500,000 ש"ח</td>
+                  <td class="py-2 font-bold">625,000 ש"ח</td>
+                  <td class="py-2">1,875,000 ש"ח</td>
+                  <td class="py-2">~8,100 ש"ח</td>
+                </tr>
+                <tr>
+                  <td class="py-2">3,000,000 ש"ח</td>
+                  <td class="py-2 font-bold">750,000 ש"ח</td>
+                  <td class="py-2">2,250,000 ש"ח</td>
+                  <td class="py-2">~9,700 ש"ח</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">* החזר משוער ל-25 שנים בריבית ממוצעת של 4.5%. לחישוב מדויק יש להתייעץ עם יועץ משכנתאות.</p>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מה לא לעשות: טעויות נפוצות</h2>
+        <ul class="list-disc list-inside space-y-3 my-4">
+          <li><strong>הלוואה צרכנית לכיסוי ההון העצמי:</strong> זה לא עובד. הבנק יראה את ההלוואה ויפחית את יכולת ההחזר שלכם בהתאם.</li>
+          <li><strong>"סידורים" עם בעל הנכס:</strong> הסכמים לניפוח מחיר החוזה מול השמאות הם בלתי חוקיים ומסוכנים.</li>
+          <li><strong>שימוש בכרטיסי אשראי:</strong> משיכת מזומן מכרטיסי אשראי או הלוואות בריבית גבוהה הן הדרך הבטוחה לסיבוך פיננסי.</li>
+          <li><strong>התעלמות מעלויות נלוות:</strong> מעבר להון העצמי, צריך 3-5% נוספים לשמאי, עו"ד, מס רכישה (אם רלוונטי), תיווך.</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">סיכום: מה האפשרויות הריאליות?</h2>
+        <p>
+          <strong>התשובה הכנה:</strong> אין דרך חוקית לקנות דירה ראשונה בישראל ללא הון עצמי כלל. דרישת ה-25% היא רגולטורית ואין סביבה. אבל יש דרכים להפחית את הסכום שצריך להביא מכיסכם:
+        </p>
+        <div class="bg-green-50 border border-green-200 p-5 rounded-xl my-4 not-prose">
+          <ul class="text-sm space-y-2 text-green-800">
+            <li>✓ עזרה מההורים (מתנה או הלוואה גמישה)</li>
+            <li>✓ מענקי זכאות (40,000-100,000 ש"ח)</li>
+            <li>✓ רכישה במחיר מתחת לשמאות</li>
+            <li>✓ דירה מקבלן עם לו"ז תשלומים ארוך</li>
+            <li>✓ שילוב של כמה אפשרויות</li>
+          </ul>
+        </div>
+        <p>
+          הצעד הראשון הוא לעשות סדר במצב הפיננסי, להבין כמה באמת אפשר לחסוך, ולבדוק אילו מקורות עזרה זמינים לכם. יועץ משכנתאות מנוסה יכול לעזור למפות את כל האפשרויות ולבנות תוכנית ריאלית.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות - משכנתא בלי הון עצמי" />
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מדריכים נוספים</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <a href="/guides/down-payment/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">כמה הון עצמי צריך למשכנתא</h3>
+          <p class="text-gray-600 text-sm">אחוזי הון עצמי לפי סוג נכס, מקורות מותרים, וטיפים לצבירה.</p>
+        </a>
+        <a href="/guides/young-couples/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">משכנתא לזוגות צעירים</h3>
+          <p class="text-gray-600 text-sm">הטבות מס, מענקי זכאות, ותמהילים מומלצים לרוכשי דירה ראשונה.</p>
+        </a>
+        <a href="/guides/first-apartment/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">משכנתא לדירה ראשונה</h3>
+          <p class="text-gray-600 text-sm">מדריך שלב אחר שלב לרכישת דירה ראשונה.</p>
+        </a>
+        <a href="/services/mortgage-consultation/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">ייעוץ משכנתא מקצועי</h3>
+          <p class="text-gray-600 text-sm">למה להיעזר ביועץ משכנתאות וכמה זה עולה.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

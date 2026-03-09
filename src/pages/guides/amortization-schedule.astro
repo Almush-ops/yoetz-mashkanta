@@ -1,0 +1,300 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
+
+const articleSchema = {
+  '@type': 'Article',
+  headline: 'לוח סילוקין משכנתא - מה זה ואיך לקרוא אותו נכון',
+  description: 'מדריך מקיף ללוח סילוקין משכנתא: שיטת שפיצר מול קרן שווה, איך לקרוא את הלוח, מה משפיע על ההחזר, ואיך להשתמש בו לתכנון פיננסי.',
+  author: personSchema,
+  publisher: {
+    '@type': 'Organization',
+    name: consultant.company,
+    url: consultant.siteUrl,
+  },
+  datePublished: '2026-03-09',
+  dateModified: '2026-03-09',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://yoetz-mashkanta.co.il/guides/amortization-schedule/',
+  },
+};
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'מדריכים', href: '/guides/' },
+  { label: 'לוח סילוקין משכנתא' },
+];
+
+const faqItems = [
+  {
+    question: 'מה ההבדל העיקרי בין שפיצר לקרן שווה?',
+    answer: 'בשפיצר ההחזר החודשי קבוע לאורך כל התקופה, אבל בתחילה משלמים יותר ריבית ופחות קרן. בקרן שווה משלמים סכום קרן קבוע כל חודש, כך שההחזר הכולל יורד עם הזמן. קרן שווה חוסכת ריבית לאורך זמן, אבל דורשת החזר גבוה יותר בהתחלה.',
+  },
+  {
+    question: 'למה כדאי לי לבקש את לוח הסילוקין מהבנק?',
+    answer: 'לוח הסילוקין מראה בדיוק כמה ריבית תשלמו לאורך חיי ההלוואה, מתי תגיעו לנקודת האיזון (שבה אתם משלמים יותר קרן מריבית), ומה ההשפעה של פירעון מוקדם. זה כלי חיוני לתכנון פיננסי ולהחלטה אם ומתי לפרוע.',
+  },
+  {
+    question: 'מה זה "נקודת האיזון" בלוח סילוקין?',
+    answer: 'נקודת האיזון היא הרגע שבו התשלום החודשי שלכם מתחלק שווה בשווה בין קרן לריבית. לפני נקודה זו, רוב התשלום הולך לריבית. אחריה, רוב התשלום הולך להחזר הקרן. במשכנתא ל-25 שנים, נקודת האיזון מגיעה בדרך כלל אחרי 12-15 שנים.',
+  },
+  {
+    question: 'איך משפיע פירעון מוקדם על לוח הסילוקין?',
+    answer: 'פירעון מוקדם מקטין את הקרן, וכתוצאה מכך את הריבית העתידית. יש שתי אפשרויות: קיצור תקופה (אותו החזר, פחות שנים) או הקטנת החזר (אותה תקופה, החזר נמוך יותר). פירעון מוקדם בשנים הראשונות משתלם יותר כי אז יחס הריבית גבוה.',
+  },
+  {
+    question: 'האם לוח הסילוקין זהה בכל מסלולי המשכנתא?',
+    answer: 'לא. במסלולים צמודי מדד, הקרן גדלה עם האינפלציה ולכן לוח הסילוקין משתנה. במסלולים בריבית משתנה (פריים, משתנה כל 5 שנים), הריבית מתעדכנת ומשפיעה על ההחזר. רק במסלולים קבועים לא צמודים לוח הסילוקין נשאר זהה לאורך כל התקופה.',
+  },
+  {
+    question: 'איפה אפשר לראות את לוח הסילוקין שלי?',
+    answer: 'לוח הסילוקין זמין באתר הבנק שלכם (בדרך כלל תחת "משכנתא" או "הלוואות"), באפליקציית הבנק, או בפנייה לסניף/מוקד טלפוני. חלק מהבנקים שולחים לוח סילוקין מעודכן פעם בשנה. תוכלו גם לבקש הדפסה מלאה בכל עת.',
+  },
+];
+---
+
+<BaseLayout
+  title="לוח סילוקין משכנתא - מה זה ואיך לקרוא אותו | מדריך מלא"
+  description="מדריך מקיף ללוח סילוקין משכנתא: שיטת שפיצר מול קרן שווה, איך לקרוא את הלוח, מה משפיע על ההחזר החודשי, ואיך להשתמש בו לתכנון פיננסי נכון."
+>
+  <SchemaOrg slot="schema" schema={[articleSchema, personSchema, localBusinessSchema]} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="inline-block bg-white/20 text-white text-sm font-medium px-3 py-1 rounded-full mb-4">מדריך מקיף</span>
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">לוח סילוקין משכנתא - מה זה ואיך לקרוא אותו נכון</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        לוח הסילוקין הוא המפה של המשכנתא שלכם - הוא מראה בדיוק לאן הולך כל שקל שאתם משלמים, ומתי תסיימו לשלם.
+      </p>
+      <!-- E-E-A-T Trust Badges -->
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          {trustBadges.rating}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+          {trustBadges.clients}
+        </span>
+        <a href={consultant.hfcaUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          {trustBadges.hfca}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          <strong>לוח סילוקין</strong> (נקרא גם "לוח סילוקים" או "לוח פירעון") הוא טבלה שמפרטת את כל התשלומים העתידיים של המשכנתא - מהתשלום הראשון ועד האחרון. הוא מראה כמה מכל תשלום הולך להחזר הקרן, כמה הולך לריבית, ומה היתרה שנשארת אחרי כל תשלום.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מה יש בלוח סילוקין? המרכיבים העיקריים</h2>
+        <p>כל לוח סילוקין כולל את העמודות הבאות:</p>
+
+        <div class="bg-surface p-6 rounded-xl my-6 not-prose">
+          <div class="space-y-4 text-sm">
+            <div class="flex gap-4 items-start">
+              <div class="w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">1</div>
+              <div>
+                <span class="font-bold text-dark">מספר תשלום</span>
+                <p class="text-gray-600">המספר הסידורי של התשלום (1 עד 300 במשכנתא ל-25 שנים)</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">2</div>
+              <div>
+                <span class="font-bold text-dark">החזר קרן</span>
+                <p class="text-gray-600">הסכום שמקטין את החוב שלכם לבנק</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">3</div>
+              <div>
+                <span class="font-bold text-dark">תשלום ריבית</span>
+                <p class="text-gray-600">"העמלה" שהבנק גובה על ההלוואה - זה הרווח שלו</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">4</div>
+              <div>
+                <span class="font-bold text-dark">סה"כ החזר חודשי</span>
+                <p class="text-gray-600">קרן + ריבית = מה שיוצא מהחשבון שלכם</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-8 h-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">5</div>
+              <div>
+                <span class="font-bold text-dark">יתרה לסילוק</span>
+                <p class="text-gray-600">כמה עוד נשאר לשלם (קטן עם כל תשלום)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">שיטת שפיצר - השיטה הנפוצה ביותר</h2>
+        <p>
+          <strong>שפיצר</strong> היא שיטת ההחזר הנפוצה ביותר בישראל ובעולם. העיקרון: <strong>ההחזר החודשי קבוע</strong> לאורך כל התקופה, אבל היחס בין קרן לריבית משתנה.
+        </p>
+
+        <div class="bg-brand-50 p-6 rounded-xl my-6 not-prose border border-brand-200">
+          <h4 class="font-bold text-dark mb-3">דוגמה: משכנתא 1,000,000 ש"ח, 4% ריבית, 25 שנים</h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-brand-200">
+                  <th class="text-right py-2">שנה</th>
+                  <th class="text-right py-2">החזר חודשי</th>
+                  <th class="text-right py-2">קרן</th>
+                  <th class="text-right py-2">ריבית</th>
+                  <th class="text-right py-2">יתרה</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-border">
+                  <td class="py-2">1</td>
+                  <td class="py-2">5,278 ש"ח</td>
+                  <td class="py-2 text-green-600">1,945 ש"ח</td>
+                  <td class="py-2 text-red-600">3,333 ש"ח</td>
+                  <td class="py-2">976,660 ש"ח</td>
+                </tr>
+                <tr class="border-b border-border">
+                  <td class="py-2">5</td>
+                  <td class="py-2">5,278 ש"ח</td>
+                  <td class="py-2 text-green-600">2,300 ש"ח</td>
+                  <td class="py-2 text-red-600">2,978 ש"ח</td>
+                  <td class="py-2">870,850 ש"ח</td>
+                </tr>
+                <tr class="border-b border-border">
+                  <td class="py-2">10</td>
+                  <td class="py-2">5,278 ש"ח</td>
+                  <td class="py-2 text-green-600">2,840 ש"ח</td>
+                  <td class="py-2 text-red-600">2,438 ש"ח</td>
+                  <td class="py-2">712,500 ש"ח</td>
+                </tr>
+                <tr class="border-b border-border bg-yellow-50">
+                  <td class="py-2 font-bold">~13</td>
+                  <td class="py-2">5,278 ש"ח</td>
+                  <td class="py-2 text-green-600 font-bold">~2,639 ש"ח</td>
+                  <td class="py-2 text-red-600 font-bold">~2,639 ש"ח</td>
+                  <td class="py-2">נקודת איזון!</td>
+                </tr>
+                <tr class="border-b border-border">
+                  <td class="py-2">20</td>
+                  <td class="py-2">5,278 ש"ח</td>
+                  <td class="py-2 text-green-600">4,315 ש"ח</td>
+                  <td class="py-2 text-red-600">963 ש"ח</td>
+                  <td class="py-2">270,500 ש"ח</td>
+                </tr>
+                <tr>
+                  <td class="py-2">25</td>
+                  <td class="py-2">5,278 ש"ח</td>
+                  <td class="py-2 text-green-600">5,260 ש"ח</td>
+                  <td class="py-2 text-red-600">18 ש"ח</td>
+                  <td class="py-2 font-bold">0 ש"ח ✓</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">* הנתונים מעוגלים לצורך הדגמה</p>
+        </div>
+
+        <p>
+          <strong>מה רואים כאן?</strong> בשנה הראשונה, מתוך 5,278 ש"ח החזר חודשי, רק 1,945 ש"ח הולכים להחזר הקרן - השאר (3,333 ש"ח!) הולכים לריבית. רק אחרי כ-13 שנים מגיעים ל"נקודת האיזון" שבה מחצית הולכת לקרן ומחצית לריבית.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">שיטת קרן שווה - האלטרנטיבה</h2>
+        <p>
+          ב<strong>קרן שווה</strong>, סכום הקרן שמוחזר כל חודש קבוע. כתוצאה מכך, ההחזר הכולל יורד עם הזמן (כי הריבית מחושבת על יתרה קטנה יותר).
+        </p>
+
+        <div class="bg-surface p-6 rounded-xl my-6 not-prose">
+          <h4 class="font-bold text-dark mb-3">השוואה: שפיצר מול קרן שווה (אותה הלוואה)</h4>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white p-4 rounded-lg border border-border">
+              <h5 class="font-bold text-brand-600 mb-2">שפיצר</h5>
+              <ul class="text-sm space-y-1 text-gray-700">
+                <li>• החזר קבוע: 5,278 ש"ח/חודש</li>
+                <li>• סה"כ תשלומים: 1,583,400 ש"ח</li>
+                <li>• סה"כ ריבית: <span class="text-red-600 font-bold">583,400 ש"ח</span></li>
+              </ul>
+            </div>
+            <div class="bg-white p-4 rounded-lg border border-border">
+              <h5 class="font-bold text-green-600 mb-2">קרן שווה</h5>
+              <ul class="text-sm space-y-1 text-gray-700">
+                <li>• החזר בהתחלה: ~6,666 ש"ח/חודש</li>
+                <li>• החזר בסוף: ~3,360 ש"ח/חודש</li>
+                <li>• סה"כ ריבית: <span class="text-green-600 font-bold">~502,000 ש"ח</span></li>
+              </ul>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600 mt-4"><strong>חיסכון בקרן שווה:</strong> ~81,400 ש"ח פחות ריבית לאורך חיי ההלוואה. <strong>המחיר:</strong> החזר גבוה יותר ב-~1,400 ש"ח בשנים הראשונות.</p>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">איך להשתמש בלוח הסילוקין לתכנון פיננסי</h2>
+        <ul class="list-disc list-inside space-y-3 my-4">
+          <li><strong>תכנון פירעון מוקדם:</strong> הלוח מראה כמה תחסכו אם תפרעו סכום מסוים. ככל שמוקדם יותר - החיסכון גדול יותר.</li>
+          <li><strong>החלטה על מחזור:</strong> השוו את הריבית שתשלמו על היתרה הנוכחית מול הצעה חדשה.</li>
+          <li><strong>תכנון תזרים מזומנים:</strong> דעו בדיוק כמה תשלמו בכל שנה ותכננו בהתאם.</li>
+          <li><strong>הבנת ההשפעה של שינויי ריבית:</strong> במסלולים משתנים, הלוח יעודכן - ותוכלו לראות את ההשפעה.</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מתי לוח הסילוקין משתנה?</h2>
+        <p>לוח הסילוקין אינו תמיד קבוע. הוא מתעדכן במקרים הבאים:</p>
+        <div class="bg-yellow-50 border border-yellow-200 p-5 rounded-xl my-4 not-prose">
+          <ul class="text-sm space-y-2 text-yellow-800">
+            <li><strong>• מסלול צמוד מדד:</strong> הקרן גדלה עם האינפלציה → לוח הסילוקין מתעדכן</li>
+            <li><strong>• מסלול פריים:</strong> ריבית משתנה כל חודש → הלוח מתעדכן בהתאם</li>
+            <li><strong>• משתנה כל 5 שנים:</strong> עדכון ריבית כל 5 שנים → לוח חדש בכל עדכון</li>
+            <li><strong>• פירעון מוקדם:</strong> הקרן קטנה → לוח חדש עם יתרה מופחתת</li>
+            <li><strong>• מחזור משכנתא:</strong> הלוואה חדשה = לוח חדש לחלוטין</li>
+          </ul>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">טיפ מקצועי: כמה ריבית באמת משלמים?</h2>
+        <p>
+          הנה נתון שמפתיע רבים: על משכנתא ל-25 שנים בשיטת שפיצר, סך הריבית לאורך כל התקופה מגיע ל-<strong>50-70% מסכום הקרן המקורי</strong>. כלומר, על הלוואה של מיליון ש"ח, תשלמו 500,000-700,000 ש"ח נוספים בריבית בלבד.
+        </p>
+        <p>
+          זו הסיבה שבניית תמהיל נכון, בחירת מסלולים מתאימים, ושקילת פירעון מוקדם - יכולים לחסוך עשרות ואפילו מאות אלפי שקלים.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות - לוח סילוקין" />
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מדריכים נוספים</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <a href="/guides/mortgage-mix/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">תמהיל משכנתא מומלץ 2026</h3>
+          <p class="text-gray-600 text-sm">איך לבנות תמהיל אופטימלי? יתרונות וחסרונות כל מסלול.</p>
+        </a>
+        <a href="/guides/interest-rates/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">ריביות משכנתא 2026</h3>
+          <p class="text-gray-600 text-sm">עדכון ריביות נוכחי, השוואת מסלולים, ותחזיות.</p>
+        </a>
+        <a href="/guides/refinancing/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">מחזור משכנתא</h3>
+          <p class="text-gray-600 text-sm">מתי כדאי למחזר? עלויות, תהליך, ודוגמאות לחיסכון.</p>
+        </a>
+        <a href="/services/mortgage-consultation/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">ייעוץ משכנתא מקצועי</h3>
+          <p class="text-gray-600 text-sm">למה להיעזר ביועץ משכנתאות וכמה זה עולה.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

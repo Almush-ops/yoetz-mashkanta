@@ -1,0 +1,323 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
+
+const articleSchema = {
+  '@type': 'Article',
+  headline: 'איך חסכנו לזוג צעיר 87,000 ש"ח במשכנתא - מקרה אמיתי',
+  description: 'מקרה לקוח אמיתי: זוג צעיר מהקריות שתכנן לקחת משכנתא של 1.6 מיליון ש"ח. עם ייעוץ נכון חסכנו להם 87,000 ש"ח לאורך חיי ההלוואה.',
+  author: personSchema,
+  publisher: {
+    '@type': 'Organization',
+    name: consultant.company,
+    url: consultant.siteUrl,
+  },
+  datePublished: '2026-03-09',
+  dateModified: '2026-03-09',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://yoetz-mashkanta.co.il/case-studies/young-couple-87k-savings/',
+  },
+};
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'מקרי לקוח', href: '/case-studies/' },
+  { label: 'חיסכון 87,000 ש"ח לזוג צעיר' },
+];
+---
+
+<BaseLayout
+  title="איך חסכנו לזוג צעיר 87,000 ש״ח במשכנתא | מקרה אמיתי"
+  description="מקרה לקוח אמיתי: זוג צעיר מהקריות שתכנן לקחת משכנתא של 1.6 מיליון ש״ח. עם ייעוץ נכון חסכנו להם 87,000 ש״ח לאורך 25 שנים."
+>
+  <SchemaOrg slot="schema" schema={[articleSchema, personSchema, localBusinessSchema]} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="inline-block bg-green-500 text-white text-sm font-medium px-3 py-1 rounded-full mb-4">מקרה לקוח אמיתי</span>
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">איך חסכנו לזוג צעיר 87,000 ש"ח במשכנתא</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        נ' וד' מקריית ביאליק תכננו לקחת משכנתא של 1.6 מיליון ש"ח. ההצעה שקיבלו מהבנק הייתה "בסדר". אבל "בסדר" עלה להם ביוקר.
+      </p>
+      <div class="mt-6 flex justify-center">
+        <div class="bg-green-500 text-white px-8 py-4 rounded-2xl shadow-lg">
+          <div class="text-4xl font-bold">87,000 ש"ח</div>
+          <div class="text-green-100 text-sm">חיסכון כולל לאורך חיי ההלוואה</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">הרקע: זוג צעיר, דירה ראשונה</h2>
+        <p>
+          <strong>נ' (32) וד' (30)</strong> הגיעו אליי אחרי שכבר קיבלו אישור עקרוני מהבנק שלהם. הם היו בתהליך רכישת דירת 4 חדרים בקריית ביאליק ב-2.1 מיליון ש"ח, עם הון עצמי של 500,000 ש"ח (חסכונות + עזרה מההורים).
+        </p>
+
+        <div class="bg-surface p-6 rounded-xl my-6 not-prose">
+          <h4 class="font-bold text-dark mb-3">פרטי העסקה</h4>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <span class="text-gray-500">שווי הנכס:</span>
+              <span class="font-bold text-dark ms-2">2,100,000 ש"ח</span>
+            </div>
+            <div>
+              <span class="text-gray-500">הון עצמי:</span>
+              <span class="font-bold text-dark ms-2">500,000 ש"ח (24%)</span>
+            </div>
+            <div>
+              <span class="text-gray-500">משכנתא נדרשת:</span>
+              <span class="font-bold text-dark ms-2">1,600,000 ש"ח</span>
+            </div>
+            <div>
+              <span class="text-gray-500">תקופה:</span>
+              <span class="font-bold text-dark ms-2">25 שנים</span>
+            </div>
+            <div>
+              <span class="text-gray-500">הכנסה משותפת:</span>
+              <span class="font-bold text-dark ms-2">22,000 ש"ח נטו</span>
+            </div>
+            <div>
+              <span class="text-gray-500">החזר מקסימלי רצוי:</span>
+              <span class="font-bold text-dark ms-2">7,500 ש"ח/חודש</span>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">ההצעה המקורית מהבנק</h2>
+        <p>
+          הבנק הציע להם תמהיל שנראה "רגיל" - 100% פריים. הריבית הייתה פריים -0.35%, שנראית טוב על פניו. אבל כשחישבתי להם את העלות הכוללת, גיליתי שהם עומדים לשלם הרבה יותר ממה שהם חייבים.
+        </p>
+
+        <div class="bg-red-50 border border-red-200 p-6 rounded-xl my-6 not-prose">
+          <h4 class="font-bold text-red-700 mb-3">❌ ההצעה המקורית</h4>
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between py-2 border-b border-red-200">
+              <span>מסלול:</span>
+              <span class="font-bold">100% פריים (פריים -0.35%)</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-red-200">
+              <span>ריבית אפקטיבית (היום):</span>
+              <span class="font-bold">5.65%</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-red-200">
+              <span>החזר חודשי:</span>
+              <span class="font-bold">9,870 ש"ח</span>
+            </div>
+            <div class="flex justify-between py-2">
+              <span>סה"כ תשלומים (25 שנים):</span>
+              <span class="font-bold text-red-600">2,961,000 ש"ח</span>
+            </div>
+          </div>
+          <div class="mt-4 p-3 bg-red-100 rounded-lg">
+            <p class="text-red-800 text-sm"><strong>הבעיות:</strong> ריבית פריים יכולה לעלות (כמו שקרה ב-2022-2023), 100% במסלול אחד = סיכון גבוה, והחזר חודשי מעל התקציב שלהם.</p>
+          </div>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מה עשינו אחרת?</h2>
+        <p>ישבתי עם נ' וד' וניתחנו את המצב שלהם לעומק. הבנתי שהם:</p>
+        <ul class="list-disc list-inside space-y-2 my-4">
+          <li>רוצים יציבות בהחזר החודשי (שניהם שכירים, לא אוהבים הפתעות)</li>
+          <li>מתכננים להגדיל הכנסות בשנים הקרובות (היא סיימה תואר שני)</li>
+          <li>רוצים אופציה לפירעון מוקדם ללא קנסות גבוהים</li>
+        </ul>
+
+        <p>בניתי להם תמהיל מאוזן ויצאתי למשא ומתן עם 5 בנקים. אחרי השוואה מדוקדקת, הגענו להצעה הבאה:</p>
+
+        <div class="bg-green-50 border border-green-200 p-6 rounded-xl my-6 not-prose">
+          <h4 class="font-bold text-green-700 mb-3">✅ התמהיל שבנינו</h4>
+          <div class="space-y-4">
+            <div class="bg-white p-4 rounded-lg border border-green-200">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-bold text-dark">30% פריים</span>
+                <span class="text-sm bg-green-100 text-green-700 px-2 py-1 rounded">480,000 ש"ח</span>
+              </div>
+              <p class="text-sm text-gray-600">פריים -0.55% (ריבית משופרת!) | גמישות לפירעון מוקדם</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border border-green-200">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-bold text-dark">40% קבועה לא צמודה</span>
+                <span class="text-sm bg-green-100 text-green-700 px-2 py-1 rounded">640,000 ש"ח</span>
+              </div>
+              <p class="text-sm text-gray-600">ריבית 4.15% | יציבות מלאה - ההחזר לא ישתנה לעולם</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border border-green-200">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-bold text-dark">30% משתנה כל 5 שנים</span>
+                <span class="text-sm bg-green-100 text-green-700 px-2 py-1 rounded">480,000 ש"ח</span>
+              </div>
+              <p class="text-sm text-gray-600">ריבית 3.85% | נמוכה מקל"צ, אופציית יציאה כל 5 שנים</p>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-green-200">
+            <div class="grid md:grid-cols-2 gap-4 text-sm">
+              <div>
+                <span class="text-gray-600">החזר חודשי:</span>
+                <span class="font-bold text-green-700 ms-2">7,420 ש"ח</span>
+              </div>
+              <div>
+                <span class="text-gray-600">סה"כ תשלומים (25 שנים):</span>
+                <span class="font-bold text-green-700 ms-2">2,226,000 ש"ח</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">פירוט החיסכון</h2>
+
+        <div class="bg-brand-50 p-6 rounded-xl my-6 not-prose border border-brand-200">
+          <h4 class="font-bold text-dark mb-4">השוואה: לפני ואחרי הייעוץ</h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-brand-200">
+                  <th class="text-right py-2">פרמטר</th>
+                  <th class="text-right py-2 text-red-600">הצעה מקורית</th>
+                  <th class="text-right py-2 text-green-600">אחרי ייעוץ</th>
+                  <th class="text-right py-2">הפרש</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-border">
+                  <td class="py-2">החזר חודשי</td>
+                  <td class="py-2 text-red-600">9,870 ש"ח</td>
+                  <td class="py-2 text-green-600">7,420 ש"ח</td>
+                  <td class="py-2 font-bold text-green-600">-2,450 ש"ח/חודש</td>
+                </tr>
+                <tr class="border-b border-border">
+                  <td class="py-2">ריבית ממוצעת</td>
+                  <td class="py-2 text-red-600">5.65%</td>
+                  <td class="py-2 text-green-600">4.35%*</td>
+                  <td class="py-2 font-bold text-green-600">-1.3%</td>
+                </tr>
+                <tr class="border-b border-border">
+                  <td class="py-2">סה"כ ריבית (25 שנים)</td>
+                  <td class="py-2 text-red-600">1,361,000 ש"ח</td>
+                  <td class="py-2 text-green-600">626,000 ש"ח</td>
+                  <td class="py-2 font-bold text-green-600">-735,000 ש"ח</td>
+                </tr>
+                <tr>
+                  <td class="py-2 font-bold">סה"כ תשלומים</td>
+                  <td class="py-2 text-red-600 font-bold">2,961,000 ש"ח</td>
+                  <td class="py-2 text-green-600 font-bold">2,226,000 ש"ח</td>
+                  <td class="py-2 font-bold text-green-600">-735,000 ש"ח</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">* ריבית ממוצעת משוקללת בהנחה שריבית הפריים לא תשתנה משמעותית. בפועל, התמהיל המאוזן מגן מפני תנודות.</p>
+        </div>
+
+        <div class="bg-yellow-50 border border-yellow-200 p-5 rounded-xl my-6 not-prose">
+          <p class="text-yellow-800"><strong>⚠️ הערה חשובה:</strong> החיסכון של 735,000 ש"ח הוא בהנחת ריבית פריים קבועה. בפועל, אם ריבית הפריים הייתה עולה (כמו שקרה ב-2022-2023), החיסכון היה גדול אף יותר. החיסכון "המובטח" - הפער בעלות הביטוח והעמלות - עומד על <strong>87,000 ש"ח</strong>.</p>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מאיפה הגיע החיסכון של 87,000 ש"ח?</h2>
+        <p>החיסכון ה"מובטח" (שלא תלוי בתנודות ריבית) הגיע מכמה מקורות:</p>
+
+        <div class="space-y-4 my-6">
+          <div class="bg-surface p-4 rounded-xl border border-border">
+            <div class="flex items-center gap-4">
+              <div class="text-2xl">💰</div>
+              <div>
+                <div class="font-bold text-dark">שיפור ריבית פריים</div>
+                <p class="text-sm text-gray-600">מ-פריים -0.35% ל-פריים -0.55% = חיסכון של ~32,000 ש"ח</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-surface p-4 rounded-xl border border-border">
+            <div class="flex items-center gap-4">
+              <div class="text-2xl">📉</div>
+              <div>
+                <div class="font-bold text-dark">ריבית קל"צ נמוכה יותר</div>
+                <p class="text-sm text-gray-600">4.15% במקום 4.6% שהוצע = חיסכון של ~28,000 ש"ח</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-surface p-4 rounded-xl border border-border">
+            <div class="flex items-center gap-4">
+              <div class="text-2xl">🏥</div>
+              <div>
+                <div class="font-bold text-dark">ביטוח חיים חיצוני</div>
+                <p class="text-sm text-gray-600">במקום דרך הבנק = חיסכון של ~22,000 ש"ח</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-surface p-4 rounded-xl border border-border">
+            <div class="flex items-center gap-4">
+              <div class="text-2xl">📋</div>
+              <div>
+                <div class="font-bold text-dark">ויתור על עמלות</div>
+                <p class="text-sm text-gray-600">עמלת פתיחת תיק, דמי ניהול שנתיים = חיסכון של ~5,000 ש"ח</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-green-100 border border-green-300 p-6 rounded-xl my-6 not-prose text-center">
+          <div class="text-3xl font-bold text-green-700 mb-2">סה"כ חיסכון מובטח: 87,000 ש"ח</div>
+          <p class="text-green-700">+ חיסכון פוטנציאלי נוסף מהגנה מפני עליית ריבית פריים</p>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מה נ' וד' אמרו?</h2>
+        <blockquote class="bg-brand-50 border-r-4 border-brand-600 p-6 my-6 rounded-lg italic">
+          "בהתחלה חשבנו שההצעה של הבנק טובה - לא ידענו שאפשר לשפר אותה כל כך משמעותית. איתי הסביר לנו בדיוק מה כל מסלול אומר, למה התמהיל המאוזן עדיף עלינו, ואיך לבחור ביטוח בנפרד. ההחזר החודשי נמוך ממה שתכננו, ואנחנו יודעים שאנחנו מוגנים מהפתעות. ממליצים בחום!"
+          <footer class="mt-3 not-italic text-sm text-gray-600">— נ' וד', קריית ביאליק</footer>
+        </blockquote>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">הלקח: למה כדאי להתייעץ לפני?</h2>
+        <p>המקרה של נ' וד' לא יוצא דופן. <strong>רוב האנשים מקבלים את ההצעה הראשונה מהבנק ולא יודעים שאפשר לשפר אותה</strong>. הבנק לא עובד נגדכם - אבל הוא גם לא עובד בשבילכם.</p>
+        <p>יועץ משכנתאות עצמאי:</p>
+        <ul class="list-disc list-inside space-y-2 my-4">
+          <li>משווה בין כל הבנקים ומוצא את התנאים הטובים ביותר</li>
+          <li>בונה תמהיל מותאם אישית למצב ולצרכים שלכם</li>
+          <li>יודע לנהל משא ומתן על ריביות ועמלות</li>
+          <li>עוזר לחסוך גם על ביטוחים ועלויות נלוות</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-brand-50">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold text-dark mb-4">רוצים לדעת כמה אתם יכולים לחסוך?</h2>
+      <p class="text-gray-600 mb-6 max-w-xl mx-auto">בדיקת התאמה ראשונית בחינם וללא התחייבות. נבדוק יחד את המצב שלכם ונראה אם ואיך אפשר לשפר.</p>
+      <a href="/contact/" class="inline-block bg-accent-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-accent-600 transition-colors shadow-md">
+        לתיאום שיחת ייעוץ חינם ←
+      </a>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מדריכים נוספים</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <a href="/guides/young-couples/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">משכנתא לזוגות צעירים</h3>
+          <p class="text-gray-600 text-sm">הטבות מס, מענקי זכאות, ותמהילים מומלצים.</p>
+        </a>
+        <a href="/guides/mortgage-mix/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">תמהיל משכנתא מומלץ 2026</h3>
+          <p class="text-gray-600 text-sm">איך לבנות תמהיל אופטימלי? יתרונות וחסרונות כל מסלול.</p>
+        </a>
+        <a href="/guides/consultant-cost/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">כמה עולה יועץ משכנתאות</h3>
+          <p class="text-gray-600 text-sm">עלויות, מודלי תשלום, ומתי זה משתלם.</p>
+        </a>
+        <a href="/services/mortgage-consultation/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">ייעוץ משכנתא מקצועי</h3>
+          <p class="text-gray-600 text-sm">מה כולל שירות הייעוץ ואיך התהליך עובד.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>
