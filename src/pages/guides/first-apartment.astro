@@ -1,0 +1,453 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
+
+const articleSchema = {
+  '@type': 'Article',
+  headline: 'משכנתא לדירה ראשונה - שלב אחר שלב',
+  description: 'מדריך מפורט לקבלת משכנתא לדירה ראשונה: אישור עקרוני, חיפוש דירה, הגשה לבנקים, שמאות, חתימה. ציר זמן של 3-6 שבועות.',
+  url: 'https://yoetz-mashkanta.co.il/guides/first-apartment/',
+  datePublished: '2026-01-25',
+  dateModified: '2026-03-09',
+  author: personSchema,
+  publisher: {
+    '@type': 'Organization',
+    name: 'יועץ משכנתאות - איתי אנצל',
+    url: 'https://yoetz-mashkanta.co.il',
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://yoetz-mashkanta.co.il/guides/first-apartment/',
+  },
+};
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'מדריכים', href: '/guides/' },
+  { label: 'משכנתא לדירה ראשונה' },
+];
+
+const faqItems = [
+  {
+    question: 'כמה זמן לוקח לקבל משכנתא לדירה ראשונה?',
+    answer: 'התהליך המלא אורך 3-6 שבועות: אישור עקרוני (3-5 ימים), חיפוש והצעות (1-2 שבועות), שמאות (שבוע), אישור סופי וחתימה (1-2 שבועות). עם הכנה מוקדמת ויועץ, התהליך יכול להתקצר משמעותית.',
+  },
+  {
+    question: 'מה ההבדל בין אישור עקרוני לאישור סופי?',
+    answer: 'אישור עקרוני הוא הצהרת כוונות מהבנק שהוא מוכן להלוות לכם סכום מסוים, תקף ל-60-90 יום. אישור סופי הוא לאחר בדיקת הנכס הספציפי (שמאות, בדיקה משפטית) - רק אז אפשר לחתום.',
+  },
+  {
+    question: 'האם אפשר לקבל משכנתא לפני שמצאנו דירה?',
+    answer: 'כן, וזה אפילו מומלץ. אישור עקרוני נותן לכם יתרון במשא ומתן מול מוכרים כי אתם יודעים בדיוק כמה אתם יכולים לשלם. האישור תקף 60-90 יום.',
+  },
+  {
+    question: 'מה קורה אם הבנק לא מאשר את הדירה?',
+    answer: 'השמאי יכול להעריך את הדירה בפחות ממחיר הרכישה, או שהבדיקה המשפטית תגלה בעיות. במקרה כזה: הבנק יאשר פחות כסף, תצטרכו להשלים הון עצמי, או לנהל משא ומתן עם המוכר.',
+  },
+  {
+    question: 'אילו מסמכים צריך לדירה ראשונה?',
+    answer: 'תעודות זהות, 3 תלושי שכר אחרונים, תדפיס בנק (3 חודשים), אישור יתרות מכל הבנקים, חוזה רכישה (או טיוטה), נסח טאבו של הנכס. לעצמאים: דו"חות שנתיים ואישור רו"ח.',
+  },
+  {
+    question: 'האם כדאי לחכות עד שתהיה לנו יותר הון עצמי?',
+    answer: 'תלוי במצב השוק. אם מחירי הדירות עולים 5-8% בשנה והון עצמי עולה 10%, הפער גדל. לפעמים כדאי לקנות עכשיו עם 25% ולשלם יותר ריבית, מאשר לחכות שנתיים ולהתמודד עם מחירים גבוהים יותר.',
+  },
+];
+
+const processSteps = [
+  {
+    number: '1',
+    title: 'בדיקת יכולת - לפני הכל',
+    duration: 'יום אחד',
+    description: 'לפני שמתחילים לחפש דירה, בודקים כמה באמת אפשר לקחת משכנתא. זה מונע אכזבות והתאהבות בדירות שלא בטווח.',
+    tasks: [
+      'חישוב הכנסה נטו (שני בני הזוג)',
+      'בדיקת הון עצמי זמין (חסכונות, עזרה מהורים)',
+      'הערכת החזר מקסימלי (30% מההכנסה)',
+      'חישוב סכום משכנתא אפשרי',
+    ],
+    tip: 'כלל אצבע: הכנסה של 20,000 ש"ח = משכנתא של כ-1.1-1.3 מיליון ש"ח',
+  },
+  {
+    number: '2',
+    title: 'אישור עקרוני',
+    duration: '3-5 ימי עסקים',
+    description: 'הבנק בודק את יכולת ההחזר שלכם ונותן אישור עקרוני - הצהרה שהוא מוכן להלוות לכם סכום מסוים. זה לא מחייב, אבל נותן לכם ביטחון.',
+    tasks: [
+      'איסוף מסמכים (תלושים, תדפיסי בנק)',
+      'הגשה ל-2-3 בנקים להשוואה',
+      'קבלת מכתב אישור עקרוני',
+      'הבנת הסכום המקסימלי שתקבלו',
+    ],
+    tip: 'בקשו אישור מכמה בנקים - זה בחינם ונותן לכם כוח מיקוח',
+  },
+  {
+    number: '3',
+    title: 'חיפוש ובחירת דירה',
+    duration: '2-8 שבועות (משתנה)',
+    description: 'עכשיו שאתם יודעים כמה אתם יכולים להרשות לעצמכם, אפשר לחפש דירה בביטחון. האישור העקרוני נותן לכם יתרון במשא ומתן.',
+    tasks: [
+      'הגדרת קריטריונים (אזור, גודל, קומה)',
+      'חיפוש באתרים ודרך מתווכים',
+      'ביקורים בדירות',
+      'משא ומתן על מחיר',
+    ],
+    tip: 'אל תתאהבו בדירה לפני שבדקתם אותה עם שמאי או מהנדס',
+  },
+  {
+    number: '4',
+    title: 'חתימה על חוזה רכישה',
+    duration: '1-3 ימים',
+    description: 'מצאתם דירה? עכשיו חותמים על חוזה עם עורך דין. החוזה כולל תנאי מתלה - אם לא תקבלו משכנתא, העסקה מתבטלת.',
+    tasks: [
+      'בדיקת חוזה עם עורך דין',
+      'הבנת לוח התשלומים',
+      'חתימה על חוזה (כולל תנאי מתלה)',
+      'העברת מקדמה (5-10%)',
+    ],
+    tip: 'וודאו שיש תנאי מתלה לקבלת משכנתא - זה מגן עליכם',
+  },
+  {
+    number: '5',
+    title: 'הגשה מסודרת לבנקים',
+    duration: '5-7 ימי עסקים',
+    description: 'עכשיו מגישים בקשה רשמית עם כל המסמכים, כולל חוזה הרכישה. הבנקים שולחים שמאי לבדוק את הנכס.',
+    tasks: [
+      'הכנת תיק מסמכים מלא',
+      'הגשה ל-5-7 בנקים במקביל',
+      'קבלת הצעות ריבית',
+      'השוואה מקצועית בין ההצעות',
+    ],
+    tip: 'יועץ משכנתאות יכול להגיש במקביל ולנהל משא ומתן',
+  },
+  {
+    number: '6',
+    title: 'שמאות',
+    duration: '5-7 ימי עסקים',
+    description: 'הבנק שולח שמאי לבדוק שהנכס שווה את המחיר שאתם משלמים. זה מגן על הבנק (ועליכם) מעסקאות מנופחות.',
+    tasks: [
+      'תיאום ביקור שמאי',
+      'קבלת דו"ח שמאות',
+      'בדיקה שהשמאות תואמת למחיר',
+      'פנייה לבנק אם יש פער',
+    ],
+    tip: 'אם השמאות נמוכה מהמחיר - אפשר לנהל משא ומתן עם המוכר',
+  },
+  {
+    number: '7',
+    title: 'אישור סופי ובניית תמהיל',
+    duration: '3-5 ימי עסקים',
+    description: 'הבנק נותן אישור סופי ואתם בונים את התמהיל - השילוב של מסלולי הריבית (פריים, קבועה, משתנה).',
+    tasks: [
+      'קבלת אישור סופי מהבנק',
+      'משא ומתן אחרון על ריביות',
+      'בניית תמהיל מותאם',
+      'קביעת מועד חתימה',
+    ],
+    tip: 'אל תיקחו 100% מסלול אחד - פזרו את הסיכון',
+  },
+  {
+    number: '8',
+    title: 'חתימה והעברת כספים',
+    duration: 'יום החתימה',
+    description: 'החתימה על מסמכי המשכנתא והעברת הכספים. תוך 7-14 יום הכסף מועבר לעורך הדין של המוכר.',
+    tasks: [
+      'בדיקת כל המסמכים לפני חתימה',
+      'חתימה על הסכם הלוואה',
+      'חתימה על שטר משכנתא',
+      'העברת הכספים',
+    ],
+    tip: 'בדקו שוב שכל הסכומים והתנאים תואמים למה שסוכם',
+  },
+];
+
+const documentsRequired = [
+  {
+    category: 'מסמכים אישיים',
+    items: [
+      'תעודת זהות + ספח (שני בני הזוג)',
+      'אישור מצב משפחתי (מרשם האוכלוסין)',
+      'תעודת נישואין (אם רלוונטי)',
+    ],
+  },
+  {
+    category: 'מסמכי הכנסה - שכירים',
+    items: [
+      '3 תלושי שכר אחרונים',
+      'אישור מעסיק על ותק ותפקיד',
+      'טופס 106 (שנה אחרונה)',
+    ],
+  },
+  {
+    category: 'מסמכי הכנסה - עצמאים',
+    items: [
+      'דו"חות שנתיים (2 שנים אחרונות)',
+      'אישור רואה חשבון על הכנסה שנתית',
+      'שומות מס הכנסה',
+    ],
+  },
+  {
+    category: 'מסמכים פיננסיים',
+    items: [
+      'תדפיסי בנק - 3 חודשים (כל החשבונות)',
+      'אישור יתרות מכל הבנקים',
+      'פירוט הלוואות קיימות (אם יש)',
+    ],
+  },
+  {
+    category: 'מסמכי הנכס',
+    items: [
+      'חוזה רכישה חתום',
+      'נסח טאבו עדכני',
+      'היתר בנייה (לדירה חדשה)',
+      'אישור זכויות מרמ"י (אם רלוונטי)',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="משכנתא לדירה ראשונה - שלב אחר שלב | מדריך 2026"
+  description="מדריך מפורט לקבלת משכנתא לדירה ראשונה: אישור עקרוני, חיפוש דירה, הגשה, שמאות, חתימה. ציר זמן 3-6 שבועות, מסמכים נדרשים, טיפים."
+>
+  <SchemaOrg slot="schema" schema={[articleSchema, personSchema, localBusinessSchema]} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">משכנתא לדירה ראשונה - שלב אחר שלב</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        המדריך המלא לתהליך קבלת משכנתא - מהבדיקה הראשונית ועד קבלת המפתח. 8 שלבים, 3-6 שבועות, וכל מה שצריך לדעת.
+      </p>
+      <!-- E-E-A-T Trust Badges -->
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          {trustBadges.rating}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+          {trustBadges.clients}
+        </span>
+        <a href={consultant.hfcaUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          {trustBadges.hfca}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Overview -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">ציר זמן - סקירה מהירה</h2>
+      <div class="bg-surface p-6 rounded-xl border border-border">
+        <div class="flex flex-wrap justify-center gap-4 text-center">
+          <div class="px-4 py-2">
+            <span class="block text-2xl font-bold text-brand-600">3-6</span>
+            <span class="text-sm text-gray-600">שבועות</span>
+          </div>
+          <div class="px-4 py-2 border-r border-border">
+            <span class="block text-2xl font-bold text-brand-600">8</span>
+            <span class="text-sm text-gray-600">שלבים</span>
+          </div>
+          <div class="px-4 py-2 border-r border-border">
+            <span class="block text-2xl font-bold text-brand-600">5-7</span>
+            <span class="text-sm text-gray-600">בנקים</span>
+          </div>
+          <div class="px-4 py-2 border-r border-border">
+            <span class="block text-2xl font-bold text-brand-600">25%</span>
+            <span class="text-sm text-gray-600">הון עצמי מינ'</span>
+          </div>
+        </div>
+      </div>
+      <div class="prose prose-lg max-w-none text-gray-700 mt-8">
+        <p>
+          <strong>רכישת דירה ראשונה היא אחד הצעדים הגדולים בחיים.</strong> התהליך יכול להרגיש מורכב, אבל כשמבינים את השלבים - הכל הופך ברור יותר. המדריך הזה מפרט את כל השלבים, כולל משך זמן צפוי וטיפים מעשיים.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Steps -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">8 השלבים לקבלת משכנתא</h2>
+      <div class="space-y-6">
+        {processSteps.map((step) => (
+          <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-border">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-xl flex-shrink-0">
+                {step.number}
+              </div>
+              <div class="flex-1">
+                <div class="flex flex-wrap justify-between items-start gap-2 mb-3">
+                  <h3 class="text-xl font-bold text-dark">{step.title}</h3>
+                  <span class="text-xs font-medium bg-brand-100 text-brand-700 px-2 py-1 rounded-full">
+                    {step.duration}
+                  </span>
+                </div>
+                <p class="text-gray-600 mb-4">{step.description}</p>
+                <div class="bg-surface p-4 rounded-lg mb-4">
+                  <h4 class="font-medium text-dark text-sm mb-2">מה עושים בשלב הזה:</h4>
+                  <ul class="space-y-1">
+                    {step.tasks.map((task) => (
+                      <li class="flex items-center gap-2 text-sm text-gray-700">
+                        <svg class="w-4 h-4 text-brand-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                        {task}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div class="flex items-start gap-2 bg-amber-50 p-3 rounded-lg">
+                  <svg class="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                  </svg>
+                  <p class="text-sm text-amber-800"><strong>טיפ:</strong> {step.tip}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Documents Required -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">מסמכים נדרשים - רשימה מלאה</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {documentsRequired.map((category) => (
+          <div class="bg-surface p-6 rounded-xl border border-border">
+            <h3 class="font-bold text-dark mb-3">{category.category}</h3>
+            <ul class="space-y-2">
+              {category.items.map((item) => (
+                <li class="flex items-center gap-2 text-sm text-gray-700">
+                  <svg class="w-4 h-4 text-brand-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-gray-500 mt-6 text-center">
+        * הבנקים עשויים לבקש מסמכים נוספים בהתאם למקרה הספציפי
+      </p>
+    </div>
+  </section>
+
+  <!-- Key Numbers -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">מספרים חשובים לדירה ראשונה (2026)</h2>
+      <div class="grid md:grid-cols-4 gap-4">
+        {[
+          { value: '25%', label: 'הון עצמי מינימלי' },
+          { value: '30%', label: 'החזר מקסימלי מומלץ מההכנסה' },
+          { value: '30 שנה', label: 'תקופת משכנתא מקסימלית' },
+          { value: '1,978,745', label: 'תקרת פטור ממס רכישה (ש"ח)' },
+        ].map((item) => (
+          <div class="bg-white p-4 rounded-xl border border-border text-center">
+            <p class="text-2xl font-bold text-brand-600 mb-1">{item.value}</p>
+            <p class="text-gray-600 text-xs">{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Example Timeline -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">דוגמה: ציר זמן אופטימלי</h2>
+      <div class="bg-brand-50 p-6 rounded-xl">
+        <div class="space-y-4">
+          {[
+            { week: 'שבוע 1', activity: 'בדיקת יכולת + איסוף מסמכים + אישור עקרוני' },
+            { week: 'שבוע 2-3', activity: 'חיפוש דירה + משא ומתן + חתימה על חוזה' },
+            { week: 'שבוע 4', activity: 'הגשה ל-5-7 בנקים + קבלת הצעות' },
+            { week: 'שבוע 5', activity: 'שמאות + משא ומתן סופי על ריביות' },
+            { week: 'שבוע 6', activity: 'אישור סופי + בניית תמהיל + חתימה' },
+          ].map((item, index) => (
+            <div class="flex items-center gap-4">
+              <div class="w-24 flex-shrink-0">
+                <span class="text-sm font-bold text-brand-700">{item.week}</span>
+              </div>
+              <div class="flex-1 bg-white p-3 rounded-lg border border-brand-200">
+                <span class="text-sm text-gray-700">{item.activity}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p class="text-sm text-gray-600 mt-4 text-center">
+          * זמנים משוערים - בפועל תלוי במצב השוק, עומס בבנקים, ומורכבות העסקה
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Pitfalls -->
+  <section class="py-12 md:py-16 bg-red-50">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">טעויות נפוצות של רוכשי דירה ראשונה</h2>
+      <div class="bg-white p-6 rounded-xl border border-red-200">
+        <ul class="space-y-3">
+          {[
+            'לחפש דירה לפני שיש אישור עקרוני - מתאהבים בדירה שלא בטווח',
+            'לא להשוות בין בנקים - הפרש של אלפי שקלים בחודש',
+            'לשכוח עלויות נלוות (5-8% מעבר למחיר הדירה)',
+            'לקחת החזר גבוה מ-30% מההכנסה',
+            'לחתום על חוזה בלי תנאי מתלה לקבלת משכנתא',
+            'לא לקרוא את מסמכי המשכנתא לפני החתימה',
+          ].map((item) => (
+            <li class="flex items-start gap-3 text-gray-700">
+              <svg class="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות על משכנתא לדירה ראשונה" />
+
+  <!-- Related Guides -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מדריכים נוספים</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href="/guides/common-mistakes/" class="block bg-surface p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">8 טעויות נפוצות במשכנתא</h3>
+          <p class="text-gray-600 text-sm">הטעויות שעולות יקר - ואיך להימנע מהן</p>
+        </a>
+        <a href="/guides/consultant-cost/" class="block bg-surface p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">כמה עולה יועץ משכנתאות</h3>
+          <p class="text-gray-600 text-sm">עלות הייעוץ מול החיסכון הפוטנציאלי</p>
+        </a>
+        <a href="/guides/interest-rates/" class="block bg-surface p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">ריביות משכנתא 2026</h3>
+          <p class="text-gray-600 text-sm">מצב הריביות הנוכחי ואיך לבחור מסלול</p>
+        </a>
+        <a href="/services/young-couples/" class="block bg-surface p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">משכנתא לזוגות צעירים</h3>
+          <p class="text-gray-600 text-sm">הטבות, מענקים ופטורים לרוכשי דירה ראשונה</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

@@ -1,0 +1,419 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
+
+const articleSchema = {
+  '@type': 'Article',
+  headline: 'תמהיל משכנתא מומלץ 2026 - המדריך המלא',
+  description: 'מדריך מקיף לבניית תמהיל משכנתא: פריים, קבועה לא צמודה, קבועה צמודה, משתנה - יתרונות וחסרונות, תמהילים מומלצים לפי פרופיל.',
+  author: personSchema,
+  publisher: {
+    '@type': 'Organization',
+    name: consultant.company,
+    url: consultant.siteUrl,
+  },
+  datePublished: '2026-01-25',
+  dateModified: '2026-03-09',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://yoetz-mashkanta.co.il/guides/mortgage-mix/',
+  },
+};
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'מדריכים', href: '/guides/' },
+  { label: 'תמהיל משכנתא מומלץ' },
+];
+
+const faqItems = [
+  {
+    question: 'מה עדיף - פריים או קבועה לא צמודה?',
+    answer: 'תלוי בסיטואציה. פריים מציע ריבית נמוכה יותר כיום וגמישות לפירעון מוקדם ללא קנס, אבל הריבית יכולה לעלות. קבועה לא צמודה נותנת ביטחון מלא - ההחזר לא ישתנה לעולם. רוב היועצים ממליצים על שילוב של שניהם.',
+  },
+  {
+    question: 'למה להימנע ממסלול צמוד למדד?',
+    answer: 'במסלול צמוד למדד, הקרן (לא רק הריבית) גדלה עם האינפלציה. בשנים של אינפלציה גבוהה (כמו 2022-2023), לווים ראו את הקרן גדלה ב-10-15%. אחרי 20 שנה עם אינפלציה ממוצעת של 2%, הקרן גדלה ב-48%.',
+  },
+  {
+    question: 'כמה אחוז מהתמהיל לשים בפריים?',
+    answer: 'ההמלצה הרווחת היא 25%-40% פריים. יותר מדי פריים חושף אתכם לסיכון עליית ריבית, פחות מדי מפספס את היתרונות (ריבית נמוכה, גמישות). 33% הוא נקודת איזון טובה לרוב הלווים.',
+  },
+  {
+    question: 'האם משתנה כל 5 שנים משתלם?',
+    answer: 'משתנה כל 5 שנים (לא צמוד) מציע ריבית נמוכה יותר מקבועה, עם אפשרות לצאת ללא קנס כל 5 שנים. זה מסלול טוב ללווים שמתכננים למחזר או לפרוע בעתיד. הסיכון: הריבית יכולה לעלות בעדכון.',
+  },
+  {
+    question: 'מה קורה אם ריבית הפריים עולה?',
+    answer: 'ריבית הפריים משתנה לפי ריבית בנק ישראל. כל עלייה של 0.25% בריבית בנק ישראל מעלה את הפריים ב-0.25%. על מיליון ש"ח בפריים, עלייה של 1% מוסיפה כ-500 ש"ח להחזר החודשי.',
+  },
+  {
+    question: 'האם לפצל לכמה שיותר מסלולים?',
+    answer: 'לא בהכרח. 2-4 מסלולים זה אופטימלי. יותר מדי מסלולים יוצרים בלגן, מקשים על מעקב, ולפעמים מגדילים עמלות. המפתח הוא פיזור סיכונים, לא מספר מסלולים.',
+  },
+];
+---
+
+<BaseLayout
+  title="תמהיל משכנתא מומלץ 2026 | פריים, קבועה, משתנה - מה לבחור?"
+  description="מדריך מקיף לבניית תמהיל משכנתא אופטימלי: פריים (33%), קבועה לא צמודה (34%), משתנה (33%). יתרונות וחסרונות כל מסלול, תמהילים לפי פרופיל, וטעויות להימנע."
+>
+  <SchemaOrg slot="schema" schema={[articleSchema, personSchema, localBusinessSchema]} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="inline-block bg-white/20 text-white text-sm font-medium px-3 py-1 rounded-full mb-4">מדריך מקיף</span>
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">תמהיל משכנתא מומלץ 2026</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        בניית תמהיל נכון יכולה לחסוך לכם 50,000-100,000 ש"ח לאורך חיי המשכנתא. במדריך הזה נסביר את כל המסלולים, היתרונות והחסרונות, ונציע תמהילים מותאמים לפי פרופיל.
+      </p>
+      <!-- E-E-A-T Trust Badges -->
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          {trustBadges.rating}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+          {trustBadges.clients}
+        </span>
+        <a href={consultant.hfcaUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          {trustBadges.hfca}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          <strong>תמהיל משכנתא הוא השילוב של מסלולי הלוואה שונים שמרכיבים את המשכנתא שלכם</strong>. במקום לקחת את כל הסכום במסלול אחד, מפצלים ל-2-4 מסלולים עם מאפיינים שונים. המטרה: לאזן בין ריבית נמוכה, ביטחון, וגמישות.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">4 סוגי מסלולים עיקריים</h2>
+        <p>
+          בישראל יש ארבעה סוגי מסלולים עיקריים. הבנה של היתרונות והחסרונות של כל אחד היא הבסיס לבניית תמהיל נכון:
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="space-y-6">
+        <!-- פריים -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-green-500 text-white rounded-lg flex items-center justify-center font-bold text-lg">1</div>
+            <div>
+              <h3 class="text-xl font-bold text-dark">פריים (ריבית משתנה)</h3>
+              <span class="text-sm text-green-600 font-medium">ריבית נוכחית: פריים + 0.6% = 6.6% (מרץ 2026)</span>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-bold text-green-700 mb-2">יתרונות</h4>
+              <ul class="text-sm space-y-1 text-gray-600">
+                <li>+ ריבית נמוכה יחסית בתקופות רגילות</li>
+                <li>+ פירעון מוקדם ללא קנס - גמישות מלאה</li>
+                <li>+ אפשר לצאת בכל רגע ללא עמלה</li>
+                <li>+ מתאים למי שמתכנן למכור/למחזר</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-bold text-red-700 mb-2">חסרונות</h4>
+              <ul class="text-sm space-y-1 text-gray-600">
+                <li>- הריבית משתנה עם כל עדכון בנק ישראל</li>
+                <li>- חוסר ודאות לגבי ההחזר החודשי</li>
+                <li>- בתקופות ריבית גבוהה - יקר</li>
+                <li>- מתאים ל-25%-40% מהתמהיל בלבד</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- קבועה לא צמודה -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold text-lg">2</div>
+            <div>
+              <h3 class="text-xl font-bold text-dark">קבועה לא צמודה (קל"צ)</h3>
+              <span class="text-sm text-blue-600 font-medium">ריבית נוכחית: 4.5%-5.5% (תלוי בבנק ובתקופה)</span>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-bold text-green-700 mb-2">יתרונות</h4>
+              <ul class="text-sm space-y-1 text-gray-600">
+                <li>+ ביטחון מלא - ההחזר קבוע לכל התקופה</li>
+                <li>+ לא מושפע מאינפלציה או שינויי ריבית</li>
+                <li>+ תכנון פיננסי ארוך טווח קל</li>
+                <li>+ מומלץ כ"עוגן" של התמהיל</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-bold text-red-700 mb-2">חסרונות</h4>
+              <ul class="text-sm space-y-1 text-gray-600">
+                <li>- ריבית גבוהה יותר מפריים ומשתנה</li>
+                <li>- עמלת פירעון מוקדם גבוהה</li>
+                <li>- פחות גמישות לשינויים</li>
+                <li>- לא נהנים מירידות ריבית עתידיות</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- קבועה צמודה -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-orange-500 text-white rounded-lg flex items-center justify-center font-bold text-lg">3</div>
+            <div>
+              <h3 class="text-xl font-bold text-dark">קבועה צמודה למדד</h3>
+              <span class="text-sm text-orange-600 font-medium">ריבית נוכחית: 3.0%-4.0% + הצמדה למדד</span>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-bold text-green-700 mb-2">יתרונות</h4>
+              <ul class="text-sm space-y-1 text-gray-600">
+                <li>+ ריבית בסיסית הנמוכה ביותר</li>
+                <li>+ בתקופות אינפלציה נמוכה - משתלם</li>
+                <li>+ ביטחון בריבית (רק ההצמדה משתנה)</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-bold text-red-700 mb-2">חסרונות</h4>
+              <ul class="text-sm space-y-1 text-gray-600">
+                <li>- <strong>הקרן גדלה עם האינפלציה!</strong></li>
+                <li>- אינפלציה של 2% שנתי = גידול 48% בקרן אחרי 20 שנה</li>
+                <li>- חוסר ודאות לגבי העלות הסופית</li>
+                <li>- <strong>לא מומלץ ברוב המקרים</strong></li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-4 p-3 bg-orange-50 rounded-lg border border-orange-200">
+            <p class="text-sm text-orange-800"><strong>אזהרה:</strong> מסלול צמוד למדד גרם להפסדים גדולים ללווים רבים בשנים 2022-2023 כשהאינפלציה עלתה. רוב היועצים ממליצים להימנע או להגביל ל-10%-15% מהתמהיל.</p>
+          </div>
+        </div>
+
+        <!-- משתנה כל 5 שנים -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-purple-500 text-white rounded-lg flex items-center justify-center font-bold text-lg">4</div>
+            <div>
+              <h3 class="text-xl font-bold text-dark">משתנה כל 5 שנים (לא צמוד)</h3>
+              <span class="text-sm text-purple-600 font-medium">ריבית נוכחית: 4.0%-5.0% (תלוי בתקופה)</span>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-bold text-green-700 mb-2">יתרונות</h4>
+              <ul class="text-sm space-y-1 text-gray-600">
+                <li>+ ריבית נמוכה יותר מקל"צ</li>
+                <li>+ אפשרות לצאת ללא קנס כל 5 שנים</li>
+                <li>+ "נקודת יציאה" מתוכננת מראש</li>
+                <li>+ מתאים למי שמתכנן למחזר בעתיד</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-bold text-red-700 mb-2">חסרונות</h4>
+              <ul class="text-sm space-y-1 text-gray-600">
+                <li>- כל 5 שנים הריבית מתעדכנת לפי השוק</li>
+                <li>- אי ודאות לטווח ארוך</li>
+                <li>- עמלה על יציאה באמצע תקופה</li>
+                <li>- דורש מעקב ותכנון מראש</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">תמהילים מומלצים לפי פרופיל</h2>
+
+      <div class="space-y-6">
+        <!-- זוג צעיר שכירים -->
+        <div class="bg-surface p-6 rounded-xl">
+          <h3 class="text-lg font-bold text-dark mb-4">זוג צעיר - שכירים עם הכנסה יציבה</h3>
+          <div class="grid md:grid-cols-4 gap-4 mb-4">
+            <div class="bg-green-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-green-700">33%</span>
+              <p class="text-sm text-green-800">פריים</p>
+            </div>
+            <div class="bg-blue-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-blue-700">34%</span>
+              <p class="text-sm text-blue-800">קל"צ</p>
+            </div>
+            <div class="bg-purple-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-purple-700">33%</span>
+              <p class="text-sm text-purple-800">משתנה 5 שנים</p>
+            </div>
+            <div class="bg-orange-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-orange-700">0%</span>
+              <p class="text-sm text-orange-800">צמוד</p>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm">
+            <strong>למה:</strong> איזון בין ביטחון (קל"צ), גמישות (פריים), ואפשרות למחזר בעתיד (משתנה). מתאים לתקופה של 20-25 שנים.
+          </p>
+        </div>
+
+        <!-- משפרי דיור -->
+        <div class="bg-surface p-6 rounded-xl">
+          <h3 class="text-lg font-bold text-dark mb-4">משפרי דיור - משכנתא קצרה יותר</h3>
+          <div class="grid md:grid-cols-4 gap-4 mb-4">
+            <div class="bg-green-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-green-700">50%</span>
+              <p class="text-sm text-green-800">פריים</p>
+            </div>
+            <div class="bg-blue-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-blue-700">30%</span>
+              <p class="text-sm text-blue-800">קל"צ</p>
+            </div>
+            <div class="bg-purple-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-purple-700">20%</span>
+              <p class="text-sm text-purple-800">משתנה 5 שנים</p>
+            </div>
+            <div class="bg-orange-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-orange-700">0%</span>
+              <p class="text-sm text-orange-800">צמוד</p>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm">
+            <strong>למה:</strong> יותר פריים כי התקופה קצרה יותר (10-15 שנים) והסיכון מעליית ריבית מוגבל. הגמישות לפירעון מוקדם חשובה.
+          </p>
+        </div>
+
+        <!-- שמרנים -->
+        <div class="bg-surface p-6 rounded-xl">
+          <h3 class="text-lg font-bold text-dark mb-4">שמרנים - רוצים שקט נפשי מלא</h3>
+          <div class="grid md:grid-cols-4 gap-4 mb-4">
+            <div class="bg-green-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-green-700">25%</span>
+              <p class="text-sm text-green-800">פריים</p>
+            </div>
+            <div class="bg-blue-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-blue-700">50%</span>
+              <p class="text-sm text-blue-800">קל"צ</p>
+            </div>
+            <div class="bg-purple-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-purple-700">25%</span>
+              <p class="text-sm text-purple-800">משתנה 5 שנים</p>
+            </div>
+            <div class="bg-orange-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-orange-700">0%</span>
+              <p class="text-sm text-orange-800">צמוד</p>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm">
+            <strong>למה:</strong> חצי מהתמהיל בקל"צ נותן ביטחון מלא. הפריים רק לגמישות בסיסית. מתאים למי שמעדיף לשלם קצת יותר עבור שקט נפשי.
+          </p>
+        </div>
+
+        <!-- עצמאים -->
+        <div class="bg-surface p-6 rounded-xl">
+          <h3 class="text-lg font-bold text-dark mb-4">עצמאים - הכנסה לא קבועה</h3>
+          <div class="grid md:grid-cols-4 gap-4 mb-4">
+            <div class="bg-green-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-green-700">40%</span>
+              <p class="text-sm text-green-800">פריים</p>
+            </div>
+            <div class="bg-blue-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-blue-700">30%</span>
+              <p class="text-sm text-blue-800">קל"צ</p>
+            </div>
+            <div class="bg-purple-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-purple-700">30%</span>
+              <p class="text-sm text-purple-800">משתנה 5 שנים</p>
+            </div>
+            <div class="bg-orange-100 p-4 rounded-lg text-center">
+              <span class="text-2xl font-bold text-orange-700">0%</span>
+              <p class="text-sm text-orange-800">צמוד</p>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm">
+            <strong>למה:</strong> יותר פריים לגמישות - אפשר לפרוע מוקדם בשנים טובות. המשתנה נותן נקודת יציאה כל 5 שנים אם המצב משתנה.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">7 טעויות נפוצות בבניית תמהיל</h2>
+
+        <div class="bg-white p-6 rounded-xl my-6 not-prose">
+          <div class="space-y-4">
+            {[
+              { num: '1', title: 'לשים הכל בפריים', desc: 'נראה משתלם בריבית נמוכה, אבל עליית ריבית של 2% מכפילה את הסיכון. מקסימום 40% פריים.' },
+              { num: '2', title: 'לבחור צמוד למדד בגלל ריבית נמוכה', desc: 'הריבית נמוכה אבל הקרן גדלה. אחרי 20 שנה עם אינפלציה ממוצעת, שילמתם הרבה יותר.' },
+              { num: '3', title: 'להתעלם מעמלות פירעון מוקדם', desc: 'על קל"צ ארוך העמלה יכולה להגיע ל-5% מהיתרה. תכננו מראש אם אתם עשויים למחזר.' },
+              { num: '4', title: 'לקחת תמהיל "מדף" מהבנק', desc: 'הבנק מציע מה שטוב לו, לא לכם. תמהיל מותאם דורש השוואה בין בנקים ומשא ומתן.' },
+              { num: '5', title: 'להאריך תקופה כדי להוריד החזר', desc: 'משכנתא ל-30 שנה במקום 20 עולה 30-50% יותר בסה"כ. עדיף להתאמץ עם החזר גבוה יותר.' },
+              { num: '6', title: 'להתעלם מהמצב האישי', desc: 'תמהיל אחד לא מתאים לכולם. עצמאי, שכיר, זוג צעיר, משפר דיור - לכל אחד תמהיל אחר.' },
+              { num: '7', title: 'לא לבדוק מחדש כל 3-5 שנים', desc: 'השוק משתנה, המצב שלכם משתנה. מחזור בזמן הנכון יכול לחסוך עשרות אלפי שקלים.' },
+            ].map((item) => (
+              <div class="flex gap-4 items-start pb-4 border-b border-border last:border-0 last:pb-0">
+                <span class="w-8 h-8 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold flex-shrink-0">{item.num}</span>
+                <div>
+                  <h4 class="font-bold text-dark">{item.title}</h4>
+                  <p class="text-sm text-gray-600">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">סיכום - איך בונים תמהיל נכון</h2>
+        <ol class="list-decimal list-inside space-y-2 my-4">
+          <li><strong>הגדירו את הפרופיל שלכם:</strong> שכירים/עצמאים, תקופה רצויה, רמת סיכון שאתם מוכנים לקחת.</li>
+          <li><strong>הימנעו ממסלול צמוד למדד</strong> - או הגבילו ל-10%-15% מקסימום.</li>
+          <li><strong>פריים לגמישות</strong> - 25%-40% לפי הצורך בפירעון מוקדם.</li>
+          <li><strong>קל"צ לביטחון</strong> - לפחות 30% מהתמהיל כ"עוגן" יציב.</li>
+          <li><strong>משתנה 5 שנים</strong> - לאיזון ונקודות יציאה מתוכננות.</li>
+          <li><strong>השוו בין בנקים</strong> - הפרש של 0.2% בריבית = עשרות אלפי שקלים.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות על תמהיל משכנתא" />
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מדריכים נוספים</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <a href="/guides/young-couples/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">משכנתא לזוגות צעירים</h3>
+          <p class="text-gray-600 text-sm">הטבות, מענקים, ותמהיל מותאם לדירה ראשונה.</p>
+        </a>
+        <a href="/guides/refinancing/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">מחזור משכנתא</h3>
+          <p class="text-gray-600 text-sm">מתי כדאי לשנות את התמהיל? עלויות וחיסכון.</p>
+        </a>
+        <a href="/guides/down-payment/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">הון עצמי למשכנתא</h3>
+          <p class="text-gray-600 text-sm">כמה צריך ומאיפה אפשר לגייס?</p>
+        </a>
+        <a href="/services/mortgage-consultation/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">ייעוץ משכנתא</h3>
+          <p class="text-gray-600 text-sm">רוצים תמהיל מותאם אישית? דברו עם יועץ מקצועי.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

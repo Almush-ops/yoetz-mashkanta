@@ -1,0 +1,311 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
+
+const articleSchema = {
+  '@type': 'Article',
+  headline: '8 טעויות נפוצות במשכנתא (ואיך להימנע מהן)',
+  description: 'הטעויות הנפוצות ביותר שלווים עושים במשכנתא - מהחזר גבוה מדי ועד בחירת תמהיל לא מתאים. מדריך מקיף להימנעות מטעויות יקרות.',
+  url: 'https://yoetz-mashkanta.co.il/guides/common-mistakes/',
+  datePublished: '2026-01-15',
+  dateModified: '2026-03-09',
+  author: personSchema,
+  publisher: {
+    '@type': 'Organization',
+    name: 'יועץ משכנתאות - איתי אנצל',
+    url: 'https://yoetz-mashkanta.co.il',
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://yoetz-mashkanta.co.il/guides/common-mistakes/',
+  },
+};
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'מדריכים', href: '/guides/' },
+  { label: '8 טעויות נפוצות במשכנתא' },
+];
+
+const faqItems = [
+  {
+    question: 'מהי הטעות היקרה ביותר שאפשר לעשות במשכנתא?',
+    answer: 'בחירת תמהיל שלא מתאים למצב הפיננסי. לדוגמה, 100% פריים בתקופה של עליית ריבית יכול להעלות את ההחזר ב-40% תוך שנתיים. תמהיל לא מאוזן יכול לעלות 100,000-200,000 ש"ח לאורך חיי המשכנתא.',
+  },
+  {
+    question: 'מה אחוז ההחזר המקסימלי שמומלץ לקחת?',
+    answer: 'מומלץ להישאר עד 30% מההכנסה נטו. הבנקים מאשרים עד 40%, אבל זה לא משאיר מרווח לחירומים, נופש, או חיסכון. יחס של 35%+ יוצר לחץ כלכלי מתמשך.',
+  },
+  {
+    question: 'האם כדאי לקחת את המשכנתא מהבנק שבו יש לי חשבון?',
+    answer: 'לא בהכרח. הבנק שלכם לא תמיד מציע את התנאים הטובים ביותר. השוואה בין 5-7 בנקים יכולה לחסוך 0.3%-0.5% בריבית, שזה 50,000-115,000 ש"ח על משכנתא של 1.5 מיליון ש"ח.',
+  },
+  {
+    question: 'מתי כדאי לעצור ולא לקחת משכנתא?',
+    answer: 'כשההון העצמי מגיע כולו מהלוואות, כשאין יציבות תעסוקתית (פחות משנה בעבודה), כשיחס ההחזר עובר 35%, או כשאין חיסכון לחירום מעבר להון העצמי.',
+  },
+  {
+    question: 'האם יועץ משכנתאות באמת יכול למנוע טעויות?',
+    answer: 'בהחלט. יועץ מנוסה ראה מאות מקרים וידע לזהות תמהיל בעייתי, להתריע על עלויות נסתרות, ולנהל משא ומתן אפקטיבי. העלות של 3,000-8,000 ש"ח מתגמדת מול חיסכון פוטנציאלי של עשרות אלפי שקלים.',
+  },
+  {
+    question: 'מה עושים אם כבר עשינו טעות במשכנתא?',
+    answer: 'אפשר למחזר את המשכנתא. אחרי שנתיים מהלקיחה (או מיד במקרים מסוימים), ניתן לעבור לבנק אחר בתנאים טובים יותר. גם שינוי תמהיל באותו בנק אפשרי, אם כי בדרך כלל פחות משתלם.',
+  },
+];
+
+const mistakes = [
+  {
+    number: '1',
+    title: 'החזר חודשי גבוה מדי',
+    problem: 'לקיחת משכנתא עם החזר של 35-40% מההכנסה',
+    impact: 'לחץ כלכלי מתמשך, חוסר יכולת לחסוך, קושי בחירומים',
+    solution: 'להישאר עד 30% מההכנסה נטו. אם צריך יותר - לחכות ולגייס עוד הון עצמי',
+    example: 'זוג עם הכנסה של 20,000 ש"ח שלקח החזר של 8,000 ש"ח (40%) - אחרי גני ילדים ומכונית, נותרו עם 3,000 ש"ח לחודש',
+  },
+  {
+    number: '2',
+    title: 'בחירת תמהיל לא מתאים',
+    problem: '100% פריים או 100% קבועה - שני הקצוות מסוכנים',
+    impact: 'פריים מלא = סיכון לעליית ריבית. קבועה מלאה = ריבית גבוהה מדי',
+    solution: 'לפזר: 33% פריים, 33% קבועה, 33% משתנה. להתאים לתקופת ההחזר',
+    example: 'לקוח עם 100% פריים ב-2022 ראה עלייה של 2,500 ש"ח בהחזר החודשי תוך שנתיים',
+  },
+  {
+    number: '3',
+    title: 'אי-השוואת הצעות מבנקים שונים',
+    problem: 'לקיחת המשכנתא מהבנק הראשון או מהבנק של החשבון',
+    impact: 'הפסד של 0.2%-0.5% בריבית = עשרות אלפי שקלים',
+    solution: 'לבקש הצעות מ-5-7 בנקים. להשתמש בהצעה אחת כמנוף למשא ומתן',
+    example: 'הצעה ראשונה: 4.8%. אחרי משא ומתן עם 5 בנקים: 4.3%. חיסכון של 85,000 ש"ח',
+  },
+  {
+    number: '4',
+    title: 'התעלמות מעלויות נלוות',
+    problem: 'חישוב רק מחיר הדירה ושכחת העלויות הנוספות',
+    impact: 'הפתעות של 5-8% נוספים ממחיר הדירה',
+    solution: 'לתכנן מראש: מס רכישה, עו"ד, שמאי, תיווך, שיפוצים, מעבר',
+    example: 'דירה ב-1.5 מיליון: עו"ד 15,000, שמאי 2,500, תיווך 30,000, שיפוץ 50,000 = 97,500 ש"ח נוספים',
+  },
+  {
+    number: '5',
+    title: 'חתימה בלי להבין את המסמכים',
+    problem: 'לחתום על מסמכי המשכנתא בלי לקרוא או להבין',
+    impact: 'עמלות נסתרות, קנסות פירעון מוקדם, תנאים בעייתיים',
+    solution: 'לבקש הסבר על כל סעיף. לקחת את המסמכים הביתה ללמוד. להתייעץ',
+    example: 'לקוחה גילתה קנס פירעון של 3% רק כשרצתה למחזר - עלות של 45,000 ש"ח',
+  },
+  {
+    number: '6',
+    title: 'אי-ניצול הטבות ומענקים',
+    problem: 'לא לבדוק זכאות למענקים, פטורים והטבות',
+    impact: 'ויתור על כסף שמגיע לכם כחוק',
+    solution: 'לבדוק: פטור ממס רכישה, מענקי משרד השיכון, הטבות לחיילים משוחררים',
+    example: 'זוג צעיר באזור עדיפות לאומית - לא ידע על מענק של 80,000 ש"ח שהגיע לו',
+  },
+  {
+    number: '7',
+    title: 'תקופת משכנתא ארוכה מדי',
+    problem: 'לקיחת משכנתא ל-30 שנה כשאפשר 20-25',
+    impact: 'תשלום ריבית כפול לאורך חיי ההלוואה',
+    solution: 'לבחור את התקופה הקצרה ביותר שמאפשרת החזר סביר',
+    example: '1.2 מיליון ב-4.5%: ל-20 שנה = 7,600 ש"ח/חודש (סה"כ 1.82 מיליון). ל-30 שנה = 6,100 ש"ח/חודש (סה"כ 2.2 מיליון). הפרש: 380,000 ש"ח',
+  },
+  {
+    number: '8',
+    title: 'לקיחת הון עצמי מהלוואות',
+    problem: 'גיוס כל ההון העצמי מהלוואות צרכניות',
+    impact: 'החזר כולל גבוה מאוד, סיכון פיננסי משמעותי',
+    solution: 'הון עצמי אמיתי של לפחות 15-20% מהעסקה. השלמה מהלוואות רק במידה',
+    example: 'זוג שלקח 300,000 ש"ח הלוואה + 1.2 מיליון משכנתא - החזר כולל של 11,000 ש"ח במקום 6,000',
+  },
+];
+---
+
+<BaseLayout
+  title="8 טעויות נפוצות במשכנתא (ואיך להימנע מהן) | מדריך 2026"
+  description="הטעויות הנפוצות ביותר שלווים עושים במשכנתא - החזר גבוה מדי, תמהיל לא מתאים, אי-השוואת בנקים ועוד. למדו איך להימנע וחסכו עשרות אלפי שקלים."
+>
+  <SchemaOrg slot="schema" schema={[articleSchema, personSchema, localBusinessSchema]} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">8 טעויות נפוצות במשכנתא (ואיך להימנע מהן)</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        משכנתא היא ההתחייבות הפיננסית הגדולה ביותר שתיקחו. טעות קטנה יכולה לעלות 50,000-200,000 ש"ח. הנה 8 הטעויות הנפוצות ביותר - ואיך להימנע מהן.
+      </p>
+      <!-- E-E-A-T Trust Badges -->
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          {trustBadges.rating}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+          {trustBadges.clients}
+        </span>
+        <a href={consultant.hfcaUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          {trustBadges.hfca}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          <strong>משכנתא ממוצעת בישראל היא 1.2-1.5 מיליון ש"ח לתקופה של 20-30 שנה.</strong> בסכומים האלה, הפרש של 0.3% בריבית שווה עשרות אלפי שקלים. טעות בבחירת התמהיל יכולה לעלות מאות אלפים.
+        </p>
+        <p>
+          אחרי ליווי מאות לקוחות בתהליך המשכנתא, זיהיתי 8 טעויות שחוזרות שוב ושוב. הידיעה שלכם עליהן יכולה לחסוך לכם כסף רב - ועוגמת נפש.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mistakes List -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="space-y-8">
+        {mistakes.map((mistake) => (
+          <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-border">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold text-xl flex-shrink-0">
+                {mistake.number}
+              </div>
+              <div class="flex-1">
+                <h2 class="text-xl font-bold text-dark mb-3">{mistake.title}</h2>
+                <div class="space-y-3">
+                  <div>
+                    <span class="text-sm font-medium text-red-600">הבעיה:</span>
+                    <p class="text-gray-700">{mistake.problem}</p>
+                  </div>
+                  <div>
+                    <span class="text-sm font-medium text-amber-600">ההשפעה:</span>
+                    <p class="text-gray-700">{mistake.impact}</p>
+                  </div>
+                  <div>
+                    <span class="text-sm font-medium text-green-600">הפתרון:</span>
+                    <p class="text-gray-700">{mistake.solution}</p>
+                  </div>
+                  <div class="bg-brand-50 p-4 rounded-lg mt-4">
+                    <span class="text-sm font-medium text-brand-700">דוגמה מהשטח:</span>
+                    <p class="text-gray-700 text-sm mt-1">{mistake.example}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Cost Summary -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">כמה כל טעות יכולה לעלות?</h2>
+      <div class="bg-surface p-8 rounded-xl border border-border">
+        <div class="overflow-x-auto">
+          <table class="w-full text-right">
+            <thead>
+              <tr class="border-b border-border">
+                <th class="pb-3 text-gray-600 font-medium">הטעות</th>
+                <th class="pb-3 text-gray-600 font-medium">עלות פוטנציאלית</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border">
+              <tr>
+                <td class="py-3">תמהיל לא מתאים</td>
+                <td class="py-3 font-bold text-red-600">100,000-200,000 ש"ח</td>
+              </tr>
+              <tr>
+                <td class="py-3">אי-השוואת בנקים</td>
+                <td class="py-3 font-bold text-red-600">50,000-115,000 ש"ח</td>
+              </tr>
+              <tr>
+                <td class="py-3">תקופה ארוכה מדי</td>
+                <td class="py-3 font-bold text-red-600">200,000-400,000 ש"ח</td>
+              </tr>
+              <tr>
+                <td class="py-3">אי-ניצול הטבות</td>
+                <td class="py-3 font-bold text-red-600">40,000-100,000 ש"ח</td>
+              </tr>
+              <tr>
+                <td class="py-3">קנסות פירעון מוקדם</td>
+                <td class="py-3 font-bold text-red-600">30,000-60,000 ש"ח</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-sm text-gray-500 mt-6 text-center">
+          * הסכומים מחושבים על משכנתא ממוצעת של 1.2-1.5 מיליון ש"ח ל-25 שנה
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prevention Checklist -->
+  <section class="py-12 md:py-16 bg-brand-50">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">צ'קליסט למניעת טעויות</h2>
+      <div class="bg-white p-8 rounded-xl shadow-sm">
+        <ul class="space-y-4">
+          {[
+            'וודאו שההחזר לא עולה על 30% מההכנסה נטו',
+            'בקשו הצעות מלפחות 5 בנקים שונים',
+            'בנו תמהיל מפוזר (לא 100% מסלול אחד)',
+            'חשבו את כל העלויות הנלוות (5-8% מעבר למחיר הדירה)',
+            'קראו והבינו כל מסמך לפני חתימה',
+            'בדקו זכאות למענקים ופטורים',
+            'בחרו תקופה קצרה ככל האפשר',
+            'השאירו כרית ביטחון מעבר להון העצמי',
+          ].map((item) => (
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-gray-700">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות על טעויות במשכנתא" />
+
+  <!-- Related Guides -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מדריכים נוספים</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href="/guides/consultant-cost/" class="block bg-surface p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">כמה עולה יועץ משכנתאות ולמה זה שווה</h3>
+          <p class="text-gray-600 text-sm">עלות הייעוץ מול החיסכון הפוטנציאלי - כשזה משתלם ומתי לא</p>
+        </a>
+        <a href="/guides/first-apartment/" class="block bg-surface p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">משכנתא לדירה ראשונה - שלב אחר שלב</h3>
+          <p class="text-gray-600 text-sm">מדריך מפורט לכל התהליך מהשלב הראשון ועד החתימה</p>
+        </a>
+        <a href="/guides/interest-rates/" class="block bg-surface p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">ריביות משכנתא 2026 - מה צריך לדעת</h3>
+          <p class="text-gray-600 text-sm">מצב הריביות הנוכחי והשפעתו על בחירת התמהיל</p>
+        </a>
+        <a href="/services/mortgage-consultation/" class="block bg-surface p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">ייעוץ משכנתא מקצועי</h3>
+          <p class="text-gray-600 text-sm">איך יועץ יכול לעזור לכם להימנע מכל הטעויות האלה</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

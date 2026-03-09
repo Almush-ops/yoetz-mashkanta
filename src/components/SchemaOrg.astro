@@ -1,0 +1,14 @@
+---
+interface Props {
+  schema: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { schema } = Astro.props;
+
+// Wrap in @graph if array, otherwise use as-is
+const schemaData = Array.isArray(schema)
+  ? { '@context': 'https://schema.org', '@graph': schema }
+  : { '@context': 'https://schema.org', ...schema };
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemaData, null, 0)} />

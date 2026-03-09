@@ -1,0 +1,351 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
+
+const articleSchema = {
+  '@type': 'Article',
+  headline: 'מחזור משכנתא - מתי כדאי ואיך לעשות נכון',
+  description: 'מדריך מקיף למחזור משכנתא: מתי כדאי לפנות למחזור, עלויות התהליך, שלבים מעשיים ודוגמאות חיסכון אמיתיות.',
+  author: personSchema,
+  publisher: {
+    '@type': 'Organization',
+    name: consultant.company,
+    url: consultant.siteUrl,
+  },
+  datePublished: '2026-01-20',
+  dateModified: '2026-03-09',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://yoetz-mashkanta.co.il/guides/refinancing/',
+  },
+};
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'מדריכים', href: '/guides/' },
+  { label: 'מחזור משכנתא' },
+];
+
+const faqItems = [
+  {
+    question: 'כמה פעמים אפשר למחזר משכנתא?',
+    answer: 'אין הגבלה על מספר פעמי המחזור. תיאורטית אפשר למחזר כל שנה, אבל בפועל כדאי למחזר רק כשהחיסכון מצדיק את העלויות - בדרך כלל כל 3-5 שנים או כשיש שינוי משמעותי בשוק הריביות.',
+  },
+  {
+    question: 'האם צריך לעשות שמאות חדשה במחזור?',
+    answer: 'כן, במחזור לבנק אחר חובה לעשות שמאות חדשה (עלות 2,000-3,000 ש"ח). במחזור פנימי באותו בנק, לפעמים אפשר להסתמך על שמאות קיימת אם עברו פחות מ-2 שנים.',
+  },
+  {
+    question: 'מה ההבדל בין מחזור פנימי למחזור חיצוני?',
+    answer: 'מחזור פנימי הוא שינוי תנאים באותו בנק - פשוט וזול יותר אבל בדרך כלל עם הטבות מוגבלות. מחזור חיצוני הוא מעבר לבנק אחר - דורש שמאות ועו"ד אבל מאפשר משא ומתן חזק יותר ולעתים תנאים טובים משמעותית.',
+  },
+  {
+    question: 'האם אפשר למחזר רק חלק מהמשכנתא?',
+    answer: 'כן, אפשר למחזר מסלולים ספציפיים (למשל רק את החלק הצמוד למדד) ולהשאיר אחרים. זו אסטרטגיה נפוצה כשחלק מהמסלולים עדיין משתלמים.',
+  },
+  {
+    question: 'כמה זמן לוקח תהליך מחזור משכנתא?',
+    answer: 'תהליך מחזור מלא (לבנק אחר) לוקח 4-8 שבועות: שבוע לאישור עקרוני, שבוע לשמאות, 2-3 שבועות לאישור סופי, ושבוע להעברת הכספים וסגירת ההלוואה הישנה.',
+  },
+  {
+    question: 'האם יש עמלות על סגירת המשכנתא הישנה?',
+    answer: 'כן, על מסלולים בריבית קבועה יש עמלת פירעון מוקדם (עד 5% מהיתרה, תלוי בפער הריביות ותקופה שנותרה). על מסלול פריים אין עמלה. חשוב לחשב את העמלה לפני ההחלטה.',
+  },
+];
+---
+
+<BaseLayout
+  title="מחזור משכנתא 2026 - מתי כדאי ואיך לעשות נכון | מדריך מקיף"
+  description="מדריך למחזור משכנתא: מתי כדאי למחזר (פער ריבית 0.5%+), עלויות (שמאות, עו״ד, עמלות), תהליך שלב אחר שלב ודוגמאות חיסכון של 50,000-150,000 ש״ח."
+>
+  <SchemaOrg slot="schema" schema={[articleSchema, personSchema, localBusinessSchema]} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="inline-block bg-white/20 text-white text-sm font-medium px-3 py-1 rounded-full mb-4">מדריך מקיף</span>
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">מחזור משכנתא - מתי כדאי ואיך לעשות נכון</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        מחזור משכנתא יכול לחסוך לכם עשרות ואפילו מאות אלפי שקלים. במדריך הזה נסביר מתי כדאי לפעול, מה העלויות, ואיך לעשות את זה נכון.
+      </p>
+      <!-- E-E-A-T Trust Badges -->
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          {trustBadges.rating}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+          {trustBadges.clients}
+        </span>
+        <a href={consultant.hfcaUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          {trustBadges.hfca}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          <strong>מחזור משכנתא הוא תהליך שבו לוקחים הלוואה חדשה כדי לסגור את המשכנתא הקיימת</strong> - בתנאים טובים יותר. המטרה: להוריד את ההחזר החודשי, לקצר את תקופת ההלוואה, או פשוט לחסוך כסף על הריביות. על משכנתא של 1-2 מיליון ש"ח, מחזור נכון יכול לחסוך <strong>50,000-150,000 ש"ח</strong> לאורך חיי ההלוואה.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מתי כדאי לשקול מחזור משכנתא?</h2>
+        <p>
+          לא כל ירידה בריביות מצדיקה מחזור. יש עלויות לתהליך, ולכן חשוב לבדוק שהחיסכון גדול מהעלויות. הנה המצבים שבהם כדאי לבדוק:
+        </p>
+
+        <div class="bg-surface p-6 rounded-xl my-6 not-prose">
+          <h4 class="font-bold text-dark mb-4">5 סימנים שכדאי לבדוק מחזור:</h4>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center flex-shrink-0 text-sm">1</span>
+              <div>
+                <span class="font-bold text-dark">פער ריבית של 0.5% ומעלה</span>
+                <p class="text-sm text-gray-600">הריביות בשוק ירדו משמעותית מאז לקחתם את המשכנתא</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center flex-shrink-0 text-sm">2</span>
+              <div>
+                <span class="font-bold text-dark">שיפור משמעותי בהכנסה</span>
+                <p class="text-sm text-gray-600">מעמד פיננסי טוב יותר = תנאים טובים יותר מהבנק</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center flex-shrink-0 text-sm">3</span>
+              <div>
+                <span class="font-bold text-dark">מסלול צמוד למדד "אוכל" אתכם</span>
+                <p class="text-sm text-gray-600">קרן הצמודה גדלה עם האינפלציה - אפשר לעבור למסלול לא צמוד</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center flex-shrink-0 text-sm">4</span>
+              <div>
+                <span class="font-bold text-dark">עברו 3-5 שנים מהמשכנתא המקורית</span>
+                <p class="text-sm text-gray-600">עמלות הפירעון המוקדם יורדות עם הזמן</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center flex-shrink-0 text-sm">5</span>
+              <div>
+                <span class="font-bold text-dark">רוצים להוסיף סכום (הרחבת משכנתא)</span>
+                <p class="text-sm text-gray-600">שיפוץ או צורך אחר - ניתן לשלב עם מחזור</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">עלויות מחזור משכנתא - לדעת מראש</h2>
+        <p>
+          מחזור משכנתא כרוך בעלויות שצריך לקחת בחשבון. החיסכון צריך להיות גדול יותר מהעלויות כדי שהמחזור ישתלם:
+        </p>
+
+        <div class="bg-surface p-6 rounded-xl my-6 not-prose">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-bold text-dark mb-3">עלויות מחזור חיצוני (לבנק אחר)</h4>
+              <ul class="text-sm space-y-2 text-gray-700">
+                <li class="flex justify-between"><span>שמאות:</span> <span class="font-medium">2,000-3,000 ש"ח</span></li>
+                <li class="flex justify-between"><span>עו"ד:</span> <span class="font-medium">3,000-6,000 ש"ח</span></li>
+                <li class="flex justify-between"><span>רישום משכון:</span> <span class="font-medium">500-1,000 ש"ח</span></li>
+                <li class="flex justify-between"><span>עמלת פירעון מוקדם:</span> <span class="font-medium">0-5% מהיתרה*</span></li>
+                <li class="flex justify-between border-t border-border pt-2 mt-2"><span class="font-bold">סה"כ (ללא עמלה):</span> <span class="font-bold">5,500-10,000 ש"ח</span></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-bold text-dark mb-3">עלויות מחזור פנימי (באותו בנק)</h4>
+              <ul class="text-sm space-y-2 text-gray-700">
+                <li class="flex justify-between"><span>שמאות:</span> <span class="font-medium">0-2,000 ש"ח</span></li>
+                <li class="flex justify-between"><span>עו"ד:</span> <span class="font-medium">0-2,000 ש"ח</span></li>
+                <li class="flex justify-between"><span>עמלת מחזור:</span> <span class="font-medium">0-3,000 ש"ח</span></li>
+                <li class="flex justify-between"><span>עמלת פירעון:</span> <span class="font-medium">בד"כ אין</span></li>
+                <li class="flex justify-between border-t border-border pt-2 mt-2"><span class="font-bold">סה"כ:</span> <span class="font-bold">0-5,000 ש"ח</span></li>
+              </ul>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500 mt-4">* עמלת פירעון מוקדם משתנה לפי סוג המסלול, הפרש הריביות, והזמן שנותר. על פריים אין עמלה.</p>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">דוגמאות חיסכון אמיתיות</h2>
+        <p>
+          הנה שתי דוגמאות של מחזורים שבצענו ללקוחות באזור חיפה והסביבה:
+        </p>
+
+        <div class="bg-brand-50 p-6 rounded-xl my-6 not-prose border border-brand-200">
+          <h4 class="font-bold text-dark mb-4">דוגמה 1: משפחה מקריית ביאליק</h4>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <p class="text-gray-600 mb-2"><strong>לפני המחזור:</strong></p>
+              <ul class="space-y-1 text-gray-700">
+                <li>יתרת משכנתא: 850,000 ש"ח</li>
+                <li>החזר חודשי: 5,200 ש"ח</li>
+                <li>ריבית ממוצעת: 4.8%</li>
+                <li>שנים שנותרו: 18</li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-gray-600 mb-2"><strong>אחרי המחזור:</strong></p>
+              <ul class="space-y-1 text-gray-700">
+                <li>יתרת משכנתא: 850,000 ש"ח</li>
+                <li>החזר חודשי: 4,600 ש"ח</li>
+                <li>ריבית ממוצעת: 3.9%</li>
+                <li>שנים שנותרו: 18</li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-brand-200">
+            <p class="text-brand-700 font-bold">חיסכון: 600 ש"ח/חודש = 129,600 ש"ח לאורך חיי ההלוואה</p>
+            <p class="text-sm text-gray-600">עלות המחזור: 8,000 ש"ח | החזר השקעה: 13 חודשים</p>
+          </div>
+        </div>
+
+        <div class="bg-brand-50 p-6 rounded-xl my-6 not-prose border border-brand-200">
+          <h4 class="font-bold text-dark mb-4">דוגמה 2: זוג צעיר מחיפה</h4>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <p class="text-gray-600 mb-2"><strong>לפני המחזור:</strong></p>
+              <ul class="space-y-1 text-gray-700">
+                <li>יתרת משכנתא: 1,200,000 ש"ח</li>
+                <li>החזר חודשי: 6,800 ש"ח</li>
+                <li>מסלול בעייתי: צמוד למדד בריבית 5.2%</li>
+                <li>הקרן גדלה ב-40,000 ש"ח מהצמדה</li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-gray-600 mb-2"><strong>אחרי המחזור:</strong></p>
+              <ul class="space-y-1 text-gray-700">
+                <li>יתרת משכנתא: 1,200,000 ש"ח</li>
+                <li>החזר חודשי: 6,100 ש"ח</li>
+                <li>עברו לתמהיל: פריים + קל"צ</li>
+                <li>אין יותר הצמדה למדד</li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-brand-200">
+            <p class="text-brand-700 font-bold">חיסכון: 700 ש"ח/חודש + הפסקת גידול הקרן</p>
+            <p class="text-sm text-gray-600">סה"כ חיסכון משוער: 180,000 ש"ח לאורך התקופה</p>
+          </div>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">תהליך מחזור משכנתא - שלב אחר שלב</h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="space-y-4">
+        {[
+          {
+            step: '1',
+            title: 'ניתוח המשכנתא הקיימת',
+            desc: 'בדיקת יתרות לפי מסלולים, ריביות נוכחיות, תקופה שנותרה, ועמלות פירעון מוקדם צפויות. זהו השלב הקריטי להחלטה אם המחזור משתלם.',
+            time: 'יום אחד'
+          },
+          {
+            step: '2',
+            title: 'בדיקת כדאיות ותכנון',
+            desc: 'חישוב החיסכון הפוטנציאלי מול העלויות. קביעת יעדים: האם רוצים להוריד החזר, לקצר תקופה, או לשנות מבנה תמהיל?',
+            time: '1-2 ימים'
+          },
+          {
+            step: '3',
+            title: 'קבלת הצעות מבנקים',
+            desc: 'הגשת בקשה ל-3-5 בנקים (כולל הבנק הנוכחי). השוואת הצעות מפורטות: ריביות, עלויות, תנאים נלווים.',
+            time: '1-2 שבועות'
+          },
+          {
+            step: '4',
+            title: 'משא ומתן ובחירת בנק',
+            desc: 'ניהול משא ומתן עם הבנקים המובילים. שיפור תנאים על בסיס הצעות מתחרות. בחירת ההצעה הטובה ביותר.',
+            time: '3-5 ימים'
+          },
+          {
+            step: '5',
+            title: 'שמאות ואישור סופי',
+            desc: 'הזמנת שמאי (במחזור חיצוני), השלמת מסמכים, קבלת אישור סופי מהבנק החדש.',
+            time: '1-2 שבועות'
+          },
+          {
+            step: '6',
+            title: 'חתימה והעברת הלוואה',
+            desc: 'חתימה על מסמכי ההלוואה החדשה. הבנק החדש מעביר כספים לסגירת ההלוואה הישנה. רישום משכון חדש.',
+            time: '1-2 שבועות'
+          },
+        ].map((item) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border flex gap-4">
+            <div class="w-10 h-10 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
+              {item.step}
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-dark mb-1">{item.title}</h3>
+              <p class="text-gray-600 text-sm mb-2">{item.desc}</p>
+              <span class="text-xs text-brand-600 font-medium">זמן משוער: {item.time}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">טעויות נפוצות במחזור משכנתא</h2>
+        <ul class="list-disc list-inside space-y-3 my-4">
+          <li><strong>להתמקד רק בהחזר החודשי:</strong> הבנק יכול להוריד החזר ע"י הארכת תקופה - וזה יעלה לכם יותר בסוף. תמיד השוו את סך התשלומים.</li>
+          <li><strong>לשכוח את עמלת הפירעון המוקדם:</strong> על מסלולים בריבית קבועה העמלה יכולה להגיע לאלפי שקלים. חשבו אותה לפני ההחלטה.</li>
+          <li><strong>לא לנהל משא ומתן:</strong> ההצעה הראשונה היא נקודת פתיחה. עם הצעות מתחרות אפשר לשפר את התנאים ב-0.1%-0.3%.</li>
+          <li><strong>לעשות מחזור "כי כולם עושים":</strong> מחזור משתלם רק אם החיסכון גדול מהעלויות. לפעמים עדיף לחכות.</li>
+          <li><strong>להאריך תקופה בלי לשים לב:</strong> מחזור שמאריך את תקופת ההלוואה ב-5 שנים יכול לבטל את כל החיסכון מהריבית הנמוכה.</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מתי לא כדאי למחזר?</h2>
+        <p>יש מצבים שבהם מחזור פשוט לא משתלם:</p>
+        <ul class="list-disc list-inside space-y-2 my-4">
+          <li>נותרו פחות מ-5 שנים לסיום המשכנתא</li>
+          <li>פער הריביות קטן מ-0.3%</li>
+          <li>עמלת הפירעון המוקדם גבוהה (בשנים הראשונות של הלוואה קבועה)</li>
+          <li>המצב הפיננסי הורע (תקבלו תנאים פחות טובים)</li>
+          <li>יתרת המשכנתא נמוכה מ-300,000 ש"ח (העלויות לא מצדיקות)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות על מחזור משכנתא" />
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מדריכים נוספים</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <a href="/guides/mortgage-mix/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">תמהיל משכנתא מומלץ 2026</h3>
+          <p class="text-gray-600 text-sm">איך לבנות תמהיל חדש? מה היתרונות של כל מסלול?</p>
+        </a>
+        <a href="/guides/down-payment/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">הון עצמי למשכנתא</h3>
+          <p class="text-gray-600 text-sm">כמה הון עצמי צריך? מה אם רוצים להרחיב את המשכנתא?</p>
+        </a>
+        <a href="/guides/young-couples/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">משכנתא לזוגות צעירים</h3>
+          <p class="text-gray-600 text-sm">הטבות ומענקים לרוכשי דירה ראשונה.</p>
+        </a>
+        <a href="/services/mortgage-refinance/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">שירות מחזור משכנתא</h3>
+          <p class="text-gray-600 text-sm">רוצים שנבדוק עבורכם? ייעוץ מקצועי למחזור.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

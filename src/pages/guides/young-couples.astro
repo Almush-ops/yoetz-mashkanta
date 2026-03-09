@@ -1,0 +1,299 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
+
+const articleSchema = {
+  '@type': 'Article',
+  headline: 'משכנתא לזוגות צעירים - המדריך המלא 2026',
+  description: 'מדריך מקיף למשכנתא לזוגות צעירים: פטור ממס רכישה, מענקים לזכאים, הון עצמי נדרש, תמהיל מומלץ וטיפים לחיסכון.',
+  author: personSchema,
+  publisher: {
+    '@type': 'Organization',
+    name: consultant.company,
+    url: consultant.siteUrl,
+  },
+  datePublished: '2026-01-15',
+  dateModified: '2026-03-09',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://yoetz-mashkanta.co.il/guides/young-couples/',
+  },
+};
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'מדריכים', href: '/guides/' },
+  { label: 'משכנתא לזוגות צעירים' },
+];
+
+const faqItems = [
+  {
+    question: 'מה הגיל המקסימלי להגדרה כ"זוג צעיר"?',
+    answer: 'אין הגבלת גיל ספציפית להגדרה כזוג צעיר. הזכאות לפטור ממס רכישה ולהטבות נקבעת לפי מצב משפחתי ומספר הנכסים בבעלות - לא לפי גיל. גם זוג בן 50 שרוכש דירה ראשונה יהנה מאותן הטבות.',
+  },
+  {
+    question: 'האם רווק/ה יכול/ה ליהנות מהטבות דירה ראשונה?',
+    answer: 'כן, רווקים זכאים לפטור ממס רכישה עד תקרה של 1,978,745 ש"ח בדיוק כמו זוגות. עם זאת, מענקי הזכאות (תעודות זכאות) מיועדים בעיקר לזוגות נשואים או זוגות עם ילדים.',
+  },
+  {
+    question: 'כמה זמן לוקח לקבל תעודת זכאות?',
+    answer: 'תהליך קבלת תעודת זכאות ממשרד הבינוי אורך 4-8 שבועות. התהליך כולל: הגשת בקשה באתר משרד הבינוי, אימות פרטים, ובדיקת זכאות. מומלץ להתחיל את התהליך מוקדם ככל האפשר.',
+  },
+  {
+    question: 'האם אפשר לקבל משכנתא עם פחות מ-25% הון עצמי?',
+    answer: 'לא, בנק ישראל קבע שהון עצמי מינימלי לדירה ראשונה הוא 25%. עם זאת, חלק מההון יכול להגיע ממענקי זכאות (40,000-100,000 ש"ח) או מהלוואות משלימות מההורים (שנספרות כהון עצמי בתנאים מסוימים).',
+  },
+  {
+    question: 'מה ההבדל בין משכנתא לזכאים למשכנתא רגילה?',
+    answer: 'משכנתא לזכאים כוללת הלוואה מכספי מדינה בריבית נמוכה של 3% (קבועה, לא צמודה למדד) לתקופה של עד 28 שנים. סכום ההלוואה תלוי בנקודות הזכאות ויכול להגיע ל-200,000 ש"ח ומעלה. היתרה ממומנת במשכנתא רגילה מהבנק.',
+  },
+  {
+    question: 'האם הטבות מס רכישה חלות גם על דירה מקבלן?',
+    answer: 'כן, הפטור ממס רכישה חל על כל דירה ראשונה - בין אם מקבלן, יד שנייה, או מכונס נכסים. התנאי היחיד הוא שזו הדירה הראשונה שלכם (לא הייתה לכם דירה בעבר).',
+  },
+];
+---
+
+<BaseLayout
+  title="משכנתא לזוגות צעירים - המדריך המלא 2026 | הטבות ומענקים"
+  description="מדריך מקיף למשכנתא לזוגות צעירים 2026: פטור ממס רכישה עד 1,978,745 ש״ח, מענקים 40-100 אלף ש״ח, 25% הון עצמי, תמהילים מומלצים וטיפים לחיסכון."
+>
+  <SchemaOrg slot="schema" schema={[articleSchema, personSchema, localBusinessSchema]} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="inline-block bg-white/20 text-white text-sm font-medium px-3 py-1 rounded-full mb-4">מדריך מקיף</span>
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">משכנתא לזוגות צעירים - המדריך המלא 2026</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        כל מה שצריך לדעת על רכישת דירה ראשונה: הטבות מס, מענקים, הון עצמי נדרש, ותמהיל משכנתא מותאם לזוגות צעירים.
+      </p>
+      <!-- E-E-A-T Trust Badges -->
+      <div class="flex flex-wrap justify-center gap-4 mt-6">
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          {trustBadges.rating}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+          {trustBadges.clients}
+        </span>
+        <a href={consultant.hfcaUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          {trustBadges.hfca}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          <strong>רכישת דירה ראשונה היא אחד הצעדים הכלכליים המשמעותיים ביותר בחיים</strong>. עבור זוגות צעירים, התהליך יכול להיראות מורכב ומאיים - אבל הידיעה שיש הטבות משמעותיות ומענקים שמחכים לכם יכולה לשנות את התמונה לחלוטין. במדריך הזה נעבור על כל מה שצריך לדעת כדי לרכוש דירה ראשונה בצורה חכמה ומשתלמת.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">פטור ממס רכישה - החיסכון הגדול הראשון</h2>
+        <p>
+          רוכשי דירה ראשונה זכאים <strong>לפטור מלא ממס רכישה</strong> עד לתקרה של 1,978,745 ש"ח (נכון ל-2026). מעל סכום זה, משלמים מס רכישה מדורג רק על ההפרש:
+        </p>
+        <div class="bg-surface p-6 rounded-xl my-6 not-prose">
+          <h4 class="font-bold text-dark mb-3">מדרגות מס רכישה לדירה ראשונה (2026)</h4>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between py-2 border-b border-border">
+              <span>עד 1,978,745 ש"ח</span>
+              <span class="font-bold text-green-600">פטור מלא (0%)</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-border">
+              <span>1,978,745 - 2,347,040 ש"ח</span>
+              <span class="font-medium">3.5%</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-border">
+              <span>2,347,040 - 3,062,720 ש"ח</span>
+              <span class="font-medium">5%</span>
+            </div>
+            <div class="flex justify-between py-2">
+              <span>מעל 3,062,720 ש"ח</span>
+              <span class="font-medium">8%</span>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500 mt-3">* הסכומים מתעדכנים מדי שנה לפי מדד המחירים לצרכן</p>
+        </div>
+        <p>
+          <strong>דוגמה מעשית:</strong> על דירה בשווי 2.5 מיליון ש"ח, זוג צעיר ישלם רק כ-20,000 ש"ח מס רכישה - לעומת כ-90,000 ש"ח שהיה משלם רוכש דירה שנייה.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מענקים לזכאים - כסף מהמדינה לדירה</h2>
+        <p>
+          זוגות צעירים שעומדים בתנאי הזכאות יכולים לקבל <strong>מענקים של 40,000-100,000 ש"ח</strong> ממשרד הבינוי והשיכון. גובה המענק תלוי בנקודות זכאות שנצברות לפי:
+        </p>
+        <ul class="list-disc list-inside space-y-2 my-4">
+          <li><strong>שירות צבאי/לאומי:</strong> 1-3 נקודות (תלוי במשך השירות)</li>
+          <li><strong>מצב משפחתי:</strong> 1-2 נקודות לזוג נשוי, נוספות לכל ילד</li>
+          <li><strong>ותק בנישואין:</strong> נקודה נוספת לכל 2 שנות נישואין (עד 3 נקודות)</li>
+          <li><strong>אזור מגורים:</strong> נקודות בונוס לרכישה באזורי עדיפות לאומית</li>
+        </ul>
+        <p>
+          <strong>חשוב לדעת:</strong> תעודת הזכאות תקפה לשנתיים מיום הנפקתה. מומלץ להתחיל בתהליך ההנפקה 2-3 חודשים לפני שמתחילים לחפש דירה.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">הון עצמי נדרש - 25% מינימום</h2>
+        <p>
+          בנק ישראל קבע שרוכשי דירה ראשונה חייבים להביא <strong>לפחות 25% הון עצמי</strong> משווי הנכס. כלומר, על דירה בשווי 2 מיליון ש"ח, תצטרכו להביא 500,000 ש"ח ממקורות עצמיים.
+        </p>
+        <div class="bg-brand-50 p-6 rounded-xl my-6 not-prose border border-brand-200">
+          <h4 class="font-bold text-dark mb-3">מקורות הון עצמי מותרים:</h4>
+          <ul class="text-sm space-y-2 text-gray-700">
+            <li>✓ חסכונות אישיים וקופות גמל</li>
+            <li>✓ מענקי זכאות מהמדינה (40,000-100,000 ש"ח)</li>
+            <li>✓ מתנות/הלוואות מההורים (עם אישור רו"ח)</li>
+            <li>✓ פדיון קרן השתלמות</li>
+            <li>✓ תמורה ממכירת נכס אחר</li>
+          </ul>
+          <p class="text-xs text-gray-500 mt-3">* הלוואות צרכניות רגילות לא נחשבות כהון עצמי</p>
+        </div>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">תמהיל מומלץ לזוגות צעירים</h2>
+        <p>
+          בניית תמהיל משכנתא נכון היא קריטית לחיסכון לאורך שנים. עבור זוגות צעירים עם הכנסה יציבה אך לא גבוהה במיוחד, מומלץ תמהיל שמאזן בין ביטחון לגמישות:
+        </p>
+        <div class="bg-surface p-6 rounded-xl my-6 not-prose">
+          <h4 class="font-bold text-dark mb-3">תמהיל מומלץ 2026:</h4>
+          <div class="space-y-3">
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 bg-brand-600 text-white rounded-lg flex items-center justify-center font-bold text-lg">33%</div>
+              <div>
+                <span class="font-bold text-dark">פריים (ריבית משתנה)</span>
+                <p class="text-sm text-gray-600">ריבית נמוכה כיום, גמישות לפירעון מוקדם ללא קנס</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 bg-brand-500 text-white rounded-lg flex items-center justify-center font-bold text-lg">34%</div>
+              <div>
+                <span class="font-bold text-dark">קבועה לא צמודה (קל"צ)</span>
+                <p class="text-sm text-gray-600">ביטחון מלא - ההחזר לא ישתנה לעולם</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 bg-brand-400 text-white rounded-lg flex items-center justify-center font-bold text-lg">33%</div>
+              <div>
+                <span class="font-bold text-dark">משתנה כל 5 שנים (לא צמודה)</span>
+                <p class="text-sm text-gray-600">ריבית נמוכה יותר מקל"צ, עם אפשרות יציאה כל 5 שנים</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p>
+          <strong>למה דווקא התמהיל הזה?</strong> הוא מגן מפני עליית ריבית חדה (קל"צ), מאפשר להנות מריביות נמוכות (פריים), ונותן גמישות לעתיד (משתנה). על משכנתא של 1.5 מיליון ש"ח, תמהיל מאוזן יכול לחסוך 50,000-80,000 ש"ח לעומת תמהיל לא מותאם.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">טיפים לחיסכון - עוד לפני שמתחילים</h2>
+        <ul class="list-disc list-inside space-y-3 my-4">
+          <li><strong>התחילו לחסוך בחשבון נפרד:</strong> הבנקים אוהבים לראות חיסכון עקבי של 6-12 חודשים. זה משפר את הציון הפיננסי שלכם.</li>
+          <li><strong>בדקו את דוח האשראי:</strong> היכנסו ל-BDI ותקנו שגיאות לפני שמגישים בקשה. ציון אשראי גבוה = ריבית נמוכה יותר.</li>
+          <li><strong>אל תיקחו הלוואות חדשות:</strong> 6 חודשים לפני הגשת בקשה למשכנתא, הימנעו מהלוואות צרכניות או רכישות גדולות באשראי.</li>
+          <li><strong>קבלו אישור עקרוני לפני חיפוש:</strong> תדעו בדיוק כמה אתם יכולים לקבל ותחסכו זמן בחיפוש דירות מחוץ לטווח.</li>
+          <li><strong>השוו לפחות 3 בנקים:</strong> ההבדל בין ההצעות יכול להגיע ל-0.5% בריבית - שווי ערך לעשרות אלפי שקלים.</li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">שלבי התהליך - מההתחלה ועד המפתח</h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="space-y-4">
+        {[
+          {
+            step: '1',
+            title: 'בדיקת זכאות ואישור עקרוני',
+            desc: 'בדיקת נקודות זכאות במשרד הבינוי, קבלת אישור עקרוני מהבנק שמגדיר את סכום המשכנתא המקסימלי שתוכלו לקבל.',
+            time: '2-4 שבועות'
+          },
+          {
+            step: '2',
+            title: 'חיפוש דירה וחתימה על הסכם',
+            desc: 'חיפוש דירה בטווח התקציב, בדיקות משפטיות, משא ומתן, וחתימה על הסכם מכר עם הגדרת לוחות זמנים.',
+            time: 'משתנה'
+          },
+          {
+            step: '3',
+            title: 'השוואת הצעות והגשה לבנקים',
+            desc: 'הגשת בקשה ל-5-7 בנקים במקביל, קבלת הצעות מפורטות, השוואה ומשא ומתן על התנאים.',
+            time: '1-2 שבועות'
+          },
+          {
+            step: '4',
+            title: 'שמאות ואישור סופי',
+            desc: 'הזמנת שמאי מטעם הבנק להערכת שווי הנכס, בדיקות משפטיות של הנכס, ואישור סופי למשכנתא.',
+            time: '1-2 שבועות'
+          },
+          {
+            step: '5',
+            title: 'חתימה והעברת כספים',
+            desc: 'חתימה על מסמכי המשכנתא בבנק, רישום משכון בטאבו/רשם המשכונות, והעברת הכספים למוכר.',
+            time: '1-2 שבועות'
+          },
+        ].map((item) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border flex gap-4">
+            <div class="w-10 h-10 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
+              {item.step}
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-dark mb-1">{item.title}</h3>
+              <p class="text-gray-600 text-sm mb-2">{item.desc}</p>
+              <span class="text-xs text-brand-600 font-medium">זמן משוער: {item.time}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">סיכום - מה חשוב לזכור</h2>
+        <p>
+          רכישת דירה ראשונה היא אתגר, אבל עם הכנה נכונה והבנה של ההטבות שמגיעות לכם, התהליך הופך להרבה יותר נגיש. <strong>פטור ממס רכישה עד 1,978,745 ש"ח</strong>, <strong>מענקים של עד 100,000 ש"ח לזכאים</strong>, ותמהיל משכנתא מותאם - כל אלה יכולים לחסוך לכם מאות אלפי שקלים לאורך חיי ההלוואה.
+        </p>
+        <p>
+          הצעד הראשון הוא לבדוק את הזכאות שלכם ולקבל אישור עקרוני מהבנק. משם, עם ליווי מקצועי של יועץ משכנתאות, התהליך הופך לברור ומנוהל.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות - משכנתא לזוגות צעירים" />
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מדריכים נוספים</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <a href="/guides/down-payment/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">כמה הון עצמי צריך למשכנתא</h3>
+          <p class="text-gray-600 text-sm">אחוזי הון עצמי לפי סוג נכס, מקורות מותרים, וטיפים לצבירה.</p>
+        </a>
+        <a href="/guides/mortgage-mix/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">תמהיל משכנתא מומלץ 2026</h3>
+          <p class="text-gray-600 text-sm">איך לבנות תמהיל אופטימלי? יתרונות וחסרונות כל מסלול.</p>
+        </a>
+        <a href="/guides/refinancing/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">מחזור משכנתא</h3>
+          <p class="text-gray-600 text-sm">מתי כדאי למחזר? עלויות, תהליך, ודוגמאות לחיסכון.</p>
+        </a>
+        <a href="/services/mortgage-consultation/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">ייעוץ משכנתא מקצועי</h3>
+          <p class="text-gray-600 text-sm">למה להיעזר ביועץ משכנתאות וכמה זה עולה.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>
