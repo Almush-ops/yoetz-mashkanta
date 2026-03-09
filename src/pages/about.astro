@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTASection from '../components/CTASection.astro';
+import ClientGallery from '../components/ClientGallery.astro';
+import ProfessionalCredentials from '../components/ProfessionalCredentials.astro';
 
 // Person schema for E-E-A-T
 const personSchema = {
@@ -8,7 +10,9 @@ const personSchema = {
   '@type': 'Person',
   '@id': 'https://yoetz-mashkanta.co.il/#person',
   name: 'איתי אנצל',
+  alternateName: 'עמית למשכנתא',
   jobTitle: 'יועץ משכנתאות',
+  image: 'https://yoetz-mashkanta.co.il/images/itai-office.webp',
   worksFor: {
     '@type': 'Organization',
     name: 'אנצ\'ל ייעוץ ופיננסים בע"מ',
@@ -18,26 +22,30 @@ const personSchema = {
     name: 'התאחדות יועצי המשכנתאות',
     url: 'https://hfca.org.il',
   },
-  knowsAbout: ['משכנתאות', 'ייעוץ פיננסי', 'מחזור משכנתא', 'תמהיל משכנתא'],
-  areaServed: ['חיפה', 'קריית ביאליק', 'קריית מוצקין', 'קריית אתא', 'נשר'],
+  knowsAbout: ['משכנתאות', 'ייעוץ פיננסי', 'מחזור משכנתא', 'תמהיל משכנתא', 'משכנתא לזוגות צעירים', 'משכנתא למסורבים'],
+  areaServed: ['חיפה', 'קריית ביאליק', 'קריית מוצקין', 'קריית אתא', 'נשר', 'טירת כרמל', 'זכרון יעקב'],
+  sameAs: [
+    'https://hfca.org.il/userprofile/?id=210',
+    'https://www.facebook.com/AFC.mortgage/',
+  ],
 };
 ---
 
 <BaseLayout
-  title="אודות איתי אנצל"
-  description="הכירו את איתי אנצל - יועץ משכנתאות מוסמך, חבר התאחדות יועצי המשכנתאות משנת 2017. מעל 7 שנות ניסיון ו-169 לקוחות מרוצים."
+  title="אודות איתי אנצל - יועץ משכנתאות מוסמך"
+  description="הכירו את איתי אנצל - יועץ משכנתאות מוסמך, חבר התאחדות יועצי המשכנתאות משנת 2017. מעל 7 שנות ניסיון, 169 לקוחות מרוצים, דירוג 9.68."
 >
   <!-- Hero -->
   <section class="bg-surface py-16 md:py-20">
     <div class="max-w-7xl mx-auto px-4">
       <div class="max-w-3xl mx-auto text-center">
         <h1 class="text-3xl md:text-4xl font-bold text-dark mb-4">אודות איתי אנצל</h1>
-        <p class="text-lg text-gray-600">יועץ משכנתאות מוסמך | חבר התאחדות יועצי המשכנתאות</p>
+        <p class="text-lg text-gray-600">יועץ משכנתאות מוסמך | חבר התאחדות יועצי המשכנתאות משנת 2017</p>
       </div>
     </div>
   </section>
 
-  <!-- Main Content -->
+  <!-- Main Content with Photo -->
   <section class="bg-white py-16 md:py-20">
     <div class="max-w-7xl mx-auto px-4">
       <div class="flex flex-col lg:flex-row gap-12 items-start">
@@ -46,13 +54,13 @@ const personSchema = {
           <div class="sticky top-24">
             <img
               src="/images/itai-office.webp"
-              alt="איתי אנצל - יועץ משכנתאות"
+              alt="איתי אנצל - יועץ משכנתאות מוסמך במשרדו בקריית ביאליק"
               class="rounded-xl shadow-lg w-full mb-6"
-              width="400"
-              height="500"
+              width="514"
+              height="498"
               loading="eager"
             />
-            <!-- Credentials -->
+            <!-- Credentials Card -->
             <div class="bg-surface rounded-xl p-6">
               <h3 class="font-semibold text-dark mb-4">פרטים מקצועיים</h3>
               <ul class="space-y-3 text-sm text-gray-600">
@@ -78,7 +86,13 @@ const personSchema = {
                   <svg class="w-5 h-5 text-accent-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>אזור שירות: חיפה והקריות</span>
+                  <span>משרד בקריית ביאליק</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-5 h-5 text-accent-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>שירות בחיפה והקריות</span>
                 </li>
               </ul>
               <a
@@ -87,7 +101,7 @@ const personSchema = {
                 rel="noopener"
                 class="mt-4 text-sm text-brand-600 hover:text-brand-700 inline-flex items-center gap-1"
               >
-                פרופיל בהתאחדות יועצי המשכנתאות
+                פרופיל מאומת בהתאחדות יועצי המשכנתאות
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
@@ -101,7 +115,10 @@ const personSchema = {
           <div class="prose max-w-none">
             <h2>הסיפור שלי</h2>
             <p>
-              שמי איתי אנצל, ואני יועץ משכנתאות מוסמך וחבר התאחדות יועצי המשכנתאות משנת 2017. המסע שלי בעולם המשכנתאות התחיל מתוך תשוקה לעזור לאנשים לממש את החלום של בית משלהם - בלי לשלם יותר מדי.
+              שמי איתי אנצל, ואני יועץ משכנתאות מוסמך וחבר התאחדות יועצי המשכנתאות (HFCA) משנת 2017. המסע שלי בעולם המשכנתאות התחיל מתוך תשוקה לעזור לאנשים לממש את החלום של בית משלהם - בלי לשלם יותר מדי ובלי טעויות יקרות.
+            </p>
+            <p>
+              במהלך השנים ליוויתי למעלה מ-169 משפחות בתהליך לקיחת משכנתא - מזוגות צעירים שרוכשים דירה ראשונה, דרך משפחות שרוצות לשפר תנאים או לעשות מחזור, ועד מקרים מורכבים של אנשים שנדחו בבנקים ומצאו אצלי פתרון.
             </p>
 
             <h2>הגישה שלי</h2>
@@ -109,16 +126,16 @@ const personSchema = {
               אני מאמין שכל לקוח הוא ייחודי, ולכן כל תמהיל משכנתא צריך להיות מותאם אישית. אני לא מתפשר על פחות מהתנאים הטובים ביותר, ומנהל משא ומתן קשוח מול הבנקים עבור הלקוחות שלי.
             </p>
             <p>
-              הגישה שלי היא שקופה ואנושית - אני מסביר כל שלב בתהליך בשפה פשוטה, עונה על כל שאלה בסבלנות, ומלווה את הלקוחות שלי מהרגע הראשון ועד לחתימה על המשכנתא.
+              הגישה שלי היא שקופה ואנושית - אני מסביר כל שלב בתהליך בשפה פשוטה, עונה על כל שאלה בסבלנות, ומלווה את הלקוחות שלי מהרגע הראשון ועד לחתימה על המשכנתא. גם אחרי סיום התהליך אני זמין לשאלות ולייעוץ.
             </p>
 
             <h2>למה לבחור בי?</h2>
             <ul>
-              <li><strong>ניסיון מוכח</strong> - מעל 7 שנים בתחום עם 169 לקוחות מרוצים</li>
-              <li><strong>מקצועיות</strong> - חבר התאחדות יועצי המשכנתאות עם הכשרה מתמדת</li>
-              <li><strong>שירות אישי</strong> - כל לקוח מקבל את תשומת הלב המלאה שלי</li>
-              <li><strong>תוצאות</strong> - דירוג 9.68 מתוך 10 מעיד על שביעות רצון הלקוחות</li>
-              <li><strong>נגישות</strong> - זמין לשאלות גם אחרי סיום התהליך</li>
+              <li><strong>ניסיון מוכח</strong> - מעל 7 שנים בתחום עם 169 לקוחות מרוצים ודירוג 9.68</li>
+              <li><strong>מקצועיות</strong> - חבר התאחדות יועצי המשכנתאות עם הכשרה מתמדת והשתתפות בכנסים מקצועיים</li>
+              <li><strong>שירות אישי</strong> - כל לקוח מקבל את תשומת הלב המלאה שלי, לא מעביר לעוזרים</li>
+              <li><strong>ליווי בבנקים</strong> - אני מלווה את הלקוחות שלי לפגישות בבנקים ומנהל את המו"מ</li>
+              <li><strong>נגישות</strong> - זמין בטלפון, בווטסאפ ובמייל גם אחרי שעות העבודה</li>
             </ul>
 
             <h2>ההתמחויות שלי</h2>
@@ -129,17 +146,76 @@ const personSchema = {
               <li>משכנתא לזוגות צעירים ורוכשי דירה ראשונה</li>
               <li>מחזור משכנתא קיימת לשיפור תנאים</li>
               <li>משכנתא למסורבים ומקרים מורכבים</li>
+              <li>משכנתא הפוכה לגילאי 60+</li>
               <li>איחוד הלוואות למשכנתא אחת</li>
+              <li>משכנתא לשיפוץ</li>
               <li>ייעוץ פיננסי וכלכלת משפחה</li>
             </ul>
 
             <h2>אזור השירות</h2>
             <p>
-              המשרד שלי ממוקם בקריית ביאליק, ואני נותן שירות בעיקר לאזור חיפה והקריות - כולל חיפה, קריית ביאליק, קריית מוצקין, קריית אתא, נשר, טירת כרמל, וזכרון יעקב.
+              המשרד שלי ממוקם בקריית ביאליק (קרן היסוד 7), ואני נותן שירות בעיקר לאזור חיפה והקריות - כולל חיפה, קריית ביאליק, קריית מוצקין, קריית אתא, נשר, טירת כרמל, וזכרון יעקב.
             </p>
             <p>
               עבור לקוחות מאזורים אחרים בארץ, אני מציע פגישות בזום ושירות מלא גם מרחוק.
             </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Gallery - Real photos of work -->
+  <ClientGallery
+    title="ליווי אישי בכל שלב"
+    subtitle="תמונות מפגישות אמיתיות עם לקוחות - לא תמונות מאגר. אני מלווה כל לקוח באופן אישי מהפגישה הראשונה ועד החתימה בבנק."
+  />
+
+  <!-- Professional Credentials -->
+  <ProfessionalCredentials title="פעילות מקצועית וסמכויות" />
+
+  <!-- Office Team Photo -->
+  <section class="bg-surface py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col lg:flex-row-reverse gap-12 items-center">
+        <!-- Image side -->
+        <div class="lg:w-1/2">
+          <img
+            src="/images/office-team.webp"
+            alt="איתי אנצל עם עמיתים למקצוע במשרד עמית למשכנתא"
+            class="rounded-xl shadow-lg w-full"
+            width="600"
+            height="400"
+            loading="lazy"
+          />
+          <p class="text-sm text-gray-500 mt-3 text-center">פגישת עבודה עם עמיתים למקצוע</p>
+        </div>
+
+        <!-- Text side -->
+        <div class="lg:w-1/2">
+          <h2 class="text-2xl md:text-3xl font-bold text-dark mb-4">קשרים מקצועיים</h2>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            במהלך השנים בניתי קשרים מקצועיים עם הגורמים המרכזיים בתחום - בנקאים בכירים, יועצי משכנתאות מובילים, ואנשי מקצוע נוספים. הקשרים האלה מאפשרים לי לתת ללקוחות שלי יתרון משמעותי.
+          </p>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            אני עובד מול כל הבנקים בישראל ומכיר את האנשים הנכונים שיכולים לעזור במקרים מורכבים. כשלקוח נתקל בבעיה - יש לי את הכלים והקשרים לפתור אותה.
+          </p>
+          <div class="flex flex-wrap gap-4 mt-6">
+            <div class="bg-white rounded-lg px-4 py-2 shadow-sm border border-border">
+              <span class="text-sm text-gray-600">בנק הפועלים</span>
+            </div>
+            <div class="bg-white rounded-lg px-4 py-2 shadow-sm border border-border">
+              <span class="text-sm text-gray-600">בנק לאומי</span>
+            </div>
+            <div class="bg-white rounded-lg px-4 py-2 shadow-sm border border-border">
+              <span class="text-sm text-gray-600">בנק דיסקונט</span>
+            </div>
+            <div class="bg-white rounded-lg px-4 py-2 shadow-sm border border-border">
+              <span class="text-sm text-gray-600">בנק מזרחי טפחות</span>
+            </div>
+            <div class="bg-white rounded-lg px-4 py-2 shadow-sm border border-border">
+              <span class="text-sm text-gray-600">הבינלאומי</span>
+            </div>
           </div>
         </div>
       </div>

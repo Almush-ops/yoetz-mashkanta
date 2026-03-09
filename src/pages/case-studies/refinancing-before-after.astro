@@ -1,0 +1,348 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'מקרי לקוח', href: '/case-studies/' },
+  { label: 'מחזור משכנתא - לפני ואחרי' },
+];
+
+const articleSchema = {
+  '@type': 'Article',
+  headline: 'מחזור משכנתא - חיסכון 156,000 ש״ח | מקרה לקוח',
+  description: 'איך משפחה מחיפה חסכה 156,000 ש״ח על ידי מחזור משכנתא בזמן הנכון. לפני ואחרי עם כל הפרטים.',
+  author: personSchema,
+  publisher: {
+    '@type': 'Organization',
+    name: consultant.company,
+    url: consultant.siteUrl,
+  },
+  datePublished: '2026-03-09',
+  dateModified: '2026-03-09',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://yoetz-mashkanta.co.il/case-studies/refinancing-before-after/',
+  },
+};
+---
+
+<BaseLayout
+  title="מחזור משכנתא - חיסכון 156,000 ש״ח | מקרה לקוח"
+  description="איך משפחה מחיפה חסכה 156,000 ש״ח על ידי מחזור משכנתא בזמן הנכון. ניתוח מפורט לפני ואחרי."
+>
+  <SchemaOrg slot="schema" schema={[articleSchema, personSchema, localBusinessSchema]} />
+
+  <Breadcrumbs items={breadcrumbs} />
+
+  <!-- Hero -->
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs bg-white/20 px-3 py-1 rounded-full">מחזור משכנתא</span>
+        <span class="text-xs bg-green-500/80 px-3 py-1 rounded-full">חיסכון 156,000 ש״ח</span>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">מחזור משכנתא - לפני ואחרי</h1>
+      <p class="text-lg text-brand-100 max-w-2xl">
+        משפחת כהן מחיפה לקחה משכנתא ב-2019 בריביות גבוהות. בדיקה מעמיקה של התמהיל גילתה פוטנציאל חיסכון משמעותי.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <article class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+
+      <!-- תקציר -->
+      <div class="bg-green-50 border border-green-200 rounded-2xl p-6 mb-12">
+        <div class="grid md:grid-cols-4 gap-6 text-center">
+          <div>
+            <div class="text-3xl font-bold text-green-700">156,000 ש״ח</div>
+            <div class="text-sm text-green-600">חיסכון כולל</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-green-700">720 ש״ח</div>
+            <div class="text-sm text-green-600">חיסכון חודשי</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-green-700">18 שנה</div>
+            <div class="text-sm text-green-600">תקופה שנותרה</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-green-700">3 שבועות</div>
+            <div class="text-sm text-green-600">זמן התהליך</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- הרקע -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">הרקע</h2>
+        <div class="prose prose-lg max-w-none text-gray-700">
+          <p>
+            משפחת כהן (שם בדוי) רכשה דירה בחיפה ב-2019 בסכום של 1,850,000 ש״ח. הם לקחו משכנתא בסך 1,400,000 ש״ח לתקופה של 25 שנה, בתמהיל שהיה נהוג באותה תקופה.
+          </p>
+          <p>
+            אחרי 7 שנים של החזרים סדירים, הם שמעו על האפשרות למחזר את המשכנתא ופנו לייעוץ. הבדיקה גילתה שהתמהיל המקורי כבר לא אופטימלי בסביבת הריבית הנוכחית.
+          </p>
+        </div>
+      </section>
+
+      <!-- לפני -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">המצב לפני המחזור</h2>
+
+        <div class="bg-red-50 p-6 rounded-xl border border-red-200 mb-6">
+          <h3 class="font-bold text-red-800 mb-4">תמהיל מקורי (2019)</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-red-200">
+                  <th class="text-right py-2 font-medium text-red-800">מסלול</th>
+                  <th class="text-right py-2 font-medium text-red-800">סכום</th>
+                  <th class="text-right py-2 font-medium text-red-800">ריבית</th>
+                  <th class="text-right py-2 font-medium text-red-800">תקופה</th>
+                  <th class="text-right py-2 font-medium text-red-800">החזר</th>
+                </tr>
+              </thead>
+              <tbody class="text-red-700">
+                <tr class="border-b border-red-100">
+                  <td class="py-2">פריים</td>
+                  <td class="py-2">420,000 ש״ח</td>
+                  <td class="py-2">פריים + 0.9%</td>
+                  <td class="py-2">25 שנה</td>
+                  <td class="py-2">2,650 ש״ח</td>
+                </tr>
+                <tr class="border-b border-red-100">
+                  <td class="py-2">קבועה לא צמודה</td>
+                  <td class="py-2">560,000 ש״ח</td>
+                  <td class="py-2">4.2%</td>
+                  <td class="py-2">25 שנה</td>
+                  <td class="py-2">3,250 ש״ח</td>
+                </tr>
+                <tr class="border-b border-red-100">
+                  <td class="py-2">משתנה כל 5 שנים</td>
+                  <td class="py-2">420,000 ש״ח</td>
+                  <td class="py-2">3.8%</td>
+                  <td class="py-2">25 שנה</td>
+                  <td class="py-2">2,180 ש״ח</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr class="font-bold text-red-800">
+                  <td class="py-3">סה"כ</td>
+                  <td class="py-3">1,400,000 ש״ח</td>
+                  <td class="py-3">-</td>
+                  <td class="py-3">-</td>
+                  <td class="py-3">8,080 ש״ח</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        <div class="bg-surface p-6 rounded-xl border border-border">
+          <h4 class="font-bold text-dark mb-3">מה היה הבעייתי בתמהיל?</h4>
+          <ul class="list-disc list-inside text-gray-700 space-y-2 mr-4">
+            <li><strong>ריבית פריים גבוהה</strong> - מרווח של +0.9% היה גבוה מדי</li>
+            <li><strong>קבועה לא צמודה</strong> - 4.2% הרבה מעל השוק הנוכחי</li>
+            <li><strong>משקל גבוה מדי</strong> - 40% במסלול יקר (קל"צ)</li>
+            <li><strong>לא נוצל פוטנציאל ההצמדה</strong> - הייתה אפשרות לשלב מסלול צמוד בריבית נמוכה</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- אחרי -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">המצב אחרי המחזור</h2>
+
+        <div class="bg-green-50 p-6 rounded-xl border border-green-200 mb-6">
+          <h3 class="font-bold text-green-800 mb-4">תמהיל חדש (2026)</h3>
+          <p class="text-green-700 text-sm mb-4">יתרת חוב למחזור: 1,080,000 ש״ח | תקופה: 18 שנה</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-green-200">
+                  <th class="text-right py-2 font-medium text-green-800">מסלול</th>
+                  <th class="text-right py-2 font-medium text-green-800">סכום</th>
+                  <th class="text-right py-2 font-medium text-green-800">ריבית</th>
+                  <th class="text-right py-2 font-medium text-green-800">תקופה</th>
+                  <th class="text-right py-2 font-medium text-green-800">החזר</th>
+                </tr>
+              </thead>
+              <tbody class="text-green-700">
+                <tr class="border-b border-green-100">
+                  <td class="py-2">פריים</td>
+                  <td class="py-2">324,000 ש״ח</td>
+                  <td class="py-2">פריים + 0.45%</td>
+                  <td class="py-2">18 שנה</td>
+                  <td class="py-2">2,350 ש״ח</td>
+                </tr>
+                <tr class="border-b border-green-100">
+                  <td class="py-2">קבועה לא צמודה</td>
+                  <td class="py-2">432,000 ש״ח</td>
+                  <td class="py-2">3.1%</td>
+                  <td class="py-2">18 שנה</td>
+                  <td class="py-2">2,720 ש״ח</td>
+                </tr>
+                <tr class="border-b border-green-100">
+                  <td class="py-2">קבועה צמודה</td>
+                  <td class="py-2">324,000 ש״ח</td>
+                  <td class="py-2">2.4%</td>
+                  <td class="py-2">18 שנה</td>
+                  <td class="py-2">2,290 ש״ח</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr class="font-bold text-green-800">
+                  <td class="py-3">סה"כ</td>
+                  <td class="py-3">1,080,000 ש״ח</td>
+                  <td class="py-3">-</td>
+                  <td class="py-3">-</td>
+                  <td class="py-3">7,360 ש״ח</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- השוואה -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">השוואה - לפני ואחרי</h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-surface p-6 rounded-xl border border-border text-center">
+            <div class="text-sm text-gray-500 mb-2">החזר חודשי לפני</div>
+            <div class="text-3xl font-bold text-red-600">8,080 ש״ח</div>
+          </div>
+          <div class="bg-surface p-6 rounded-xl border border-border text-center">
+            <div class="text-sm text-gray-500 mb-2">החזר חודשי אחרי</div>
+            <div class="text-3xl font-bold text-green-600">7,360 ש״ח</div>
+          </div>
+        </div>
+
+        <div class="bg-brand-50 p-6 rounded-xl mt-6">
+          <h3 class="font-bold text-brand-800 mb-4">פירוט החיסכון</h3>
+          <div class="space-y-3 text-brand-700">
+            <div class="flex justify-between">
+              <span>חיסכון חודשי:</span>
+              <span class="font-bold">720 ש״ח</span>
+            </div>
+            <div class="flex justify-between">
+              <span>תקופה שנותרה:</span>
+              <span class="font-bold">18 שנה (216 חודשים)</span>
+            </div>
+            <div class="flex justify-between border-t border-brand-200 pt-3">
+              <span>חיסכון כולל (לפני ניכוי עלויות):</span>
+              <span class="font-bold">155,520 ש״ח</span>
+            </div>
+            <div class="flex justify-between text-sm">
+              <span>עלויות מחזור (קנס פירעון + שמאות + עו"ד):</span>
+              <span>-12,000 ש״ח</span>
+            </div>
+            <div class="flex justify-between text-lg border-t border-brand-200 pt-3">
+              <span class="font-bold">חיסכון נטו:</span>
+              <span class="font-bold text-green-700">143,520 ש״ח</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- מה עשינו -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">איך השגנו את זה?</h2>
+
+        <div class="space-y-4">
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-100 rounded-full flex items-center justify-center text-brand-700 font-bold">1</div>
+            <div>
+              <h3 class="font-bold text-dark">ניתוח מעמיק של התמהיל הקיים</h3>
+              <p class="text-gray-600 text-sm">זיהינו שהריביות גבוהות משמעותית מהשוק, במיוחד במסלול הקל"צ והפריים.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-100 rounded-full flex items-center justify-center text-brand-700 font-bold">2</div>
+            <div>
+              <h3 class="font-bold text-dark">פנייה ל-4 בנקים להצעות</h3>
+              <p class="text-gray-600 text-sm">קיבלנו הצעות מ-4 בנקים והשוונו ביניהן. ההבדלים היו משמעותיים.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-100 rounded-full flex items-center justify-center text-brand-700 font-bold">3</div>
+            <div>
+              <h3 class="font-bold text-dark">משא ומתן על הריביות</h3>
+              <p class="text-gray-600 text-sm">השתמשנו בהצעות המתחרות כמנוף למשא ומתן. הורדנו עוד 0.2% מההצעה הראשונית.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-brand-100 rounded-full flex items-center justify-center text-brand-700 font-bold">4</div>
+            <div>
+              <h3 class="font-bold text-dark">בניית תמהיל מאוזן</h3>
+              <p class="text-gray-600 text-sm">איזנו בין מסלולים: פריים לגמישות, קל"צ ליציבות, וצמוד לריבית נמוכה.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ציטוט הלקוח -->
+      <section class="mb-12">
+        <div class="bg-brand-900 text-white p-8 rounded-2xl">
+          <svg class="w-10 h-10 text-brand-300 mb-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+          <blockquote class="text-xl md:text-2xl font-medium mb-4">
+            "לא האמנו שאפשר לחסוך כל כך הרבה כסף על משכנתא שכבר לקחנו. התהליך היה פשוט ומהיר, והתוצאה מדברת בעד עצמה. 720 ש״ח בחודש זה הרבה כסף לאורך זמן."
+          </blockquote>
+          <div class="text-brand-200">
+            — משפחת כ., חיפה
+          </div>
+        </div>
+      </section>
+
+      <!-- לימודים מהמקרה -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">מה אפשר ללמוד מהמקרה הזה?</h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-surface p-5 rounded-xl border border-border">
+            <h3 class="font-bold text-dark mb-2">לבדוק מעת לעת</h3>
+            <p class="text-gray-600 text-sm">גם משכנתא "טובה" יכולה להפוך לפחות משתלמת כשהשוק משתנה.</p>
+          </div>
+          <div class="bg-surface p-5 rounded-xl border border-border">
+            <h3 class="font-bold text-dark mb-2">לא לפחד ממחזור</h3>
+            <p class="text-gray-600 text-sm">העלויות הן חד-פעמיות, והחיסכון הוא לאורך שנים רבות.</p>
+          </div>
+          <div class="bg-surface p-5 rounded-xl border border-border">
+            <h3 class="font-bold text-dark mb-2">להשוות בין בנקים</h3>
+            <p class="text-gray-600 text-sm">ההבדלים בין הצעות יכולים להגיע לעשרות אלפי שקלים.</p>
+          </div>
+          <div class="bg-surface p-5 rounded-xl border border-border">
+            <h3 class="font-bold text-dark mb-2">ייעוץ מקצועי משתלם</h3>
+            <p class="text-gray-600 text-sm">יועץ רואה דברים שהלקוח לא רואה, ויודע לנהל משא ומתן.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="bg-gradient-to-br from-brand-800 to-brand-900 rounded-2xl p-8 text-white text-center">
+        <h2 class="text-2xl font-bold mb-3">רוצים לבדוק אם גם אתם יכולים לחסוך?</h2>
+        <p class="text-brand-100 mb-6 max-w-xl mx-auto">
+          בדיקת כדאיות מחזור לוקחת כ-15 דקות ויכולה לחסוך לכם עשרות אלפי שקלים. שיחת הייעוץ הראשונה ללא עלות.
+        </p>
+        <a href="/contact/" class="inline-block bg-accent-500 text-white px-8 py-3 rounded-xl font-bold hover:bg-accent-600 transition-colors shadow-lg">
+          לבדיקת כדאיות מחזור חינם ←
+        </a>
+      </section>
+
+    </div>
+  </article>
+
+  <CTASection />
+</BaseLayout>

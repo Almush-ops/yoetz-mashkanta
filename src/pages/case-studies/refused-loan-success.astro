@@ -1,0 +1,325 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { consultant, personSchema, localBusinessSchema, trustBadges } from '../../data/consultant';
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'מקרי לקוח', href: '/case-studies/' },
+  { label: 'משכנתא למסורב - איך הצלחנו' },
+];
+
+const articleSchema = {
+  '@type': 'Article',
+  headline: 'משכנתא למסורב - איך הצלחנו לקבל אישור | מקרה לקוח',
+  description: 'לקוח שסורב ב-2 בנקים הצליח לקבל משכנתא של 1.2 מיליון ש״ח. איך עשינו את זה ומה למדנו.',
+  author: personSchema,
+  publisher: {
+    '@type': 'Organization',
+    name: consultant.company,
+    url: consultant.siteUrl,
+  },
+  datePublished: '2026-03-09',
+  dateModified: '2026-03-09',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://yoetz-mashkanta.co.il/case-studies/refused-loan-success/',
+  },
+};
+---
+
+<BaseLayout
+  title="משכנתא למסורב - איך הצלחנו לקבל אישור | מקרה לקוח"
+  description="לקוח שסורב ב-2 בנקים הצליח לקבל משכנתא של 1.2 מיליון ש״ח. סיפור מקרה מלא עם הלקחים."
+>
+  <SchemaOrg slot="schema" schema={[articleSchema, personSchema, localBusinessSchema]} />
+
+  <Breadcrumbs items={breadcrumbs} />
+
+  <!-- Hero -->
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="text-xs bg-white/20 px-3 py-1 rounded-full">משכנתא למסורבים</span>
+        <span class="text-xs bg-green-500/80 px-3 py-1 rounded-full">אושר!</span>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">משכנתא למסורב - איך הצלחנו</h1>
+      <p class="text-lg text-brand-100 max-w-2xl">
+        סורבתם בבנק? זה לא סוף הדרך. הנה סיפור אמיתי של לקוח שסורב פעמיים והצליח בסוף לקבל משכנתא.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <article class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+
+      <!-- תקציר -->
+      <div class="bg-green-50 border border-green-200 rounded-2xl p-6 mb-12">
+        <div class="grid md:grid-cols-4 gap-6 text-center">
+          <div>
+            <div class="text-3xl font-bold text-green-700">1.2M ש״ח</div>
+            <div class="text-sm text-green-600">סכום שאושר</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-green-700">2</div>
+            <div class="text-sm text-green-600">סירובים קודמים</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-green-700">6 שבועות</div>
+            <div class="text-sm text-green-600">עד לאישור</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-green-700">3.4%</div>
+            <div class="text-sm text-green-600">ריבית ממוצעת</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- הרקע -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">הרקע</h2>
+        <div class="prose prose-lg max-w-none text-gray-700">
+          <p>
+            דני (שם בדוי), בן 35, עצמאי בתחום הפרסום הדיגיטלי. הוא רצה לרכוש דירה בשווי 1,600,000 ש״ח עם הון עצמי של 400,000 ש״ח (25%). על הנייר - הכל נראה טוב.
+          </p>
+          <p>
+            הוא פנה לבנק הפועלים וקיבל סירוב. ניסה בלאומי - שוב סירוב. בשלב הזה, הוא הגיע אלינו מתוסכל ומיואש.
+          </p>
+        </div>
+      </section>
+
+      <!-- מה היה הבעיה -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">למה סירבו לו?</h2>
+
+        <div class="bg-red-50 p-6 rounded-xl border border-red-200 mb-6">
+          <h3 class="font-bold text-red-800 mb-4">הבעיות שזיהו הבנקים</h3>
+          <ul class="list-disc list-inside text-red-700 space-y-3 mr-4">
+            <li>
+              <strong>תעסוקה עצמאית פחות משנתיים</strong> - דני פתח עסק עצמאי לפני 18 חודשים. הבנקים מעדיפים לפחות שנתיים של פעילות.
+            </li>
+            <li>
+              <strong>הכנסה לא יציבה</strong> - כעצמאי, ההכנסות משתנות מחודש לחודש. היו חודשים חלשים ברבעון האחרון.
+            </li>
+            <li>
+              <strong>חריגות קלות בחשבון</strong> - כמה פעמים בשנה האחרונה היה מינוס קטן שחרג ממסגרת האשראי.
+            </li>
+            <li>
+              <strong>יתרת אשראי צרכני</strong> - הייתה הלוואה קיימת של 40,000 ש״ח לרכב.
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 p-4 rounded-lg">
+          <p class="text-amber-800 text-sm">
+            <strong>חשוב להבין:</strong> כל אחת מהבעיות האלה לבד לא בהכרח גורמת לסירוב. אבל השילוב של כולן יחד יצר "דגל אדום" עבור הבנקים.
+          </p>
+        </div>
+      </section>
+
+      <!-- מה עשינו -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">מה עשינו כדי להפוך את המצב?</h2>
+
+        <div class="space-y-6">
+          <!-- צעד 1 -->
+          <div class="bg-surface p-6 rounded-xl border border-border">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center text-brand-700 font-bold text-lg">1</div>
+              <div>
+                <h3 class="font-bold text-dark text-lg mb-2">ניקוי דוח BDI</h3>
+                <p class="text-gray-600">
+                  בדקנו את דוח ה-BDI ומצאנו כמה רישומים שגויים מלפני שנים. הגשנו בקשת תיקון והרישומים הוסרו תוך 3 שבועות.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- צעד 2 -->
+          <div class="bg-surface p-6 rounded-xl border border-border">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center text-brand-700 font-bold text-lg">2</div>
+              <div>
+                <h3 class="font-bold text-dark text-lg mb-2">סגירת ההלוואה הצרכנית</h3>
+                <p class="text-gray-600">
+                  יעצנו לדני לסגור את הלוואת הרכב (40,000 ש״ח) לפני הפנייה לבנק. זה שיחרר את נטל החוב ושיפר את יחס ההחזר להכנסה.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- צעד 3 -->
+          <div class="bg-surface p-6 rounded-xl border border-border">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center text-brand-700 font-bold text-lg">3</div>
+              <div>
+                <h3 class="font-bold text-dark text-lg mb-2">הכנת תיק פיננסי מקיף</h3>
+                <p class="text-gray-600">
+                  במקום להסתמך רק על דו"חות שנתיים, הכנו תיק מלא: הסכמי לקוחות קבועים, תחזית הכנסות, רשימת פרויקטים בצינור, ומכתב מרו"ח על מגמת הצמיחה.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- צעד 4 -->
+          <div class="bg-surface p-6 rounded-xl border border-border">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center text-brand-700 font-bold text-lg">4</div>
+              <div>
+                <h3 class="font-bold text-dark text-lg mb-2">בחירת הבנק הנכון</h3>
+                <p class="text-gray-600">
+                  לא כל הבנקים זהים. יש בנקים שידועים כ"ידידותיים יותר" לעצמאים. פנינו לבנק דיסקונט שיש לו מדיניות גמישה יותר לעצמאים.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- צעד 5 -->
+          <div class="bg-surface p-6 rounded-xl border border-border">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center text-brand-700 font-bold text-lg">5</div>
+              <div>
+                <h3 class="font-bold text-dark text-lg mb-2">הוספת ערב</h3>
+                <p class="text-gray-600">
+                  אבא של דני, שכיר עם הכנסה יציבה, הסכים להיות ערב למשכנתא. זה נתן לבנק שכבת ביטחון נוספת והפחית את הסיכון בעיניהם.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- התוצאה -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">התוצאה</h2>
+
+        <div class="bg-green-50 p-6 rounded-xl border border-green-200 mb-6">
+          <h3 class="font-bold text-green-800 mb-4">המשכנתא שאושרה</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <p class="text-green-700 mb-2"><strong>סכום:</strong> 1,200,000 ש״ח</p>
+              <p class="text-green-700 mb-2"><strong>תקופה:</strong> 25 שנה</p>
+              <p class="text-green-700 mb-2"><strong>החזר חודשי:</strong> 5,850 ש״ח</p>
+            </div>
+            <div>
+              <p class="text-green-700 mb-2"><strong>ריבית ממוצעת:</strong> 3.4%</p>
+              <p class="text-green-700 mb-2"><strong>בנק:</strong> דיסקונט</p>
+              <p class="text-green-700 mb-2"><strong>זמן עד אישור:</strong> 6 שבועות</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-surface p-6 rounded-xl border border-border">
+          <h4 class="font-bold text-dark mb-3">התמהיל שנבנה:</h4>
+          <ul class="list-disc list-inside text-gray-700 space-y-2 mr-4">
+            <li><strong>פריים:</strong> 360,000 ש״ח (פריים + 0.5%)</li>
+            <li><strong>קבועה לא צמודה:</strong> 480,000 ש״ח (3.3%)</li>
+            <li><strong>קבועה צמודה:</strong> 360,000 ש״ח (2.5%)</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ציטוט הלקוח -->
+      <section class="mb-12">
+        <div class="bg-brand-900 text-white p-8 rounded-2xl">
+          <svg class="w-10 h-10 text-brand-300 mb-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+          <blockquote class="text-xl md:text-2xl font-medium mb-4">
+            "אחרי שני סירובים הייתי בטוח שלא אקבל משכנתא. לא הבנתי מה הבעיה ולמה הבנקים לא מאשרים לי. איתי הסביר לי בדיוק מה לא עובד, מה צריך לתקן, ובאיזה בנק כדאי לנסות. תוך 6 שבועות היה לי אישור. ממליץ בחום."
+          </blockquote>
+          <div class="text-brand-200">
+            — ד., חיפה
+          </div>
+        </div>
+      </section>
+
+      <!-- טיפים למסורבים -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">טיפים למי שסורב במשכנתא</h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-brand-50 p-5 rounded-xl">
+            <div class="text-3xl mb-3">📋</div>
+            <h3 class="font-bold text-brand-800 mb-2">דרשו לדעת למה</h3>
+            <p class="text-brand-700 text-sm">
+              הבנק חייב להסביר לכם את סיבת הסירוב. ברגע שתדעו מה הבעיה, תוכלו לתקן אותה.
+            </p>
+          </div>
+
+          <div class="bg-brand-50 p-5 rounded-xl">
+            <div class="text-3xl mb-3">🔍</div>
+            <h3 class="font-bold text-brand-800 mb-2">בדקו את ה-BDI</h3>
+            <p class="text-brand-700 text-sm">
+              לפעמים יש שם רישומים שגויים או ישנים שאפשר להסיר. זה יכול לשנות את התמונה.
+            </p>
+          </div>
+
+          <div class="bg-brand-50 p-5 rounded-xl">
+            <div class="text-3xl mb-3">🏦</div>
+            <h3 class="font-bold text-brand-800 mb-2">נסו בנק אחר</h3>
+            <p class="text-brand-700 text-sm">
+              כל בנק עם מדיניות שונה. סירוב בבנק אחד לא אומר סירוב בכולם.
+            </p>
+          </div>
+
+          <div class="bg-brand-50 p-5 rounded-xl">
+            <div class="text-3xl mb-3">👨‍👩‍👧</div>
+            <h3 class="font-bold text-brand-800 mb-2">שקלו ערב</h3>
+            <p class="text-brand-700 text-sm">
+              אם יש לכם הורה או קרוב משפחה שיכול לערוב, זה יכול להטות את הכף.
+            </p>
+          </div>
+
+          <div class="bg-brand-50 p-5 rounded-xl">
+            <div class="text-3xl mb-3">💰</div>
+            <h3 class="font-bold text-brand-800 mb-2">הגדילו הון עצמי</h3>
+            <p class="text-brand-700 text-sm">
+              אם אפשר, הגדלת ההון העצמי מקטינה את הסיכון עבור הבנק ומגדילה את סיכויי האישור.
+            </p>
+          </div>
+
+          <div class="bg-brand-50 p-5 rounded-xl">
+            <div class="text-3xl mb-3">📞</div>
+            <h3 class="font-bold text-brand-800 mb-2">קבלו ייעוץ מקצועי</h3>
+            <p class="text-brand-700 text-sm">
+              יועץ משכנתאות יודע מה כל בנק מחפש ויכול לעזור לכם להציג את עצמכם בצורה הטובה ביותר.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- מדריך קשור -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-4">מדריכים קשורים</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <a href="/guides/self-employed/" class="block bg-surface p-4 rounded-lg hover:shadow-md transition-shadow border border-border">
+            <h3 class="font-bold text-brand-600 mb-1">משכנתא לעצמאים</h3>
+            <p class="text-gray-600 text-sm">מדריך מקיף לקבלת משכנתא כעצמאי.</p>
+          </a>
+          <a href="/services/refused-mortgage/" class="block bg-surface p-4 rounded-lg hover:shadow-md transition-shadow border border-border">
+            <h3 class="font-bold text-brand-600 mb-1">משכנתא למסורבים</h3>
+            <p class="text-gray-600 text-sm">איך אנחנו עוזרים למי שסורב בבנק.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="bg-gradient-to-br from-brand-800 to-brand-900 rounded-2xl p-8 text-white text-center">
+        <h2 class="text-2xl font-bold mb-3">סורבתם בבנק? לא צריך לוותר.</h2>
+        <p class="text-brand-100 mb-6 max-w-xl mx-auto">
+          בדיקה ראשונית תעזור להבין מה הבעיה ואיך אפשר לפתור אותה. שיחת הייעוץ הראשונה ללא עלות.
+        </p>
+        <a href="/contact/" class="inline-block bg-accent-500 text-white px-8 py-3 rounded-xl font-bold hover:bg-accent-600 transition-colors shadow-lg">
+          לתיאום שיחת ייעוץ חינם ←
+        </a>
+      </section>
+
+    </div>
+  </article>
+
+  <CTASection />
+</BaseLayout>

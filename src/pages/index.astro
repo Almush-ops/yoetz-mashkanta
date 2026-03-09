@@ -7,6 +7,7 @@ import TestimonialSection from '../components/TestimonialSection.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
 import CTASection from '../components/CTASection.astro';
 import FAQ from '../components/FAQ.astro';
+import ClientGallery from '../components/ClientGallery.astro';
 
 // Services data
 const services = [
@@ -131,6 +132,7 @@ const localBusinessSchema = {
   name: 'יועץ משכנתאות - איתי אנצל',
   description: 'ייעוץ משכנתאות מקצועי ואישי בחיפה והקריות. מעל 7 שנות ניסיון, 169 לקוחות מרוצים.',
   url: 'https://yoetz-mashkanta.co.il',
+  image: 'https://yoetz-mashkanta.co.il/images/itai-office.webp',
   telephone: '055-432-6608',
   address: {
     '@type': 'PostalAddress',
@@ -265,6 +267,12 @@ const localBusinessSchema = {
       </div>
     </div>
   </section>
+
+  <!-- Client Gallery - Real Photos -->
+  <ClientGallery
+    title="ליווי אישי מתחילת הדרך ועד לחתימה"
+    subtitle="תמונות מפגישות אמיתיות עם לקוחות - לא תמונות מאגר"
+  />
 
   <!-- Testimonials -->
   <TestimonialSection

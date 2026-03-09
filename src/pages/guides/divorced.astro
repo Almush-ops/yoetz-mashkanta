@@ -1,0 +1,362 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import { consultant, trustBadges } from '../../data/consultant';
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'מדריכים', href: '/guides/' },
+  { label: 'משכנתא לגרושים' },
+];
+
+const faqs = [
+  {
+    question: 'האם גרוש/ה יכול/ה לקבל משכנתא?',
+    answer: 'בהחלט כן. גרושים יכולים לקבל משכנתא ככל לווה אחר. הבנק יבחן את ההכנסה הפנויה (אחרי מזונות), יציבות תעסוקתית, והיסטוריית אשראי. עם תכנון נכון, גרושים רבים מצליחים לקבל משכנתא בתנאים טובים.',
+  },
+  {
+    question: 'איך מזונות משפיעים על יכולת קבלת משכנתא?',
+    answer: 'תשלומי מזונות מופחתים מההכנסה הפנויה לצורך חישוב יכולת ההחזר. לדוגמה: אם ההכנסה 15,000 ש״ח והמזונות 3,000 ש״ח, הבנק יחשב הכנסה של 12,000 ש״ח. מצד שני, מי שמקבל מזונות יכול לכלול אותם כהכנסה (בדרך כלל 70-80% מהסכום).',
+  },
+  {
+    question: 'מה קורה עם המשכנתא המשותפת בגירושין?',
+    answer: 'יש 3 אפשרויות עיקריות: (1) מכירת הדירה וחלוקת התמורה אחרי סילוק המשכנתא, (2) העברת הדירה והמשכנתא לאחד הצדדים (דורש אישור הבנק), (3) המשך החזר משותף למרות הגירושין (פחות מומלץ). כל אפשרות דורשת תכנון משפטי ופיננסי.',
+  },
+  {
+    question: 'האם אפשר להוריד את שם בן/בת הזוג מהמשכנתא?',
+    answer: 'כן, אבל זה תהליך שדורש אישור הבנק. הבנק יבדוק שהלווה הנשאר יכול לעמוד בהחזרים לבד. בדרך כלל נדרש מחזור המשכנתא על שם אחד, ולעיתים הבנק ידרוש ערבויות נוספות או הקטנת סכום ההלוואה.',
+  },
+  {
+    question: 'מתי כדאי להתחיל תהליך משכנתא אחרי גירושין?',
+    answer: 'מומלץ להמתין עד שהסכם הגירושין נחתם וההליכים המשפטיים הסתיימו. זה נותן לבנק תמונה ברורה של ההתחייבויות (מזונות, חלוקת רכוש). גם כדאי להמתין 3-6 חודשים לייצוב כלכלי ותעסוקתי.',
+  },
+  {
+    question: 'האם קבלת מזונות נחשבת להכנסה לצורך משכנתא?',
+    answer: 'כן, אבל לא 100% מהסכום. רוב הבנקים מכירים ב-70-80% מסכום המזונות כהכנסה, בתנאי שיש פסק דין או הסכם גירושין חתום, והתשלומים מתקבלים בפועל לפחות 6 חודשים. מזונות ילדים מוכרים עד גיל 18 של הילד.',
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "משכנתא לגרושים - המדריך המלא 2026",
+      "description": "כל מה שצריך לדעת על לקיחת משכנתא אחרי גירושין: השפעת מזונות, העברת משכנתא משותפת, טיפים לאישור מהיר.",
+      "author": {
+        "@type": "Person",
+        "name": consultant.name,
+        "jobTitle": "יועץ משכנתאות"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "יועץ משכנתאות"
+      },
+      "datePublished": "2026-03-09",
+      "dateModified": "2026-03-09"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer.replace(/<[^>]*>/g, '')
+        }
+      }))
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="משכנתא לגרושים - המדריך המלא 2026 | יועץ משכנתאות"
+  description="כל מה שצריך לדעת על משכנתא אחרי גירושין: השפעת מזונות על יכולת ההחזר, העברת משכנתא משותפת, וטיפים לאישור."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <Breadcrumbs items={breadcrumbs} />
+
+  <!-- Hero -->
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">משכנתא לגרושים - המדריך המלא 2026</h1>
+      <p class="text-lg text-brand-100 max-w-2xl">
+        גירושין הם אתגר רגשי וכלכלי, אבל הם לא מונעים רכישת דירה חדשה. המדריך הזה יעזור לכם להבין את האפשרויות ולתכנן נכון.
+      </p>
+      <div class="flex flex-wrap gap-4 mt-6">
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          {trustBadges.rating}
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+          {trustBadges.clients}
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <article class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+
+      <!-- הקדמה -->
+      <section class="mb-12">
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">
+          גירושין מציבים אתגרים כלכליים רבים, ואחד המשמעותיים שבהם הוא נושא הדיור. האם אפשר לקבל משכנתא אחרי גירושין? מה קורה עם המשכנתא המשותפת? איך מזונות משפיעים על יכולת ההחזר? במדריך הזה נענה על כל השאלות ונסביר איך לתכנן נכון.
+        </p>
+        <div class="bg-brand-50 border-r-4 border-brand-500 p-6 rounded-lg">
+          <p class="text-brand-800 font-medium">
+            💡 חשוב לדעת: גרושים רבים מקבלים משכנתא בתנאים טובים. הסוד הוא בתכנון נכון והכנה מוקדמת של המסמכים והנתונים הפיננסיים.
+          </p>
+        </div>
+      </section>
+
+      <!-- האם גרושים יכולים לקבל משכנתא -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">האם גרושים יכולים לקבל משכנתא?</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          התשובה הקצרה היא <strong>כן, בהחלט</strong>. הבנקים לא מפלים גרושים, והמעמד האישי כשלעצמו אינו שיקול בהחלטה על מתן משכנתא. מה שכן משנה:
+        </p>
+        <ul class="list-disc list-inside text-gray-700 space-y-2 mr-4 mb-6">
+          <li><strong>הכנסה פנויה</strong> - ההכנסה נטו אחרי ניכוי תשלומי מזונות</li>
+          <li><strong>יציבות תעסוקתית</strong> - רצף העסקה של לפחות שנה (עדיף שנתיים)</li>
+          <li><strong>היסטוריית אשראי</strong> - ניהול חשבון תקין, ללא בעיות BDI</li>
+          <li><strong>הון עצמי</strong> - יכולת הבאת הון עצמי נדרש (25-30% מערך הדירה)</li>
+          <li><strong>יחס החזר להכנסה</strong> - עד 40% מההכנסה הפנויה</li>
+        </ul>
+      </section>
+
+      <!-- השפעת מזונות -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">איך מזונות משפיעים על המשכנתא?</h2>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div class="bg-red-50 p-6 rounded-xl">
+            <h3 class="font-bold text-red-800 mb-3">משלם מזונות</h3>
+            <p class="text-red-700 text-sm mb-3">
+              תשלומי המזונות מופחתים מההכנסה לצורך חישוב יכולת ההחזר.
+            </p>
+            <div class="bg-white p-4 rounded-lg text-sm">
+              <p class="text-gray-600 mb-2"><strong>דוגמה:</strong></p>
+              <p class="text-gray-700">משכורת: 18,000 ש״ח</p>
+              <p class="text-gray-700">מזונות: 4,000 ש״ח</p>
+              <p class="text-gray-700 font-medium border-t pt-2 mt-2">הכנסה לחישוב: 14,000 ש״ח</p>
+            </div>
+          </div>
+
+          <div class="bg-green-50 p-6 rounded-xl">
+            <h3 class="font-bold text-green-800 mb-3">מקבל/ת מזונות</h3>
+            <p class="text-green-700 text-sm mb-3">
+              הבנקים מכירים ב-70-80% מסכום המזונות כהכנסה.
+            </p>
+            <div class="bg-white p-4 rounded-lg text-sm">
+              <p class="text-gray-600 mb-2"><strong>דוגמה:</strong></p>
+              <p class="text-gray-700">משכורת: 10,000 ש״ח</p>
+              <p class="text-gray-700">מזונות (75%): 3,000 ש״ח</p>
+              <p class="text-gray-700 font-medium border-t pt-2 mt-2">הכנסה לחישוב: 13,000 ש״ח</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 p-4 rounded-lg">
+          <p class="text-amber-800 text-sm">
+            <strong>שימו לב:</strong> מזונות ילדים מוכרים כהכנסה רק עד גיל 18 של הילד. הבנק יקח בחשבון שההכנסה תרד כשהילד יגדל, ולכן עשוי להציע סכום משכנתא נמוך יותר או תקופה קצרה יותר.
+          </p>
+        </div>
+      </section>
+
+      <!-- מה לעשות עם משכנתא משותפת -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">מה לעשות עם המשכנתא המשותפת?</h2>
+        <p class="text-gray-700 leading-relaxed mb-6">
+          אם יש לכם משכנתא משותפת מלפני הגירושין, יש שלוש אפשרויות עיקריות:
+        </p>
+
+        <div class="space-y-6">
+          <!-- אפשרות 1 -->
+          <div class="bg-surface p-6 rounded-xl border border-border">
+            <h3 class="font-bold text-dark text-lg mb-3">1. מכירת הדירה וחלוקת התמורה</h3>
+            <p class="text-gray-600 mb-4">
+              הפתרון הפשוט ביותר מבחינה משפטית. מוכרים את הדירה, מסלקים את המשכנתא, ומחלקים את היתרה.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">נקי ומסודר</span>
+              <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">אין תלות הדדית</span>
+              <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">צריך למצוא דיור חדש</span>
+            </div>
+          </div>
+
+          <!-- אפשרות 2 -->
+          <div class="bg-surface p-6 rounded-xl border border-border">
+            <h3 class="font-bold text-dark text-lg mb-3">2. העברת הדירה והמשכנתא לאחד הצדדים</h3>
+            <p class="text-gray-600 mb-4">
+              אחד מבני הזוג קונה את חלקו של השני ולוקח על עצמו את מלוא המשכנתא. דורש אישור מהבנק ובדרך כלל מחזור משכנתא.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">יציבות לילדים</span>
+              <span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded">דורש אישור הבנק</span>
+              <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">צריך יכולת כלכלית</span>
+            </div>
+          </div>
+
+          <!-- אפשרות 3 -->
+          <div class="bg-surface p-6 rounded-xl border border-border">
+            <h3 class="font-bold text-dark text-lg mb-3">3. המשך החזר משותף</h3>
+            <p class="text-gray-600 mb-4">
+              שני הצדדים ממשיכים לשלם את המשכנתא יחד, למרות הגירושין. לא מומלץ לטווח ארוך.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">פשוט לביצוע</span>
+              <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">תלות הדדית</span>
+              <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">סיכון לסכסוכים</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- תהליך הורדת שם מהמשכנתא -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">איך מורידים שם מהמשכנתא?</h2>
+        <p class="text-gray-700 leading-relaxed mb-6">
+          התהליך להורדת שם בן/בת זוג מהמשכנתא:
+        </p>
+
+        <ol class="list-decimal list-inside text-gray-700 space-y-4 mr-4">
+          <li>
+            <strong>פנייה לבנק</strong> - הגשת בקשה רשמית להורדת לווה מהמשכנתא
+          </li>
+          <li>
+            <strong>בדיקת יכולת</strong> - הבנק בודק אם הלווה הנשאר יכול לעמוד בהחזרים לבד
+          </li>
+          <li>
+            <strong>מחזור משכנתא</strong> - בדרך כלל נדרש מחזור על שם הלווה היחיד
+          </li>
+          <li>
+            <strong>העברת בעלות בטאבו</strong> - במקביל, העברת הזכויות בנכס על שם אחד
+          </li>
+          <li>
+            <strong>חתימה על מסמכים חדשים</strong> - שטר משכנתא חדש, ערבויות, ביטוחים
+          </li>
+        </ol>
+
+        <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg mt-6">
+          <p class="text-blue-800 text-sm">
+            <strong>טיפ:</strong> הבנק עשוי לדרוש תנאים כמו: הקטנת סכום ההלוואה, הוספת ערבים, או שיפור תנאי ביטחון. כדאי להתכונן לכך מראש.
+          </p>
+        </div>
+      </section>
+
+      <!-- מסמכים נדרשים -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">מסמכים נדרשים למשכנתא לגרושים</h2>
+
+        <div class="bg-surface p-6 rounded-xl border border-border">
+          <h3 class="font-bold text-dark mb-4">מסמכים סטנדרטיים:</h3>
+          <ul class="list-disc list-inside text-gray-700 space-y-2 mr-4 mb-6">
+            <li>תעודת זהות + ספח</li>
+            <li>3 תלושי שכר אחרונים</li>
+            <li>אישור העסקה מהמעסיק</li>
+            <li>דפי חשבון בנק (3-6 חודשים)</li>
+            <li>אישור על הון עצמי</li>
+          </ul>
+
+          <h3 class="font-bold text-dark mb-4">מסמכים ספציפיים לגרושים:</h3>
+          <ul class="list-disc list-inside text-gray-700 space-y-2 mr-4">
+            <li><strong>הסכם גירושין</strong> - חתום ומאושר על ידי בית המשפט</li>
+            <li><strong>פסק דין למזונות</strong> - אם רלוונטי</li>
+            <li><strong>תעודת גירושין</strong> - גט או פסק דין לפירוק נישואין</li>
+            <li><strong>אישור תשלומי מזונות</strong> - 6 חודשים אחרונים (למקבלי מזונות)</li>
+            <li><strong>דפי חשבון המראים העברות מזונות</strong> - אם רלוונטי</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- טיפים חשובים -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">טיפים חשובים למשכנתא אחרי גירושין</h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-brand-50 p-5 rounded-xl">
+            <div class="text-3xl mb-3">⏰</div>
+            <h3 class="font-bold text-brand-800 mb-2">תזמון נכון</h3>
+            <p class="text-brand-700 text-sm">
+              המתינו עד לסיום ההליכים המשפטיים ו-3-6 חודשים של יציבות כלכלית לפני פנייה לבנק.
+            </p>
+          </div>
+
+          <div class="bg-brand-50 p-5 rounded-xl">
+            <div class="text-3xl mb-3">📊</div>
+            <h3 class="font-bold text-brand-800 mb-2">תיעוד מסודר</h3>
+            <p class="text-brand-700 text-sm">
+              שמרו על תיעוד של כל התשלומים והקבלות - גם מזונות וגם הכנסות. הבנק רוצה לראות יציבות.
+            </p>
+          </div>
+
+          <div class="bg-brand-50 p-5 rounded-xl">
+            <div class="text-3xl mb-3">💳</div>
+            <h3 class="font-bold text-brand-800 mb-2">שיקום אשראי</h3>
+            <p class="text-brand-700 text-sm">
+              אם הגירושין פגעו בדירוג האשראי, עבדו על שיקומו לפני פנייה למשכנתא. זה יכול לקחת 6-12 חודשים.
+            </p>
+          </div>
+
+          <div class="bg-brand-50 p-5 rounded-xl">
+            <div class="text-3xl mb-3">👨‍👩‍👧</div>
+            <h3 class="font-bold text-brand-800 mb-2">שיתוף ההורים</h3>
+            <p class="text-brand-700 text-sm">
+              אם יש אפשרות, עזרה של ההורים בהון עצמי או כערבים יכולה לשפר משמעותית את התנאים.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">שאלות נפוצות על משכנתא לגרושים</h2>
+        <FAQ items={faqs} />
+      </section>
+
+      <!-- מדריכים קשורים -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-dark mb-6">מדריכים קשורים</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <a href="/guides/down-payment/" class="block bg-surface p-4 rounded-lg hover:shadow-md transition-shadow border border-border">
+            <h3 class="font-bold text-brand-600 mb-1">כמה הון עצמי צריך למשכנתא?</h3>
+            <p class="text-gray-600 text-sm">מה אחוז ההון העצמי הנדרש ואיך לגייס אותו.</p>
+          </a>
+          <a href="/guides/first-apartment/" class="block bg-surface p-4 rounded-lg hover:shadow-md transition-shadow border border-border">
+            <h3 class="font-bold text-brand-600 mb-1">משכנתא לדירה ראשונה</h3>
+            <p class="text-gray-600 text-sm">מדריך שלב אחר שלב לכל התהליך.</p>
+          </a>
+          <a href="/guides/refinancing/" class="block bg-surface p-4 rounded-lg hover:shadow-md transition-shadow border border-border">
+            <h3 class="font-bold text-brand-600 mb-1">מחזור משכנתא</h3>
+            <p class="text-gray-600 text-sm">מתי כדאי למחזר ואיך עושים את זה נכון.</p>
+          </a>
+          <a href="/guides/consultant-cost/" class="block bg-surface p-4 rounded-lg hover:shadow-md transition-shadow border border-border">
+            <h3 class="font-bold text-brand-600 mb-1">כמה עולה יועץ משכנתאות?</h3>
+            <p class="text-gray-600 text-sm">עלות הייעוץ לעומת החיסכון הפוטנציאלי.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="bg-gradient-to-br from-brand-800 to-brand-900 rounded-2xl p-8 text-white text-center">
+        <h2 class="text-2xl font-bold mb-3">עוברים תהליך גירושין וצריכים משכנתא?</h2>
+        <p class="text-brand-100 mb-6 max-w-xl mx-auto">
+          ייעוץ מקצועי יכול לעזור לכם לתכנן נכון, להכין את המסמכים, ולהשיג את התנאים הטובים ביותר. שיחת הייעוץ הראשונה ללא עלות.
+        </p>
+        <a href="/contact/" class="inline-block bg-accent-500 text-white px-8 py-3 rounded-xl font-bold hover:bg-accent-600 transition-colors shadow-lg">
+          לתיאום שיחת ייעוץ חינם ←
+        </a>
+      </section>
+
+    </div>
+  </article>
+
+  <CTASection />
+</BaseLayout>
