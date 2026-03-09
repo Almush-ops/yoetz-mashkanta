@@ -26,8 +26,7 @@ const {
   dir = 'rtl',
 } = Astro.props;
 
-// Phone placeholder - will be updated when user provides
-const phone = '050-0000000';
+const phone = '055-432-6608';
 ---
 
 <!doctype html>
@@ -41,6 +40,7 @@ const phone = '050-0000000';
       canonicalUrl={canonicalUrl}
       noindex={noindex}
     />
+    <slot name="schema" />
   </head>
   <body class="min-h-screen flex flex-col bg-white text-dark antialiased">
     <Header />
