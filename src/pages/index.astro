@@ -1,0 +1,295 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroCardForm from '../components/HeroCardForm.astro';
+import StatsRow from '../components/StatsRow.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TestimonialSection from '../components/TestimonialSection.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import CTASection from '../components/CTASection.astro';
+import FAQ from '../components/FAQ.astro';
+
+// Services data
+const services = [
+  {
+    title: 'ייעוץ משכנתא לרכישת דירה',
+    description: 'ליווי מקצועי בתהליך לקיחת משכנתא לדירה ראשונה או משפרי דיור. בניית תמהיל מותאם אישית.',
+    icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
+    href: '/services/mortgage-consultation/',
+  },
+  {
+    title: 'מחזור משכנתא',
+    description: 'בדיקת כדאיות מחזור וחיסכון של אלפי שקלים בחודש. ניתוח התנאים הקיימים מול הצעות חדשות.',
+    icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
+    href: '/services/mortgage-refinancing/',
+  },
+  {
+    title: 'משכנתא לזוגות צעירים',
+    description: 'התמחות בפתרונות לזוגות צעירים - מימוש הטבות ממשלתיות, מחיר למשתכן, ומשכנתא עם הון עצמי מינימלי.',
+    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
+    href: '/services/young-couples-mortgage/',
+  },
+  {
+    title: 'משכנתא למסורבים',
+    description: 'פתרונות למקרים מורכבים - סירוב בנקאי, BDI שלילי, עצמאים עם הכנסות לא סדירות.',
+    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+    href: '/services/rejected-mortgage/',
+  },
+  {
+    title: 'איחוד הלוואות',
+    description: 'איחוד כל ההלוואות למשכנתא אחת עם ריבית נמוכה יותר. הפחתת ההחזר החודשי באופן משמעותי.',
+    icon: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z',
+    href: '/services/loan-consolidation/',
+  },
+  {
+    title: 'ייעוץ פיננסי וכלכלת משפחה',
+    description: 'ייעוץ כולל לניהול תקציב המשפחה, תכנון פיננסי לטווח ארוך, והיערכות לרכישת דירה.',
+    icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+    href: '/services/financial-consulting/',
+  },
+];
+
+// Stats data
+const stats = [
+  { value: '169', suffix: '+', label: 'לקוחות מרוצים' },
+  { value: '7', suffix: '+', label: 'שנות ניסיון' },
+  { value: '9.68', label: 'דירוג במידרג' },
+  { value: '100', suffix: '%', label: 'מחויבות ללקוח' },
+];
+
+// Testimonials data (placeholder - from Midrag)
+const testimonials = [
+  {
+    quote: 'היה מעולה! אין לי מילים לתאר את השירות המקצועי. איתי היה צמוד אלינו לכל אורך התהליך וחסך לנו עשרות אלפי שקלים.',
+    name: 'דניאל ומיכל כ.',
+    role: 'רכישת דירה ראשונה',
+  },
+  {
+    quote: 'הוא היה סבלני ומקצועי. הסביר הכל בשפה פשוטה ונתן לנו ביטחון בהחלטות. ממליצה בחום!',
+    name: 'שרה א.',
+    role: 'מחזור משכנתא',
+  },
+  {
+    quote: 'מקצועי, אמין, וזמין מאוד לשאלות. קיבלנו תנאים מעולים שלא הצלחנו להשיג לבד. תודה רבה!',
+    name: 'יוסי ורונית ד.',
+    role: 'משכנתא לדירה שנייה',
+  },
+];
+
+// Process steps
+const processSteps = [
+  {
+    title: 'פגישת היכרות',
+    description: 'נפגש לשיחה אישית (פרונטלית או בזום) כדי להבין את הצרכים והיעדים שלכם.',
+  },
+  {
+    title: 'ניתוח ותכנון',
+    description: 'ניתוח מעמיק של המצב הפיננסי ובניית תמהיל משכנתא מותאם אישית.',
+  },
+  {
+    title: 'משא ומתן מול הבנקים',
+    description: 'אני מנהל את המו"מ מולכם ומביא את ההצעות הטובות ביותר.',
+  },
+  {
+    title: 'ליווי עד הסגירה',
+    description: 'ליווי צמוד עד לחתימה על המשכנתא וקבלת הכסף.',
+  },
+];
+
+// FAQ data
+const faqItems = [
+  {
+    question: 'למה כדאי לי ללכת ליועץ משכנתאות?',
+    answer: 'יועץ משכנתאות מביא ניסיון וידע שחוסכים לכם זמן, טעויות יקרות, וכסף רב. יועץ מכיר את כל המוצרים בשוק, יודע לנהל משא ומתן עם הבנקים, ובונה תמהיל שמתאים בדיוק למצבכם. לקוחות שמגיעים עם יועץ בדרך כלל מקבלים תנאים טובים יותר מאלה שהולכים לבד.',
+  },
+  {
+    question: 'כמה עולה ייעוץ משכנתאות?',
+    answer: 'העלות משתנה בהתאם להיקף הייעוץ ומורכבות התיק. בפגישה הראשונה (שהיא ללא עלות) נסביר בדיוק מה כלול בשירות ומה העלות. חשוב לזכור שיועץ טוב חוסך הרבה יותר ממה שהוא עולה.',
+  },
+  {
+    question: 'האם אתם עובדים רק באזור חיפה?',
+    answer: 'אנחנו ממוקמים בקריית ביאליק ונותנים שירות בעיקר לאזור חיפה והקריות, אבל עובדים גם מרחוק עם לקוחות מכל הארץ דרך זום.',
+  },
+  {
+    question: 'מה זה תמהיל משכנתא ולמה זה חשוב?',
+    answer: 'תמהיל משכנתא הוא השילוב של מסלולי ההלוואה השונים (קבועה, משתנה, פריים וכו\'). תמהיל נכון מגן עליכם מפני עליית ריבית, מתאים לתכנון הפיננסי שלכם, ויכול לחסוך עשרות ואף מאות אלפי שקלים לאורך חיי המשכנתא.',
+  },
+  {
+    question: 'כמה זמן לוקח התהליך?',
+    answer: 'מרגע פגישת ההיכרות ועד לקבלת אישור עקרוני מהבנקים - בדרך כלל 2-3 שבועות. מאישור עקרוני ועד לחתימה על המשכנתא - תלוי בזמני הבנק ובמוכנות המסמכים, בדרך כלל 2-4 שבועות נוספים.',
+  },
+  {
+    question: 'מה ההבדל בין יועץ משכנתאות לבנקאי?',
+    answer: 'בנקאי עובד עבור הבנק ומקדם את המוצרים של הבנק שלו. יועץ משכנתאות עצמאי עובד עבורכם, משווה בין כל הבנקים, ומביא את ההצעה הטובה ביותר בשבילכם - ללא אינטרס צדדי.',
+  },
+];
+
+// LocalBusiness schema
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': 'https://yoetz-mashkanta.co.il/#organization',
+  name: 'יועץ משכנתאות - איתי אנצל',
+  description: 'ייעוץ משכנתאות מקצועי ואישי בחיפה והקריות. מעל 7 שנות ניסיון, 169 לקוחות מרוצים.',
+  url: 'https://yoetz-mashkanta.co.il',
+  telephone: '050-0000000', // Placeholder
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'קרן היסוד 7',
+    addressLocality: 'קריית ביאליק',
+    addressCountry: 'IL',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '32.8333',
+    longitude: '35.0833',
+  },
+  priceRange: '$$',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '9.68',
+    ratingCount: '169',
+    bestRating: '10',
+    worstRating: '1',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'חיפה' },
+    { '@type': 'City', name: 'קריית ביאליק' },
+    { '@type': 'City', name: 'קריית מוצקין' },
+    { '@type': 'City', name: 'קריית אתא' },
+    { '@type': 'City', name: 'נשר' },
+  ],
+};
+---
+
+<BaseLayout
+  title="יועץ משכנתאות מומלץ בחיפה והקריות"
+  description="איתי אנצל - יועץ משכנתאות עם 169 לקוחות מרוצים. ייעוץ אישי, בניית תמהיל מותאם, מו&quot;מ מול הבנקים. פגישת ייעוץ ראשונה ללא עלות."
+>
+  <!-- Hero with Form -->
+  <HeroCardForm
+    title="יועץ משכנתאות מומלץ בחיפה והקריות"
+    subtitle="איתי אנצל - 169 לקוחות מרוצים, חבר התאחדות יועצי המשכנתאות. קבלו ליווי מקצועי ואישי לאורך כל הדרך."
+    formTitle="ייעוץ חינם"
+    formDescription="השאירו פרטים ואחזור אליכם תוך שעות"
+    submitText="קבלו ייעוץ חינם"
+    webhookUrl="https://n8n.almush.co.il/webhook/yoetz-mashkanta"
+    successMessage="תודה! אחזור אליכם בהקדם."
+    background="surface"
+    trustItems={[
+      'ניסיון של מעל 7 שנים בתחום',
+      'ייעוץ ראשוני ללא עלות',
+      'דירוג 9.68 מתוך 10 במידרג',
+    ]}
+    formFields={[
+      { name: 'name', label: 'שם מלא', type: 'text', placeholder: 'הזינו שם מלא', required: true },
+      { name: 'phone', label: 'טלפון', type: 'tel', placeholder: '050-0000000', required: true },
+      {
+        name: 'service',
+        label: 'סוג הפנייה',
+        type: 'select',
+        placeholder: 'בחרו סוג פנייה',
+        required: false,
+        options: [
+          { value: 'first-apartment', label: 'דירה ראשונה' },
+          { value: 'refinance', label: 'מחזור משכנתא' },
+          { value: 'improvement', label: 'שיפור תנאים' },
+          { value: 'other', label: 'אחר' },
+        ],
+      },
+    ]}
+  />
+
+  <!-- Stats Row -->
+  <StatsRow stats={stats} />
+
+  <!-- Services Section -->
+  <section class="bg-surface py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-dark mb-4">השירותים שלנו</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">ייעוץ משכנתאות מקיף לכל צורך - מרכישת דירה ראשונה ועד מחזור ואיחוד הלוואות</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((service) => (
+          <ServiceCard
+            title={service.title}
+            description={service.description}
+            icon={service.icon}
+            href={service.href}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section (Zigzag) -->
+  <section class="bg-white py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-12 items-center">
+        <!-- Image side -->
+        <div class="lg:w-1/2">
+          <div class="relative">
+            <div class="absolute -inset-4 bg-brand-100 rounded-2xl -rotate-3"></div>
+            <img
+              src="/images/itai-office.webp"
+              alt="איתי אנצל - יועץ משכנתאות"
+              class="relative rounded-xl shadow-lg w-full"
+              width="600"
+              height="400"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <!-- Text side -->
+        <div class="lg:w-1/2">
+          <h2 class="text-2xl md:text-3xl font-bold text-dark mb-4">אודות איתי אנצל</h2>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            שמי איתי אנצל, ואני יועץ משכנתאות מוסמך וחבר התאחדות יועצי המשכנתאות משנת 2017. במשך למעלה מ-7 שנים אני מלווה משפחות בתהליך לקיחת משכנתא - מהצעד הראשון ועד לחתימה על ההסכם.
+          </p>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            הגישה שלי היא אישית ומקצועית - כל לקוח מקבל תשומת לב מלאה, ניתוח מעמיק של המצב הפיננסי, ובניית תמהיל שמותאם בדיוק לצרכים ולמטרות שלו. אני לא מתפשר על פחות מהתנאים הטובים ביותר.
+          </p>
+          <p class="text-gray-600 leading-relaxed mb-6">
+            עם 169 לקוחות מרוצים ודירוג של 9.68 מתוך 10, אני גאה לספק שירות שמדבר בעד עצמו.
+          </p>
+          <a
+            href="/about/"
+            class="inline-flex items-center text-brand-600 font-medium hover:text-brand-700 transition-colors"
+          >
+            <span>קראו עוד על הגישה שלי</span>
+            <svg class="w-4 h-4 ms-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <TestimonialSection
+    testimonials={testimonials}
+    title="מה הלקוחות אומרים"
+  />
+
+  <!-- Process Steps -->
+  <ProcessSteps
+    steps={processSteps}
+    title="איך זה עובד?"
+  />
+
+  <!-- CTA Section -->
+  <CTASection
+    title="רוצים לדעת כמה תוכלו לחסוך?"
+    subtitle="השאירו פרטים וקבלו ייעוץ ראשוני ללא עלות"
+    primaryText="השאירו פרטים"
+    primaryHref="/contact/"
+    phone="050-0000000"
+  />
+
+  <!-- FAQ Section -->
+  <FAQ items={faqItems} title="שאלות נפוצות" />
+
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+</BaseLayout>

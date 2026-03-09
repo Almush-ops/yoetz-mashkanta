@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="הדף לא נמצא"
+  description="הדף שחיפשת לא נמצא."
+  noindex={true}
+>
+  <section class="py-20 md:py-32">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <p class="text-6xl font-bold text-brand-200 mb-4">404</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-dark mb-4">הדף לא נמצא</h1>
+      <p class="text-lg text-gray-600 mb-8">
+        מצטערים, הדף שחיפשת לא קיים או הועבר למקום אחר.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/"
+          class="inline-flex items-center justify-center px-6 py-3 bg-accent-500 text-white font-semibold rounded-lg hover:bg-accent-600 transition-colors"
+        >
+          חזרה לדף הבית
+        </a>
+        <a
+          href="/contact/"
+          class="inline-flex items-center justify-center px-6 py-3 border-2 border-brand-600 text-brand-600 font-semibold rounded-lg hover:bg-brand-50 transition-colors"
+        >
+          צור קשר
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

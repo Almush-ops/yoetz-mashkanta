@@ -1,0 +1,202 @@
+---
+/* Hero with embedded form card on the side.
+   Two columns on desktop: text+CTA on one side, form card on the other. */
+
+interface FormField {
+  name: string;
+  label: string;
+  type: 'text' | 'tel' | 'email' | 'select';
+  placeholder?: string;
+  required?: boolean;
+  options?: { value: string; label: string }[];
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  formTitle?: string;
+  formDescription?: string;
+  formFields?: FormField[];
+  submitText?: string;
+  webhookUrl?: string;
+  successMessage?: string;
+  background?: 'surface' | 'brand';
+  trustItems?: string[];
+}
+
+const {
+  title,
+  subtitle,
+  formTitle = 'השאירו פרטים',
+  formDescription,
+  formFields = [
+    { name: 'name', label: 'שם מלא', type: 'text' as const, placeholder: 'הזינו שם מלא', required: true },
+    { name: 'phone', label: 'טלפון', type: 'tel' as const, placeholder: '050-0000000', required: true },
+  ],
+  submitText = 'שלחו פרטים',
+  webhookUrl = '/api/contact',
+  successMessage = 'הפרטים נשלחו בהצלחה! ניצור קשר בהקדם.',
+  background = 'surface',
+  trustItems,
+} = Astro.props;
+
+const bgClasses: Record<string, string> = {
+  surface: 'bg-surface',
+  brand: 'bg-brand-50',
+};
+---
+
+<section class:list={[bgClasses[background], 'overflow-hidden']}>
+  <div class="max-w-7xl mx-auto px-4 py-16 md:py-24">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+      <!-- Text Side -->
+      <div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-dark leading-tight mb-4">
+          {title}
+        </h1>
+
+        {subtitle && (
+          <p class="text-lg md:text-xl text-gray-600 leading-relaxed mb-8 max-w-lg">
+            {subtitle}
+          </p>
+        )}
+
+        {trustItems && trustItems.length > 0 && (
+          <ul class="space-y-3">
+            {trustItems.map((item) => (
+              <li class="flex items-start gap-3 text-gray-700">
+                <svg class="w-6 h-6 text-accent-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-base">{item}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <slot name="extra" />
+      </div>
+
+      <!-- Form Card Side -->
+      <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
+        {formTitle && (
+          <h2 class="text-xl md:text-2xl font-bold text-dark mb-2 text-center">
+            {formTitle}
+          </h2>
+        )}
+        {formDescription && (
+          <p class="text-gray-500 text-sm mb-6 text-center">
+            {formDescription}
+          </p>
+        )}
+
+        <form
+          id="hero-contact-form"
+          class="space-y-4"
+          data-webhook={webhookUrl}
+          data-success-message={successMessage}
+        >
+          {formFields.map((field) => (
+            <div>
+              <label for={`hero-${field.name}`} class="block text-sm font-medium text-gray-700 mb-1.5">
+                {field.label}
+                {field.required && <span class="text-red-500 ms-0.5">*</span>}
+              </label>
+
+              {field.type === 'select' ? (
+                <select
+                  id={`hero-${field.name}`}
+                  name={field.name}
+                  required={field.required}
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg text-dark bg-white focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:border-accent-500 transition-colors"
+                >
+                  {field.placeholder && (
+                    <option value="" disabled selected>{field.placeholder}</option>
+                  )}
+                  {field.options?.map((opt) => (
+                    <option value={opt.value}>{opt.label}</option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type={field.type}
+                  id={`hero-${field.name}`}
+                  name={field.name}
+                  placeholder={field.placeholder}
+                  required={field.required}
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg text-dark placeholder-gray-400 focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:border-accent-500 transition-colors"
+                />
+              )}
+            </div>
+          ))}
+
+          <button
+            type="submit"
+            class="w-full px-6 py-3.5 bg-accent-600 text-white font-semibold rounded-lg hover:bg-accent-700 transition-all shadow-md hover:shadow-lg text-lg focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {submitText}
+          </button>
+
+          <!-- Success message (hidden by default) -->
+          <div id="hero-form-success" class="hidden text-center p-4 bg-green-50 text-green-700 rounded-lg text-sm font-medium">
+            {successMessage}
+          </div>
+
+          <!-- Error message (hidden by default) -->
+          <div id="hero-form-error" class="hidden text-center p-4 bg-red-50 text-red-700 rounded-lg text-sm font-medium">
+            אירעה שגיאה. אנא נסו שוב.
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('hero-contact-form') as HTMLFormElement;
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const successDiv = document.getElementById('hero-form-success');
+      const errorDiv = document.getElementById('hero-form-error');
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'שולח...';
+      successDiv?.classList.add('hidden');
+      errorDiv?.classList.add('hidden');
+
+      const formData = new FormData(form);
+      const data: Record<string, any> = Object.fromEntries(formData.entries());
+
+      // Add page title for tracking
+      const h1 = document.querySelector('h1')?.textContent?.trim() || document.title;
+      data['page-title'] = h1;
+
+      const webhookUrl = form.dataset.webhook || '/api/contact';
+
+      try {
+        const response = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          form.reset();
+          successDiv?.classList.remove('hidden');
+        } else {
+          throw new Error('Submit failed');
+        }
+      } catch {
+        errorDiv?.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'שלחו פרטים';
+      }
+    });
+  }
+</script>

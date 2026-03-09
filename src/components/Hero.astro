@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const {
+  title,
+  subtitle = '',
+  ctaText = 'Learn More',
+  ctaHref = '#contact',
+} = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-gradient-to-br from-primary-50 to-white py-20 sm:py-32">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight">
+      {title}
+    </h1>
+    {subtitle && (
+      <p class="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+        {subtitle}
+      </p>
+    )}
+    <div class="mt-10 flex items-center justify-center gap-4">
+      <a
+        href={ctaHref}
+        class="bg-primary-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-primary-700 transition-all hover:shadow-lg hover:shadow-primary-500/25"
+      >
+        {ctaText}
+      </a>
+    </div>
+  </div>
+
+  <!-- Decorative background -->
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-primary-100/50 blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-primary-100/50 blur-3xl"></div>
+  </div>
+</section>

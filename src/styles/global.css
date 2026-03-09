@@ -1,0 +1,104 @@
+/* ==========================================================
+   yoetz-mashkanta.co.il - Global Styles
+   ========================================================== */
+
+/* Self-hosted Heebo font (Hebrew subset) */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/heebo-hebrew.woff2') format('woff2');
+  unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+
+/* Self-hosted Heebo font (Latin subset) */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/heebo-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply text-dark bg-white font-sans;
+  }
+}
+
+@layer components {
+  /* Prose styles for rich-text / article content */
+  .prose h2 {
+    @apply text-2xl font-bold text-dark mt-10 mb-4;
+  }
+  .prose h3 {
+    @apply text-xl font-semibold text-dark mt-8 mb-3;
+  }
+  .prose p {
+    @apply text-gray-700 leading-relaxed mb-4;
+  }
+  .prose a {
+    @apply text-brand-600 hover:text-brand-700 underline;
+  }
+  .prose img {
+    @apply rounded-lg shadow-md my-6;
+  }
+  .prose ul, .prose ol {
+    @apply my-4 ps-6;
+  }
+  .prose ul {
+    @apply list-disc;
+  }
+  .prose ol {
+    @apply list-decimal;
+  }
+  .prose li {
+    @apply mb-2 text-gray-700;
+  }
+  .prose blockquote {
+    @apply border-r-4 border-brand-500 pr-4 my-6 text-gray-600 italic;
+  }
+  .prose table {
+    @apply w-full border-collapse my-6;
+  }
+  .prose th {
+    @apply bg-surface text-dark font-semibold p-3 text-start border border-border;
+  }
+  .prose td {
+    @apply p-3 border border-border text-gray-700;
+  }
+}
+
+@layer utilities {
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Accessibility features */
+.a11y-grayscale {
+  filter: grayscale(100%);
+}
+.a11y-contrast {
+  filter: contrast(1.5);
+}
+.a11y-links a {
+  text-decoration: underline !important;
+  outline: 2px solid currentColor !important;
+  outline-offset: 2px;
+}

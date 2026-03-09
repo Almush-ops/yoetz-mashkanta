@@ -1,0 +1,57 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article' | 'product';
+  canonicalUrl?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = '',
+  ogImage = '/images/social.jpg',
+  ogType = 'website',
+  canonicalUrl,
+  noindex = false,
+} = Astro.props;
+
+const siteName = 'יועץ משכנתאות - איתי אנצל';
+const siteUrl = 'https://yoetz-mashkanta.co.il';
+
+// Avoid duplicate site name in title
+const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const canonical = canonicalUrl || Astro.url.href;
+
+// Resolve OG image to absolute URL
+const ogImg = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Open Graph -->
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImg} />
+<meta property="og:url" content={canonical} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="he_IL" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImg} />
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico" />
+<link rel="sitemap" href="/sitemap-index.xml" />

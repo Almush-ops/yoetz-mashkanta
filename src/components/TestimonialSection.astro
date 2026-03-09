@@ -1,0 +1,62 @@
+---
+/* Testimonial section - grid of testimonial cards. */
+
+interface Testimonial {
+  quote: string;
+  name: string;
+  role?: string;
+  avatar?: string;
+}
+
+interface Props {
+  testimonials: Testimonial[];
+  title?: string;
+}
+
+const {
+  testimonials,
+  title,
+} = Astro.props;
+---
+
+<section class="bg-surface py-16 md:py-20">
+  <div class="max-w-7xl mx-auto px-4">
+    {title && (
+      <h2 class="text-2xl md:text-3xl font-bold text-dark text-center mb-12">{title}</h2>
+    )}
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {testimonials.map((t) => (
+        <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 p-6">
+          {/* Quote icon */}
+          <div class="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-brand-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+            </svg>
+          </div>
+          {/* Quote text */}
+          <p class="text-gray-600 italic leading-relaxed mb-6">{t.quote}</p>
+          {/* Author */}
+          <div class="flex items-center gap-3">
+            {t.avatar ? (
+              <img
+                src={t.avatar}
+                alt={t.name}
+                class="w-10 h-10 rounded-full object-cover"
+                loading="lazy"
+              />
+            ) : (
+              <div class="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center flex-shrink-0">
+                <span class="text-brand-600 font-semibold text-sm">{t.name.charAt(0)}</span>
+              </div>
+            )}
+            <div>
+              <p class="font-semibold text-dark text-sm">{t.name}</p>
+              {t.role && <p class="text-gray-500 text-xs">{t.role}</p>}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
