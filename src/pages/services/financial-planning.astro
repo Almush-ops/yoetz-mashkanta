@@ -13,22 +13,121 @@ const breadcrumbs = [
 const faqItems = [
   {
     question: 'מה כולל ייעוץ פיננסי?',
-    answer: 'ניתוח מצב כלכלי, בניית תקציב, תכנון חסכונות, ייעוץ לפני רכישת נכס, והכנה לעתיד.',
+    answer: 'ייעוץ פיננסי כולל: ניתוח מצב כלכלי נוכחי (הכנסות, הוצאות, נכסים, חובות), בניית תקציב משפחתי מאוזן, תכנון חיסכון לטווח קצר וארוך, בדיקת ביטוחים ופנסיה, ותכנון לרכישת נכס. הפגישה אורכת 1.5-2 שעות.',
   },
   {
     question: 'האם זה רק למי שרוצה לקנות דירה?',
-    answer: 'לא. ייעוץ פיננסי מתאים לכל מי שרוצה לנהל את הכסף שלו בצורה חכמה יותר.',
+    answer: 'לא. ייעוץ פיננסי מתאים לכל מי שרוצה שליטה טובה יותר בכסף: זוגות צעירים בתחילת הדרך, משפחות שרוצות לחסוך יותר, אנשים עם חובות שרוצים לצאת מהם, או כאלה שמתקרבים לפרישה.',
   },
   {
     question: 'כמה פגישות צריך?',
-    answer: 'תלוי במורכבות המצב. לרוב מדובר בפגישה אחת או שתיים, עם אפשרות לליווי שוטף.',
+    answer: 'רוב הלקוחות מסתפקים ב-1-2 פגישות לקבלת תמונה ותוכנית פעולה. מי שרוצה ליווי שוטף יכול לבחור בפגישה רבעונית או חצי-שנתית למעקב והתאמות.',
+  },
+  {
+    question: 'כמה כסף צריך לחסוך לקרן חירום?',
+    answer: 'המלצה מקובלת: 3-6 חודשי הוצאות. למשפחה עם הוצאות של 15,000 ש"ח בחודש = קרן חירום של 45,000-90,000 ש"ח. זה הכרית הבטחון לפני שמתחילים לחסוך לדירה.',
+  },
+  {
+    question: 'מהו יחס חיסכון בריא?',
+    answer: 'יחס חיסכון בריא הוא 10-20% מההכנסה נטו. כלל 50/30/20: 50% לצרכים הכרחיים, 30% לרצונות, 20% לחיסכון. עם הכנסה של 20,000 ש"ח = חיסכון של 2,000-4,000 ש"ח בחודש.',
+  },
+  {
+    question: 'איך לחסוך להון עצמי לדירה?',
+    answer: 'אסטרטגיית חיסכון לדירה: חיסכון אוטומטי ביום המשכורת, קרן השתלמות (הטבת מס), פק"מ או תכנית חיסכון בנקאית. לדירה ב-1.5 מיליון צריך 375,000 ש"ח. בחיסכון של 4,000 ש"ח/חודש = כ-8 שנים.',
+  },
+];
+
+const services = [
+  {
+    title: 'ניתוח מצב כלכלי',
+    desc: 'מיפוי מלא של הכנסות, הוצאות, נכסים, חובות, וזיהוי נקודות לשיפור',
+    icon: '📊',
+  },
+  {
+    title: 'בניית תקציב משפחתי',
+    desc: 'תכנון תקציב חודשי מאוזן לפי כלל 50/30/20 או מותאם אישית',
+    icon: '📝',
+  },
+  {
+    title: 'תכנית חיסכון',
+    desc: 'אסטרטגיה לחיסכון לקרן חירום, להון עצמי, או למטרות אחרות',
+    icon: '💰',
+  },
+  {
+    title: 'בדיקת ביטוחים',
+    desc: 'סקירת ביטוחי החיים, בריאות, ורכוש - האם משלמים על מה שצריך?',
+    icon: '🛡️',
+  },
+  {
+    title: 'בדיקת פנסיה',
+    desc: 'האם הפנסיה שלכם בכיוון הנכון? האם יש הפסדים מיותרים?',
+    icon: '👴',
+  },
+  {
+    title: 'הכנה לרכישת נכס',
+    desc: 'תכנון פיננסי מותאם ליעד של רכישת דירה - כמה לחסוך ומתי',
+    icon: '🏠',
+  },
+];
+
+const budgetRule = [
+  {
+    percent: '50%',
+    category: 'צרכים הכרחיים',
+    examples: 'שכר דירה/משכנתא, חשבונות, אוכל, תחבורה, ביטוחים',
+    color: 'bg-red-100 text-red-700',
+  },
+  {
+    percent: '30%',
+    category: 'רצונות',
+    examples: 'בילויים, מסעדות, בגדים, חופשות, תחביבים',
+    color: 'bg-yellow-100 text-yellow-700',
+  },
+  {
+    percent: '20%',
+    category: 'חיסכון והשקעות',
+    examples: 'קרן חירום, חיסכון לדירה, השקעות, פירעון חובות',
+    color: 'bg-green-100 text-green-700',
+  },
+];
+
+const whoNeedsThis = [
+  {
+    title: 'זוגות צעירים',
+    desc: 'בתחילת הדרך המשותפת, לפני או אחרי החתונה, רוצים לבנות בסיס כלכלי יציב',
+    icon: '💑',
+  },
+  {
+    title: 'משפחות עם ילדים',
+    desc: 'צריכים לאזן בין הוצאות השוטפות לחיסכון לעתיד - לילדים ולפנסיה',
+    icon: '👨‍👩‍👧‍👦',
+  },
+  {
+    title: 'לפני רכישת דירה',
+    desc: 'רוצים לדעת כמה באמת יכולים לקחת ואיך להגיע להון העצמי',
+    icon: '🏠',
+  },
+  {
+    title: 'מי שנלחם בחובות',
+    desc: 'מרגישים שהכסף נגמר לפני סוף החודש ולא יודעים לאן הוא הולך',
+    icon: '💸',
+  },
+  {
+    title: 'לקראת פרישה',
+    desc: 'רוצים לוודא שהפנסיה תספיק ושהמצב הפיננסי יציב',
+    icon: '🌅',
+  },
+  {
+    title: 'אחרי אירוע משמעותי',
+    desc: 'גירושין, ירושה, פיטורין, או שינוי אחר שדורש ארגון מחדש',
+    icon: '🔄',
   },
 ];
 ---
 
 <BaseLayout
-  title="ייעוץ פיננסי וכלכלת משפחה | יועץ משכנתאות"
-  description="תכנון פיננסי מקיף למשפחה - ניהול תקציב, תכנון חסכונות, והכנה כלכלית לרכישת דירה."
+  title="ייעוץ פיננסי וכלכלת משפחה 2026 | תכנון תקציב וחיסכון"
+  description="ייעוץ פיננסי למשפחות - ניתוח מצב כלכלי, בניית תקציב, תכנון חיסכון, ובדיקת ביטוחים ופנסיה. פגישת ייעוץ 500 ש״ח."
 >
   <Breadcrumbs items={breadcrumbs} />
 
@@ -36,7 +135,7 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-3xl md:text-4xl font-bold mb-4">ייעוץ פיננסי וכלכלת משפחה</h1>
       <p class="text-lg text-brand-100 max-w-2xl mx-auto">
-        תכנון פיננסי חכם היום יבטיח עתיד כלכלי יציב - לכם ולמשפחה.
+        תכנון פיננסי חכם היום = עתיד כלכלי יציב. נבנה יחד תוכנית שמתאימה לכם.
       </p>
     </div>
   </section>
@@ -45,30 +144,189 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4">
       <div class="prose prose-lg max-w-none text-gray-700">
         <p>
-          ניהול פיננסי נכון הוא הבסיס להשגת יעדים כלכליים. בין אם מדובר ברכישת דירה, חיסכון לילדים, או פשוט שליטה בתקציב.
+          <strong>80% מהישראלים לא יודעים לאן הולך הכסף שלהם</strong>. הם מרגישים שהמשכורת נגמרת מהר מדי, לא מצליחים לחסוך, ולא יודעים איפה לחתוך. זה לא חוסר רצון - זה חוסר בתוכנית.
         </p>
         <p>
-          תיאור מפורט של שירות הייעוץ הפיננסי יתווסף כאן - כולל הסבר על התהליך, מה בודקים, ומה מקבלים.
+          ייעוץ פיננסי נותן לכם תמונה ברורה של המצב, תוכנית פעולה מעשית, וכלים לשליטה בכסף. זה לא על "לוותר על הקפה הבוקר" - זה על להבין לאן הכסף הולך ולקחת החלטות מודעות.
         </p>
+
+        <h2>מה נעשה בפגישה?</h2>
+        <p>
+          פגישת ייעוץ פיננסי אורכת כ-1.5-2 שעות וכוללת:
+        </p>
+        <ol>
+          <li><strong>מיפוי מצב קיים</strong> - הכנסות, הוצאות, נכסים, חובות, ביטוחים, פנסיה</li>
+          <li><strong>זיהוי נקודות לשיפור</strong> - איפה יש "דליפות" כסף שאפשר לסתום</li>
+          <li><strong>הגדרת יעדים</strong> - מה רוצים להשיג? דירה? קרן חירום? חופשה?</li>
+          <li><strong>בניית תוכנית</strong> - תקציב חודשי + תוכנית חיסכון + צעדים מעשיים</li>
+        </ol>
       </div>
     </div>
   </section>
 
+  <!-- 50/30/20 Rule -->
   <section class="py-12 md:py-16 bg-surface">
     <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">כלל 50/30/20 - הבסיס לתקציב בריא</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {budgetRule.map((item) => (
+          <div class="bg-white p-6 rounded-xl border border-border">
+            <div class={`text-4xl font-bold mb-3 inline-block px-4 py-2 rounded-lg ${item.color}`}>
+              {item.percent}
+            </div>
+            <h3 class="font-bold text-dark mb-2">{item.category}</h3>
+            <p class="text-gray-600 text-sm">{item.examples}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-gray-500 text-sm mt-6">
+        * זהו כלל מנחה. בפגישה נבנה תקציב מותאם אישית למצב שלכם.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
       <h2 class="text-2xl font-bold text-dark mb-8 text-center">מה כולל השירות</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        {[
-          { title: 'ניתוח מצב כלכלי', desc: 'הבנת ההכנסות, ההוצאות והנכסים הקיימים' },
-          { title: 'בניית תקציב', desc: 'תכנון תקציב משפחתי מאוזן וריאלי' },
-          { title: 'תכנון חסכונות', desc: 'אסטרטגיה לצבירת הון עצמי לדירה' },
-          { title: 'הכנה לעתיד', desc: 'תכנון פנסיוני וביטוחי' },
-        ].map((item) => (
-          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+      <div class="grid md:grid-cols-3 gap-6">
+        {services.map((service) => (
+          <div class="bg-surface p-6 rounded-xl border border-border text-center">
+            <div class="text-3xl mb-3">{service.icon}</div>
+            <h3 class="font-bold text-dark mb-2">{service.title}</h3>
+            <p class="text-gray-600 text-sm">{service.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Fund Section -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">קרן חירום - הבסיס לביטחון פיננסי</h2>
+      <div class="bg-white p-8 rounded-xl shadow-sm border border-border">
+        <div class="prose prose-lg max-w-none text-gray-700">
+          <p>
+            לפני שחוסכים לדירה, לפני השקעות, ולפני כל דבר אחר - צריך קרן חירום. זו הכרית שתגן עליכם במקרה של פיטורין, מחלה, או הוצאה בלתי צפויה.
+          </p>
+          <div class="bg-brand-50 p-6 rounded-lg my-6">
+            <h3 class="text-lg font-bold text-dark mb-3">כמה צריך בקרן חירום?</h3>
+            <ul class="mb-0">
+              <li><strong>שכירים</strong>: 3 חודשי הוצאות</li>
+              <li><strong>עצמאים</strong>: 6 חודשי הוצאות</li>
+              <li><strong>משפחה עם ילדים</strong>: 4-6 חודשי הוצאות</li>
+            </ul>
+          </div>
+          <p>
+            <strong>דוגמה</strong>: משפחה עם הוצאות של 18,000 ש"ח בחודש צריכה קרן חירום של 72,000-108,000 ש"ח. נשמע הרבה? בפגישה נבנה תוכנית צבירה ריאלית.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who Needs This -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">למי מתאים ייעוץ פיננסי?</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {whoNeedsThis.map((item) => (
+          <div class="bg-surface p-6 rounded-xl border border-border text-center">
+            <div class="text-3xl mb-3">{item.icon}</div>
             <h3 class="font-bold text-dark mb-2">{item.title}</h3>
             <p class="text-gray-600 text-sm">{item.desc}</p>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What to Bring -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מה להביא לפגישה?</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-xl border border-border">
+          <h3 class="font-bold text-dark mb-3">הכנסות</h3>
+          <ul class="text-gray-600 text-sm space-y-1">
+            <li>• 3 תלושי שכר אחרונים</li>
+            <li>• אישור הכנסות נוספות (שכירות, מזונות)</li>
+            <li>• דו"חות מס (אם עצמאים)</li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-xl border border-border">
+          <h3 class="font-bold text-dark mb-3">הוצאות</h3>
+          <ul class="text-gray-600 text-sm space-y-1">
+            <li>• דפי חשבון בנק (3 חודשים)</li>
+            <li>• פירוט כרטיסי אשראי (3 חודשים)</li>
+            <li>• הוצאות קבועות (שכ"ד, משכנתא, ביטוחים)</li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-xl border border-border">
+          <h3 class="font-bold text-dark mb-3">נכסים וחסכונות</h3>
+          <ul class="text-gray-600 text-sm space-y-1">
+            <li>• יתרות בחשבונות בנק</li>
+            <li>• קרנות השתלמות ופנסיה (דוח שנתי)</li>
+            <li>• השקעות אחרות (אם יש)</li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-xl border border-border">
+          <h3 class="font-bold text-dark mb-3">חובות והלוואות</h3>
+          <ul class="text-gray-600 text-sm space-y-1">
+            <li>• פירוט הלוואות (סכום, ריבית, החזר)</li>
+            <li>• יתרות בכרטיסי אשראי</li>
+            <li>• מינוס בעו"ש</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">עלות השירות</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-surface p-8 rounded-xl border border-border text-center">
+          <h3 class="font-bold text-dark text-xl mb-2">פגישת ייעוץ בודדת</h3>
+          <p class="text-4xl font-bold text-brand-600 mb-4">500 ש"ח</p>
+          <ul class="text-gray-600 text-sm space-y-2 text-right">
+            <li>✓ ניתוח מצב כלכלי מלא</li>
+            <li>✓ בניית תקציב מותאם אישית</li>
+            <li>✓ תוכנית חיסכון</li>
+            <li>✓ המלצות לביטוחים ופנסיה</li>
+            <li>✓ סיכום בכתב</li>
+          </ul>
+        </div>
+        <div class="bg-brand-50 p-8 rounded-xl border border-brand-200 text-center">
+          <h3 class="font-bold text-dark text-xl mb-2">ליווי שוטף</h3>
+          <p class="text-4xl font-bold text-brand-600 mb-4">200 ש"ח <span class="text-lg">/לפגישה</span></p>
+          <ul class="text-gray-600 text-sm space-y-2 text-right">
+            <li>✓ פגישת מעקב רבעונית</li>
+            <li>✓ התאמת התקציב לשינויים</li>
+            <li>✓ מעקב אחר ביצוע היעדים</li>
+            <li>✓ זמינות לשאלות בין פגישות</li>
+            <li>✓ תמיכה לאורך הדרך</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">שירותים קשורים</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href="/services/mortgage-consultation/" class="block bg-white p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">ייעוץ משכנתא לרכישת דירה</h3>
+          <p class="text-gray-600 text-sm">מוכנים לקנות דירה? נעזור לכם למצוא את המשכנתא הנכונה ←</p>
+        </a>
+        <a href="/services/debt-consolidation/" class="block bg-white p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">איחוד הלוואות</h3>
+          <p class="text-gray-600 text-sm">יש לכם חובות? נעזור לאחד ולחסוך ←</p>
+        </a>
       </div>
     </div>
   </section>

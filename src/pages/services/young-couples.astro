@@ -12,23 +12,68 @@ const breadcrumbs = [
 
 const faqItems = [
   {
-    question: 'מהן ההטבות לזוגות צעירים?',
-    answer: 'ישנן מספר הטבות כגון הלוואות בתנאים מועדפים, פטור ממס רכישה עד סכום מסוים, ומענקים באזורי פריפריה.',
+    question: 'כמה הון עצמי צריך לדירה ראשונה?',
+    answer: 'לדירה ראשונה נדרש הון עצמי מינימלי של 25% משווי הנכס. לדוגמה, לדירה ב-1.5 מיליון ש"ח צריך לפחות 375,000 ש"ח. ניתן לגייס חלק מההון העצמי מהלוואות משלימות בתנאים מסוימים.',
   },
   {
-    question: 'כמה הון עצמי צריך לדירה ראשונה?',
-    answer: 'לדירה ראשונה נדרש הון עצמי של לפחות 25% משווי הנכס. ישנם מסלולים שמאפשרים הקטנת אחוז זה.',
+    question: 'מהו פטור ממס רכישה לדירה ראשונה?',
+    answer: 'נכון ל-2026, רוכשי דירה ראשונה פטורים ממס רכישה עד לסכום של 1,978,745 ש"ח. על החלק שמעל התקרה משלמים מס מדורג בין 3.5% ל-10%. חיסכון במס: עד 70,000 ש"ח בממוצע.',
+  },
+  {
+    question: 'האם יש מענקים לזוגות צעירים?',
+    answer: 'כן, ישנם מענקים לזכאי משרד השיכון: 40,000-100,000 ש"ח באזורי עדיפות לאומית, מענקים נוספים לחיילים משוחררים ולזכאי סיוע בשכר דירה. נבדוק את הזכאות המלאה שלכם.',
+  },
+  {
+    question: 'מהו יחס החזר מההכנסה המומלץ?',
+    answer: 'יחס החזר בריא הוא עד 30% מההכנסה נטו. הבנקים מאשרים עד 40%, אבל זה מסוכן לתקציב המשפחה. לדוגמה, הכנסה של 18,000 ש"ח = החזר מומלץ עד 5,400 ש"ח לחודש.',
   },
   {
     question: 'האם אפשר לקחת משכנתא עם משכורת אחת?',
-    answer: 'כן, אך יכולת ההחזר תהיה מוגבלת יותר. ניתן לשקול ערבים או בטחונות נוספים.',
+    answer: 'כן, אך יכולת ההחזר תהיה מוגבלת. עם משכורת אחת של 12,000 ש"ח, המשכנתא המקסימלית תהיה כ-700,000-800,000 ש"ח. ניתן לשפר עם ערבים, נכסים נוספים, או צירוף הורים.',
+  },
+  {
+    question: 'מה ההבדל בין מחיר למשתכן לרכישה רגילה?',
+    answer: 'מחיר למשתכן מציע הנחה של 20-30% ממחיר השוק, אך עם תקופת בנייה ארוכה (2-4 שנים) ומגבלות מכירה. בשני המקרים נדרש ייעוץ משכנתא להתאמת התמהיל לתנאים הייחודיים.',
+  },
+];
+
+const benefits = [
+  {
+    title: 'פטור ממס רכישה',
+    desc: 'חיסכון של עד 70,000 ש"ח על דירה ראשונה עד 1.98 מיליון ש"ח',
+    icon: '🏷️',
+  },
+  {
+    title: 'מענקים ממשלתיים',
+    desc: '40,000-100,000 ש"ח לזכאי משרד השיכון באזורי עדיפות',
+    icon: '💵',
+  },
+  {
+    title: 'הלוואות משלימות',
+    desc: 'גישה להלוואות בתנאים מועדפים להשלמת ההון העצמי',
+    icon: '🏦',
+  },
+  {
+    title: 'תמהיל מותאם',
+    desc: 'בניית תמהיל עם החזר נמוך בהתחלה שעולה עם ההכנסה',
+    icon: '📊',
+  },
+  {
+    title: 'ליווי מלא',
+    desc: 'מהחיפוש אחר דירה ועד קבלת המפתח - אנחנו איתכם',
+    icon: '🤝',
+  },
+  {
+    title: 'ניצול מלא של הזכאויות',
+    desc: 'בדיקת כל ההטבות והמענקים שמגיעים לכם',
+    icon: '✅',
   },
 ];
 ---
 
 <BaseLayout
-  title="משכנתא לזוגות צעירים | יועץ משכנתאות"
-  description="התמחות בליווי זוגות צעירים בדרך לדירה הראשונה - ניצול מענקים, הטבות מס, ובניית תמהיל מותאם לתקציב."
+  title="משכנתא לזוגות צעירים 2026 | הטבות ומענקים עד 100,000 ש״ח"
+  description="משכנתא לדירה ראשונה - פטור ממס רכישה, מענקים לזכאים, ותמהיל מותאם לתקציב. 25% הון עצמי מינימלי. ייעוץ חינם."
 >
   <Breadcrumbs items={breadcrumbs} />
 
@@ -36,7 +81,7 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-3xl md:text-4xl font-bold mb-4">משכנתא לזוגות צעירים</h1>
       <p class="text-lg text-brand-100 max-w-2xl mx-auto">
-        ליווי מיוחד לזוגות צעירים בדרך לדירה הראשונה - ניצול כל ההטבות והמענקים הזמינים.
+        ליווי מיוחד בדרך לדירה הראשונה - ניצול כל ההטבות, המענקים והפטורים שמגיעים לכם כחוק.
       </p>
     </div>
   </section>
@@ -45,30 +90,155 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4">
       <div class="prose prose-lg max-w-none text-gray-700">
         <p>
-          רכישת דירה ראשונה היא אבן דרך משמעותית. כזוגות צעירים, יש לכם גישה להטבות ומענקים ייחודיים שחשוב לנצל נכון.
+          רכישת דירה ראשונה היא האתגר הפיננסי הגדול ביותר עבור זוגות צעירים בישראל. <strong>מחירי הדירות עלו ב-120% בעשור האחרון</strong>, אבל עם ייעוץ נכון וניצול כל ההטבות - הדירה בהחלט בהישג יד.
         </p>
         <p>
-          תיאור מפורט של השירות לזוגות צעירים יתווסף כאן - כולל הסבר על הטבות, תהליך העבודה, ומה חשוב לדעת.
+          כיועץ משכנתאות עם ניסיון בליווי מאות זוגות צעירים, אני מכיר את כל המסלולים, ההטבות והטריקים שיכולים לחסוך לכם עשרות אלפי שקלים. הפגישה הראשונה חינם - בואו נבדוק ביחד מה מגיע לכם.
+        </p>
+
+        <h2>דרישות בסיסיות לדירה ראשונה</h2>
+        <ul>
+          <li><strong>הון עצמי מינימלי: 25%</strong> - לדירה ב-1.5 מיליון = 375,000 ש"ח</li>
+          <li><strong>יחס החזר מומלץ: עד 30%</strong> מההכנסה נטו (הבנקים מאשרים עד 40%)</li>
+          <li><strong>ותק בעבודה: 6-12 חודשים</strong> - עדיפות לעובדים עם יציבות תעסוקתית</li>
+          <li><strong>גיל מינימלי: 21</strong> - אין הגבלת גיל עליון לזוגות צעירים</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Numbers Section -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">מספרים שחשוב לדעת (2026)</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-xl border border-border text-center">
+          <p class="text-3xl font-bold text-brand-600 mb-2">1,978,745 ש"ח</p>
+          <p class="text-gray-600 text-sm">תקרת פטור ממס רכישה</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl border border-border text-center">
+          <p class="text-3xl font-bold text-brand-600 mb-2">25%</p>
+          <p class="text-gray-600 text-sm">הון עצמי מינימלי</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl border border-border text-center">
+          <p class="text-3xl font-bold text-brand-600 mb-2">30 שנה</p>
+          <p class="text-gray-600 text-sm">תקופת משכנתא מקסימלית</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">הטבות לרוכשי דירה ראשונה</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {benefits.map((benefit) => (
+          <div class="bg-surface p-6 rounded-xl border border-border text-center">
+            <div class="text-3xl mb-3">{benefit.icon}</div>
+            <h3 class="font-bold text-dark mb-2">{benefit.title}</h3>
+            <p class="text-gray-600 text-sm">{benefit.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Example Calculation -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">דוגמת חישוב - דירה ב-1.5 מיליון ש"ח</h2>
+      <div class="bg-white p-8 rounded-xl shadow-sm border border-border">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="font-bold text-dark mb-4 text-lg">נתוני המשכנתא</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li>מחיר הדירה: <strong>1,500,000 ש"ח</strong></li>
+              <li>הון עצמי (25%): <strong>375,000 ש"ח</strong></li>
+              <li>סכום המשכנתא: <strong>1,125,000 ש"ח</strong></li>
+              <li>תקופה: <strong>25 שנים</strong></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold text-dark mb-4 text-lg">החזר חודשי משוער</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li>ריבית ממוצעת: <strong>4.2%</strong></li>
+              <li>החזר חודשי: <strong>~6,100 ש"ח</strong></li>
+              <li>הכנסה נטו נדרשת: <strong>~20,000 ש"ח</strong></li>
+              <li class="text-accent font-medium">פטור ממס רכישה: <strong>מלא!</strong></li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-sm text-gray-500 mt-6 text-center">
+          * החישוב להמחשה בלבד. התמהיל האופטימלי משתנה לפי נתוני הלקוח.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="py-12 md:py-16 bg-surface">
+  <!-- Process -->
+  <section class="py-12 md:py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-dark mb-8 text-center">יתרונות לזוגות צעירים</h2>
-      <div class="grid md:grid-cols-2 gap-6">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">תהליך העבודה - 5 שלבים</h2>
+      <div class="space-y-4">
         {[
-          { title: 'הטבות מס', desc: 'פטור ממס רכישה עד לתקרה מסוימת' },
-          { title: 'מענקים', desc: 'בדיקת זכאות למענקים באזורי פריפריה' },
-          { title: 'תנאים מועדפים', desc: 'גישה למסלולי הלוואה בתנאים טובים יותר' },
-          { title: 'תמהיל מותאם', desc: 'בניית תמהיל שמתאים לתקציב ההתחלתי' },
+          { step: '1', title: 'פגישת היכרות', desc: 'בדיקת יכולת ההחזר, הון עצמי זמין, ומיפוי הזכאויות שלכם', time: 'חינם' },
+          { step: '2', title: 'בדיקת זכאויות', desc: 'איתור כל ההטבות, המענקים והפטורים שמגיעים לכם', time: 'שבוע' },
+          { step: '3', title: 'השוואת הצעות', desc: 'קבלת הצעות מ-7 בנקים, ניהול משא ומתן על התנאים', time: '1-2 שבועות' },
+          { step: '4', title: 'בניית תמהיל', desc: 'בניית תמהיל אופטימלי שמתאים לתקציב ולתוכניות העתידיות', time: 'מובנה בתהליך' },
+          { step: '5', title: 'חתימה וקבלת מפתח', desc: 'ליווי בחתימות, העברת הכספים, וקבלת המפתח', time: '2-4 שבועות' },
         ].map((item) => (
-          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
-            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
-            <p class="text-gray-600 text-sm">{item.desc}</p>
+          <div class="bg-surface p-6 rounded-xl border border-border">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold shrink-0">
+                {item.step}
+              </div>
+              <div class="flex-1">
+                <div class="flex justify-between items-start">
+                  <h3 class="font-bold text-dark">{item.title}</h3>
+                  <span class="text-xs text-brand-600 font-medium bg-brand-50 px-2 py-1 rounded">{item.time}</span>
+                </div>
+                <p class="text-gray-600 text-sm mt-1">{item.desc}</p>
+              </div>
+            </div>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Mistakes -->
+  <section class="py-12 md:py-16 bg-brand-50">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">5 טעויות נפוצות של זוגות צעירים</h2>
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <ol>
+          <li><strong>לקיחת החזר גבוה מדי</strong> - 40% מההכנסה נראה אפשרי, אבל לא משאיר מרווח לחירום</li>
+          <li><strong>התעלמות מעלויות נלוות</strong> - מס רכישה, עו"ד, שמאי, מיסים = 5-8% נוספים</li>
+          <li><strong>אי-ניצול הטבות</strong> - רבים לא יודעים על מענקים ופטורים שמגיעים להם</li>
+          <li><strong>בחירת תמהיל לא מתאים</strong> - מסלול פריים בלבד = סיכון לעליית ריבית</li>
+          <li><strong>חתימה בלי השוואה</strong> - ההבדל בין בנקים יכול להגיע ל-50,000 ש"ח</li>
+        </ol>
+        <p>
+          <strong>ייעוץ מקצועי מונע את כל הטעויות האלה</strong> וחוסך לכם כסף ודאגות.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">שירותים קשורים</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href="/services/mortgage-consultation/" class="block bg-surface p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">ייעוץ משכנתא לרכישת דירה</h3>
+          <p class="text-gray-600 text-sm">תהליך הייעוץ המלא - מה כולל ומה העלות ←</p>
+        </a>
+        <a href="/services/financial-planning/" class="block bg-surface p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">ייעוץ פיננסי</h3>
+          <p class="text-gray-600 text-sm">תכנון פיננסי לפני ואחרי רכישת הדירה ←</p>
+        </a>
       </div>
     </div>
   </section>

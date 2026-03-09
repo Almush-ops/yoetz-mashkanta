@@ -12,23 +12,89 @@ const breadcrumbs = [
 
 const faqItems = [
   {
-    question: 'מהי משכנתא הפוכה?',
-    answer: 'משכנתא הפוכה מאפשרת לבעלי נכסים מעל גיל 60 לקבל כסף מהבנק כנגד הנכס, ללא צורך למכור אותו.',
+    question: 'מהי משכנתא הפוכה ואיך היא עובדת?',
+    answer: 'משכנתא הפוכה היא הלוואה כנגד הנכס שלכם, ללא החזרים חודשיים. הבנק משלם לכם סכום חד-פעמי או קצבה חודשית, ואתם ממשיכים לגור בבית. ההלוואה נפרעת רק כשהנכס נמכר - בדרך כלל לאחר פטירה או מעבר לדיור מוגן.',
   },
   {
-    question: 'האם אני צריך לעזוב את הבית?',
-    answer: 'לא. אתם ממשיכים לגור בבית כרגיל. ההלוואה נפרעת רק כשהנכס נמכר.',
+    question: 'מי זכאי למשכנתא הפוכה?',
+    answer: 'הקריטריונים: גיל 60+ (לפחות אחד מבני הזוג), בעלות מלאה על הנכס ללא משכנתא או עם יתרה נמוכה, והנכס חייב להיות דירת מגורים (לא קרקע או נכס מסחרי). אין בדיקת יכולת החזר כי אין החזרים.',
   },
   {
-    question: 'כמה כסף אפשר לקבל?',
-    answer: 'הסכום תלוי בגיל, בשווי הנכס, ובתנאי הבנק. בדרך כלל מדובר ב-30%-50% משווי הנכס.',
+    question: 'כמה כסף אפשר לקבל במשכנתא הפוכה?',
+    answer: 'הסכום תלוי בגיל ובשווי הנכס: בגיל 60 - כ-30% משווי הנכס, בגיל 70 - כ-40%, ובגיל 80+ - עד 50%. לדוגמה, נכס בשווי 2 מיליון ש"ח בגיל 70 = עד 800,000 ש"ח.',
+  },
+  {
+    question: 'מה הריבית במשכנתא הפוכה?',
+    answer: 'הריבית במשכנתא הפוכה גבוהה יחסית: 5-7% בממוצע, צמודה למדד או קבועה. הריבית מצטברת לאורך השנים ונפרעת יחד עם הקרן בסוף. חשוב לחשב את ההשפעה לטווח ארוך.',
+  },
+  {
+    question: 'מה קורה אם שווי הנכס יורד?',
+    answer: 'במשכנתא הפוכה יש הגנה מובנית: גם אם שווי הנכס יורד, אתם או היורשים לעולם לא תשלמו יותר משווי הנכס. אם החוב גדל מעבר לשווי הנכס, ההפרש על הבנק.',
+  },
+  {
+    question: 'האם היורשים יכולים לקבל את הבית?',
+    answer: 'כן. היורשים יכולים לפרוע את החוב ולקבל את הנכס. חלק מהמוצרים מאפשרים לקבוע מראש אחוז מהנכס שיישאר ליורשים (למשל 50%), אך זה מקטין את הסכום שתקבלו.',
+  },
+];
+
+const benefits = [
+  {
+    title: 'ללא החזרים חודשיים',
+    desc: 'אין תשלומים חודשיים - הכל נפרע רק בעת מכירת הנכס',
+    icon: '💳',
+  },
+  {
+    title: 'ממשיכים לגור בבית',
+    desc: 'הבית נשאר שלכם ואתם גרים בו כרגיל',
+    icon: '🏠',
+  },
+  {
+    title: 'כסף נזיל לכל מטרה',
+    desc: 'שיפוץ, טיפולים רפואיים, נסיעות, או עזרה לילדים',
+    icon: '💰',
+  },
+  {
+    title: 'ללא בדיקת הכנסה',
+    desc: 'אין צורך להוכיח יכולת החזר כי אין החזרים',
+    icon: '✅',
+  },
+  {
+    title: 'הגנה מפני חוב',
+    desc: 'לעולם לא תשלמו יותר משווי הנכס',
+    icon: '🛡️',
+  },
+  {
+    title: 'גמישות בקבלת הכסף',
+    desc: 'סכום חד-פעמי, קצבה חודשית, או קו אשראי',
+    icon: '🔄',
+  },
+];
+
+const paymentOptions = [
+  {
+    title: 'סכום חד-פעמי',
+    desc: 'קבלת כל הסכום בבת אחת - מתאים לשיפוץ גדול או עזרה לילדים',
+    pros: 'גמישות מלאה בשימוש',
+    cons: 'ריבית מתחילה לרוץ על כל הסכום',
+  },
+  {
+    title: 'קצבה חודשית',
+    desc: 'תשלום חודשי קבוע לתקופה מוגדרת או לכל החיים',
+    pros: 'תזרים יציב, ריבית נמוכה יותר',
+    cons: 'פחות גמישות בשימוש',
+  },
+  {
+    title: 'קו אשראי',
+    desc: 'מסגרת זמינה למשיכה לפי הצורך',
+    pros: 'ריבית רק על מה שמושך',
+    cons: 'דורש ניהול יותר מורכב',
   },
 ];
 ---
 
 <BaseLayout
-  title="משכנתא הפוכה | יועץ משכנתאות"
-  description="ייעוץ למשכנתא הפוכה לגיל הזהב - מימוש ההון בנכס ללא מכירתו, תוך שמירה על רמת חיים גבוהה."
+  title="משכנתא הפוכה 2026 | עד 50% משווי הנכס ללא החזרים"
+  description="משכנתא הפוכה לגיל 60+ - קבלו כסף כנגד הנכס בלי למכור ובלי החזרים חודשיים. ייעוץ חינם לבדיקת התאמה."
 >
   <Breadcrumbs items={breadcrumbs} />
 
@@ -36,7 +102,7 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-3xl md:text-4xl font-bold mb-4">משכנתא הפוכה</h1>
       <p class="text-lg text-brand-100 max-w-2xl mx-auto">
-        מימוש ההון שצברתם בנכס ללא צורך למכור אותו - פתרון לגיל הזהב.
+        מימוש ההון שצברתם בנכס ללא מכירה וללא החזרים חודשיים - פתרון פיננסי לגיל הזהב.
       </p>
     </div>
   </section>
@@ -45,30 +111,181 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4">
       <div class="prose prose-lg max-w-none text-gray-700">
         <p>
-          משכנתא הפוכה היא כלי פיננסי שמאפשר לבעלי נכסים בגיל מבוגר ליהנות מההון שצברו מבלי לוותר על הבית.
+          משכנתא הפוכה מאפשרת לבעלי נכסים בגיל 60+ להפוך את ההון "הכלוא" בדירה לכסף נזיל. <strong>ללא מכירת הנכס, ללא מעבר דירה, וללא החזרים חודשיים</strong>. אתם ממשיכים לגור בבית שלכם, והכסף מגיע אליכם.
         </p>
         <p>
-          תיאור מפורט של משכנתא הפוכה יתווסף כאן - כולל הסבר על התהליך, יתרונות וחסרונות, ולמי זה מתאים.
+          הסכום שניתן לקבל נע בין 30% ל-50% משווי הנכס, תלוי בגיל. ככל שהגיל גבוה יותר, כך אפשר לקבל אחוז גבוה יותר. החוב נפרע רק כשהנכס נמכר - בדרך כלל לאחר פטירה או מעבר לדיור מוגן.
+        </p>
+
+        <h2>למי מתאימה משכנתא הפוכה?</h2>
+        <ul>
+          <li><strong>בעלי נכסים בגיל 60+</strong> שרוצים להישאר בבית</li>
+          <li><strong>גמלאים עם פנסיה נמוכה</strong> שצריכים השלמת הכנסה</li>
+          <li><strong>מי שצריך כסף לטיפולים רפואיים</strong> או שיפוץ הבית</li>
+          <li><strong>הורים שרוצים לעזור לילדים</strong> ברכישת דירה</li>
+          <li><strong>מי שרוצה לשפר את איכות החיים</strong> בשנים האחרונות</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Much Can You Get -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">כמה אפשר לקבל? (לפי גיל)</h2>
+      <div class="bg-white rounded-xl shadow-sm border border-border overflow-hidden">
+        <table class="w-full">
+          <thead class="bg-brand-50">
+            <tr>
+              <th class="text-right py-4 px-6 font-bold text-dark">גיל</th>
+              <th class="text-right py-4 px-6 font-bold text-dark">אחוז מהנכס</th>
+              <th class="text-right py-4 px-6 font-bold text-dark">דוגמה (נכס 2 מיליון)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-border">
+            <tr>
+              <td class="py-4 px-6 text-gray-700">60-64</td>
+              <td class="py-4 px-6 text-gray-700">25-30%</td>
+              <td class="py-4 px-6 text-gray-700">500,000-600,000 ש"ח</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-6 text-gray-700">65-69</td>
+              <td class="py-4 px-6 text-gray-700">30-35%</td>
+              <td class="py-4 px-6 text-gray-700">600,000-700,000 ש"ח</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-6 text-gray-700">70-74</td>
+              <td class="py-4 px-6 text-gray-700">35-40%</td>
+              <td class="py-4 px-6 text-gray-700">700,000-800,000 ש"ח</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-6 text-gray-700">75-79</td>
+              <td class="py-4 px-6 text-gray-700">40-45%</td>
+              <td class="py-4 px-6 text-gray-700">800,000-900,000 ש"ח</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-6 text-gray-700">80+</td>
+              <td class="py-4 px-6 text-gray-700">45-50%</td>
+              <td class="py-4 px-6 text-gray-700">900,000-1,000,000 ש"ח</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-center text-gray-500 text-sm mt-4">
+        * הסכומים להמחשה בלבד. הסכום הסופי תלוי בתנאי הבנק ובשמאות הנכס.
+      </p>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">יתרונות משכנתא הפוכה</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {benefits.map((benefit) => (
+          <div class="bg-surface p-6 rounded-xl border border-border text-center">
+            <div class="text-3xl mb-3">{benefit.icon}</div>
+            <h3 class="font-bold text-dark mb-2">{benefit.title}</h3>
+            <p class="text-gray-600 text-sm">{benefit.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Payment Options -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">אפשרויות לקבלת הכסף</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {paymentOptions.map((option) => (
+          <div class="bg-white p-6 rounded-xl border border-border">
+            <h3 class="font-bold text-dark mb-2">{option.title}</h3>
+            <p class="text-gray-600 text-sm mb-4">{option.desc}</p>
+            <div class="text-sm space-y-1">
+              <p class="text-accent"><strong>יתרון:</strong> {option.pros}</p>
+              <p class="text-gray-500"><strong>חיסרון:</strong> {option.cons}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Important Considerations -->
+  <section class="py-12 md:py-16 bg-brand-50">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מה חשוב לדעת לפני שמחליטים</h2>
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          משכנתא הפוכה היא כלי פיננסי מורכב. לפני שמחליטים, חשוב להבין את כל ההשלכות:
+        </p>
+
+        <h3>הריבית מצטברת לאורך השנים</h3>
+        <p>
+          בריבית של 6% לשנה, חוב של 500,000 ש"ח הופך ל-670,000 ש"ח אחרי 5 שנים, ול-895,000 ש"ח אחרי 10 שנים. חשוב לחשב את ההשפעה לטווח ארוך.
+        </p>
+
+        <h3>השפעה על הירושה</h3>
+        <p>
+          הנכס יימכר לפירעון החוב, והיורשים יקבלו רק את ההפרש. אם רוצים להבטיח סכום ליורשים, יש מסלולים שמאפשרים זאת (אך מקטינים את הסכום שמקבלים).
+        </p>
+
+        <h3>אלטרנטיבות לבדוק</h3>
+        <ul>
+          <li><strong>מכירה והשכרה</strong> - מכירת הנכס ומעבר לשכירות</li>
+          <li><strong>מכירה עם זכות מגורים</strong> - מכירה תוך הבטחת זכות לגור בנכס</li>
+          <li><strong>דיור מוגן</strong> - מכירה ומעבר לדיור מוגן איכותי</li>
+          <li><strong>הלוואה רגילה</strong> - אם יש הכנסה קבועה (פנסיה)</li>
+        </ul>
+        <p>
+          <strong>בפגישת הייעוץ נבחן יחד את כל האפשרויות</strong> ונמליץ על הפתרון המתאים ביותר למצב שלכם.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="py-12 md:py-16 bg-surface">
+  <!-- Process -->
+  <section class="py-12 md:py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-dark mb-8 text-center">יתרונות משכנתא הפוכה</h2>
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">תהליך קבלת משכנתא הפוכה</h2>
       <div class="grid md:grid-cols-2 gap-6">
         {[
-          { title: 'ללא מכירת הנכס', desc: 'ממשיכים לגור בבית כרגיל' },
-          { title: 'ללא החזרים חודשיים', desc: 'ההלוואה נפרעת רק בעת מכירת הנכס' },
-          { title: 'שיפור איכות החיים', desc: 'כסף נזיל לכל מטרה' },
-          { title: 'הגנה מפני ירושה', desc: 'אפשרות להבטיח סכום ליורשים' },
+          { step: '1', title: 'פגישת ייעוץ', desc: 'בדיקת התאמה, הבנת הצרכים, והסבר על האפשרויות', time: 'חינם' },
+          { step: '2', title: 'שמאות הנכס', desc: 'הערכת שווי הנכס על ידי שמאי מוסמך', time: 'שבוע' },
+          { step: '3', title: 'הגשה לבנקים', desc: 'הגשת הבקשה לבנקים המציעים משכנתא הפוכה', time: '2-3 שבועות' },
+          { step: '4', title: 'אישור וחתימה', desc: 'אישור, בדיקה משפטית, וחתימה על ההסכם', time: '2-4 שבועות' },
         ].map((item) => (
-          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
-            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
-            <p class="text-gray-600 text-sm">{item.desc}</p>
+          <div class="bg-surface p-6 rounded-xl border border-border">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold shrink-0">
+                {item.step}
+              </div>
+              <div>
+                <h3 class="font-bold text-dark mb-1">{item.title}</h3>
+                <p class="text-gray-600 text-sm mb-2">{item.desc}</p>
+                <span class="text-xs text-brand-600 font-medium">⏱️ {item.time}</span>
+              </div>
+            </div>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">שירותים קשורים</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href="/services/financial-planning/" class="block bg-white p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">ייעוץ פיננסי</h3>
+          <p class="text-gray-600 text-sm">תכנון פיננסי מקיף לגיל הפרישה ←</p>
+        </a>
+        <a href="/services/mortgage-refinance/" class="block bg-white p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">מחזור משכנתא</h3>
+          <p class="text-gray-600 text-sm">אם יש משכנתא קיימת - בדיקת כדאיות מחזור ←</p>
+        </a>
       </div>
     </div>
   </section>

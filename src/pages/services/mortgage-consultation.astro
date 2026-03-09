@@ -12,23 +12,35 @@ const breadcrumbs = [
 
 const faqItems = [
   {
-    question: 'כמה זמן לוקח תהליך קבלת משכנתא?',
-    answer: 'התהליך אורך בדרך כלל 3-6 שבועות מרגע הגשת הבקשה ועד קבלת האישור, תלוי במורכבות העסקה ובזמינות המסמכים.',
+    question: 'כמה עולה יועץ משכנתאות?',
+    answer: 'עלות ייעוץ משכנתא נעה בין 3,000 ל-8,000 ש"ח, תלוי במורכבות העסקה. השקעה זו יכולה לחסוך 50,000-200,000 ש"ח לאורך חיי המשכנתא דרך ריביות נמוכות יותר ותמהיל מותאם.',
   },
   {
-    question: 'האם אתם עובדים עם כל הבנקים?',
-    answer: 'כן, אנו עובדים מול כל הבנקים בישראל ומשווים הצעות כדי למצוא את התנאים הטובים ביותר עבורכם.',
+    question: 'כמה זמן לוקח תהליך קבלת משכנתא?',
+    answer: 'תהליך קבלת משכנתא אורך 3-6 שבועות מרגע הגשת הבקשה. התהליך כולל: אישור עקרוני (3-5 ימים), שמאות (שבוע), ואישור סופי (1-2 שבועות). עם יועץ, התהליך בדרך כלל מהיר יותר בזכות הכנת מסמכים נכונה.',
+  },
+  {
+    question: 'למה לא ללכת ישר לבנק?',
+    answer: 'הבנק מייצג את האינטרסים שלו, לא שלכם. פקיד המשכנתאות מקבל בונוס על מכירת מסלולים מסוימים. יועץ עצמאי משווה 5-7 בנקים, מנהל משא ומתן, ודואג שהתמהיל יתאים לכם - לא לבנק.',
   },
   {
     question: 'מה צריך להביא לפגישה הראשונה?',
-    answer: 'תלושי שכר (3 אחרונים), אישור יתרות מהבנק, תעודת זהות, ופרטים על הנכס שמעוניינים לרכוש.',
+    answer: '3 תלושי שכר אחרונים, אישור יתרות ותנועות מהבנק (3 חודשים), צילום תעודת זהות, ופרטים על הנכס (חוזה/הסכם). לעצמאים: דוחות שנתיים (שנתיים אחרונות) ואישור רואה חשבון.',
+  },
+  {
+    question: 'האם אתם עובדים עם כל הבנקים?',
+    answer: 'כן, אנו עובדים מול כל 7 הבנקים למשכנתאות בישראל: לאומי, הפועלים, מזרחי-טפחות, דיסקונט, הבינלאומי, מרכנתיל, ואגוד. כל בנק מציע תנאים שונים - ההשוואה חיונית לקבלת התמהיל הטוב ביותר.',
+  },
+  {
+    question: 'כמה הון עצמי צריך למשכנתא?',
+    answer: 'לדירה ראשונה נדרש הון עצמי של 25% לפחות משווי הנכס. לדירה שנייה ומעלה: 50%. למשפרי דיור: 30%. ישנם מקרים חריגים (משכנתא לעצמאים, זוגות צעירים עם מענקים) שבהם ניתן להקטין את האחוז.',
   },
 ];
 ---
 
 <BaseLayout
-  title="ייעוץ משכנתא לרכישת דירה | יועץ משכנתאות"
-  description="ליווי מקצועי בכל תהליך קבלת המשכנתא - מבדיקת כדאיות, השוואת הצעות מבנקים, בניית תמהיל אופטימלי ועד חתימת ההסכם."
+  title="ייעוץ משכנתא לרכישת דירה 2026 | חסכו עד 200,000 ש״ח"
+  description="ייעוץ משכנתא מקצועי לרכישת דירה. השוואת הצעות מ-7 בנקים, בניית תמהיל אופטימלי, וליווי עד החתימה. 169 לקוחות מרוצים, דירוג 9.68."
 >
   <Breadcrumbs items={breadcrumbs} />
 
@@ -36,7 +48,7 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-3xl md:text-4xl font-bold mb-4">ייעוץ משכנתא לרכישת דירה</h1>
       <p class="text-lg text-brand-100 max-w-2xl mx-auto">
-        ליווי מקצועי ואישי מהרגע שהחלטתם לרכוש דירה ועד לחתימה על המשכנתא. נדאג שתקבלו את התנאים הטובים ביותר.
+        ליווי מקצועי מהשלב הראשון ועד החתימה. חסכו 50,000-200,000 ש"ח לאורך חיי המשכנתא עם תמהיל מותאם אישית.
       </p>
     </div>
   </section>
@@ -45,35 +57,184 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4">
       <div class="prose prose-lg max-w-none text-gray-700">
         <p>
-          רכישת דירה היא אחת ההחלטות הכלכליות המשמעותיות בחיים. ייעוץ משכנתא מקצועי יכול לחסוך לכם עשרות ואף מאות אלפי שקלים לאורך חיי ההלוואה.
+          <strong>ייעוץ משכנתא הוא שירות של מומחה עצמאי שמלווה אתכם בתהליך קבלת המשכנתא</strong> - מבדיקת הכדאיות הראשונית, דרך השוואת הצעות מכל הבנקים, ועד לחתימה על הסכם ההלוואה. בניגוד לפקיד הבנק שמייצג את האינטרסים של הבנק, יועץ משכנתאות עובד עבורכם בלבד.
+        </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">למה להשתמש ביועץ משכנתאות?</h2>
+        <p>
+          ההבדל הממוצע בין ההצעה הראשונה של הבנק לבין ההצעה הסופית אחרי משא ומתן עומד על 0.3%-0.5% בריבית. על משכנתא של 1.5 מיליון ש"ח ל-25 שנה, הפרש של 0.4% בריבית שווה <strong>חיסכון של כ-90,000 ש"ח</strong> לאורך חיי ההלוואה.
         </p>
         <p>
-          תיאור מפורט של השירות יתווסף כאן - כולל תהליך העבודה, יתרונות הייעוץ, ומה כולל השירות.
+          יועץ משכנתאות מביא לשולחן ניסיון בעשרות עסקאות, הכרות אישית עם מנהלי סניפים, ויכולת לזהות הצעות בעייתיות לפני שחותמים עליהן.
         </p>
+
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מה ההבדל בין יועץ לבין פקיד הבנק?</h2>
+        <div class="bg-surface p-6 rounded-xl my-6 not-prose">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-bold text-dark mb-2">פקיד משכנתאות בבנק</h4>
+              <ul class="text-sm space-y-1 text-gray-600">
+                <li>• עובד עבור הבנק, לא עבורכם</li>
+                <li>• מציע רק את המוצרים של הבנק שלו</li>
+                <li>• מקבל בונוס על מסלולים מסוימים</li>
+                <li>• לא משווה מול מתחרים</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-bold text-dark mb-2">יועץ משכנתאות עצמאי</h4>
+              <ul class="text-sm space-y-1 text-gray-600">
+                <li>• עובד עבורכם בלבד</li>
+                <li>• משווה הצעות מ-7 בנקים</li>
+                <li>• מנהל משא ומתן לשיפור תנאים</li>
+                <li>• בונה תמהיל מותאם לצרכים שלכם</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="py-12 md:py-16 bg-surface">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-dark mb-8 text-center">מה כולל השירות?</h2>
-      <div class="grid md:grid-cols-2 gap-6">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">תהליך העבודה - 5 שלבים</h2>
+      <div class="space-y-4">
         {[
-          { title: 'בדיקת כדאיות', desc: 'ניתוח מצב פיננסי והערכת יכולת החזר' },
-          { title: 'השוואת הצעות', desc: 'קבלת הצעות ממספר בנקים והשוואה ביניהן' },
-          { title: 'בניית תמהיל', desc: 'הרכבת תמהיל משכנתא מותאם אישית' },
-          { title: 'ליווי בחתימה', desc: 'נוכחות והדרכה בחתימת ההסכם' },
+          {
+            step: '1',
+            title: 'פגישת היכרות וניתוח פיננסי',
+            desc: 'מיפוי ההכנסות, ההוצאות והחובות הקיימים. הערכת יכולת ההחזר החודשית. בדיקת התאמה בין המשכנתא המבוקשת לבין המצב הפיננסי.',
+            time: 'שעה עד שעה וחצי'
+          },
+          {
+            step: '2',
+            title: 'איסוף מסמכים והכנת תיק',
+            desc: 'ריכוז כל המסמכים הנדרשים: תלושי שכר, אישורי יתרות, מסמכי הנכס. הכנת התיק בפורמט שמתאים לכל הבנקים.',
+            time: '2-3 ימים'
+          },
+          {
+            step: '3',
+            title: 'הגשה ל-5-7 בנקים וקבלת הצעות',
+            desc: 'הגשת הבקשה במקביל לכל הבנקים הרלוונטיים. קבלת הצעות ראשוניות והשוואה מקיפה של התנאים.',
+            time: '5-7 ימי עסקים'
+          },
+          {
+            step: '4',
+            title: 'משא ומתן ובניית תמהיל',
+            desc: 'משא ומתן עם הבנקים לשיפור התנאים. בניית תמהיל משכנתא מותאם אישית המשלב מסלולים שונים: קבועה, משתנה, פריים.',
+            time: '3-5 ימים'
+          },
+          {
+            step: '5',
+            title: 'ליווי בחתימה ובדיקת מסמכים',
+            desc: 'בדיקת כל מסמכי ההלוואה לפני החתימה. נוכחות (פיזית או טלפונית) בחתימה לוודא שהכל תקין.',
+            time: 'יום החתימה'
+          },
         ].map((item) => (
-          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
-            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
-            <p class="text-gray-600 text-sm">{item.desc}</p>
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border flex gap-4">
+            <div class="w-10 h-10 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
+              {item.step}
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-dark mb-1">{item.title}</h3>
+              <p class="text-gray-600 text-sm mb-2">{item.desc}</p>
+              <span class="text-xs text-brand-600 font-medium">זמן משוער: {item.time}</span>
+            </div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">למי מתאים ייעוץ משכנתא?</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {[
+          {
+            title: 'רוכשי דירה ראשונה',
+            desc: 'זוגות צעירים או רווקים שקונים דירה לראשונה ורוצים להבין את התהליך ולהימנע מטעויות יקרות.',
+            link: '/services/young-couples/'
+          },
+          {
+            title: 'משפרי דיור',
+            desc: 'מי שמוכרים דירה קיימת וקונים גדולה יותר. תיאום בין מכירה לרכישה והתאמת המשכנתא.',
+            link: null
+          },
+          {
+            title: 'משקיעים בנדל"ן',
+            desc: 'רוכשי דירה שנייה להשקעה. הון עצמי של 50% ותנאי מימון שונים מדירה ראשונה.',
+            link: null
+          },
+        ].map((item) => (
+          <div class="bg-surface p-6 rounded-xl">
+            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm mb-3">{item.desc}</p>
+            {item.link && (
+              <a href={item.link} class="text-brand-600 text-sm font-medium hover:underline">
+                למידע נוסף ←
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">עלות הייעוץ וכדאיות</h2>
+      <div class="bg-white p-8 rounded-xl shadow-sm border border-border">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="font-bold text-dark mb-4">עלות השירות</h3>
+            <p class="text-gray-600 mb-4">
+              עלות ייעוץ משכנתא נעה בין <strong>3,000 ל-8,000 ש"ח</strong>, תלוי במורכבות העסקה (עצמאים, מסורבים, נכסים מורכבים).
+            </p>
+            <p class="text-gray-600">
+              התשלום מתבצע רק לאחר קבלת אישור עקרוני מהבנק - לא משלמים על שירות שלא הצליח.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-bold text-dark mb-4">החיסכון הצפוי</h3>
+            <p class="text-gray-600 mb-4">
+              הפחתה ממוצעת של <strong>0.3%-0.5%</strong> בריבית. על משכנתא של 1.5 מיליון ש"ח ל-25 שנה:
+            </p>
+            <ul class="text-gray-600 space-y-1">
+              <li>• הפרש של 0.3% = חיסכון של כ-70,000 ש"ח</li>
+              <li>• הפרש של 0.5% = חיסכון של כ-115,000 ש"ח</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <FAQ items={faqItems} title="שאלות נפוצות על ייעוץ משכנתא" />
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">שירותים נוספים</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <a href="/services/mortgage-refinance/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">מחזור משכנתא</h3>
+          <p class="text-gray-600 text-sm">יש לכם כבר משכנתא? אולי כדאי לבדוק אם אפשר לשפר את התנאים.</p>
+        </a>
+        <a href="/services/young-couples/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">משכנתא לזוגות צעירים</h3>
+          <p class="text-gray-600 text-sm">הטבות ומענקים מיוחדים לרוכשי דירה ראשונה.</p>
+        </a>
+        <a href="/services/declined-applicants/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">משכנתא למסורבים</h3>
+          <p class="text-gray-600 text-sm">סורבתם בבנק? יש פתרונות שאתם לא מכירים.</p>
+        </a>
+        <a href="/services/financial-planning/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">ייעוץ פיננסי</h3>
+          <p class="text-gray-600 text-sm">לא בטוחים שאתם מוכנים למשכנתא? בואו נבדוק יחד.</p>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <CTASection />
 </BaseLayout>

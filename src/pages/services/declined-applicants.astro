@@ -13,22 +13,88 @@ const breadcrumbs = [
 const faqItems = [
   {
     question: 'סורבתי בבנק אחד, האם יש סיכוי במקום אחר?',
-    answer: 'בהחלט. לכל בנק קריטריונים שונים. סירוב בבנק אחד לא אומר שלא תקבלו משכנתא בכלל.',
+    answer: 'בהחלט. לכל בנק קריטריונים שונים לאישור משכנתאות. בנק לאומי למשל נחשב שמרני יותר, בעוד מזרחי-טפחות גמיש יותר בנושא עצמאים. כ-60% מהמסורבים מקבלים אישור בבנק אחר או לאחר שיפור התנאים.',
   },
   {
-    question: 'מה הסיבות הנפוצות לסירוב?',
-    answer: 'יכולת החזר לא מספקת, היסטוריית אשראי בעייתית, או בעיות עם הנכס עצמו.',
+    question: 'מה הסיבות הנפוצות לסירוב משכנתא?',
+    answer: 'הסיבות העיקריות: יחס החזר גבוה מ-40% (45% מהמקרים), דירוג BDI נמוך או בעיות אשראי (25%), הון עצמי לא מספיק (15%), ותעסוקה לא יציבה (15%). לפעמים הסיבה היא שילוב של גורמים.',
   },
   {
-    question: 'איך אפשר לשפר את הסיכויים?',
-    answer: 'הגדלת הון עצמי, הוספת ערבים, שיפור יחס החזר להכנסה, או הסדרת חובות קיימים.',
+    question: 'כמה זמן לוקח לתקן דירוג אשראי?',
+    answer: 'תיקון דירוג BDI לוקח 3-12 חודשים תלוי בחומרת הבעיה. סגירת חובות פעילים משפיעה תוך 1-3 חודשים. מחיקת רישום שלילי לאחר תשלום מלא אורכת 6-12 חודשים. נבנה לכם תוכנית שיקום מותאמת.',
+  },
+  {
+    question: 'האם ערבים יכולים לעזור?',
+    answer: 'כן, צירוף ערבים יכול לפתור בעיית יחס החזר או הכנסה לא יציבה. ערבים צריכים להיות בני משפחה מדרגה ראשונה, עם הכנסה יציבה ודירוג אשראי תקין. לא כל הבנקים מקבלים ערבים, ויש מגבלות על גיל הערבים.',
+  },
+  {
+    question: 'מה לגבי משכנתא עם הון עצמי גבוה יותר?',
+    answer: 'הגדלת ההון העצמי מ-25% ל-35% או יותר יכולה להפוך את הבקשה לכדאית יותר עבור הבנק. זה מקטין את הסיכון עבורם ומגדיל את הסיכויים לאישור, גם אם יש בעיות אחרות בתיק.',
+  },
+  {
+    question: 'האם יש בנקים שמתמחים במסורבים?',
+    answer: 'אין בנק שמתמחה רשמית במסורבים, אך יש בנקים גמישים יותר. מזרחי-טפחות ודיסקונט נחשבים פתוחים יותר לעצמאים, וחלק מהבנקים גמישים יותר בנושא דירוג אשראי. ההבדלים יכולים להיות משמעותיים.',
+  },
+];
+
+const declineReasons = [
+  {
+    title: 'יחס החזר גבוה',
+    percent: '45%',
+    desc: 'ההחזר החודשי עולה על 40% מההכנסה נטו',
+    solution: 'הגדלת הון עצמי, הארכת תקופה, צירוף ערבים',
+    icon: '📊',
+  },
+  {
+    title: 'דירוג אשראי נמוך',
+    percent: '25%',
+    desc: 'BDI נמוך, חובות פעילים, או היסטוריית אי-תשלומים',
+    solution: 'תוכנית שיקום אשראי, סגירת חובות, המתנה',
+    icon: '📉',
+  },
+  {
+    title: 'הון עצמי לא מספיק',
+    percent: '15%',
+    desc: 'פחות מ-25% מערך הנכס או מקור לא ברור',
+    solution: 'גיוס הון נוסף, מתנות מהורים, הלוואה משלימה',
+    icon: '💰',
+  },
+  {
+    title: 'תעסוקה לא יציבה',
+    percent: '15%',
+    desc: 'פחות מ-6 חודשי ותק, עצמאים חדשים, הכנסה משתנה',
+    solution: 'המתנה לותק, צירוף בן/בת זוג, הצגת חוזים',
+    icon: '💼',
+  },
+];
+
+const solutions = [
+  {
+    title: 'ניתוח סיבת הסירוב',
+    desc: 'מקבלים מהבנק את הסיבה המדויקת ומנתחים את התיק לעומק',
+    icon: '🔍',
+  },
+  {
+    title: 'תוכנית שיפור מותאמת',
+    desc: 'בונים תוכנית פעולה: סגירת חובות, שיפור יחסים, גיוס הון',
+    icon: '📋',
+  },
+  {
+    title: 'פנייה לבנקים אלטרנטיביים',
+    desc: 'מגישים בקשה לבנקים עם קריטריונים מתאימים יותר',
+    icon: '🏦',
+  },
+  {
+    title: 'פתרונות יצירתיים',
+    desc: 'ערבים, הלוואות משלימות, שינוי מבנה העסקה',
+    icon: '💡',
   },
 ];
 ---
 
 <BaseLayout
-  title="משכנתא למסורבים | יועץ משכנתאות"
-  description="פתרונות יצירתיים ללקוחות שנתקלו בסירוב בבנקים - שיפור תנאי הזכאות ומציאת דרכים חלופיות למימון."
+  title="משכנתא למסורבים 2026 | 60% מקבלים אישור בניסיון שני"
+  description="סורבתם בבנק? לא נורא. ניתוח הסיבה, תוכנית שיפור, ופנייה לבנק המתאים. 60% מהמסורבים מצליחים בסוף."
 >
   <Breadcrumbs items={breadcrumbs} />
 
@@ -36,7 +102,7 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-3xl md:text-4xl font-bold mb-4">משכנתא למסורבים</h1>
       <p class="text-lg text-brand-100 max-w-2xl mx-auto">
-        סירוב בבנק אחד לא סוף הדרך. נמצא יחד את הפתרון המתאים עבורכם.
+        סירוב בבנק אחד לא סוף הדרך. עם הגישה הנכונה, רוב המסורבים מקבלים משכנתא בסופו של דבר.
       </p>
     </div>
   </section>
@@ -45,30 +111,188 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4">
       <div class="prose prose-lg max-w-none text-gray-700">
         <p>
-          רבים חווים סירוב למשכנתא ומרגישים שהחלום התרסק. אך לעתים קרובות, יש פתרונות שפשוט לא ידעתם עליהם.
+          קיבלתם סירוב למשכנתא? אתם לא לבד. <strong>כ-20% מהפונים למשכנתא נדחים בניסיון הראשון</strong>, אבל הנתון החשוב הוא אחר: כ-60% מהמסורבים מקבלים אישור בניסיון שני, לאחר עבודה נכונה על התיק.
         </p>
         <p>
-          תיאור מפורט של השירות למסורבים יתווסף כאן - כולל הסבר על הגישה, פתרונות אפשריים, ותהליך העבודה.
+          סירוב הוא הזדמנות להבין מה צריך לשפר. בניגוד למה שרבים חושבים, הבנקים לא "רודפים" אותכם - הם פשוט עובדים לפי קריטריונים. כשמבינים את הקריטריונים, אפשר לעבוד עליהם.
+        </p>
+
+        <h2>למה הבנק סירב?</h2>
+        <p>
+          הצעד הראשון הוא להבין את הסיבה המדויקת. הבנק חייב לתת לכם הסבר בכתב לסירוב. הסיבות הנפוצות מתחלקות ל-4 קטגוריות:
         </p>
       </div>
     </div>
   </section>
 
+  <!-- Decline Reasons -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">סיבות נפוצות לסירוב משכנתא</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {declineReasons.map((reason) => (
+          <div class="bg-white p-6 rounded-xl border border-border">
+            <div class="flex items-start gap-4">
+              <div class="text-3xl">{reason.icon}</div>
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <h3 class="font-bold text-dark">{reason.title}</h3>
+                  <span class="text-xs bg-brand-100 text-brand-700 px-2 py-0.5 rounded-full">{reason.percent}</span>
+                </div>
+                <p class="text-gray-600 text-sm mb-2">{reason.desc}</p>
+                <p class="text-accent text-sm"><strong>פתרון:</strong> {reason.solution}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stats -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">הסטטיסטיקה בעדכם</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-surface p-6 rounded-xl border border-border text-center">
+          <p class="text-4xl font-bold text-brand-600 mb-2">60%</p>
+          <p class="text-gray-600">מהמסורבים מקבלים אישור בניסיון שני</p>
+        </div>
+        <div class="bg-surface p-6 rounded-xl border border-border text-center">
+          <p class="text-4xl font-bold text-brand-600 mb-2">7</p>
+          <p class="text-gray-600">בנקים שונים = 7 סיכויים להיבדק</p>
+        </div>
+        <div class="bg-surface p-6 rounded-xl border border-border text-center">
+          <p class="text-4xl font-bold text-brand-600 mb-2">3-6</p>
+          <p class="text-gray-600">חודשים לשיפור דירוג אשראי</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Help -->
   <section class="py-12 md:py-16 bg-surface">
     <div class="max-w-4xl mx-auto px-4">
       <h2 class="text-2xl font-bold text-dark mb-8 text-center">איך אנחנו עוזרים</h2>
       <div class="grid md:grid-cols-2 gap-6">
-        {[
-          { title: 'ניתוח הסירוב', desc: 'הבנת הסיבות האמיתיות לסירוב' },
-          { title: 'שיפור התנאים', desc: 'עבודה על שיפור יכולת ההחזר והביטחונות' },
-          { title: 'בנקים אלטרנטיביים', desc: 'בדיקת אפשרויות בבנקים עם קריטריונים שונים' },
-          { title: 'פתרונות יצירתיים', desc: 'מימון משלים, ערבים, או בטחונות נוספים' },
-        ].map((item) => (
-          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
-            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
-            <p class="text-gray-600 text-sm">{item.desc}</p>
+        {solutions.map((solution, index) => (
+          <div class="bg-white p-6 rounded-xl border border-border">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold shrink-0">
+                {index + 1}
+              </div>
+              <div>
+                <h3 class="font-bold text-dark mb-1">{solution.title}</h3>
+                <p class="text-gray-600 text-sm">{solution.desc}</p>
+              </div>
+            </div>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BDI Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מה זה דירוג BDI ואיך לשפר אותו?</h2>
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          דירוג BDI (Bank of Israel Data) הוא "ציון האשראי" שלכם בישראל. הוא מחושב על פי היסטוריית התשלומים שלכם - הלוואות, כרטיסי אשראי, צ'קים, ועוד.
+        </p>
+        <div class="bg-surface p-6 rounded-xl border border-border my-6">
+          <h3 class="text-lg font-bold text-dark mb-4">טווחי דירוג ומשמעותם:</h3>
+          <ul class="space-y-2 mb-0">
+            <li><strong>700-850 (מעולה)</strong> - אישור קל, תנאים טובים</li>
+            <li><strong>600-699 (טוב)</strong> - אישור סטנדרטי</li>
+            <li><strong>500-599 (בינוני)</strong> - בדיקה מעמיקה, ייתכנו מגבלות</li>
+            <li><strong>מתחת ל-500 (נמוך)</strong> - קושי באישור, דרוש שיפור</li>
+          </ul>
+        </div>
+        <h3>איך לשפר את הדירוג?</h3>
+        <ul>
+          <li><strong>סגרו חובות פעילים</strong> - כל חוב פתוח מוריד את הדירוג</li>
+          <li><strong>שלמו בזמן</strong> - 3-6 חודשים של תשלומים בזמן משפרים משמעותית</li>
+          <li><strong>הקטינו מסגרות אשראי</strong> - מסגרות גבוהות שלא בשימוש פוגעות</li>
+          <li><strong>בדקו דו"ח אשראי</strong> - לפעמים יש טעויות שאפשר לתקן</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Study -->
+  <section class="py-12 md:py-16 bg-brand-50">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מקרה לדוגמה</h2>
+      <div class="bg-white p-8 rounded-xl shadow-sm border border-border">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="font-bold text-dark mb-4 text-lg">המצב ההתחלתי</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li>זוג עם הכנסה משותפת: <strong>22,000 ש"ח</strong></li>
+              <li>סורבו בבנק לאומי</li>
+              <li>סיבה: <strong>יחס החזר 43%</strong></li>
+              <li>הלוואה מבוקשת: <strong>1,000,000 ש"ח</strong></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold text-dark mb-4 text-lg">הפתרון</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li>הגדלנו הון עצמי ב-<strong>50,000 ש"ח</strong></li>
+              <li>הקטנו הלוואה ל-<strong>950,000 ש"ח</strong></li>
+              <li>הארכנו תקופה ל-<strong>30 שנה</strong></li>
+              <li>הגשנו ל-<strong>מזרחי-טפחות</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-8 pt-6 border-t border-border text-center">
+          <p class="text-xl font-bold text-accent">
+            ✓ אושרו תוך שבועיים
+          </p>
+          <p class="text-sm text-gray-500 mt-2">יחס החזר ירד ל-36%, במסגרת הקריטריונים של הבנק</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Need From You -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מה צריך להביא לפגישה?</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-surface p-6 rounded-xl border border-border">
+          <h3 class="font-bold text-dark mb-3">מסמכים על הסירוב</h3>
+          <ul class="text-gray-600 text-sm space-y-1">
+            <li>• מכתב הסירוב מהבנק (אם יש)</li>
+            <li>• פרטי הבקשה המקורית</li>
+            <li>• סכום ותנאים שביקשתם</li>
+          </ul>
+        </div>
+        <div class="bg-surface p-6 rounded-xl border border-border">
+          <h3 class="font-bold text-dark mb-3">מסמכים פיננסיים</h3>
+          <ul class="text-gray-600 text-sm space-y-1">
+            <li>• 3 תלושי שכר אחרונים</li>
+            <li>• דפי חשבון בנק (3 חודשים)</li>
+            <li>• פירוט הלוואות קיימות</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">שירותים קשורים</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href="/services/debt-consolidation/" class="block bg-white p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">איחוד הלוואות</h3>
+          <p class="text-gray-600 text-sm">סגירת חובות ושיפור יחס ההחזר ←</p>
+        </a>
+        <a href="/services/financial-planning/" class="block bg-white p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">ייעוץ פיננסי</h3>
+          <p class="text-gray-600 text-sm">תכנון תקציב ושיפור מצב פיננסי ←</p>
+        </a>
       </div>
     </div>
   </section>

@@ -12,23 +12,107 @@ const breadcrumbs = [
 
 const faqItems = [
   {
-    question: 'מהו איחוד הלוואות?',
-    answer: 'איחוד הלוואות מאפשר לכם לקחת את כל החובות וההלוואות הקיימות ולאחד אותם להלוואה אחת עם ריבית נמוכה יותר.',
+    question: 'מהו איחוד הלוואות למשכנתא?',
+    answer: 'איחוד הלוואות למשכנתא הוא תהליך שבו לוקחים הלוואות קיימות (צרכניות, כרטיסי אשראי, מינוסים) ומאחדים אותן למשכנתא אחת על הנכס. כך עוברים מריבית של 8-15% לריבית משכנתא של 3-5%.',
   },
   {
-    question: 'האם זה מתאים לי?',
-    answer: 'אם יש לכם מספר הלוואות עם ריביות גבוהות, איחוד הלוואות יכול לחסוך לכם כסף רב ולהקל על ניהול התקציב.',
+    question: 'כמה אפשר לחסוך באיחוד הלוואות?',
+    answer: 'החיסכון תלוי בסכום החובות ובריביות הקיימות. לדוגמה, חוב של 200,000 ש"ח בריבית 12% עולה 24,000 ש"ח ריבית בשנה. באיחוד למשכנתא בריבית 4% - רק 8,000 ש"ח. חיסכון של 16,000 ש"ח בשנה!',
   },
   {
     question: 'האם צריך נכס לאיחוד הלוואות?',
-    answer: 'לרוב כן, הנכס משמש כבטוחה להלוואה המאוחדת, מה שמאפשר ריבית נמוכה יותר.',
+    answer: 'כן, הנכס משמש כבטוחה להלוואה המאוחדת, וזה מה שמאפשר ריבית נמוכה. צריך שתהיה יתרה פנויה בנכס (שווי הנכס גבוה מהמשכנתא הקיימת) כדי לאחד את ההלוואות עליו.',
+  },
+  {
+    question: 'אילו הלוואות אפשר לאחד?',
+    answer: 'כמעט כל סוגי החובות: הלוואות בנקאיות, הלוואות חוץ-בנקאיות, כרטיסי אשראי (תשלומים), מינוסים בעו"ש, הלוואות לרכב, והלוואות מבני משפחה (לפעמים). לא ניתן לאחד חובות לרשויות (מס, ביטוח לאומי).',
+  },
+  {
+    question: 'מה התנאים לאיחוד הלוואות?',
+    answer: 'התנאים: בעלות על נכס עם יתרה פנויה (LTV עד 70%), הכנסה יציבה להחזר החודשי, ויחס החזר כולל עד 40% מההכנסה נטו. גם עם בעיות אשראי לפעמים אפשר, אם יש מספיק שווי בנכס.',
+  },
+  {
+    question: 'כמה זמן לוקח תהליך איחוד הלוואות?',
+    answer: 'התהליך אורך 4-8 שבועות: בדיקת כדאיות (שבוע), הגשה לבנקים (2-3 שבועות), אישור ושמאות (שבוע-שבועיים), וחתימה וביצוע (שבוע). בסוף התהליך כל החובות נסגרים והופכים להחזר אחד.',
+  },
+];
+
+const debtTypes = [
+  {
+    type: 'הלוואות בנקאיות',
+    rate: '6-10%',
+    canConsolidate: true,
+    icon: '🏦',
+  },
+  {
+    type: 'הלוואות חוץ-בנקאיות',
+    rate: '12-24%',
+    canConsolidate: true,
+    icon: '💳',
+  },
+  {
+    type: 'כרטיסי אשראי',
+    rate: '8-18%',
+    canConsolidate: true,
+    icon: '💳',
+  },
+  {
+    type: 'מינוס בעו"ש',
+    rate: '10-15%',
+    canConsolidate: true,
+    icon: '📊',
+  },
+  {
+    type: 'הלוואות לרכב',
+    rate: '5-12%',
+    canConsolidate: true,
+    icon: '🚗',
+  },
+  {
+    type: 'חובות לרשויות',
+    rate: 'משתנה',
+    canConsolidate: false,
+    icon: '🏛️',
+  },
+];
+
+const benefits = [
+  {
+    title: 'ריבית נמוכה משמעותית',
+    desc: 'מ-8%-15% לריבית משכנתא של 3%-5%',
+    icon: '📉',
+  },
+  {
+    title: 'החזר חודשי אחד',
+    desc: 'במקום לזכור 5-10 תשלומים - תשלום אחד בלבד',
+    icon: '📅',
+  },
+  {
+    title: 'חיסכון של אלפי שקלים',
+    desc: 'חיסכון ממוצע: 1,000-3,000 ש"ח בחודש',
+    icon: '💰',
+  },
+  {
+    title: 'שיפור תזרים המזומנים',
+    desc: 'יותר כסף פנוי כל חודש להוצאות וחיסכון',
+    icon: '📈',
+  },
+  {
+    title: 'יציאה ממעגל החובות',
+    desc: 'סגירת כל החובות ופתיחת דף חדש',
+    icon: '🔄',
+  },
+  {
+    title: 'שיפור דירוג האשראי',
+    desc: 'סגירת חובות משפרת את הדירוג לאורך זמן',
+    icon: '⬆️',
   },
 ];
 ---
 
 <BaseLayout
-  title="איחוד הלוואות | יועץ משכנתאות"
-  description="איחוד כל ההלוואות והחובות למשכנתא אחת עם ריבית נמוכה יותר והחזר חודשי נוח."
+  title="איחוד הלוואות למשכנתא 2026 | מ-12% ל-4% ריבית"
+  description="איחוד הלוואות וחובות למשכנתא אחת - ריבית נמוכה, החזר אחד, וחיסכון של אלפי שקלים בחודש. בדיקת כדאיות חינם."
 >
   <Breadcrumbs items={breadcrumbs} />
 
@@ -36,7 +120,7 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-3xl md:text-4xl font-bold mb-4">איחוד הלוואות</h1>
       <p class="text-lg text-brand-100 max-w-2xl mx-auto">
-        כל החובות וההלוואות להחזר אחד נוח - ריבית נמוכה יותר ושליטה בתקציב.
+        כל החובות וההלוואות להחזר אחד - ריבית נמוכה משמעותית וחיסכון של אלפי שקלים בחודש.
       </p>
     </div>
   </section>
@@ -45,30 +129,192 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4">
       <div class="prose prose-lg max-w-none text-gray-700">
         <p>
-          ריבוי הלוואות וחובות יוצר עומס פיננסי ונפשי. איחוד הלוואות מאפשר לכם לפשט את המצב ולחסוך כסף.
+          ריבוי הלוואות וחובות יוצר עומס כפול: עומס פיננסי (ריביות גבוהות) ועומס נפשי (ניהול מורכב). <strong>איחוד הלוואות למשכנתא מפשט את המצב ויכול לחסוך 30%-50% מעלויות הריבית</strong>.
         </p>
         <p>
-          תיאור מפורט של שירות איחוד הלוואות יתווסף כאן - כולל הסבר על התהליך, יתרונות, ודוגמאות לחיסכון.
+          הרעיון פשוט: הלוואות צרכניות נושאות ריבית של 8%-15%, בעוד ריבית משכנתא היא 3%-5%. כשמאחדים את החובות לנכס, מקבלים את הריבית הנמוכה על כל הסכום.
+        </p>
+
+        <h2>מתי איחוד הלוואות כדאי?</h2>
+        <ul>
+          <li><strong>סכום חובות מעל 100,000 ש"ח</strong> - כדאיות גבוהה יותר</li>
+          <li><strong>ריביות ממוצעות מעל 8%</strong> - פער משמעותי מריבית משכנתא</li>
+          <li><strong>יתרה פנויה בנכס</strong> - שווי הנכס גבוה מהמשכנתא ב-30%+</li>
+          <li><strong>קושי בהחזרים</strong> - צריכים להקטין את ההחזר החודשי</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Example Calculation -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">דוגמת חיסכון - איחוד 200,000 ש"ח חובות</h2>
+      <div class="bg-white p-8 rounded-xl shadow-sm border border-border">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="font-bold text-dark mb-4 text-lg text-red-600">לפני האיחוד</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li>הלוואה בנקאית: <strong>80,000 ש"ח @ 8%</strong></li>
+              <li>הלוואה חוץ-בנקאית: <strong>60,000 ש"ח @ 14%</strong></li>
+              <li>כרטיסי אשראי: <strong>40,000 ש"ח @ 12%</strong></li>
+              <li>מינוס: <strong>20,000 ש"ח @ 13%</strong></li>
+              <li class="pt-2 border-t border-border"><strong>סה"כ החזר חודשי: ~7,500 ש"ח</strong></li>
+              <li><strong>סה"כ ריבית שנתית: ~22,000 ש"ח</strong></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold text-dark mb-4 text-lg text-accent">אחרי האיחוד</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li>משכנתא מאוחדת: <strong>200,000 ש"ח</strong></li>
+              <li>ריבית משכנתא: <strong>4.5%</strong></li>
+              <li>תקופה: <strong>15 שנים</strong></li>
+              <li class="pt-2 border-t border-border"><strong>החזר חודשי: ~1,530 ש"ח</strong></li>
+              <li><strong>ריבית שנתית: ~9,000 ש"ח</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-8 pt-6 border-t border-border text-center">
+          <p class="text-2xl font-bold text-accent">
+            חיסכון: ~6,000 ש"ח בחודש = 72,000 ש"ח בשנה
+          </p>
+          <p class="text-sm text-gray-500 mt-2">* ההחזר נמוך יותר גם בגלל פריסה ארוכה יותר. סה"כ ריבית לאורך החיים תהיה נמוכה יותר.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Debt Types -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">אילו חובות אפשר לאחד?</h2>
+      <div class="grid md:grid-cols-3 gap-4">
+        {debtTypes.map((debt) => (
+          <div class={`p-4 rounded-xl border ${debt.canConsolidate ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">{debt.icon}</span>
+              <div>
+                <h3 class="font-bold text-dark text-sm">{debt.type}</h3>
+                <p class="text-gray-600 text-xs">ריבית: {debt.rate}</p>
+              </div>
+            </div>
+            <p class={`text-xs mt-2 ${debt.canConsolidate ? 'text-green-600' : 'text-red-600'}`}>
+              {debt.canConsolidate ? '✓ ניתן לאחד' : '✗ לא ניתן לאחד'}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">יתרונות איחוד הלוואות</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {benefits.map((benefit) => (
+          <div class="bg-white p-6 rounded-xl border border-border text-center">
+            <div class="text-3xl mb-3">{benefit.icon}</div>
+            <h3 class="font-bold text-dark mb-2">{benefit.title}</h3>
+            <p class="text-gray-600 text-sm">{benefit.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">תנאים לאיחוד הלוואות</h2>
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-surface p-6 rounded-xl border border-border">
+            <h3 class="text-lg font-bold text-dark mb-3">דרישות הנכס</h3>
+            <ul class="text-sm space-y-2 mb-0">
+              <li>בעלות על דירה (או בתהליך רכישה)</li>
+              <li>LTV מקסימלי 70% (שווי המשכנתא/שווי הנכס)</li>
+              <li>יתרה פנויה מספקת לכיסוי החובות</li>
+              <li>הנכס במצב תקין וסחיר</li>
+            </ul>
+          </div>
+          <div class="bg-surface p-6 rounded-xl border border-border">
+            <h3 class="text-lg font-bold text-dark mb-3">דרישות הלווה</h3>
+            <ul class="text-sm space-y-2 mb-0">
+              <li>הכנסה קבועה ויציבה</li>
+              <li>יחס החזר כולל עד 40%</li>
+              <li>ללא הליכי פשיטת רגל פעילים</li>
+              <li>דירוג אשראי סביר (לא חובה מושלם)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- When NOT to consolidate -->
+  <section class="py-12 md:py-16 bg-brand-50">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מתי לא כדאי לאחד הלוואות?</h2>
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <ul>
+          <li><strong>חובות קטנים (מתחת ל-50,000 ש"ח)</strong> - עלויות האיחוד עלולות לבטל את החיסכון</li>
+          <li><strong>ריביות נמוכות כבר</strong> - אם הריבית הממוצעת מתחת ל-6%, הכדאיות נמוכה</li>
+          <li><strong>תוכנית לסלק במהרה</strong> - אם מתכננים לסגור את החובות ב-2-3 שנים</li>
+          <li><strong>אין יתרה פנויה בנכס</strong> - אם ה-LTV כבר גבוה (מעל 70%)</li>
+          <li><strong>בעיות בהכנסה</strong> - אם ההכנסה לא יציבה, עדיף לפתור את זה קודם</li>
+        </ul>
+        <p>
+          <strong>בבדיקת הכדאיות נחשב בדיוק אם האיחוד משתלם</strong> ונציג את כל האלטרנטיבות.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="py-12 md:py-16 bg-surface">
+  <!-- Process -->
+  <section class="py-12 md:py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-dark mb-8 text-center">יתרונות איחוד הלוואות</h2>
-      <div class="grid md:grid-cols-2 gap-6">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">תהליך איחוד הלוואות - 5 שלבים</h2>
+      <div class="space-y-4">
         {[
-          { title: 'ריבית נמוכה יותר', desc: 'ריבית משכנתא נמוכה מריבית הלוואות צרכניות' },
-          { title: 'החזר אחד', desc: 'החזר חודשי אחד במקום מספר תשלומים' },
-          { title: 'שליטה בתקציב', desc: 'קל יותר לנהל את הכסף עם תשלום אחד' },
-          { title: 'חיסכון כספי', desc: 'הפחתה משמעותית בסך התשלומים' },
+          { step: '1', title: 'מיפוי החובות', desc: 'איסוף רשימת כל ההלוואות, הריביות, והיתרות', time: 'פגישה ראשונה' },
+          { step: '2', title: 'בדיקת כדאיות', desc: 'חישוב החיסכון, בדיקת ה-LTV, והשוואת אפשרויות', time: 'שבוע' },
+          { step: '3', title: 'הגשה לבנקים', desc: 'הגשת בקשה לבנקים עם התנאים הטובים ביותר', time: '2-3 שבועות' },
+          { step: '4', title: 'שמאות ואישור', desc: 'שמאות הנכס, אישור סופי מהבנק', time: '1-2 שבועות' },
+          { step: '5', title: 'סגירת החובות', desc: 'חתימה, העברת כספים, וסגירת כל החובות', time: 'שבוע' },
         ].map((item) => (
-          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
-            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
-            <p class="text-gray-600 text-sm">{item.desc}</p>
+          <div class="bg-surface p-6 rounded-xl border border-border">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold shrink-0">
+                {item.step}
+              </div>
+              <div class="flex-1">
+                <div class="flex justify-between items-start">
+                  <h3 class="font-bold text-dark">{item.title}</h3>
+                  <span class="text-xs text-brand-600 font-medium bg-brand-50 px-2 py-1 rounded">{item.time}</span>
+                </div>
+                <p class="text-gray-600 text-sm mt-1">{item.desc}</p>
+              </div>
+            </div>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">שירותים קשורים</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href="/services/mortgage-refinance/" class="block bg-white p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">מחזור משכנתא</h3>
+          <p class="text-gray-600 text-sm">שילוב מחזור עם איחוד הלוואות ←</p>
+        </a>
+        <a href="/services/financial-planning/" class="block bg-white p-6 rounded-xl border border-border hover:border-brand-300 transition-colors">
+          <h3 class="font-bold text-dark mb-2">ייעוץ פיננסי</h3>
+          <p class="text-gray-600 text-sm">תכנון תקציב וניהול חובות ←</p>
+        </a>
       </div>
     </div>
   </section>
