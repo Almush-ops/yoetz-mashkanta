@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'אזורי שירות', href: '/areas/' },
+  { label: 'קריית מוצקין' },
+];
+
+const faqItems = [
+  {
+    question: 'האם אתם מגיעים לקריית מוצקין?',
+    answer: 'כן, אנו מעניקים שירות מלא לתושבי קריית מוצקין. הפגישות יכולות להתקיים במשרד, אצלכם, או בזום.',
+  },
+  {
+    question: 'מה המרחק מהמשרד שלכם?',
+    answer: 'קריית מוצקין נמצאת במרחק נסיעה קצר מהמשרד שלנו בקריית ביאליק.',
+  },
+  {
+    question: 'האם יש הבדל במחירי הנדל"ן?',
+    answer: 'מחירי הנדל"ן בקריות דומים, אך יש שונות בין שכונות. נשמח לעזור לכם להבין את השוק.',
+  },
+];
+---
+
+<BaseLayout
+  title="יועץ משכנתאות בקריית מוצקין | ייעוץ משכנתאות"
+  description="יועץ משכנתאות בקריית מוצקין - ליווי מקצועי ואישי ברכישת דירה ומחזור משכנתא. שירות לתושבי קריית מוצקין והסביבה."
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">יועץ משכנתאות בקריית מוצקין</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        ייעוץ משכנתאות מקצועי לתושבי קריית מוצקין - ליווי אישי בדרך לדירה שלכם.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          קריית מוצקין היא עיר מגורים מבוקשת עם מגוון רחב של דירות ואפשרויות מגורים. אנו מכירים היטב את השוק המקומי ונעזור לכם למצוא את המשכנתא המתאימה.
+        </p>
+        <p>
+          תוכן מפורט על שוק הנדל"ן בקריית מוצקין והשירותים שלנו יתווסף כאן.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">השירותים שלנו בקריית מוצקין</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {[
+          { title: 'משכנתא לדירה חדשה', desc: 'ליווי ברכישת דירה מקבלן או יד שנייה' },
+          { title: 'מחזור משכנתא', desc: 'בדיקת כדאיות וביצוע מחזור' },
+          { title: 'ייעוץ כלכלי', desc: 'תכנון פיננסי לרכישת דירה' },
+          { title: 'משכנתא לזוגות צעירים', desc: 'ניצול הטבות ומענקים' },
+        ].map((item) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות - קריית מוצקין" />
+
+  <CTASection />
+</BaseLayout>

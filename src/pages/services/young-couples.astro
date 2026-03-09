@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'שירותים', href: '/services/' },
+  { label: 'משכנתא לזוגות צעירים' },
+];
+
+const faqItems = [
+  {
+    question: 'מהן ההטבות לזוגות צעירים?',
+    answer: 'ישנן מספר הטבות כגון הלוואות בתנאים מועדפים, פטור ממס רכישה עד סכום מסוים, ומענקים באזורי פריפריה.',
+  },
+  {
+    question: 'כמה הון עצמי צריך לדירה ראשונה?',
+    answer: 'לדירה ראשונה נדרש הון עצמי של לפחות 25% משווי הנכס. ישנם מסלולים שמאפשרים הקטנת אחוז זה.',
+  },
+  {
+    question: 'האם אפשר לקחת משכנתא עם משכורת אחת?',
+    answer: 'כן, אך יכולת ההחזר תהיה מוגבלת יותר. ניתן לשקול ערבים או בטחונות נוספים.',
+  },
+];
+---
+
+<BaseLayout
+  title="משכנתא לזוגות צעירים | יועץ משכנתאות"
+  description="התמחות בליווי זוגות צעירים בדרך לדירה הראשונה - ניצול מענקים, הטבות מס, ובניית תמהיל מותאם לתקציב."
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">משכנתא לזוגות צעירים</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        ליווי מיוחד לזוגות צעירים בדרך לדירה הראשונה - ניצול כל ההטבות והמענקים הזמינים.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          רכישת דירה ראשונה היא אבן דרך משמעותית. כזוגות צעירים, יש לכם גישה להטבות ומענקים ייחודיים שחשוב לנצל נכון.
+        </p>
+        <p>
+          תיאור מפורט של השירות לזוגות צעירים יתווסף כאן - כולל הסבר על הטבות, תהליך העבודה, ומה חשוב לדעת.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">יתרונות לזוגות צעירים</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {[
+          { title: 'הטבות מס', desc: 'פטור ממס רכישה עד לתקרה מסוימת' },
+          { title: 'מענקים', desc: 'בדיקת זכאות למענקים באזורי פריפריה' },
+          { title: 'תנאים מועדפים', desc: 'גישה למסלולי הלוואה בתנאים טובים יותר' },
+          { title: 'תמהיל מותאם', desc: 'בניית תמהיל שמתאים לתקציב ההתחלתי' },
+        ].map((item) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות על משכנתא לזוגות צעירים" />
+
+  <CTASection />
+</BaseLayout>

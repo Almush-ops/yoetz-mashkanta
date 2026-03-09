@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'אזורי שירות', href: '/areas/' },
+  { label: 'חיפה' },
+];
+
+const faqItems = [
+  {
+    question: 'האם אתם מגיעים לפגישות בחיפה?',
+    answer: 'כן, אנו מציעים פגישות בכל רחבי חיפה - בבית הלקוח, בבתי קפה, או בזום לנוחותכם.',
+  },
+  {
+    question: 'מה מיוחד בשוק הנדל"ן בחיפה?',
+    answer: 'חיפה מציעה מגוון אפשרויות מגורים במחירים נגישים יותר מהמרכז, עם איכות חיים גבוהה.',
+  },
+  {
+    question: 'כמה זמן אתם פעילים באזור חיפה?',
+    answer: 'אנו פעילים באזור חיפה והקריות כבר שנים רבות ומכירים היטב את השוק המקומי.',
+  },
+];
+---
+
+<BaseLayout
+  title="יועץ משכנתאות בחיפה | ייעוץ משכנתאות מקצועי"
+  description="יועץ משכנתאות בחיפה - ליווי מקצועי ואישי בכל תהליך המשכנתא. השוואת הצעות מכל הבנקים ובניית תמהיל מותאם."
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">יועץ משכנתאות בחיפה</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        ייעוץ משכנתאות מקצועי לתושבי חיפה והסביבה - ליווי אישי מהשלב הראשון ועד קבלת המפתח.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          חיפה, עיר הקריות והכרמל, מציעה הזדמנויות מגורים מעולות במחירים נגישים יותר מהמרכז. בין אם אתם מחפשים דירה ראשונה או שוקלים מחזור משכנתא, אנחנו כאן לעזור.
+        </p>
+        <p>
+          תוכן מפורט על שוק הנדל"ן בחיפה והשירותים שלנו באזור יתווסף כאן.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">למה לבחור בנו בחיפה?</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {[
+          { title: 'היכרות עם השוק', desc: 'מכירים את שוק הנדל"ן בחיפה לעומק' },
+          { title: 'קשרים מקומיים', desc: 'קשרים טובים עם סניפי הבנקים באזור' },
+          { title: 'פגישות גמישות', desc: 'נפגש איפה שנוח לכם - בית, משרד, או זום' },
+          { title: 'שירות אישי', desc: 'ליווי צמוד לאורך כל התהליך' },
+        ].map((item) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות - חיפה" />
+
+  <CTASection />
+</BaseLayout>

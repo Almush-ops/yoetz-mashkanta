@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'שירותים', href: '/services/' },
+  { label: 'משכנתא למסורבים' },
+];
+
+const faqItems = [
+  {
+    question: 'סורבתי בבנק אחד, האם יש סיכוי במקום אחר?',
+    answer: 'בהחלט. לכל בנק קריטריונים שונים. סירוב בבנק אחד לא אומר שלא תקבלו משכנתא בכלל.',
+  },
+  {
+    question: 'מה הסיבות הנפוצות לסירוב?',
+    answer: 'יכולת החזר לא מספקת, היסטוריית אשראי בעייתית, או בעיות עם הנכס עצמו.',
+  },
+  {
+    question: 'איך אפשר לשפר את הסיכויים?',
+    answer: 'הגדלת הון עצמי, הוספת ערבים, שיפור יחס החזר להכנסה, או הסדרת חובות קיימים.',
+  },
+];
+---
+
+<BaseLayout
+  title="משכנתא למסורבים | יועץ משכנתאות"
+  description="פתרונות יצירתיים ללקוחות שנתקלו בסירוב בבנקים - שיפור תנאי הזכאות ומציאת דרכים חלופיות למימון."
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">משכנתא למסורבים</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        סירוב בבנק אחד לא סוף הדרך. נמצא יחד את הפתרון המתאים עבורכם.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          רבים חווים סירוב למשכנתא ומרגישים שהחלום התרסק. אך לעתים קרובות, יש פתרונות שפשוט לא ידעתם עליהם.
+        </p>
+        <p>
+          תיאור מפורט של השירות למסורבים יתווסף כאן - כולל הסבר על הגישה, פתרונות אפשריים, ותהליך העבודה.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">איך אנחנו עוזרים</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {[
+          { title: 'ניתוח הסירוב', desc: 'הבנת הסיבות האמיתיות לסירוב' },
+          { title: 'שיפור התנאים', desc: 'עבודה על שיפור יכולת ההחזר והביטחונות' },
+          { title: 'בנקים אלטרנטיביים', desc: 'בדיקת אפשרויות בבנקים עם קריטריונים שונים' },
+          { title: 'פתרונות יצירתיים', desc: 'מימון משלים, ערבים, או בטחונות נוספים' },
+        ].map((item) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות על משכנתא למסורבים" />
+
+  <CTASection />
+</BaseLayout>

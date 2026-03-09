@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'שירותים', href: '/services/' },
+  { label: 'מחזור משכנתא' },
+];
+
+const faqItems = [
+  {
+    question: 'מתי כדאי למחזר משכנתא?',
+    answer: 'מחזור משכנתא יכול להיות כדאי כאשר הריביות בשוק ירדו, כאשר השתפרה ההכנסה שלכם, או כאשר רוצים לשנות את מבנה התמהיל.',
+  },
+  {
+    question: 'האם יש עלויות למחזור?',
+    answer: 'ישנן עמלות פירעון מוקדם על חלק מהמסלולים, ועלויות הקמה בבנק החדש. נבדוק עבורכם את הכדאיות הכוללת.',
+  },
+  {
+    question: 'כמה זמן לוקח תהליך מחזור?',
+    answer: 'התהליך אורך בדרך כלל 2-4 שבועות מרגע ההחלטה ועד השלמת המחזור.',
+  },
+];
+---
+
+<BaseLayout
+  title="מחזור משכנתא | יועץ משכנתאות"
+  description="בדיקת כדאיות מחזור משכנתא, השוואת תנאים מול הבנקים, וליווי בתהליך המחזור לחיסכון משמעותי בהחזרים החודשיים."
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">מחזור משכנתא</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        בדיקת כדאיות מחזור וליווי מלא בתהליך - להפחתת ההחזר החודשי וחיסכון לאורך זמן.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          מחזור משכנתא הוא כלי פיננסי חשוב שיכול לחסוך לכם כסף רב. עם שינויי הריבית בשוק, רבים מחזיקים במשכנתא שכבר לא מתאימה להם.
+        </p>
+        <p>
+          תיאור מפורט של שירות מחזור המשכנתא יתווסף כאן - כולל מתי כדאי למחזר, מה התהליך, ומהם היתרונות.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">תהליך המחזור</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {[
+          { title: 'בדיקת כדאיות', desc: 'ניתוח המשכנתא הקיימת מול תנאי השוק' },
+          { title: 'השוואת הצעות', desc: 'קבלת הצעות מחזור מכל הבנקים' },
+          { title: 'חישוב חיסכון', desc: 'הצגת החיסכון הכולל לאורך חיי ההלוואה' },
+          { title: 'ביצוע המחזור', desc: 'ליווי מלא בכל הבירוקרטיה והחתימות' },
+        ].map((item) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות על מחזור משכנתא" />
+
+  <CTASection />
+</BaseLayout>

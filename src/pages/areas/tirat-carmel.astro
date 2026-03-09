@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'אזורי שירות', href: '/areas/' },
+  { label: 'טירת כרמל' },
+];
+
+const faqItems = [
+  {
+    question: 'האם אתם פעילים בטירת כרמל?',
+    answer: 'כן, אנו מעניקים שירות מלא לתושבי טירת כרמל ומגיעים לפגישות בעיר.',
+  },
+  {
+    question: 'מה מיוחד בטירת כרמל?',
+    answer: 'טירת כרמל מציעה מחירי נדל"ן נגישים, נוף לים, ופוטנציאל פיתוח.',
+  },
+  {
+    question: 'האם יש התחדשות עירונית?',
+    answer: 'יש תכניות התחדשות עירונית בטירת כרמל. נשמח לייעץ גם בנושא זה.',
+  },
+];
+---
+
+<BaseLayout
+  title="יועץ משכנתאות בטירת כרמל | ייעוץ משכנתאות"
+  description="יועץ משכנתאות בטירת כרמל - ליווי מקצועי ברכישת דירה ומחזור משכנתא. שירות אישי לתושבי טירת כרמל."
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">יועץ משכנתאות בטירת כרמל</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        ייעוץ משכנתאות מקצועי לתושבי טירת כרמל - ליווי אישי בדרך לדירה.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          טירת כרמל, עיר חוף קטנה ומקסימה, מציעה מחירי נדל"ן נגישים עם קרבה לים ולחיפה. העיר עוברת תהליכי פיתוח והתחדשות.
+        </p>
+        <p>
+          תוכן מפורט על שוק הנדל"ן בטירת כרמל והשירותים שלנו יתווסף כאן.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">למה טירת כרמל?</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {[
+          { title: 'מחירים נגישים', desc: 'מחירי דירות נמוכים יחסית לאזור חיפה' },
+          { title: 'קרבה לים', desc: 'חוף ים במרחק הליכה מרוב השכונות' },
+          { title: 'פוטנציאל', desc: 'פיתוח עירוני ועליית ערך צפויה' },
+          { title: 'קהילה', desc: 'עיר קטנה עם אווירה חמה' },
+        ].map((item) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות - טירת כרמל" />
+
+  <CTASection />
+</BaseLayout>

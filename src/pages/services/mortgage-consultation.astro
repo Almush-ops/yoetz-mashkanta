@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'שירותים', href: '/services/' },
+  { label: 'ייעוץ משכנתא לרכישת דירה' },
+];
+
+const faqItems = [
+  {
+    question: 'כמה זמן לוקח תהליך קבלת משכנתא?',
+    answer: 'התהליך אורך בדרך כלל 3-6 שבועות מרגע הגשת הבקשה ועד קבלת האישור, תלוי במורכבות העסקה ובזמינות המסמכים.',
+  },
+  {
+    question: 'האם אתם עובדים עם כל הבנקים?',
+    answer: 'כן, אנו עובדים מול כל הבנקים בישראל ומשווים הצעות כדי למצוא את התנאים הטובים ביותר עבורכם.',
+  },
+  {
+    question: 'מה צריך להביא לפגישה הראשונה?',
+    answer: 'תלושי שכר (3 אחרונים), אישור יתרות מהבנק, תעודת זהות, ופרטים על הנכס שמעוניינים לרכוש.',
+  },
+];
+---
+
+<BaseLayout
+  title="ייעוץ משכנתא לרכישת דירה | יועץ משכנתאות"
+  description="ליווי מקצועי בכל תהליך קבלת המשכנתא - מבדיקת כדאיות, השוואת הצעות מבנקים, בניית תמהיל אופטימלי ועד חתימת ההסכם."
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">ייעוץ משכנתא לרכישת דירה</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        ליווי מקצועי ואישי מהרגע שהחלטתם לרכוש דירה ועד לחתימה על המשכנתא. נדאג שתקבלו את התנאים הטובים ביותר.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          רכישת דירה היא אחת ההחלטות הכלכליות המשמעותיות בחיים. ייעוץ משכנתא מקצועי יכול לחסוך לכם עשרות ואף מאות אלפי שקלים לאורך חיי ההלוואה.
+        </p>
+        <p>
+          תיאור מפורט של השירות יתווסף כאן - כולל תהליך העבודה, יתרונות הייעוץ, ומה כולל השירות.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">מה כולל השירות?</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {[
+          { title: 'בדיקת כדאיות', desc: 'ניתוח מצב פיננסי והערכת יכולת החזר' },
+          { title: 'השוואת הצעות', desc: 'קבלת הצעות ממספר בנקים והשוואה ביניהן' },
+          { title: 'בניית תמהיל', desc: 'הרכבת תמהיל משכנתא מותאם אישית' },
+          { title: 'ליווי בחתימה', desc: 'נוכחות והדרכה בחתימת ההסכם' },
+        ].map((item) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות על ייעוץ משכנתא" />
+
+  <CTASection />
+</BaseLayout>

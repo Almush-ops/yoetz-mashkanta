@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'שירותים', href: '/services/' },
+  { label: 'משכנתא הפוכה' },
+];
+
+const faqItems = [
+  {
+    question: 'מהי משכנתא הפוכה?',
+    answer: 'משכנתא הפוכה מאפשרת לבעלי נכסים מעל גיל 60 לקבל כסף מהבנק כנגד הנכס, ללא צורך למכור אותו.',
+  },
+  {
+    question: 'האם אני צריך לעזוב את הבית?',
+    answer: 'לא. אתם ממשיכים לגור בבית כרגיל. ההלוואה נפרעת רק כשהנכס נמכר.',
+  },
+  {
+    question: 'כמה כסף אפשר לקבל?',
+    answer: 'הסכום תלוי בגיל, בשווי הנכס, ובתנאי הבנק. בדרך כלל מדובר ב-30%-50% משווי הנכס.',
+  },
+];
+---
+
+<BaseLayout
+  title="משכנתא הפוכה | יועץ משכנתאות"
+  description="ייעוץ למשכנתא הפוכה לגיל הזהב - מימוש ההון בנכס ללא מכירתו, תוך שמירה על רמת חיים גבוהה."
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-br from-brand-900 to-brand-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">משכנתא הפוכה</h1>
+      <p class="text-lg text-brand-100 max-w-2xl mx-auto">
+        מימוש ההון שצברתם בנכס ללא צורך למכור אותו - פתרון לגיל הזהב.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none text-gray-700">
+        <p>
+          משכנתא הפוכה היא כלי פיננסי שמאפשר לבעלי נכסים בגיל מבוגר ליהנות מההון שצברו מבלי לוותר על הבית.
+        </p>
+        <p>
+          תיאור מפורט של משכנתא הפוכה יתווסף כאן - כולל הסבר על התהליך, יתרונות וחסרונות, ולמי זה מתאים.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">יתרונות משכנתא הפוכה</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {[
+          { title: 'ללא מכירת הנכס', desc: 'ממשיכים לגור בבית כרגיל' },
+          { title: 'ללא החזרים חודשיים', desc: 'ההלוואה נפרעת רק בעת מכירת הנכס' },
+          { title: 'שיפור איכות החיים', desc: 'כסף נזיל לכל מטרה' },
+          { title: 'הגנה מפני ירושה', desc: 'אפשרות להבטיח סכום ליורשים' },
+        ].map((item) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות על משכנתא הפוכה" />
+
+  <CTASection />
+</BaseLayout>
