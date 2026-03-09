@@ -1,0 +1,219 @@
+---
+/**
+ * מחשבון כדאיות מחזור משכנתא
+ * השוואה בין תנאי המשכנתא הנוכחית לתנאים חדשים
+ */
+---
+
+<div class="calc-container" dir="rtl">
+  <h3 class="text-lg font-bold text-dark mb-4">משכנתא נוכחית</h3>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+    <div class="calc-field">
+      <label class="calc-label" for="ref-balance">יתרת משכנתא (₪)</label>
+      <input type="text" inputmode="decimal" data-type="money" id="ref-balance" class="calc-input" placeholder="800,000" />
+    </div>
+    <div class="calc-field">
+      <label class="calc-label" for="ref-current-rate">ריבית נוכחית (%)</label>
+      <input type="number" id="ref-current-rate" class="calc-input" placeholder="5.5" min="0.1" max="20" step="0.1" />
+    </div>
+    <div class="calc-field">
+      <label class="calc-label" for="ref-remaining">חודשים שנותרו</label>
+      <input type="number" id="ref-remaining" class="calc-input" placeholder="240" min="1" max="360" />
+    </div>
+    <div class="calc-field">
+      <label class="calc-label" for="ref-penalty">עמלת פירעון מוקדם (%)</label>
+      <input type="number" id="ref-penalty" class="calc-input" placeholder="1" min="0" max="5" step="0.1" value="1" />
+      <span class="text-xs text-gray-500 mt-1 block">בד״כ 0.5%-2%</span>
+    </div>
+  </div>
+
+  <h3 class="text-lg font-bold text-dark mb-4">משכנתא חדשה</h3>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+    <div class="calc-field">
+      <label class="calc-label" for="ref-new-rate">ריבית חדשה (%)</label>
+      <input type="number" id="ref-new-rate" class="calc-input" placeholder="4.0" min="0.1" max="20" step="0.1" />
+    </div>
+    <div class="calc-field">
+      <label class="calc-label" for="ref-new-years">תקופה חדשה (שנים)</label>
+      <input type="number" id="ref-new-years" class="calc-input" placeholder="20" min="1" max="30" />
+    </div>
+  </div>
+
+  <button class="calc-btn" id="ref-calc-btn">בדיקת כדאיות</button>
+
+  <div class="hidden text-sm text-red-600 bg-red-50 p-3 rounded-lg mt-2" id="ref-error" role="alert"></div>
+
+  <div class="calc-result hidden" id="ref-result" aria-live="polite">
+    <div class="text-center mb-4">
+      <div class="calc-result-value" id="ref-savings"></div>
+      <div class="calc-result-label">חיסכון כולל</div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <div class="p-4 bg-white rounded-lg border border-border">
+        <div class="text-sm text-gray-500 mb-1">החזר נוכחי</div>
+        <div class="text-xl font-bold text-dark" id="ref-old-payment"></div>
+      </div>
+      <div class="p-4 bg-white rounded-lg border border-brand-300">
+        <div class="text-sm text-gray-500 mb-1">החזר חדש</div>
+        <div class="text-xl font-bold text-brand-700" id="ref-new-payment"></div>
+      </div>
+    </div>
+
+    <table class="calc-result-table">
+      <tbody>
+        <tr>
+          <td class="font-semibold">הפחתה חודשית</td>
+          <td class="calc-result-accent" id="ref-monthly-save"></td>
+        </tr>
+        <tr>
+          <td class="font-semibold">עלות עמלת פירעון</td>
+          <td id="ref-penalty-cost"></td>
+        </tr>
+        <tr>
+          <td class="font-semibold">חיסכון ריבית ברוטו</td>
+          <td id="ref-gross-save"></td>
+        </tr>
+        <tr>
+          <td class="font-semibold">חיסכון נטו (אחרי עמלה)</td>
+          <td class="calc-result-accent font-bold" id="ref-net-save"></td>
+        </tr>
+        <tr>
+          <td class="font-semibold">זמן החזר עמלה</td>
+          <td id="ref-breakeven"></td>
+        </tr>
+        <tr>
+          <td class="font-semibold">המלצה</td>
+          <td id="ref-recommendation" class="font-semibold"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="calc-disclaimer">
+    חישוב זה הוא הערכה כללית בלבד. בפועל יש לקחת בחשבון עלויות נוספות כגון: שמאות, עו״ד, רישום משכון, וביטוחים. מומלץ להתייעץ עם יועץ משכנתאות לקבלת תמונה מלאה.
+  </div>
+</div>
+
+<script>
+  const refErr = document.getElementById('ref-error');
+
+  function parseNum(val: string): number {
+    return parseFloat(val.replace(/,/g, '')) || 0;
+  }
+
+  function fmtILS(n: number): string {
+    return Math.round(n).toLocaleString('he-IL', { style: 'currency', currency: 'ILS', maximumFractionDigits: 0 });
+  }
+
+  function calcPMT(r: number, n: number, pv: number): number {
+    if (r === 0) return pv / n;
+    return (pv * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  }
+
+  // Format money inputs
+  document.querySelectorAll('[data-type="money"]').forEach(input => {
+    input.addEventListener('input', (e) => {
+      const el = e.target as HTMLInputElement;
+      const val = el.value.replace(/[^\d]/g, '');
+      if (val) {
+        el.value = parseInt(val).toLocaleString('he-IL');
+      }
+    });
+  });
+
+  document.getElementById('ref-calc-btn')?.addEventListener('click', () => {
+    if (refErr) refErr.classList.add('hidden');
+
+    const balance = parseNum((document.getElementById('ref-balance') as HTMLInputElement)?.value || '0');
+    const currentRate = parseFloat((document.getElementById('ref-current-rate') as HTMLInputElement)?.value || '0');
+    const remaining = parseInt((document.getElementById('ref-remaining') as HTMLInputElement)?.value || '0');
+    const penaltyPct = parseFloat((document.getElementById('ref-penalty') as HTMLInputElement)?.value || '0') / 100;
+    const newRate = parseFloat((document.getElementById('ref-new-rate') as HTMLInputElement)?.value || '0');
+    const newYears = parseInt((document.getElementById('ref-new-years') as HTMLInputElement)?.value || '0');
+
+    if (balance <= 0) {
+      if (refErr) { refErr.textContent = 'נא להזין יתרת משכנתא'; refErr.classList.remove('hidden'); }
+      return;
+    }
+    if (currentRate <= 0 || newRate <= 0) {
+      if (refErr) { refErr.textContent = 'נא להזין ריבית נוכחית וחדשה'; refErr.classList.remove('hidden'); }
+      return;
+    }
+    if (remaining <= 0 || newYears <= 0) {
+      if (refErr) { refErr.textContent = 'נא להזין תקופות תקינות'; refErr.classList.remove('hidden'); }
+      return;
+    }
+
+    const rOld = currentRate / 100 / 12;
+    const rNew = newRate / 100 / 12;
+    const newMonths = newYears * 12;
+
+    const oldPayment = calcPMT(rOld, remaining, balance);
+    const newPayment = calcPMT(rNew, newMonths, balance);
+
+    const oldTotalPayment = oldPayment * remaining;
+    const newTotalPayment = newPayment * newMonths;
+    const penalty = balance * penaltyPct;
+
+    const grossSavings = oldTotalPayment - newTotalPayment;
+    const netSavings = grossSavings - penalty;
+    const monthlySave = oldPayment - newPayment;
+
+    // Breakeven calculation
+    let breakeven = '';
+    if (monthlySave > 0 && penalty > 0) {
+      const months = Math.ceil(penalty / monthlySave);
+      breakeven = months > 12 ? `${Math.round(months / 12)} שנים ו-${months % 12} חודשים` : `${months} חודשים`;
+    } else if (penalty === 0) {
+      breakeven = 'מיידי';
+    } else {
+      breakeven = 'לא ניתן לחשב';
+    }
+
+    // Recommendation
+    let recommendation = '';
+    let recClass = '';
+    if (netSavings > 50000 && monthlySave > 300) {
+      recommendation = 'כדאי מאוד! חיסכון משמעותי';
+      recClass = 'text-green-600';
+    } else if (netSavings > 20000) {
+      recommendation = 'כדאי לשקול מחזור';
+      recClass = 'text-brand-600';
+    } else if (netSavings > 0) {
+      recommendation = 'חיסכון קטן - שקלו גורמים נוספים';
+      recClass = 'text-yellow-600';
+    } else {
+      recommendation = 'לא כדאי כרגע';
+      recClass = 'text-red-600';
+    }
+
+    // Update UI
+    const savingsEl = document.getElementById('ref-savings');
+    if (savingsEl) savingsEl.textContent = fmtILS(netSavings);
+
+    const oldPaymentEl = document.getElementById('ref-old-payment');
+    const newPaymentEl = document.getElementById('ref-new-payment');
+    if (oldPaymentEl) oldPaymentEl.textContent = fmtILS(oldPayment);
+    if (newPaymentEl) newPaymentEl.textContent = fmtILS(newPayment);
+
+    const monthlySaveEl = document.getElementById('ref-monthly-save');
+    const penaltyEl = document.getElementById('ref-penalty-cost');
+    const grossEl = document.getElementById('ref-gross-save');
+    const netEl = document.getElementById('ref-net-save');
+    const breakevenEl = document.getElementById('ref-breakeven');
+    const recEl = document.getElementById('ref-recommendation');
+
+    if (monthlySaveEl) monthlySaveEl.textContent = fmtILS(monthlySave);
+    if (penaltyEl) penaltyEl.textContent = fmtILS(penalty);
+    if (grossEl) grossEl.textContent = fmtILS(grossSavings);
+    if (netEl) netEl.textContent = fmtILS(netSavings);
+    if (breakevenEl) breakevenEl.textContent = breakeven;
+    if (recEl) {
+      recEl.textContent = recommendation;
+      recEl.className = `font-semibold ${recClass}`;
+    }
+
+    document.getElementById('ref-result')?.classList.remove('hidden');
+  });
+</script>

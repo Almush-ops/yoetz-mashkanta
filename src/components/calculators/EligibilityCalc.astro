@@ -1,0 +1,191 @@
+---
+/**
+ * מחשבון זכאות משכנתא / יכולת החזר
+ * בדיקת משכנתא מקסימלית לפי הכנסה והון עצמי
+ */
+---
+
+<div class="calc-container" dir="rtl">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div class="calc-field">
+      <label class="calc-label" for="elig-income">הכנסה נטו חודשית (₪)</label>
+      <input type="text" inputmode="decimal" data-type="money" id="elig-income" class="calc-input" placeholder="20,000" />
+      <span class="text-xs text-gray-500 mt-1 block">הכנסה משפחתית כוללת</span>
+    </div>
+    <div class="calc-field">
+      <label class="calc-label" for="elig-obligations">התחייבויות חודשיות (₪)</label>
+      <input type="text" inputmode="decimal" data-type="money" id="elig-obligations" class="calc-input" placeholder="0" value="0" />
+      <span class="text-xs text-gray-500 mt-1 block">הלוואות, אשראי, מזונות</span>
+    </div>
+    <div class="calc-field">
+      <label class="calc-label" for="elig-equity">הון עצמי (₪)</label>
+      <input type="text" inputmode="decimal" data-type="money" id="elig-equity" class="calc-input" placeholder="500,000" />
+    </div>
+    <div class="calc-field">
+      <label class="calc-label" for="elig-type">סוג דירה</label>
+      <select id="elig-type" class="calc-select">
+        <option value="first">דירה ראשונה (75% מימון)</option>
+        <option value="upgrade">דירה חליפית (70% מימון)</option>
+        <option value="investment">דירה להשקעה (50% מימון)</option>
+      </select>
+    </div>
+    <div class="calc-field">
+      <label class="calc-label" for="elig-rate">ריבית צפויה (%)</label>
+      <input type="number" id="elig-rate" class="calc-input" placeholder="4.5" min="1" max="15" step="0.1" value="4.5" />
+    </div>
+    <div class="calc-field">
+      <label class="calc-label" for="elig-years">תקופה (שנים)</label>
+      <input type="number" id="elig-years" class="calc-input" placeholder="25" min="5" max="30" value="25" />
+    </div>
+  </div>
+
+  <button class="calc-btn mt-2" id="elig-calc-btn">חישוב זכאות</button>
+  <div class="hidden text-sm text-red-600 bg-red-50 p-3 rounded-lg mt-2" id="elig-error" role="alert"></div>
+
+  <div class="calc-result hidden" id="elig-result" aria-live="polite">
+    <div class="text-center mb-4">
+      <div class="calc-result-value" id="elig-max-mortgage"></div>
+      <div class="calc-result-label">משכנתא מקסימלית</div>
+    </div>
+
+    <div class="p-4 bg-white rounded-lg border border-brand-300 mb-4">
+      <div class="text-sm text-gray-500 mb-1">שווי דירה מקסימלי</div>
+      <div class="text-2xl font-bold text-brand-700" id="elig-max-price"></div>
+    </div>
+
+    <table class="calc-result-table">
+      <tbody>
+        <tr>
+          <td class="font-semibold">אחוז מימון</td>
+          <td id="elig-ltv"></td>
+        </tr>
+        <tr>
+          <td class="font-semibold">החזר חודשי מקסימלי</td>
+          <td id="elig-max-payment"></td>
+        </tr>
+        <tr>
+          <td class="font-semibold">הכנסה פנויה</td>
+          <td id="elig-free-income"></td>
+        </tr>
+        <tr>
+          <td class="font-semibold">יחס החזר/הכנסה</td>
+          <td id="elig-dti"></td>
+        </tr>
+        <tr>
+          <td class="font-semibold">הון עצמי</td>
+          <td id="elig-equity-display"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="mt-4 p-4 bg-surface rounded-lg" id="elig-limiting-factor">
+      <span class="text-sm font-semibold">גורם מגביל: </span>
+      <span class="text-sm" id="elig-limit-text"></span>
+    </div>
+  </div>
+
+  <div class="calc-disclaimer">
+    לפי הנחיות בנק ישראל: החזר חודשי לא יעלה על 40% מההכנסה הפנויה. אחוזי מימון מקסימליים: דירה ראשונה 75%, דירה חליפית 70%, דירה להשקעה 50%. זהו חישוב ראשוני - האישור הסופי תלוי בגורמים נוספים.
+  </div>
+</div>
+
+<script>
+  const eligErr = document.getElementById('elig-error');
+
+  function parseNum(val: string): number {
+    return parseFloat(val.replace(/,/g, '')) || 0;
+  }
+
+  function fmtILS(n: number): string {
+    return Math.round(n).toLocaleString('he-IL', { style: 'currency', currency: 'ILS', maximumFractionDigits: 0 });
+  }
+
+  const ltvLimits: Record<string, number> = { first: 0.75, upgrade: 0.70, investment: 0.50 };
+  const typeNames: Record<string, string> = { first: 'דירה ראשונה', upgrade: 'דירה חליפית', investment: 'דירה להשקעה' };
+
+  // Format money inputs
+  document.querySelectorAll('[data-type="money"]').forEach(input => {
+    input.addEventListener('input', (e) => {
+      const el = e.target as HTMLInputElement;
+      const val = el.value.replace(/[^\d]/g, '');
+      if (val) {
+        el.value = parseInt(val).toLocaleString('he-IL');
+      }
+    });
+  });
+
+  document.getElementById('elig-calc-btn')?.addEventListener('click', () => {
+    if (eligErr) eligErr.classList.add('hidden');
+
+    const income = parseNum((document.getElementById('elig-income') as HTMLInputElement)?.value || '0');
+    const obligations = parseNum((document.getElementById('elig-obligations') as HTMLInputElement)?.value || '0');
+    const equity = parseNum((document.getElementById('elig-equity') as HTMLInputElement)?.value || '0');
+    const type = (document.getElementById('elig-type') as HTMLSelectElement)?.value || 'first';
+    const rate = parseFloat((document.getElementById('elig-rate') as HTMLInputElement)?.value || '4.5');
+    const years = parseInt((document.getElementById('elig-years') as HTMLInputElement)?.value || '25');
+
+    if (income <= 0) {
+      if (eligErr) { eligErr.textContent = 'נא למלא הכנסה'; eligErr.classList.remove('hidden'); }
+      return;
+    }
+    if (obligations >= income) {
+      if (eligErr) { eligErr.textContent = 'ההתחייבויות שוות או גבוהות מההכנסה — לא ניתן לקחת משכנתא'; eligErr.classList.remove('hidden'); }
+      return;
+    }
+    if (equity <= 0) {
+      if (eligErr) { eligErr.textContent = 'נא למלא הון עצמי'; eligErr.classList.remove('hidden'); }
+      return;
+    }
+
+    const freeIncome = income - obligations;
+    const maxPayment = freeIncome * 0.40;
+    const ltv = ltvLimits[type] || 0.75;
+    const r = rate / 100 / 12;
+    const months = years * 12;
+
+    // Max mortgage from payment capacity
+    let maxMortgageFromPayment: number;
+    if (r === 0) {
+      maxMortgageFromPayment = maxPayment * months;
+    } else {
+      maxMortgageFromPayment = maxPayment * (Math.pow(1 + r, months) - 1) / (r * Math.pow(1 + r, months));
+    }
+
+    // Max mortgage from LTV
+    const maxMortgageFromLTV = equity / (1 - ltv) * ltv;
+
+    // Take the lower
+    const maxMortgage = Math.min(maxMortgageFromPayment, maxMortgageFromLTV);
+    const maxPrice = maxMortgage / ltv;
+    const dti = ((maxPayment / income) * 100).toFixed(0);
+
+    // Determine limiting factor
+    let limitingFactor = '';
+    if (maxMortgageFromPayment < maxMortgageFromLTV) {
+      limitingFactor = 'יכולת ההחזר מגבילה את גובה המשכנתא. הגדלת הכנסה או הקטנת התחייבויות יאפשרו משכנתא גבוהה יותר.';
+    } else {
+      limitingFactor = `ההון העצמי מגביל את גובה המשכנתא. ב${typeNames[type]} ניתן לקבל עד ${ltv * 100}% מימון.`;
+    }
+
+    // Update UI
+    const maxMortgageEl = document.getElementById('elig-max-mortgage');
+    const maxPriceEl = document.getElementById('elig-max-price');
+    const ltvEl = document.getElementById('elig-ltv');
+    const maxPaymentEl = document.getElementById('elig-max-payment');
+    const freeIncomeEl = document.getElementById('elig-free-income');
+    const dtiEl = document.getElementById('elig-dti');
+    const equityEl = document.getElementById('elig-equity-display');
+    const limitEl = document.getElementById('elig-limit-text');
+
+    if (maxMortgageEl) maxMortgageEl.textContent = fmtILS(maxMortgage);
+    if (maxPriceEl) maxPriceEl.textContent = fmtILS(maxPrice);
+    if (ltvEl) ltvEl.textContent = (ltv * 100) + '%';
+    if (maxPaymentEl) maxPaymentEl.textContent = fmtILS(maxPayment);
+    if (freeIncomeEl) freeIncomeEl.textContent = fmtILS(freeIncome);
+    if (dtiEl) dtiEl.textContent = dti + '%';
+    if (equityEl) equityEl.textContent = fmtILS(equity);
+    if (limitEl) limitEl.textContent = limitingFactor;
+
+    document.getElementById('elig-result')?.classList.remove('hidden');
+  });
+</script>

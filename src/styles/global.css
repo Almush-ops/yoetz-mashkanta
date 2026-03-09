@@ -90,6 +90,92 @@
   }
 }
 
+/* Calculator shared styles */
+@layer components {
+  .calc-container {
+    @apply max-w-xl mx-auto;
+  }
+
+  .calc-field {
+    @apply mb-5;
+  }
+
+  .calc-label {
+    @apply block font-semibold text-dark mb-2 text-sm;
+  }
+
+  .calc-input {
+    @apply w-full px-4 py-3 border border-border rounded-lg text-base bg-white
+           focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:border-brand-500
+           transition-all placeholder:text-muted/50;
+  }
+
+  .calc-select {
+    @apply w-full px-4 py-3 border border-border rounded-lg text-base bg-white
+           focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:border-brand-500
+           transition-all appearance-none cursor-pointer;
+  }
+
+  .calc-btn {
+    @apply w-full py-3.5 bg-brand-600 text-white font-semibold rounded-lg
+           hover:bg-brand-700 active:bg-brand-800 transition-all
+           text-lg cursor-pointer shadow-sm hover:shadow-md;
+  }
+
+  .calc-result {
+    @apply mt-6 p-6 rounded-xl border border-brand-200 bg-brand-50;
+  }
+
+  .calc-result-value {
+    @apply text-4xl font-extrabold text-brand-700;
+  }
+
+  .calc-result-label {
+    @apply text-gray-500 mt-1;
+  }
+
+  .calc-result-table {
+    @apply mt-4 w-full text-sm;
+  }
+
+  .calc-result-table th {
+    @apply text-right font-semibold text-dark pb-2 border-b border-border;
+  }
+
+  .calc-result-table td {
+    @apply text-right py-2.5 border-b border-border/50;
+  }
+
+  .calc-disclaimer {
+    @apply mt-6 p-4 bg-surface rounded-lg text-xs text-gray-500 leading-relaxed border border-border/50;
+  }
+
+  .calc-result-accent {
+    @apply text-accent-600 font-bold;
+  }
+
+  /* Amortization table */
+  .amort-table {
+    @apply w-full text-xs border-collapse;
+  }
+
+  .amort-table th {
+    @apply bg-brand-50 text-dark font-semibold px-2 py-2 text-right border-b border-border sticky top-0;
+  }
+
+  .amort-table td {
+    @apply px-2 py-1.5 text-right border-b border-border/30;
+  }
+
+  .amort-table tbody tr:nth-child(even) {
+    @apply bg-surface;
+  }
+
+  .amort-table tbody tr:hover {
+    @apply bg-brand-50/50;
+  }
+}
+
 /* Accessibility features */
 .a11y-grayscale {
   filter: grayscale(100%);

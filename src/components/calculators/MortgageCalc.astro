@@ -1,0 +1,233 @@
+---
+/**
+ * מחשבון משכנתא בסיסי
+ * חישוב החזר חודשי, סה"כ ריבית, ולוח סילוקין
+ */
+interface Props {
+  defaults?: {
+    amount?: string;
+    years?: string;
+    rate?: string;
+  };
+}
+const { defaults = {} } = Astro.props;
+const defaultAmount = defaults.amount || '';
+const defaultYears = defaults.years || '25';
+const defaultRate = defaults.rate || '4.5';
+---
+
+<div class="calc-container" dir="rtl">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div class="calc-field sm:col-span-2">
+      <label class="calc-label" for="mort-amount">סכום משכנתא (₪)</label>
+      <input type="text" inputmode="decimal" data-type="money" id="mort-amount" class="calc-input" placeholder="1,000,000" value={defaultAmount} />
+    </div>
+    <div class="calc-field">
+      <label class="calc-label" for="mort-rate">ריבית שנתית (%)</label>
+      <input type="number" id="mort-rate" class="calc-input" placeholder="4.5" min="0.1" max="20" step="0.1" value={defaultRate} />
+    </div>
+    <div class="calc-field">
+      <label class="calc-label" for="mort-years">תקופה (שנים)</label>
+      <input type="number" id="mort-years" class="calc-input" placeholder="25" min="1" max="30" value={defaultYears} />
+    </div>
+  </div>
+
+  <button class="calc-btn mt-2" id="mort-calc-btn">חישוב משכנתא</button>
+
+  <div class="hidden text-sm text-red-600 bg-red-50 p-3 rounded-lg mt-2" id="mort-error" role="alert"></div>
+
+  <div class="calc-result hidden" id="mort-result" aria-live="polite">
+    <div class="text-center mb-4">
+      <div class="calc-result-value" id="mort-payment"></div>
+      <div class="calc-result-label">החזר חודשי</div>
+    </div>
+
+    <table class="calc-result-table">
+      <tbody>
+        <tr>
+          <td class="font-semibold">סכום הלוואה</td>
+          <td id="mort-r-amount"></td>
+        </tr>
+        <tr>
+          <td class="font-semibold">סה״כ תשלומים</td>
+          <td id="mort-r-total"></td>
+        </tr>
+        <tr>
+          <td class="font-semibold">סה״כ ריבית</td>
+          <td class="calc-result-accent" id="mort-r-interest"></td>
+        </tr>
+        <tr>
+          <td class="font-semibold">יחס ריבית/קרן</td>
+          <td id="mort-r-ratio"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Amortization table -->
+    <div class="mt-6">
+      <button class="text-sm text-brand-600 hover:text-brand-700 font-medium cursor-pointer" id="mort-toggle-amort">
+        הצג לוח סילוקין ▼
+      </button>
+      <div class="hidden mt-3" id="mort-amort-wrap">
+        <div class="flex items-center gap-3 mb-3">
+          <select id="mort-amort-view" class="calc-select text-sm py-2 w-auto">
+            <option value="monthly">חודשי</option>
+            <option value="yearly">שנתי</option>
+          </select>
+        </div>
+        <div class="max-h-72 overflow-y-auto">
+          <table class="amort-table">
+            <thead>
+              <tr>
+                <th id="mort-period-header">חודש</th>
+                <th>תשלום</th>
+                <th>קרן</th>
+                <th>ריבית</th>
+                <th>יתרה</th>
+              </tr>
+            </thead>
+            <tbody id="mort-amort-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="calc-disclaimer">
+    התוצאות הן הערכה בלבד המבוססת על שיטת שפיצר (לוח סילוקין קבוע). התוצאות בפועל עשויות להשתנות בהתאם לתנאי הבנק, סוג הריבית (קבועה/משתנה), והצמדה למדד.
+  </div>
+</div>
+
+<script>
+  const mortErr = document.getElementById('mort-error');
+  let mortAmortData: any[] = [];
+
+  // Parse number with comma support
+  function parseNum(val: string): number {
+    return parseFloat(val.replace(/,/g, '')) || 0;
+  }
+
+  function fmtILS(n: number): string {
+    return Math.round(n).toLocaleString('he-IL', { style: 'currency', currency: 'ILS', maximumFractionDigits: 0 });
+  }
+
+  function buildAmortTable(amount: number, annualRate: number, months: number) {
+    const r = annualRate / 100 / 12;
+    let payment: number;
+    if (r === 0) {
+      payment = amount / months;
+    } else {
+      payment = (amount * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
+    }
+    const rows: any[] = [];
+    let balance = amount;
+    for (let i = 1; i <= months; i++) {
+      const interest = balance * r;
+      const principal = payment - interest;
+      balance -= principal;
+      rows.push({
+        period: i,
+        payment: Math.round(payment),
+        principal: Math.round(principal),
+        interest: Math.round(interest),
+        balance: Math.max(0, Math.round(balance)),
+      });
+    }
+    return { payment, rows };
+  }
+
+  function renderAmort(view: string) {
+    const tbody = document.getElementById('mort-amort-body');
+    const header = document.getElementById('mort-period-header');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    if (view === 'yearly') {
+      if (header) header.textContent = 'שנה';
+      const yearly: any[] = [];
+      for (let i = 0; i < mortAmortData.length; i += 12) {
+        const chunk = mortAmortData.slice(i, i + 12);
+        yearly.push({
+          period: Math.floor(i / 12) + 1,
+          payment: chunk.reduce((s: number, r: any) => s + r.payment, 0),
+          principal: chunk.reduce((s: number, r: any) => s + r.principal, 0),
+          interest: chunk.reduce((s: number, r: any) => s + r.interest, 0),
+          balance: chunk[chunk.length - 1].balance,
+        });
+      }
+      yearly.forEach(r => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${r.period}</td><td>${fmtILS(r.payment)}</td><td>${fmtILS(r.principal)}</td><td>${fmtILS(r.interest)}</td><td>${fmtILS(r.balance)}</td>`;
+        tbody.appendChild(row);
+      });
+    } else {
+      if (header) header.textContent = 'חודש';
+      mortAmortData.forEach(r => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${r.period}</td><td>${fmtILS(r.payment)}</td><td>${fmtILS(r.principal)}</td><td>${fmtILS(r.interest)}</td><td>${fmtILS(r.balance)}</td>`;
+        tbody.appendChild(row);
+      });
+    }
+  }
+
+  // Format money inputs
+  document.querySelectorAll('[data-type="money"]').forEach(input => {
+    input.addEventListener('input', (e) => {
+      const el = e.target as HTMLInputElement;
+      const val = el.value.replace(/[^\d]/g, '');
+      if (val) {
+        el.value = parseInt(val).toLocaleString('he-IL');
+      }
+    });
+  });
+
+  document.getElementById('mort-calc-btn')?.addEventListener('click', () => {
+    if (mortErr) mortErr.classList.add('hidden');
+
+    const amount = parseNum((document.getElementById('mort-amount') as HTMLInputElement)?.value || '0');
+    const rate = parseFloat((document.getElementById('mort-rate') as HTMLInputElement)?.value || '0');
+    const years = parseInt((document.getElementById('mort-years') as HTMLInputElement)?.value || '0');
+
+    if (amount <= 0 || rate <= 0 || years <= 0) {
+      if (mortErr) { mortErr.textContent = 'נא למלא סכום, ריבית ותקופה'; mortErr.classList.remove('hidden'); }
+      return;
+    }
+
+    const months = years * 12;
+    const { payment, rows } = buildAmortTable(amount, rate, months);
+    mortAmortData = rows;
+
+    const totalPayment = payment * months;
+    const totalInterest = totalPayment - amount;
+    const ratio = ((totalInterest / amount) * 100).toFixed(1);
+
+    const paymentEl = document.getElementById('mort-payment');
+    const amountEl = document.getElementById('mort-r-amount');
+    const totalEl = document.getElementById('mort-r-total');
+    const interestEl = document.getElementById('mort-r-interest');
+    const ratioEl = document.getElementById('mort-r-ratio');
+
+    if (paymentEl) paymentEl.textContent = fmtILS(payment);
+    if (amountEl) amountEl.textContent = fmtILS(amount);
+    if (totalEl) totalEl.textContent = fmtILS(totalPayment);
+    if (interestEl) interestEl.textContent = fmtILS(totalInterest);
+    if (ratioEl) ratioEl.textContent = ratio + '%';
+
+    renderAmort('monthly');
+    document.getElementById('mort-result')?.classList.remove('hidden');
+  });
+
+  document.getElementById('mort-toggle-amort')?.addEventListener('click', () => {
+    const wrap = document.getElementById('mort-amort-wrap');
+    const btn = document.getElementById('mort-toggle-amort');
+    if (wrap && btn) {
+      const isHidden = wrap.classList.contains('hidden');
+      wrap.classList.toggle('hidden');
+      btn.textContent = isHidden ? 'הסתר לוח סילוקין ▲' : 'הצג לוח סילוקין ▼';
+    }
+  });
+
+  document.getElementById('mort-amort-view')?.addEventListener('change', (e) => {
+    renderAmort((e.target as HTMLSelectElement).value);
+  });
+</script>
