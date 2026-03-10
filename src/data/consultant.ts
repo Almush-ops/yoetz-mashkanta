@@ -14,7 +14,8 @@ export const consultant = {
     region: 'חיפה',
     country: 'IL',
   },
-  phone: '054-284-8431', // Public phone from HFCA profile
+  phone: '055-432-6608',
+  email: 'info@yoetz-mashkanta.co.il',
   serviceAreas: ['חיפה', 'קריית ביאליק', 'קריית מוצקין', 'קריית אתא', 'נשר', 'טירת כרמל', 'זכרון יעקב'],
   social: {
     facebook: 'https://www.facebook.com/AFC.mortgage/',
