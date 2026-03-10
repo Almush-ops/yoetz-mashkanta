@@ -15,7 +15,7 @@ const breadcrumbs = [
 const serviceSchema = {
   '@type': 'Service',
   name: 'יועץ משכנתאות בטירת כרמל',
-  description: 'ייעוץ משכנתאות מקצועי לתושבי טירת כרמל - ליווי ברכישת דירה, מחזור משכנתא, משכנתא לזוגות צעירים.',
+  description: 'ייעוץ משכנתאות מקצועי לתושבי טירת כרמל - ליווי ברכישת דירה, מחזור משכנתא, משכנתא לזוגות צעירים. מחירי דירות נמוכים וקרבה לים.',
   url: 'https://yoetz-mashkanta.co.il/areas/tirat-carmel/',
   provider: { '@id': 'https://yoetz-mashkanta.co.il/#business' },
   areaServed: { '@type': 'City', name: 'טירת כרמל' },
@@ -24,30 +24,41 @@ const serviceSchema = {
 const faqItems = [
   {
     question: 'כמה עולה דירה ממוצעת בטירת כרמל?',
-    answer: 'מחירי דירות בטירת כרמל הם מהנמוכים באזור חיפה - 900,000-1.4 מיליון ש"ח ל-3-4 חדרים. יש פרויקטים חדשים עם מחירים של 1.2-1.6 מיליון.',
+    answer: 'מחירי דירות בטירת כרמל הם מהנמוכים באזור חיפה - 900,000-1.6 מיליון ש"ח ל-3-4 חדרים, תלוי בשכונה ובמצב הדירה. בפרויקטים החדשים המחירים גבוהים יותר (1.3-1.6 מיליון).',
   },
   {
     question: 'למה המחירים בטירת כרמל נמוכים?',
-    answer: 'טירת כרמל היא עיר קטנה שעוברת תהליכי התחדשות. המחירים הנמוכים יחסית מושכים זוגות צעירים ומשקיעים. יש פוטנציאל משמעותי לעליית ערך.',
+    answer: 'טירת כרמל היא עיר קטנה שעוברת תהליכי התחדשות. המחירים הנמוכים יחסית מושכים זוגות צעירים ומשקיעים. יש פוטנציאל משמעותי לעליית ערך עם התפתחות העיר.',
   },
   {
     question: 'האם יש חוף ים בטירת כרמל?',
-    answer: 'כן, טירת כרמל גובלת בים התיכון עם חופים. הקרבה לים היא יתרון משמעותי לאיכות החיים.',
+    answer: 'כן, טירת כרמל גובלת בים התיכון עם חופים נגישים. הקרבה לים היא יתרון משמעותי לאיכות החיים ומוסיפה ערך לנכסים.',
   },
   {
     question: 'כמה הון עצמי צריך לדירה בטירת כרמל?',
-    answer: 'לדירה ממוצעת (1.1 מיליון ש"ח) תצטרכו כ-275,000 ש"ח הון עצמי (25%). זו אחת נקודות הכניסה הנמוכות ביותר באזור.',
+    answer: 'לדירה ראשונה נדרש 25% הון עצמי. לדירה ממוצעת בטירת כרמל (1.1 מיליון ש"ח) תצטרכו כ-275,000 ש"ח הון עצמי - זו אחת נקודות הכניסה הנמוכות ביותר באזור.',
   },
   {
     question: 'האם יש התחדשות עירונית בטירת כרמל?',
-    answer: 'כן, יש תכניות משמעותיות להתחדשות עירונית ופינוי-בינוי. רוכשים יכולים ליהנות גם ממחירים נמוכים כיום וגם מעליית ערך עתידית.',
+    answer: 'כן, יש תכניות משמעותיות להתחדשות עירונית ופינוי-בינוי בטירת כרמל. רוכשים יכולים ליהנות ממחירים נמוכים כיום ומעליית ערך עתידית.',
   },
+  {
+    question: 'האם אתם מגיעים לפגישות בטירת כרמל?',
+    answer: 'כן, המשרד שלנו בקריית ביאליק נמצא 15 דקות מטירת כרמל. אנו מגיעים גם לפגישות בבית הלקוח או בזום. הפגישה הראשונה ללא עלות.',
+  },
+];
+
+const neighborhoods = [
+  { name: 'מרכז העיר', price: '1.1-1.4M', desc: 'קרבה לשירותים ולמסחר', type: 'כל הגילאים' },
+  { name: 'פרויקטים חדשים', price: '1.3-1.6M', desc: 'בנייה מודרנית, מפרט גבוה', type: 'משפחות צעירות' },
+  { name: 'קרוב לחוף', price: '1.2-1.5M', desc: 'מרחק הליכה לים', type: 'אוהבי ים' },
+  { name: 'שכונות ותיקות', price: '900K-1.2M', desc: 'מחירי כניסה נמוכים במיוחד', type: 'רוכשים ראשונים ומשקיעים' },
 ];
 ---
 
 <BaseLayout
   title="יועץ משכנתאות בטירת כרמל 2026 | מחירים נמוכים | איתי אנצל"
-  description="יועץ משכנתאות בטירת כרמל - ליווי מקצועי ברכישת דירה ומחזור משכנתא. מחירי דירות נמוכים: 900K-1.4M ש״ח. קרבה לים. פגישה ראשונה ללא עלות."
+  description="יועץ משכנתאות בטירת כרמל - ליווי מקצועי ברכישת דירה ומחזור משכנתא. מחירי דירות נמוכים: 900K-1.6M ש״ח. קרבה לים. 169 לקוחות מרוצים. פגישה ראשונה ללא עלות."
 >
   <SchemaOrg slot="schema" schema={[serviceSchema, personSchema, localBusinessSchema]} />
   <Breadcrumbs items={breadcrumbs} />
@@ -56,15 +67,22 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-3xl md:text-4xl font-bold mb-4">יועץ משכנתאות בטירת כרמל</h1>
       <p class="text-lg text-brand-100 max-w-2xl mx-auto">
-        ייעוץ משכנתאות מקצועי לתושבי טירת כרמל - מחירי דירות נמוכים, קרבה לים, ופוטנציאל עליית ערך.
+        ייעוץ משכנתאות מקצועי לתושבי טירת כרמל והסביבה - מחירי דירות נמוכים, קרבה לים, פוטנציאל עליית ערך, וליווי אישי מהשלב הראשון ועד קבלת המפתח.
       </p>
+      <!-- E-E-A-T Trust Badges -->
       <div class="flex flex-wrap justify-center gap-4 mt-6">
         <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
           {trustBadges.rating}
         </span>
         <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
           {trustBadges.clients}
         </span>
+        <a href={consultant.hfcaUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          {trustBadges.hfca}
+        </a>
       </div>
     </div>
   </section>
@@ -73,44 +91,80 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4">
       <div class="prose prose-lg max-w-none text-gray-700">
         <p>
-          <strong>טירת כרמל מציעה את מחירי הדירות הנמוכים ביותר באזור חיפה</strong> - הזדמנות מצוינת לרוכשים ראשונים ולמשקיעים. העיר גובלת בים, עוברת תהליכי התחדשות, ויש פוטנציאל משמעותי לעליית ערך.
+          <strong>טירת כרמל מציעה את מחירי הדירות הנמוכים ביותר באזור חיפה</strong> - הזדמנות מצוינת לרוכשים ראשונים ולמשקיעים. העיר גובלת בים, עוברת תהליכי התחדשות משמעותיים, ויש פוטנציאל ממשי לעליית ערך בשנים הקרובות.
         </p>
         <p>
-          אני מלווה זוגות צעירים ומשפחות מטירת כרמל ברכישת הדירה הראשונה. המחירים הנגישים מאפשרים כניסה לשוק הדיור עם הון עצמי נמוך יחסית.
+          אני מלווה זוגות צעירים ומשפחות מטירת כרמל ברכישת דירה ראשונה ובמחזור משכנתא. המחירים הנגישים מאפשרים כניסה לשוק הדיור עם הון עצמי נמוך יחסית - יתרון משמעותי לרוכשים ראשונים.
         </p>
 
-        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מחירי דירות בטירת כרמל 2026</h2>
-        <div class="bg-surface p-6 rounded-xl not-prose">
-          <div class="grid md:grid-cols-2 gap-4">
-            <div class="bg-white p-4 rounded-lg border border-border">
-              <h4 class="font-bold text-dark">דירות קיימות</h4>
-              <p class="text-brand-600 font-bold">900K-1.2M ש"ח</p>
-              <p class="text-sm text-gray-600">הון עצמי: 225,000-300,000 ש"ח</p>
-            </div>
-            <div class="bg-white p-4 rounded-lg border border-border">
-              <h4 class="font-bold text-dark">פרויקטים חדשים</h4>
-              <p class="text-brand-600 font-bold">1.2-1.6M ש"ח</p>
-              <p class="text-sm text-gray-600">בנייה מודרנית, מפרט גבוה</p>
-            </div>
-          </div>
-        </div>
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מחירי דירות בטירת כרמל 2026 - לפי שכונות</h2>
+        <p>
+          שוק הנדל"ן בטירת כרמל מגוון - ממחירי כניסה של 900,000 ש"ח בשכונות הוותיקות ועד 1.6 מיליון בפרויקטים החדשים. הנה סקירה של השכונות העיקריות:
+        </p>
       </div>
     </div>
   </section>
 
+  <!-- Neighborhoods Table -->
   <section class="py-12 md:py-16 bg-surface">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-dark mb-8 text-center">למה לקנות בטירת כרמל?</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">שכונות בטירת כרמל - מחירים וקהל יעד</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        {neighborhoods.map((n) => (
+          <div class="bg-white p-5 rounded-xl border border-border">
+            <h3 class="font-bold text-dark text-lg mb-2">{n.name}</h3>
+            <p class="text-brand-600 font-bold mb-2">{n.price} ש"ח</p>
+            <p class="text-gray-600 text-sm mb-2">{n.desc}</p>
+            <span class="inline-block text-xs bg-brand-50 text-brand-700 px-2 py-1 rounded">{n.type}</span>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-gray-500 text-center mt-4">* המחירים הם אומדן לדירות 3-4 חדרים, מרץ 2026</p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">השירותים שלנו לתושבי טירת כרמל</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href="/services/young-couples/" class="block bg-surface p-6 rounded-xl hover:shadow-md transition-shadow border border-border hover:border-brand-300">
+          <h3 class="font-bold text-dark mb-2">משכנתא לזוגות צעירים</h3>
+          <p class="text-gray-600 text-sm mb-3">טירת כרמל אידיאלית לרוכשים ראשונים - מחירים נמוכים + פטור ממס רכישה + מענקים.</p>
+          <span class="text-brand-600 text-sm font-medium">למידע נוסף ←</span>
+        </a>
+        <a href="/services/mortgage-consultation/" class="block bg-surface p-6 rounded-xl hover:shadow-md transition-shadow border border-border hover:border-brand-300">
+          <h3 class="font-bold text-dark mb-2">ייעוץ משכנתא לרכישת דירה</h3>
+          <p class="text-gray-600 text-sm mb-3">ליווי מלא ברכישת דירה - השוואת 7 בנקים, בניית תמהיל, וליווי עד החתימה.</p>
+          <span class="text-brand-600 text-sm font-medium">למידע נוסף ←</span>
+        </a>
+        <a href="/services/mortgage-refinance/" class="block bg-surface p-6 rounded-xl hover:shadow-md transition-shadow border border-border hover:border-brand-300">
+          <h3 class="font-bold text-dark mb-2">מחזור משכנתא</h3>
+          <p class="text-gray-600 text-sm mb-3">יש לכם משכנתא קיימת? בדיקת כדאיות מחזור ללא עלות. חיסכון ממוצע: 50,000-150,000 ש"ח.</p>
+          <span class="text-brand-600 text-sm font-medium">למידע נוסף ←</span>
+        </a>
+        <a href="/services/declined-applicants/" class="block bg-surface p-6 rounded-xl hover:shadow-md transition-shadow border border-border hover:border-brand-300">
+          <h3 class="font-bold text-dark mb-2">משכנתא למסורבים</h3>
+          <p class="text-gray-600 text-sm mb-3">סורבתם בבנק? 60% מהמסורבים מקבלים אישור בניסיון שני עם הכנה נכונה.</p>
+          <span class="text-brand-600 text-sm font-medium">למידע נוסף ←</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us / Benefits -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">למה לקנות דירה בטירת כרמל?</h2>
+      <div class="grid md:grid-cols-2 gap-6">
         {[
-          { icon: '💰', title: 'מחירים נמוכים', desc: 'נקודת כניסה נגישה לשוק' },
-          { icon: '🏖️', title: 'קרבה לים', desc: 'חוף ים במרחק הליכה' },
-          { icon: '📈', title: 'פוטנציאל', desc: 'עליית ערך צפויה' },
-          { icon: '🏗️', title: 'התחדשות', desc: 'פרויקטים חדשים' },
+          { title: 'מחירים הנמוכים ביותר', desc: 'נקודת כניסה נגישה לשוק הנדל"ן - מחירים נמוכים ב-30-40% מחיפה.' },
+          { title: 'קרבה לים', desc: 'חוף ים במרחק הליכה או נסיעה קצרה - איכות חיים גבוהה.' },
+          { title: 'פוטנציאל עליית ערך', desc: 'תהליכי התחדשות עירונית ופינוי-בינוי - צפי לעליית מחירים.' },
+          { title: 'הון עצמי נמוך', desc: 'כניסה לשוק עם 225,000-350,000 ש"ח הון עצמי בלבד.' },
         ].map((item) => (
-          <div class="bg-white p-4 rounded-xl border border-border text-center">
-            <span class="text-2xl">{item.icon}</span>
-            <h3 class="font-bold text-dark mt-2">{item.title}</h3>
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
             <p class="text-gray-600 text-sm">{item.desc}</p>
           </div>
         ))}
@@ -118,34 +172,46 @@ const faqItems = [
     </div>
   </section>
 
+  <!-- Related Guides -->
   <section class="py-12 md:py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-dark mb-8 text-center">השירותים שלנו</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <a href="/services/young-couples/" class="block bg-surface p-6 rounded-xl hover:shadow-md border border-border">
-          <h3 class="font-bold text-dark mb-2">משכנתא לזוגות צעירים</h3>
-          <p class="text-gray-600 text-sm">טירת כרמל אידיאלית לרוכשים ראשונים - מחירים + הטבות.</p>
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מדריכים רלוונטיים</h2>
+      <div class="grid md:grid-cols-3 gap-4">
+        <a href="/guides/first-apartment/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">משכנתא לדירה ראשונה</h3>
+          <p class="text-gray-600 text-sm">שלב אחר שלב - מהחיפוש ועד המפתח</p>
         </a>
-        <a href="/services/mortgage-consultation/" class="block bg-surface p-6 rounded-xl hover:shadow-md border border-border">
-          <h3 class="font-bold text-dark mb-2">ייעוץ משכנתא</h3>
-          <p class="text-gray-600 text-sm">השוואת 7 בנקים, בניית תמהיל, וליווי עד החתימה.</p>
+        <a href="/guides/down-payment/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">הון עצמי למשכנתא</h3>
+          <p class="text-gray-600 text-sm">כמה צריך ומאיפה אפשר לגייס?</p>
+        </a>
+        <a href="/guides/young-couples/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">משכנתא לזוגות צעירים</h3>
+          <p class="text-gray-600 text-sm">פטור ממס, מענקים, הון עצמי נדרש</p>
         </a>
       </div>
     </div>
   </section>
 
+  <!-- Other Areas -->
   <section class="py-12 md:py-16 bg-surface">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-dark mb-6 text-center">אזורים נוספים</h2>
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">אזורים נוספים באזור חיפה</h2>
       <div class="flex flex-wrap justify-center gap-3">
-        <a href="/areas/haifa/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">חיפה</a>
-        <a href="/areas/nesher/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">נשר</a>
-        <a href="/areas/kiryat-ata/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">קריית אתא</a>
+        <a href="/areas/haifa/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">חיפה</a>
+        <a href="/areas/kiryat-bialik/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">קריית ביאליק</a>
+        <a href="/areas/kiryat-motzkin/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">קריית מוצקין</a>
+        <a href="/areas/kiryat-ata/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">קריית אתא</a>
+        <a href="/areas/nesher/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">נשר</a>
+        <a href="/areas/zichron-yaakov/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">זכרון יעקב</a>
       </div>
     </div>
   </section>
 
-  <FAQ items={faqItems} title="שאלות נפוצות - טירת כרמל" />
+  <FAQ items={faqItems} title="שאלות נפוצות - משכנתא בטירת כרמל" />
 
-  <CTASection />
+  <CTASection
+    title="מחפשים יועץ משכנתאות בטירת כרמל?"
+    subtitle="השאירו פרטים וקבלו ייעוץ ראשוני ללא עלות"
+  />
 </BaseLayout>

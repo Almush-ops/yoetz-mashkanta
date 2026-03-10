@@ -15,7 +15,7 @@ const breadcrumbs = [
 const serviceSchema = {
   '@type': 'Service',
   name: 'יועץ משכנתאות בקריית מוצקין',
-  description: 'ייעוץ משכנתאות מקצועי לתושבי קריית מוצקין - ליווי ברכישת דירה, מחזור משכנתא, משכנתא לזוגות צעירים.',
+  description: 'ייעוץ משכנתאות מקצועי לתושבי קריית מוצקין - ליווי ברכישת דירה, מחזור משכנתא, משכנתא לזוגות צעירים. עיר איכותית עם תחנת רכבת ובתי ספר מצוינים.',
   url: 'https://yoetz-mashkanta.co.il/areas/kiryat-motzkin/',
   provider: { '@id': 'https://yoetz-mashkanta.co.il/#business' },
   areaServed: { '@type': 'City', name: 'קריית מוצקין' },
@@ -24,15 +24,15 @@ const serviceSchema = {
 const faqItems = [
   {
     question: 'כמה עולה דירה ממוצעת בקריית מוצקין?',
-    answer: 'מחירי דירות בקריית מוצקין נעים בין 1.4-2.0 מיליון ש"ח ל-3-4 חדרים. שכונות מבוקשות כמו הירוקה והמרכז מציעות דירות ב-1.6-2.2 מיליון.',
+    answer: 'מחירי דירות בקריית מוצקין נעים בין 1.4-2.2 מיליון ש"ח ל-3-4 חדרים, תלוי בשכונה. בשכונות המבוקשות כמו הירוקה והמרכז המחירים גבוהים יותר (1.7-2.2 מיליון), בעוד בשכונות הוותיקות אפשר למצוא ב-1.4-1.7 מיליון.',
   },
   {
     question: 'האם אתם מגיעים לפגישות בקריית מוצקין?',
-    answer: 'כן, המשרד שלנו נמצא בקריית ביאליק הסמוכה (5 דקות נסיעה). אנו מגיעים גם לפגישות בבית הלקוח בקריית מוצקין.',
+    answer: 'כן, המשרד שלנו נמצא בקריית ביאליק הסמוכה (5 דקות נסיעה). אנו מגיעים גם לפגישות בבית הלקוח בקריית מוצקין או בזום.',
   },
   {
     question: 'למה כדאי לקנות דירה בקריית מוצקין?',
-    answer: 'קריית מוצקין נחשבת לאחת הערים האיכותיות בקריות - בתי ספר מצוינים, פארקים ושטחים ירוקים, תחנת רכבת, וקרבה לים. המחירים עדיין נגישים יחסית למרכז.',
+    answer: 'קריית מוצקין נחשבת לאחת הערים האיכותיות בקריות - בתי ספר מצוינים, פארקים ושטחים ירוקים, תחנת רכבת מרכזית (קריות), וקרבה לים. המחירים עדיין נגישים יחסית למרכז.',
   },
   {
     question: 'יש תחנת רכבת בקריית מוצקין?',
@@ -40,14 +40,25 @@ const faqItems = [
   },
   {
     question: 'כמה הון עצמי צריך לדירה בקריית מוצקין?',
-    answer: 'לדירה ממוצעת (1.7 מיליון ש"ח) תצטרכו כ-425,000 ש"ח הון עצמי (25%). זוגות צעירים יכולים לקבל מענקים של 40,000-100,000 ש"ח.',
+    answer: 'לדירה ראשונה נדרש 25% הון עצמי. לדירה ממוצעת בקריית מוצקין (1.8 מיליון ש"ח) תצטרכו כ-450,000 ש"ח הון עצמי. זוגות צעירים זכאים יכולים לקבל מענקים של 40,000-100,000 ש"ח.',
   },
+  {
+    question: 'אילו בנקים פעילים באזור קריית מוצקין?',
+    answer: 'כל 7 הבנקים למשכנתאות נגישים לתושבי קריית מוצקין - סניפי הקריות וחיפה של לאומי, הפועלים, מזרחי-טפחות, דיסקונט, הבינלאומי, מרכנתיל ואגוד. יש לנו קשרים טובים עם מנהלי הסניפים.',
+  },
+];
+
+const neighborhoods = [
+  { name: 'הירוקה', price: '1.8-2.2M', desc: 'שכונה חדשה ומבוקשת, פארקים וגנים', type: 'משפחות צעירות' },
+  { name: 'מרכז העיר', price: '1.6-2.0M', desc: 'קרבה לשירותים, תחנת רכבת', type: 'כל הגילאים' },
+  { name: 'גבעת רם', price: '1.7-2.1M', desc: 'נוף יפה, שכונה שקטה', type: 'משפחות מבוססות' },
+  { name: 'שכונות ותיקות', price: '1.4-1.7M', desc: 'בתים צמודי קרקע, מגרשים גדולים', type: 'משפחות ומשקיעים' },
 ];
 ---
 
 <BaseLayout
-  title="יועץ משכנתאות בקריית מוצקין 2026 | ייעוץ משכנתאות מקצועי"
-  description="יועץ משכנתאות בקריית מוצקין - ליווי מקצועי ברכישת דירה ומחזור משכנתא. 169 לקוחות מרוצים, דירוג 9.68. פגישה ראשונה ללא עלות."
+  title="יועץ משכנתאות בקריית מוצקין 2026 | ייעוץ משכנתאות מקצועי | איתי אנצל"
+  description="יועץ משכנתאות בקריית מוצקין - ליווי מקצועי ברכישת דירה, מחזור משכנתא, משכנתא לזוגות צעירים. עיר איכותית עם תחנת רכבת. 169 לקוחות מרוצים, דירוג 9.68. פגישה ראשונה ללא עלות."
 >
   <SchemaOrg slot="schema" schema={[serviceSchema, personSchema, localBusinessSchema]} />
   <Breadcrumbs items={breadcrumbs} />
@@ -56,16 +67,22 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-3xl md:text-4xl font-bold mb-4">יועץ משכנתאות בקריית מוצקין</h1>
       <p class="text-lg text-brand-100 max-w-2xl mx-auto">
-        ייעוץ משכנתאות מקצועי לתושבי קריית מוצקין - היכרות מעמיקה עם שוק הנדל"ן המקומי וליווי אישי מהשלב הראשון.
+        ייעוץ משכנתאות מקצועי לתושבי קריית מוצקין והסביבה - היכרות מעמיקה עם שוק הנדל"ן המקומי, קשרים עם סניפי הבנקים באזור, וליווי אישי מהשלב הראשון ועד קבלת המפתח.
       </p>
+      <!-- E-E-A-T Trust Badges -->
       <div class="flex flex-wrap justify-center gap-4 mt-6">
         <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
           {trustBadges.rating}
         </span>
         <span class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
           {trustBadges.clients}
         </span>
+        <a href={consultant.hfcaUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm text-brand-100 bg-white/10 px-3 py-1.5 rounded-full hover:bg-white/20 transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          {trustBadges.hfca}
+        </a>
       </div>
     </div>
   </section>
@@ -74,68 +91,127 @@ const faqItems = [
     <div class="max-w-4xl mx-auto px-4">
       <div class="prose prose-lg max-w-none text-gray-700">
         <p>
-          <strong>קריית מוצקין נחשבת לאחת הערים האיכותיות ביותר בקריות</strong>, עם אוכלוסייה של כ-45,000 תושבים. העיר מציעה בתי ספר מצוינים, שטחים ירוקים, תחנת רכבת מרכזית, וקרבה לים - הכל במחירים נגישים יחסית למרכז.
+          <strong>קריית מוצקין נחשבת לאחת הערים האיכותיות ביותר בקריות</strong>, עם אוכלוסייה של כ-45,000 תושבים. העיר מציעה בתי ספר מצוינים, שטחים ירוקים רבים, תחנת רכבת מרכזית (קריות), וקרבה לים - הכל במחירים נגישים יחסית למרכז.
         </p>
         <p>
-          המשרד שלנו נמצא בקריית ביאליק הסמוכה (5 דקות נסיעה), ואנחנו מלווים משפחות רבות מקריית מוצקין בתהליך רכישת דירה ומחזור משכנתא.
+          המשרד שלנו נמצא בקריית ביאליק הסמוכה (5 דקות נסיעה), ואנחנו מלווים עשרות משפחות מקריית מוצקין בתהליך רכישת דירה ומחזור משכנתא. ההיכרות שלי עם השוק המקומי מאפשרת לי להביא ללקוחות תנאים טובים יותר.
         </p>
 
-        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מחירי דירות בקריית מוצקין 2026</h2>
-        <div class="bg-surface p-6 rounded-xl not-prose">
-          <div class="grid md:grid-cols-2 gap-4">
-            <div class="bg-white p-4 rounded-lg border border-border">
-              <h4 class="font-bold text-dark">מרכז העיר והירוקה</h4>
-              <p class="text-brand-600 font-bold">1.6-2.2M ש"ח</p>
-              <p class="text-sm text-gray-600">קרבה לשירותים, בנייה חדשה</p>
-            </div>
-            <div class="bg-white p-4 rounded-lg border border-border">
-              <h4 class="font-bold text-dark">שכונות ותיקות</h4>
-              <p class="text-brand-600 font-bold">1.4-1.7M ש"ח</p>
-              <p class="text-sm text-gray-600">בתים צמודי קרקע, מגרשים גדולים</p>
-            </div>
-          </div>
-        </div>
+        <h2 class="text-xl font-bold text-dark mt-8 mb-4">מחירי דירות בקריית מוצקין 2026 - לפי שכונות</h2>
+        <p>
+          שוק הנדל"ן בקריית מוצקין מגוון - ממחירי כניסה של 1.4 מיליון ש"ח בשכונות הוותיקות ועד 2.2 מיליון בשכונות החדשות והמבוקשות. הנה סקירה של השכונות העיקריות:
+        </p>
       </div>
     </div>
   </section>
 
+  <!-- Neighborhoods Table -->
   <section class="py-12 md:py-16 bg-surface">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-dark mb-8 text-center">השירותים שלנו</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <a href="/services/mortgage-consultation/" class="block bg-white p-6 rounded-xl hover:shadow-md transition-shadow border border-border">
-          <h3 class="font-bold text-dark mb-2">ייעוץ משכנתא לרכישת דירה</h3>
-          <p class="text-gray-600 text-sm">השוואת 7 בנקים, בניית תמהיל, וליווי עד החתימה.</p>
-        </a>
-        <a href="/services/mortgage-refinance/" class="block bg-white p-6 rounded-xl hover:shadow-md transition-shadow border border-border">
-          <h3 class="font-bold text-dark mb-2">מחזור משכנתא</h3>
-          <p class="text-gray-600 text-sm">בדיקת כדאיות ללא עלות. חיסכון ממוצע: 50,000-150,000 ש"ח.</p>
-        </a>
-        <a href="/services/young-couples/" class="block bg-white p-6 rounded-xl hover:shadow-md transition-shadow border border-border">
-          <h3 class="font-bold text-dark mb-2">משכנתא לזוגות צעירים</h3>
-          <p class="text-gray-600 text-sm">פטור ממס רכישה ומענקים לזכאים.</p>
-        </a>
-        <a href="/guides/down-payment/" class="block bg-white p-6 rounded-xl hover:shadow-md transition-shadow border border-border">
-          <h3 class="font-bold text-dark mb-2">מדריך: הון עצמי למשכנתא</h3>
-          <p class="text-gray-600 text-sm">כמה צריך ומאיפה אפשר לגייס?</p>
-        </a>
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">שכונות מובילות בקריית מוצקין - מחירים וקהל יעד</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        {neighborhoods.map((n) => (
+          <div class="bg-white p-5 rounded-xl border border-border">
+            <h3 class="font-bold text-dark text-lg mb-2">{n.name}</h3>
+            <p class="text-brand-600 font-bold mb-2">{n.price} ש"ח</p>
+            <p class="text-gray-600 text-sm mb-2">{n.desc}</p>
+            <span class="inline-block text-xs bg-brand-50 text-brand-700 px-2 py-1 rounded">{n.type}</span>
+          </div>
+        ))}
       </div>
+      <p class="text-sm text-gray-500 text-center mt-4">* המחירים הם אומדן לדירות 3-4 חדרים, מרץ 2026</p>
     </div>
   </section>
 
+  <!-- Services -->
   <section class="py-12 md:py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-dark mb-6 text-center">אזורים נוספים</h2>
-      <div class="flex flex-wrap justify-center gap-3">
-        <a href="/areas/haifa/" class="bg-surface px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">חיפה</a>
-        <a href="/areas/kiryat-bialik/" class="bg-surface px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">קריית ביאליק</a>
-        <a href="/areas/kiryat-ata/" class="bg-surface px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">קריית אתא</a>
-        <a href="/areas/nesher/" class="bg-surface px-4 py-2 rounded-lg border border-border hover:border-brand-300 text-sm">נשר</a>
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">השירותים שלנו לתושבי קריית מוצקין</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href="/services/mortgage-consultation/" class="block bg-surface p-6 rounded-xl hover:shadow-md transition-shadow border border-border hover:border-brand-300">
+          <h3 class="font-bold text-dark mb-2">ייעוץ משכנתא לרכישת דירה</h3>
+          <p class="text-gray-600 text-sm mb-3">ליווי מלא ברכישת דירה בקריית מוצקין - השוואת 7 בנקים, בניית תמהיל, וליווי עד החתימה.</p>
+          <span class="text-brand-600 text-sm font-medium">למידע נוסף ←</span>
+        </a>
+        <a href="/services/mortgage-refinance/" class="block bg-surface p-6 rounded-xl hover:shadow-md transition-shadow border border-border hover:border-brand-300">
+          <h3 class="font-bold text-dark mb-2">מחזור משכנתא</h3>
+          <p class="text-gray-600 text-sm mb-3">יש לכם משכנתא קיימת? בדיקת כדאיות מחזור ללא עלות. חיסכון ממוצע: 50,000-150,000 ש"ח.</p>
+          <span class="text-brand-600 text-sm font-medium">למידע נוסף ←</span>
+        </a>
+        <a href="/services/young-couples/" class="block bg-surface p-6 rounded-xl hover:shadow-md transition-shadow border border-border hover:border-brand-300">
+          <h3 class="font-bold text-dark mb-2">משכנתא לזוגות צעירים</h3>
+          <p class="text-gray-600 text-sm mb-3">רוכשים דירה ראשונה? פטור ממס רכישה, מענקים לזכאים, וליווי מותאם.</p>
+          <span class="text-brand-600 text-sm font-medium">למידע נוסף ←</span>
+        </a>
+        <a href="/services/declined-applicants/" class="block bg-surface p-6 rounded-xl hover:shadow-md transition-shadow border border-border hover:border-brand-300">
+          <h3 class="font-bold text-dark mb-2">משכנתא למסורבים</h3>
+          <p class="text-gray-600 text-sm mb-3">סורבתם בבנק? 60% מהמסורבים מקבלים אישור בניסיון שני עם הכנה נכונה.</p>
+          <span class="text-brand-600 text-sm font-medium">למידע נוסף ←</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <FAQ items={faqItems} title="שאלות נפוצות - קריית מוצקין" />
+  <!-- Why Choose Us -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-8 text-center">למה לבחור בנו בקריית מוצקין?</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {[
+          { title: 'המשרד ממש קרוב', desc: 'המשרד שלנו בקריית ביאליק נמצא 5 דקות מקריית מוצקין - נגיש ונוח.' },
+          { title: 'היכרות עם השוק המקומי', desc: 'מכירים את מחירי הדירות בכל שכונה, פרויקטים חדשים, ומגמות בשוק.' },
+          { title: 'קשרים עם סניפי הבנקים', desc: 'קשרים אישיים עם מנהלי משכנתאות בסניפי הקריות - משא ומתן יעיל יותר.' },
+          { title: 'שירות אישי', desc: 'לא חברה ארצית עם מוקד טלפוני - ליווי צמוד מיועץ אחד לאורך כל התהליך.' },
+        ].map((item) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-border">
+            <h3 class="font-bold text-dark mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-  <CTASection />
+  <!-- Related Guides -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">מדריכים רלוונטיים</h2>
+      <div class="grid md:grid-cols-3 gap-4">
+        <a href="/guides/young-couples/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">משכנתא לזוגות צעירים</h3>
+          <p class="text-gray-600 text-sm">פטור ממס, מענקים, הון עצמי נדרש</p>
+        </a>
+        <a href="/guides/down-payment/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">הון עצמי למשכנתא</h3>
+          <p class="text-gray-600 text-sm">כמה צריך ומאיפה אפשר לגייס?</p>
+        </a>
+        <a href="/guides/mortgage-mix/" class="block bg-surface p-4 rounded-xl hover:shadow-md transition-shadow">
+          <h3 class="font-bold text-dark mb-1">תמהיל משכנתא</h3>
+          <p class="text-gray-600 text-sm">פריים, קל"צ, צמודה - מה הכי טוב?</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other Areas -->
+  <section class="py-12 md:py-16 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-dark mb-6 text-center">אזורים נוספים באזור הקריות</h2>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/areas/haifa/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">חיפה</a>
+        <a href="/areas/kiryat-bialik/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">קריית ביאליק</a>
+        <a href="/areas/kiryat-ata/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">קריית אתא</a>
+        <a href="/areas/nesher/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">נשר</a>
+        <a href="/areas/tirat-carmel/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">טירת כרמל</a>
+        <a href="/areas/zichron-yaakov/" class="bg-white px-4 py-2 rounded-lg border border-border hover:border-brand-300 transition-colors text-sm">זכרון יעקב</a>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="שאלות נפוצות - משכנתא בקריית מוצקין" />
+
+  <CTASection
+    title="מחפשים יועץ משכנתאות בקריית מוצקין?"
+    subtitle="השאירו פרטים וקבלו ייעוץ ראשוני ללא עלות"
+  />
 </BaseLayout>
