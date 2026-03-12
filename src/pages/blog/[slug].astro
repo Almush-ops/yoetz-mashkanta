@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { getArticles, getArticleBySlug } from '../../lib/supabase';
+import { consultant, personSchema } from '../../data/consultant';
+
+export async function getStaticPaths() {
+  const articles = await getArticles();
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { slug } = Astro.params;
+const { article } = Astro.props;
+
+if (!article) {
+  return Astro.redirect('/404');
+}
+
+const breadcrumbs = [
+  { label: 'דף הבית', href: '/' },
+  { label: 'בלוג', href: '/blog/' },
+  { label: article.title },
+];
+
+const articleSchema = {
+  '@type': 'Article',
+  headline: article.title,
+  description: article.seo_description || article.featured_snippet || '',
+  url: `https://yoetz-mashkanta.co.il/blog/${article.slug}/`,
+  datePublished: article.created_at,
+  dateModified: article.updated_at,
+  author: personSchema,
+  publisher: {
+    '@type': 'Organization',
+    name: 'יועץ משכנתאות - איתי אנצל',
+    url: 'https://yoetz-mashkanta.co.il',
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `https://yoetz-mashkanta.co.il/blog/${article.slug}/`,
+  },
+};
+
+// Convert markdown to HTML
+function markdownToHtml(content: string): string {
+  return content
+    // Headers
+    .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-brand-800 mt-8 mb-4">$1</h3>')
+    .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-brand-800 mt-10 mb-5">$1</h2>')
+    // Bold
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    // Links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-accent-600 hover:text-accent-700 underline">$1</a>')
+    // Lists
+    .replace(/^\* (.*$)/gim, '<li class="mb-2">$1</li>')
+    .replace(/(<li.*<\/li>)/s, '<ul class="list-disc list-inside space-y-2 my-4">$1</ul>')
+    // Paragraphs
+    .split('\n\n')
+    .map(p => {
+      if (p.startsWith('<h') || p.startsWith('<ul') || p.startsWith('<li')) return p;
+      return `<p class="text-gray-700 leading-relaxed mb-4">${p}</p>`;
+    })
+    .join('\n');
+}
+
+const htmlContent = markdownToHtml(article.content);
+---
+
+<BaseLayout
+  title={article.seo_title || article.title}
+  description={article.seo_description || article.featured_snippet || ''}
+  ogType="article"
+>
+  <SchemaOrg slot="schema" schemas={[articleSchema]} />
+
+  <section class="py-12 md:py-16 bg-gradient-to-b from-brand-50 to-white">
+    <div class="container max-w-4xl mx-auto px-4">
+      <Breadcrumbs items={breadcrumbs} />
+
+      <h1 class="text-3xl md:text-4xl font-bold text-brand-800 mb-4">
+        {article.title}
+      </h1>
+
+      <div class="flex items-center gap-4 text-sm text-gray-500">
+        <time datetime={article.created_at}>
+          {new Date(article.created_at).toLocaleDateString('he-IL', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </time>
+        {article.category && (
+          <span class="px-3 py-1 bg-brand-100 text-brand-700 rounded-full">
+            {article.category}
+          </span>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <article class="py-12 md:py-16">
+    <div class="container max-w-4xl mx-auto px-4">
+      <div class="prose prose-lg max-w-none" set:html={htmlContent} />
+    </div>
+  </article>
+
+  <CTASection />
+</BaseLayout>
