@@ -5,6 +5,7 @@ import CTASection from '../../components/CTASection.astro';
 import SchemaOrg from '../../components/SchemaOrg.astro';
 import { getArticles, getArticleBySlug } from '../../lib/supabase';
 import { consultant, personSchema } from '../../data/consultant';
+import { marked } from 'marked';
 
 export async function getStaticPaths() {
   const articles = await getArticles();
@@ -46,29 +47,7 @@ const articleSchema = {
   },
 };
 
-// Convert markdown to HTML
-function markdownToHtml(content: string): string {
-  return content
-    // Headers
-    .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-brand-800 mt-8 mb-4">$1</h3>')
-    .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-brand-800 mt-10 mb-5">$1</h2>')
-    // Bold
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    // Links
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-accent-600 hover:text-accent-700 underline">$1</a>')
-    // Lists
-    .replace(/^\* (.*$)/gim, '<li class="mb-2">$1</li>')
-    .replace(/(<li.*<\/li>)/s, '<ul class="list-disc list-inside space-y-2 my-4">$1</ul>')
-    // Paragraphs
-    .split('\n\n')
-    .map(p => {
-      if (p.startsWith('<h') || p.startsWith('<ul') || p.startsWith('<li')) return p;
-      return `<p class="text-gray-700 leading-relaxed mb-4">${p}</p>`;
-    })
-    .join('\n');
-}
-
-const htmlContent = markdownToHtml(article.content);
+const htmlContent = marked.parse(article.content);
 ---
 
 <BaseLayout
